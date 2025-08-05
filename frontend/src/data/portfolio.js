@@ -14,7 +14,8 @@ export const portfolioData = {
         "Hello and welcome to Yuniverse. My name is Xinyu, and this space is my digital universe. The name is a nod to 'The Social Network'—simpler, cleaner, and it just sounds right.",
         "After exploring various fields, I've found my passion in backend development. I get a great sense of accomplishment from designing clean APIs and ensuring every component of a system runs elegantly and robustly.",
         "I believe that truly effective solutions are born from a deep understanding of user needs. This principle guides my work, where I often blend creative thinking with engineering discipline to build products that solve real-world problems.",
-        "Currently, I'm engaged in Embedded AI research with my advisor, which has been a fascinating journey into the future of robotics. Outside of tech, I'm usually at the gym, or diving into my music and film collections, with a special love for Neo-Soul and Funk."
+        "Currently, I'm engaged in Embedded AI research with my advisor. Learning how robotics work is pretty cool. ",
+        "Outside of tech, I'm usually at the gym, or listening to music and watching movies. I'll probably add my music and movie collection to this page in the future. I listen to Neo-Soul and Funk a lot.",
       ]
     },
     experience: {
