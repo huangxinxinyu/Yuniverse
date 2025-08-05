@@ -17,13 +17,16 @@ import SocialLinks from './SocialLinks.vue'
   position: fixed;
   left: 0;
   top: 0;
-  width: 45%;
+  width: 40%;
   height: 100vh;
-  padding: 3rem 2rem 3rem 4rem;
+  padding: 3rem 3rem 3rem 8%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   z-index: var(--z-fixed);
+  background: rgba(10, 10, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid var(--border-color);
 }
 
 @media (max-width: 1024px) {
@@ -32,6 +35,10 @@ import SocialLinks from './SocialLinks.vue'
     width: 100%;
     height: auto;
     padding: 2rem;
+    background: rgba(10, 10, 26, 0.9);
+    backdrop-filter: blur(5px);
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
   }
 }
 </style>

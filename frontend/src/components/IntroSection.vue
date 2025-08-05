@@ -16,13 +16,13 @@ const { t } = storeToRefs(store)
 
 <style scoped>
 .intro-section {
-  margin-top: 4rem;
-  margin-bottom: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
   max-width: 450px;
 }
 
 .name-title {
-  font-size: 3.2rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
@@ -30,18 +30,18 @@ const { t } = storeToRefs(store)
 }
 
 .job-title {
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: 600;
   color: var(--secondary-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   line-height: 1.2;
 }
 
 .intro-description {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-bottom: 3rem;
-  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 1024px) {
@@ -52,11 +52,15 @@ const { t } = storeToRefs(store)
   }
 
   .name-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .job-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .intro-description {
+    font-size: 0.9rem;
   }
 }
 </style>

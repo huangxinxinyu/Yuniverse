@@ -11,28 +11,6 @@
     >
       <h4 class="project-title">{{ project.title }}</h4>
       <p class="project-description">{{ project.description }}</p>
-      <div class="project-links">
-        <a
-            v-if="project.github"
-            :href="project.github"
-            class="project-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="GitHub"
-        >
-          🔗
-        </a>
-        <a
-            v-if="project.demo"
-            :href="project.demo"
-            class="project-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Live Demo"
-        >
-          🚀
-        </a>
-      </div>
       <div class="tech-tags">
         <span
             v-for="tech in project.tech"
@@ -56,7 +34,7 @@ const { t, activeSection } = storeToRefs(store)
 
 <style scoped>
 .content-section {
-  margin-bottom: 6rem;
+  margin-bottom: 5rem;
   opacity: 0.6;
   transition: opacity var(--transition-base);
 }
@@ -66,8 +44,8 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .project-item {
-  margin-bottom: 3rem;
-  padding: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
   transition: all var(--transition-base);
   cursor: pointer;
@@ -84,34 +62,17 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .project-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .project-description {
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.project-links {
-  display: flex;
-  gap: 1rem;
+  line-height: 1.6;
   margin-bottom: 1rem;
-}
-
-.project-link {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 1.2rem;
-  transition: all var(--transition-base);
-}
-
-.project-link:hover {
-  color: var(--primary-color);
-  transform: translateY(-2px);
+  font-size: 0.9rem;
 }
 
 .tech-tags {
@@ -121,25 +82,25 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .tech-tag {
-  background: rgba(100, 255, 218, 0.1);
+  background: rgba(255, 215, 0, 0.1);
   color: var(--primary-color);
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 1rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
-}
-
-[data-theme="light"] .tech-tag {
-  background: rgba(99, 102, 241, 0.1);
 }
 
 @media (max-width: 768px) {
   .project-item {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
 
   .project-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
+  }
+
+  .project-description {
+    font-size: 0.85rem;
   }
 }
 </style>

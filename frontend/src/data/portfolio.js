@@ -1,19 +1,20 @@
 export const portfolioData = {
   en: {
-    name: "Your Name",
-    title: "Full Stack Developer",
-    description: "I build accessible, pixel-perfect digital experiences for the web. I'm passionate about creating exceptional user interfaces that blend thoughtful design with robust engineering.",
+    name: "Xinyu Huang",
+    title: "Bachelor of Engineering Honours (Software) at the University of Sydney",
+    description: "I am a software engineer focused on building robust backend systems and exploring the frontiers of Embedded AI. I thrive on transforming complex requirements into elegant, high-performance solutions.",
     nav: {
       about: "About",
       experience: "Experience",
       projects: "Projects"
     },
     about: {
-      title: "About",
+      title: "About Me",
       content: [
-        "Back in 2012, I decided to try my hand at creating custom Tumblr themes and tumbled head first into the rabbit hole of coding and web development. Fast-forward to today, and I've had the privilege of building software for an advertising agency, a start-up, a huge corporation, and a digital product studio.",
-        "My main focus these days is building accessible user interfaces for our customers at Upstatement. I most enjoy working on projects where design and engineering intersect — things that look great but are also built well under the hood.",
-        "When I'm not at the computer, I'm usually rock climbing, hanging out with my wife and two cats, or running around Hyrule searching for Korok seeds."
+        "Hello and welcome to Yuniverse. My name is Xinyu, and this space is my digital universe. The name is a nod to 'The Social Network'—simpler, cleaner, and it just sounds right.",
+        "After exploring various fields, I've found my passion in backend development. I get a great sense of accomplishment from designing clean APIs and ensuring every component of a system runs elegantly and robustly.",
+        "I believe that truly effective solutions are born from a deep understanding of user needs. This principle guides my work, where I often blend creative thinking with engineering discipline to build products that solve real-world problems.",
+        "Currently, I'm engaged in Embedded AI research with my advisor, which has been a fascinating journey into the future of robotics. Outside of tech, I'm usually at the gym, or diving into my music and film collections, with a special love for Neo-Soul and Funk."
       ]
     },
     experience: {
@@ -21,27 +22,19 @@ export const portfolioData = {
       items: [
         {
           id: 1,
-          title: "Senior Frontend Engineer",
-          company: "Upstatement",
-          period: "2018 — Present",
-          description: "Build and maintain critical components used to construct Klaviyo's frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
-          tech: ["JavaScript", "TypeScript", "React", "Storybook"]
+          title: "Backend Developer Intern",
+          company: "Software Engineering Lab, Zhejiang University",
+          period: "Dec 2023 — Jan 2024",
+          description: "Contributed to the development of dynamic database query functionalities for graph-based systems.",
+          tech: ["Python", "Neo4j", "Cypher"]
         },
         {
           id: 2,
-          title: "Software Engineer",
-          company: "Mullen",
-          period: "2017 — 2018",
-          description: "Worked with a team of three designers to build a marketing website and e-commerce platform for blistabloc, an ambitious startup originating from Northeastern.",
-          tech: ["Vue.js", "Node.js", "WordPress", "MySQL"]
-        },
-        {
-          id: 3,
-          title: "UI Engineer Co-op",
-          company: "Apple",
-          period: "2016 — 2017",
-          description: "Developed and styled interactive web applications for Apple Music using Ember.js. Built and shipped highly interactive web applications for millions of users.",
-          tech: ["Ember.js", "Sass", "JavaScript", "Git"]
+          title: "Embedded Software Intern",
+          company: "Bose",
+          period: "Jul 2024 — Aug 2024",
+          description: "Developed and debugged low-level software for audio devices on resource-constrained microcontrollers.",
+          tech: ["C", "STM32", "Keil"]
         }
       ]
     },
@@ -50,45 +43,37 @@ export const portfolioData = {
       items: [
         {
           id: 1,
-          title: "Build a Spotify Connected App",
-          description: "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
-          tech: ["React", "Styled Components", "Node.js", "Spotify API"],
+          title: "AI Interviewer",
+          description: "A web application to help software engineers prepare for technical interviews. It uses an AI-driven chat to simulate interview scenarios, focusing on core CS concepts and technical knowledge.",
+          tech: ["Spring Boot", "MySQL", "AI", "Redis"],
           github: "#",
           demo: "#"
         },
         {
           id: 2,
-          title: "Integrating Algolia Search with WordPress Multisite",
-          description: "Building a custom multisite compatible WordPress plugin to build global search with Algolia.",
-          tech: ["Algolia", "WordPress", "PHP", "JavaScript"],
-          github: "#",
-          demo: "#"
-        },
-        {
-          id: 3,
-          title: "OctoProfile",
-          description: "A nicer look at your GitHub profile and repo stats. Includes data visualizations of your top languages, starred repositories, and sort through your top repos by number of stars, forks, and size.",
-          tech: ["Next.js", "Chart.js", "GitHub API", "Vercel"],
+          title: "Crypto Inheritance & Custody System",
+          description: "A secure platform designed to help users custody their cryptocurrency assets and manage them for inheritance purposes.",
+          tech: ["React", "Django", "AWS", "MySQL"],
           github: "#",
           demo: "#"
         }
       ]
     },
     social: {
-      email: "mailto:email@example.com",
-      linkedin: "https://linkedin.com/in/yourprofile",
-      github: "https://github.com/yourusername",
-      instagram: "https://instagram.com/yourusername"
+      email: "xinyuhimself@mgmail.com",
+      linkedin: "https://www.linkedin.com/in/xinyu-huang-36b43723a/",
+      github: "https://github.com/huangxinxinyu",
+      wechat: "#" // This will be handled by the click event
     },
     ui: {
       themeToggle: "Toggle Theme",
-      langToggle: "中文"
+      langToggle: "中文",
     }
   },
   zh: {
-    name: "你的姓名",
-    title: "全栈开发工程师",
-    description: "我专注于构建易于访问、像素完美的数字化网络体验。我热衷于创造将深思熟虑的设计与强大工程技术相结合的卓越用户界面。",
+    name: "黄新宇",
+    title: "悉尼大学荣誉工程学士 (软件工程)",
+    description: "我专注于构建稳健的后端系统，并探索嵌入式AI的前沿。我热衷于将复杂的需求转化为优雅、高性能的解决方案。",
     nav: {
       about: "关于",
       experience: "经历",
@@ -97,9 +82,12 @@ export const portfolioData = {
     about: {
       title: "关于我",
       content: [
-        "2012年，我决定尝试创建自定义Tumblr主题，从此跌入了编程和网页开发的兔子洞。快进到今天，我有幸为广告代理商、初创公司、大型企业和数字产品工作室构建软件。",
-        "我目前的主要工作是在Upstatement为我们的客户构建易于访问的用户界面。我最喜欢从事设计和工程交叉的项目——那些看起来很棒但在底层也构建得很好的东西。",
-        "当我不在电脑前时，我通常在攀岩、和我的妻子及两只猫一起玩耍，或者在海拉鲁四处奔跑寻找科洛克种子。"
+        "你好，欢迎来到Yuniverse。我叫新宇，一开始我想做的就是新宇宇宙，但后面觉得Yuniverse更简洁，而且发音也是一样的。有点像社交网络里贾老板说的'drop the the, just Facebook'。",
+        "我做过各种各样的尝试，目前觉得还是后端适合我。设计简洁的API，确保系统的每个环节能够优雅稳健的运行让我有很大成就感。",
+        "我专注于理解需求，并解决问题。我时常也会有一些有创意的想法，但这都是为了构建能解决用户问题的产品。",
+        "现在在和导师做嵌入式AI领域的研究，能学到机器人的发展还是挺酷的。",
+        "平时健身听音乐看电影比较多。我后面可能会加入我的音乐电影收藏部分。我喜欢听Neo-Soul,Funk,黑人音乐比较多。" ,
+        "早年玩英雄联盟，星际争霸，现在打云顶，多个赛季澳服大师，我宁愿去玩王者模拟战也不打金铲铲。"
       ]
     },
     experience: {
@@ -107,68 +95,52 @@ export const portfolioData = {
       items: [
         {
           id: 1,
-          title: "高级前端工程师",
-          company: "Upstatement",
-          period: "2018 — 至今",
-          description: "构建和维护用于构建Klaviyo前端的关键组件，跨越整个产品。与包括开发人员、设计师和产品经理在内的跨职能团队密切合作，实施和倡导网络可访问性的最佳实践。",
-          tech: ["JavaScript", "TypeScript", "React", "Storybook"]
+          title: "后端开发实习",
+          company: "浙江大学软件工程实验室",
+          period: "2023.12 — 2024.1",
+          description: "负责动态数据库查询功能的开发。",
+          tech: ["Python", "Neo4j", "Cypher"]
         },
         {
           id: 2,
-          title: "软件工程师",
-          company: "Mullen",
-          period: "2017 — 2018",
-          description: "与三名设计师团队合作，为blistabloc构建营销网站和电子商务平台，这是一个来自东北大学的雄心勃勃的初创公司。",
-          tech: ["Vue.js", "Node.js", "WordPress", "MySQL"]
-        },
-        {
-          id: 3,
-          title: "UI工程师实习生",
-          company: "Apple",
-          period: "2016 — 2017",
-          description: "使用Ember.js为Apple Music开发和设计交互式网络应用程序。为数百万用户构建和发布高度交互式的网络应用程序。",
-          tech: ["Ember.js", "Sass", "JavaScript", "Git"]
+          title: "嵌入式软件开发实习",
+          company: "Bose",
+          period: "2024.7 — 2024.8",
+          description: "为音频设备在资源受限的微控制器上开发和调试底层软件。",
+          tech: ["C", "STM32", "Keil"]
         }
       ]
     },
     projects: {
-      title: "项目作品",
+      title: "个人项目",
       items: [
         {
           id: 1,
-          title: "构建Spotify连接应用",
-          description: "一个用于可视化个性化Spotify数据的网络应用。查看您的顶级艺术家、顶级曲目、最近播放的曲目，以及每首曲目的详细音频信息。基于您现有的播放列表创建和保存推荐曲目的新播放列表等。",
-          tech: ["React", "Styled Components", "Node.js", "Spotify API"],
+          title: "AI面试官",
+          description: "一个协助程序员面试的网站。用AI对话模拟面试进程，类似Leetcode，但专注于核心计算机知识与八股文。",
+          tech: ["Springboot", "Mysql", "AI", "Redis"],
           github: "#",
           demo: "#"
         },
         {
           id: 2,
-          title: "将Algolia搜索与WordPress多站点集成",
-          description: "构建自定义多站点兼容的WordPress插件，以使用Algolia构建全局搜索。",
-          tech: ["Algolia", "WordPress", "PHP", "JavaScript"],
-          github: "#",
-          demo: "#"
-        },
-        {
-          id: 3,
-          title: "OctoProfile",
-          description: "更好地查看您的GitHub个人资料和仓库统计数据。包括您的顶级语言、星标仓库的数据可视化，并按星标数、分叉数和大小对您的顶级仓库进行排序。",
-          tech: ["Next.js", "Chart.js", "GitHub API", "Vercel"],
+          title: "虚拟币继承保存系统",
+          description: "一个帮助用户托管虚拟币并用于继承目的的安全平台。",
+          tech: ["React", "Django", "AWS", "Mysql"],
           github: "#",
           demo: "#"
         }
       ]
     },
     social: {
-      email: "mailto:email@example.com",
-      linkedin: "https://linkedin.com/in/yourprofile",
-      github: "https://github.com/yourusername",
-      instagram: "https://instagram.com/yourusername"
+      email: "xinyuhimself@mgmail.com",
+      linkedin: "https://www.linkedin.com/in/xinyu-huang-36b43723a/",
+      github: "https://github.com/huangxinxinyu",
+      wechat: "#" // This will be handled by the click event
     },
     ui: {
       themeToggle: "主题切换",
-      langToggle: "EN"
+      langToggle: "EN",
     }
   }
-}
+};

@@ -22,7 +22,7 @@ const { t, activeSection } = storeToRefs(store)
 
 <style scoped>
 .content-section {
-  margin-bottom: 6rem;
+  margin-bottom: 5rem;
   opacity: 0.6;
   transition: opacity var(--transition-base);
 }
@@ -32,13 +32,13 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .about-content {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 .about-content p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .about-content p:last-child {
@@ -51,7 +51,8 @@ const { t, activeSection } = storeToRefs(store)
   }
 
   .about-content {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }
 </style>

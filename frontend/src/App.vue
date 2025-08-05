@@ -2,8 +2,15 @@
   <div class="portfolio-container">
     <LeftPanel />
     <RightPanel />
-    <ThemeToggle />
     <LanguageToggle />
+    <RocketCursor
+        :color="'#ffa500'"
+        :size="40"
+        :trail="true"
+        :trail-length="25"
+        :speed="0.15"
+        :enabled="true"
+    />
   </div>
 </template>
 
@@ -12,22 +19,14 @@ import { onMounted } from 'vue'
 import { usePortfolioStore } from '@/stores/portfolio'
 import LeftPanel from '@/components/LeftPanel.vue'
 import RightPanel from '@/components/RightPanel.vue'
-import ThemeToggle from '@/components/ThemeToggle.vue'
 import LanguageToggle from '@/components/LanguageToggle.vue'
-import RocketCursor from 'rocket-cursor-component'
+import RocketCursor from '@/components/RocketCursor.vue'
 
 const store = usePortfolioStore()
 
 onMounted(() => {
   // Initialize preferences
   store.initializePreferences()
-
-  // Initialize Rocket Cursor
-  new RocketCursor({
-    color: '#64ffda',
-    size: 20,
-    trail: true
-  })
 })
 </script>
 

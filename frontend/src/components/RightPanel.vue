@@ -7,13 +7,13 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
-import { useScrollspy } from '@/composables/useScrollspy'
+import {onMounted, onUnmounted} from 'vue'
+import {useScrollspy} from '@/composables/useScrollspy'
 import AboutSection from './AboutSection.vue'
 import ExperienceSection from './ExperienceSection.vue'
 import ProjectsSection from './ProjectsSection.vue'
 
-const { updateActiveSection } = useScrollspy()
+const {updateActiveSection} = useScrollspy()
 
 onMounted(() => {
   window.addEventListener('scroll', updateActiveSection)
@@ -27,10 +27,13 @@ onUnmounted(() => {
 
 <style scoped>
 .right-panel {
-  margin-left: 45%;
-  width: 55%;
-  padding: 6rem 6rem 4rem 3rem;
+  margin-left: 40%;
+  width: 50%;
+  padding: 6rem 8% 4rem 4rem;
   max-width: 800px;
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(8px);
+  min-height: 100vh;
 }
 
 @media (max-width: 1024px) {
@@ -38,6 +41,8 @@ onUnmounted(() => {
     margin-left: 0;
     width: 100%;
     padding: 2rem;
+    background: rgba(26, 26, 46, 0.7);
+    backdrop-filter: blur(5px);
   }
 }
 </style>

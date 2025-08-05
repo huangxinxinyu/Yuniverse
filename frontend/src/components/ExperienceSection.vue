@@ -29,8 +29,26 @@
         </span>
       </div>
     </div>
+
+    <!-- View Full Resume Button -->
+    <div class="resume-section">
+      <a
+          href="/resume.pdf"
+          class="resume-link"
+          target="_blank"
+          rel="noopener noreferrer"
+      >
+        View Full Résumé
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 17L17 7"></path>
+          <path d="M7 7h10v10"></path>
+        </svg>
+      </a>
+    </div>
   </section>
-</template>
+</template> 17L17 7"/>
+<path d="M7 7h10v10"/>
+
 
 <script setup>
 import { usePortfolioStore } from '@/stores/portfolio'
@@ -42,7 +60,7 @@ const { t, activeSection } = storeToRefs(store)
 
 <style scoped>
 .content-section {
-  margin-bottom: 6rem;
+  margin-bottom: 5rem;
   opacity: 0.6;
   transition: opacity var(--transition-base);
 }
@@ -52,8 +70,8 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .experience-item {
-  margin-bottom: 3rem;
-  padding: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
   transition: all var(--transition-base);
   cursor: pointer;
@@ -73,11 +91,11 @@ const { t, activeSection } = storeToRefs(store)
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .experience-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
@@ -89,7 +107,7 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .experience-period {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -98,8 +116,9 @@ const { t, activeSection } = storeToRefs(store)
 
 .experience-description {
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
   margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
 .tech-tags {
@@ -109,21 +128,53 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .tech-tag {
-  background: rgba(100, 255, 218, 0.1);
+  background: rgba(255, 215, 0, 0.1);
   color: var(--primary-color);
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 1rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
-[data-theme="light"] .tech-tag {
-  background: rgba(99, 102, 241, 0.1);
+.resume-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+
+.resume-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  transition: all var(--transition-base);
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.resume-link:hover {
+  background: var(--primary-color);
+  color: var(--bg-primary);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.resume-link svg {
+  transition: transform var(--transition-base);
+}
+
+.resume-link:hover svg {
+  transform: translate(2px, -2px);
 }
 
 @media (max-width: 768px) {
   .experience-item {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
 
   .experience-header {
@@ -132,7 +183,20 @@ const { t, activeSection } = storeToRefs(store)
   }
 
   .experience-period {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  .experience-title {
+    font-size: 0.95rem;
+  }
+
+  .experience-description {
+    font-size: 0.85rem;
+  }
+
+  .resume-link {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
   }
 }
 </style>
