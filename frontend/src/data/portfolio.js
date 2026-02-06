@@ -50,14 +50,14 @@ export const portfolioData = {
           github: "#",
           demo: "#"
         },
-        {
-          id: 2,
-          title: "Crypto Inheritance & Custody System",
-          description: "A secure platform designed to help users custody their cryptocurrency assets and manage them for inheritance purposes.",
-          tech: ["React", "Django", "AWS", "MySQL"],
-          github: "#",
-          demo: "#"
-        }
+          {
+              id: 2,
+              title: "Trust in LLM-controlled Robotics: a Survey of Security Threats, Defenses and Challenges",
+              description: "A survey discussed a comprehensive taxonomy of attack vectors and defense mechanisms for LLM controlled robotics。",
+              tech: ["Embodied AI", "LLM", "Jailbreaking", "Defense"],
+              github: "https://arxiv.org/abs/2601.02377",
+              demo: "#"
+          }
       ]
     },
     social: {
@@ -74,7 +74,7 @@ export const portfolioData = {
   zh: {
     name: "黄新宇",
     title: "悉尼大学荣誉工程学士 (软件工程)",
-    description: "我专注于构建稳健的后端系统，并探索嵌入式AI的前沿。我热衷于将复杂的需求转化为优雅、高性能的解决方案。",
+    description: "我得先找到一个后端实习，然后开始我的职业生涯",
     nav: {
       about: "关于",
       experience: "经历",
@@ -84,10 +84,10 @@ export const portfolioData = {
       title: "关于我",
       content: [
         "你好，欢迎来到Yuniverse。我叫新宇，一开始我想做的就是新宇宇宙，但后面觉得Yuniverse更简洁，而且发音也是一样的。有点像社交网络里贾老板说的'drop the the, just Facebook'。",
-        "我做过各种各样的尝试，目前觉得还是后端适合我。设计简洁的API，确保系统的每个环节能够优雅稳健的运行让我有很大成就感。",
+        "我做过各种各样的尝试，目前觉得还是后端适合我。设计API，确保系统的每个环节能够健壮的运行，拓展系统让我有很大成就感。",
         "我专注于理解需求，并解决问题。我时常也会有一些有创意的想法，但这都是为了构建能解决用户问题的产品。",
-        "现在在和导师做嵌入式AI领域的研究，能学到机器人的发展还是挺酷的。",
-        "平时健身听音乐看电影比较多。我后面可能会加入我的音乐电影收藏部分。我喜欢听Neo-Soul,Funk,黑人音乐比较多。" ,
+        "毕业设计和导师做嵌入式AI领域的研究，能学到机器人的发展还是挺酷的。",
+        "平时健身听音乐看电影比较多。我后面可能会加入我的音乐电影收藏部分。我喜欢听Neo-Soul,Funk,有律动的音乐比较多。" ,
         "早年玩英雄联盟，星际争霸，现在打云顶，多个赛季澳服大师，我宁愿去玩王者模拟战也不打金铲铲。"
       ]
     },
@@ -119,16 +119,16 @@ export const portfolioData = {
           id: 1,
           title: "AI面试官",
           description: "一个协助程序员面试的网站。用AI对话模拟面试进程，类似Leetcode，但专注于核心计算机知识与八股文。",
-          tech: ["Springboot", "Mysql", "AI", "Redis"],
+          tech: ["Springboot", "Mysql", "AI", "Redis", "RocketMQ"],
           github: "#",
           demo: "#"
         },
         {
           id: 2,
-          title: "虚拟币继承保存系统",
-          description: "一个帮助用户托管虚拟币并用于继承目的的安全平台。",
-          tech: ["React", "Django", "AWS", "Mysql"],
-          github: "#",
+          title: "Trust in LLM-controlled Robotics: a Survey of Security Threats, Defenses and Challenges",
+          description: "一篇讨论对LLM驱动的机器人的攻击、防御手段和挑战的综述。",
+          tech: ["Embodied AI", "LLM", "Jailbreaking", "Defense"],
+          github: "https://arxiv.org/abs/2601.02377",
           demo: "#"
         }
       ]
