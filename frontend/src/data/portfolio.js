@@ -33,7 +33,7 @@ export const portfolioData = {
           id: 2,
           title: "Embedded Software Intern",
           company: "Bose",
-          period: "Jul 2024 — Aug 2024",
+          period: "Jul 2025 — Aug 2025",
           description: "Developed and debugged low-level software for audio devices on resource-constrained microcontrollers.",
           tech: ["C", "STM32", "Keil"]
         }
@@ -106,7 +106,7 @@ export const portfolioData = {
           id: 2,
           title: "嵌入式软件开发实习",
           company: "Bose",
-          period: "2024.7 — 2024.8",
+          period: "2025.7 — 2025.8",
           description: "为音频设备在资源受限的微控制器上开发和调试底层软件。",
           tech: ["C", "STM32", "Keil"]
         }
