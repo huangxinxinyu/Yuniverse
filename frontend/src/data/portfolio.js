@@ -61,7 +61,7 @@ export const portfolioData = {
         {
           id: 2,
           title: "E-Commerce Platform",
-          description: "Scalable microservices e-commerce system with DDD architecture.<br><br>• Seckill anti-oversell: Redis distributed lock + Lua atomic stock deduction, with DB unique index as fallback<br>• One-per-user: User-dimension optimistic lock + Redis deduplication double-check<br>• Traffic shunting: Gateway rate limiting + cache shields 99% read requests, async MQ for peak shaving<br>• Service communication: Dubbo RPC with circuit breaker and service degradation<br>• High availability: Order timeout callback + payment idempotency; RocketMQ transaction message ensures eventual consistency",
+          description: "Scalable microservices e-commerce system with DDD architecture.\n\n• Seckill anti-oversell: Redis distributed lock + Lua atomic stock deduction, with DB unique index as fallback\n• One-per-user: User-dimension optimistic lock + Redis deduplication double-check\n• Traffic shunting: Gateway rate limiting + cache shields 99% read requests, async MQ for peak shaving\n• Service communication: Dubbo RPC with circuit breaker and service degradation\n• High availability: Order timeout callback + payment idempotency; RocketMQ transaction message ensures eventual consistency",
           tech: ["Spring Boot", "Redis", "RocketMQ", "Dubbo", "MySQL", "DDD"],
           github: "https://github.com/huangxinxinyu/eCommerce",
           demo: "#"
@@ -150,7 +150,7 @@ export const portfolioData = {
         {
           id: 2,
           title: "电商平台",
-          description: "可拓展微服务电商系统，采用DDD架构设计。<br><br>• 秒杀防超卖：Redis分布式锁+Lua脚本原子扣减库存，结合数据库唯一索引兜底<br>• 一人一单：用户维度乐观锁+Redis去重双重校验<br>• 流量分流：网关限流，异步MQ削峰处理<br>• 服务通信：Dubbo RPC调用，服务降级与熔断保护<br>• 高可用：订单超时回调+支付幂等性处理，RocketMQ事务消息确保最终一致性",
+          description: "可拓展微服务电商系统，采用DDD架构设计。\n\n• 秒杀防超卖：Redis分布式锁+Lua脚本原子扣减库存，结合数据库唯一索引兜底\n• 一人一单：用户维度乐观锁+Redis去重双重校验\n• 流量分流：网关限流，异步MQ削峰处理\n• 服务通信：Dubbo RPC调用，服务降级与熔断保护\n• 高可用：订单超时回调+支付幂等性处理，RocketMQ事务消息确保最终一致性",
           tech: ["Spring Boot", "Redis", "RocketMQ", "Dubbo", "MySQL", "DDD"],
           github: "https://github.com/huangxinxinyu/eCommerce",
           demo: "#"
