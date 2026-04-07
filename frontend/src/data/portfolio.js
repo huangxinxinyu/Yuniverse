@@ -24,13 +24,21 @@ export const portfolioData = {
         {
           id: 1,
           title: "Backend Developer Intern",
+          company: "时氪砹",
+          period: "2025.12 — 2026.4",
+          description: "Developed AI Agent for question generation using LangGraph; designed semantic text splitting with async processing and caching; implemented MCP for real-time exam trends; deployed AgentCore module.",
+          tech: ["LangGraph", "Python", "MCP", "Redis"]
+        },
+        {
+          id: 2,
+          title: "Backend Developer Intern",
           company: "Software Engineering Lab, Zhejiang University",
           period: "Dec 2023 — Jan 2024",
           description: "Contributed to the development of dynamic database query functionalities for graph-based systems.",
           tech: ["Python", "Neo4j", "Cypher"]
         },
         {
-          id: 2,
+          id: 3,
           title: "Embedded Software Intern",
           company: "Bose",
           period: "Jul 2025 — Aug 2025",
@@ -44,14 +52,22 @@ export const portfolioData = {
       items: [
         {
           id: 1,
-          title: "AI Interviewer",
-          description: "A web application to help software engineers prepare for technical interviews. It uses an AI-driven chat to simulate interview scenarios, focusing on core CS concepts and technical knowledge.",
-          tech: ["Spring Boot", "MySQL", "AI", "Redis"],
-          github: "#",
+          title: "JavaQuiz",
+          description: "A Java interview practice platform with AI evaluation powered by Doubao API. Features microservices architecture with RocketMQ for async communication; SMS login via Aliyun with JWT + Redis token management; ThreadLocal for user context isolation; Redis caching for hot questions with distributed locks.",
+          tech: ["Spring Boot", "MySQL", "Redis", "RocketMQ", "AI"],
+          github: "https://github.com/huangxinxinyu/JavaQuiz",
+          demo: "#"
+        },
+        {
+          id: 2,
+          title: "E-Commerce Platform",
+          description: "Scalable microservices e-commerce system with DDD architecture.<br><br>• Seckill anti-oversell: Redis distributed lock + Lua atomic stock deduction, with DB unique index as fallback<br>• One-per-user: User-dimension optimistic lock + Redis deduplication double-check<br>• Traffic shunting: Gateway rate limiting + cache shields 99% read requests, async MQ for peak shaving<br>• Service communication: Dubbo RPC with circuit breaker and service degradation<br>• High availability: Order timeout callback + payment idempotency; RocketMQ transaction message ensures eventual consistency",
+          tech: ["Spring Boot", "Redis", "RocketMQ", "Dubbo", "MySQL", "DDD"],
+          github: "https://github.com/huangxinxinyu/eCommerce",
           demo: "#"
         },
           {
-              id: 2,
+              id: 3,
               title: "Trust in LLM-controlled Robotics: a Survey of Security Threats, Defenses and Challenges",
               description: "A survey discussed a comprehensive taxonomy of attack vectors and defense mechanisms for LLM controlled robotics。",
               tech: ["Embodied AI", "LLM", "Jailbreaking", "Defense"],
@@ -97,13 +113,21 @@ export const portfolioData = {
         {
           id: 1,
           title: "后端开发实习",
+          company: "时氪砹",
+          period: "2025.12 — 2026.4",
+          description: "参与题目生成AIAgent核心开发，基于LangGraph搭建工作流；设计长本文语义拆分方案，结合异步处理与缓存策略；基于MCP实现考试热点实时更新；完成AgentCore核心模块部署落地。",
+          tech: ["LangGraph", "Python", "MCP", "Redis"]
+        },
+        {
+          id: 2,
+          title: "后端开发实习",
           company: "浙江大学软件工程实验室",
           period: "2023.12 — 2024.1",
           description: "负责动态数据库查询功能的开发。",
           tech: ["Python", "Neo4j", "Cypher"]
         },
         {
-          id: 2,
+          id: 3,
           title: "嵌入式软件开发实习",
           company: "Bose",
           period: "2025.7 — 2025.8",
@@ -117,14 +141,22 @@ export const portfolioData = {
       items: [
         {
           id: 1,
-          title: "AI面试官",
-          description: "一个协助程序员面试的网站。用AI对话模拟面试进程，类似Leetcode，但专注于核心计算机知识与八股文。",
-          tech: ["Springboot", "Mysql", "AI", "Redis", "RocketMQ"],
-          github: "#",
+          title: "JavaQuiz",
+          description: "面向Java面试场景的问答练习平台，集成豆包AI接口提供专业评价。采用微服务架构+RocketMQ异步通信；阿里云短信登录+JWT+Redis令牌管理；ThreadLocal用户上下文隔离；Redis缓存热点题库+分布式锁。",
+          tech: ["Spring Boot", "MySQL", "Redis", "RocketMQ", "AI"],
+          github: "https://github.com/huangxinxinyu/JavaQuiz",
           demo: "#"
         },
         {
           id: 2,
+          title: "电商平台",
+          description: "可拓展微服务电商系统，采用DDD架构设计。<br><br>• 秒杀防超卖：Redis分布式锁+Lua脚本原子扣减库存，结合数据库唯一索引兜底<br>• 一人一单：用户维度乐观锁+Redis去重双重校验<br>• 流量分流：网关限流，异步MQ削峰处理<br>• 服务通信：Dubbo RPC调用，服务降级与熔断保护<br>• 高可用：订单超时回调+支付幂等性处理，RocketMQ事务消息确保最终一致性",
+          tech: ["Spring Boot", "Redis", "RocketMQ", "Dubbo", "MySQL", "DDD"],
+          github: "https://github.com/huangxinxinyu/eCommerce",
+          demo: "#"
+        },
+        {
+          id: 3,
           title: "Trust in LLM-controlled Robotics: a Survey of Security Threats, Defenses and Challenges",
           description: "一篇讨论对LLM驱动的机器人的攻击、防御手段和挑战的综述。",
           tech: ["Embodied AI", "LLM", "Jailbreaking", "Defense"],
