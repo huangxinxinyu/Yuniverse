@@ -1,13 +1,13 @@
 <template>
   <section
-      id="experience"
-      class="content-section"
-      :class="{ active: activeSection === 'experience' }"
+    id="experience"
+    class="content-section"
+    :class="{ active: activeSection === 'experience' }"
   >
     <div
-        v-for="item in t.experience.items"
-        :key="item.id"
-        class="experience-item"
+      v-for="item in t.experience.items"
+      :key="item.id"
+      class="experience-item"
     >
       <div class="experience-header">
         <div>
@@ -18,27 +18,33 @@
         </div>
         <span class="experience-period">{{ item.period }}</span>
       </div>
-      <p class="experience-description">{{ item.description }}</p>
+
+      <ul v-if="Array.isArray(item.description)" class="experience-description-list">
+        <li v-for="description in item.description" :key="description">
+          {{ description }}
+        </li>
+      </ul>
+      <p v-else class="experience-description">{{ item.description }}</p>
+
       <div class="tech-tags">
         <span
-            v-for="tech in item.tech"
-            :key="tech"
-            class="tech-tag"
+          v-for="tech in item.tech"
+          :key="tech"
+          class="tech-tag"
         >
           {{ tech }}
         </span>
       </div>
     </div>
 
-    <!-- View Full Resume Button -->
     <div class="resume-section">
       <a
-          href="/resume.pdf"
-          class="resume-link"
-          target="_blank"
-          rel="noopener noreferrer"
+        href="/resume.pdf"
+        class="resume-link"
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        View Full Résumé
+        View Full Resume
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M7 17L17 7"></path>
           <path d="M7 7h10v10"></path>
@@ -46,9 +52,7 @@
       </a>
     </div>
   </section>
-</template> 17L17 7"/>
-<path d="M7 7h10v10"/>
-
+</template>
 
 <script setup>
 import { usePortfolioStore } from '@/stores/portfolio'
@@ -121,6 +125,22 @@ const { t, activeSection } = storeToRefs(store)
   font-size: 0.9rem;
 }
 
+.experience-description-list {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 1rem 1.1rem;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.experience-description-list li {
+  margin-bottom: 0.5rem;
+}
+
+.experience-description-list li:last-child {
+  margin-bottom: 0;
+}
+
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
@@ -190,7 +210,8 @@ const { t, activeSection } = storeToRefs(store)
     font-size: 0.95rem;
   }
 
-  .experience-description {
+  .experience-description,
+  .experience-description-list {
     font-size: 0.85rem;
   }
 
