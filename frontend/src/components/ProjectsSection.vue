@@ -4,6 +4,7 @@
       class="content-section"
       :class="{ active: activeSection === 'projects' }"
   >
+    <h3 class="section-title">{{ t.projects.title }}</h3>
     <div
         v-for="project in t.projects.items"
         :key="project.id"
@@ -74,6 +75,12 @@ const { t, activeSection } = storeToRefs(store)
 
 .content-section.active {
   opacity: 1;
+}
+
+.section-title {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
 }
 
 .project-item {

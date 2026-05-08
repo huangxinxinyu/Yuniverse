@@ -176,7 +176,8 @@ export const portfolioData = {
     },
     ui: {
       themeToggle: "Toggle Theme",
-      langToggle: "中文"
+      langToggle: "中文",
+      contactAction: "Contact"
     }
   },
   zh: {
@@ -356,7 +357,8 @@ export const portfolioData = {
     },
     ui: {
       themeToggle: "切换主题",
-      langToggle: "EN"
+      langToggle: "EN",
+      contactAction: "联系"
     }
   }
 };

@@ -27,6 +27,44 @@ import SocialLinks from './SocialLinks.vue'
   background: rgba(10, 10, 26, 0.8);
   backdrop-filter: blur(10px);
   border-right: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.left-panel::before {
+  content: '';
+  position: absolute;
+  right: -8rem;
+  bottom: 6rem;
+  width: 19rem;
+  height: 19rem;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+  box-shadow:
+    0 0 0 3.7rem rgba(255, 215, 0, 0.025),
+    inset 0 0 42px rgba(196, 160, 255, 0.06);
+  pointer-events: none;
+}
+
+.left-panel::after {
+  content: '';
+  position: absolute;
+  right: 4.8rem;
+  bottom: 14.8rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow:
+    0 0 18px rgba(56, 189, 248, 0.85),
+    -7rem 5.2rem 0 -0.08rem var(--primary-color),
+    -11rem -1.2rem 0 -0.16rem var(--secondary-color);
+  pointer-events: none;
+}
+
+.left-panel > :deep(*) {
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 1024px) {
@@ -39,6 +77,16 @@ import SocialLinks from './SocialLinks.vue'
     backdrop-filter: blur(5px);
     border-right: none;
     border-bottom: 1px solid var(--border-color);
+  }
+
+  .left-panel::before {
+    right: -10rem;
+    bottom: -8rem;
+  }
+
+  .left-panel::after {
+    right: 2rem;
+    bottom: 4rem;
   }
 }
 </style>

@@ -4,6 +4,7 @@
     class="content-section"
     :class="{ active: activeSection === 'work' }"
   >
+    <h3 class="section-title">{{ t.experience.title }}</h3>
     <div
       v-for="item in t.experience.items"
       :key="item.id"
@@ -71,6 +72,12 @@ const { t, activeSection } = storeToRefs(store)
 
 .content-section.active {
   opacity: 1;
+}
+
+.section-title {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
 }
 
 .experience-item {
