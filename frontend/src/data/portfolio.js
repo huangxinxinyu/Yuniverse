@@ -215,7 +215,11 @@ export const portfolioData = {
     ui: {
       themeToggle: "Toggle Theme",
       langToggle: "中文",
-      contactAction: "Contact"
+      contactAction: "Contact",
+      missionLabel: "Yuniverse Personal Mission",
+      flightStatus: "Frontend-only archive",
+      signalLabel: "Signal",
+      signalValue: "Orbiting backend systems, agent infra, and life logs"
     }
   },
   zh: {
@@ -434,7 +438,11 @@ export const portfolioData = {
     ui: {
       themeToggle: "切换主题",
       langToggle: "EN",
-      contactAction: "联系"
+      contactAction: "联系",
+      missionLabel: "Yuniverse 个人任务档案",
+      flightStatus: "纯前端静态档案",
+      signalLabel: "信号",
+      signalValue: "围绕后端系统、Agent Infra 与生活日志运行"
     }
   }
 };

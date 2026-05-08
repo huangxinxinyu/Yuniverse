@@ -37,10 +37,10 @@ onUnmounted(() => {
 
 <style scoped>
 .right-panel {
-  margin-left: 40%;
-  width: 50%;
-  padding: 6rem 8% 4rem 4rem;
-  max-width: 800px;
+  margin-left: 38%;
+  width: 62%;
+  padding: 4.5rem 7% 4rem 3.5rem;
+  max-width: 980px;
   background:
     linear-gradient(180deg, rgba(17, 22, 29, 0.78), rgba(8, 10, 13, 0.58)),
     var(--surface-panel);

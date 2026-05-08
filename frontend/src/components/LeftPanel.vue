@@ -2,6 +2,7 @@
   <div class="left-panel">
     <IntroSection />
     <MissionStatus />
+    <CommandDeck />
     <ScrollspyNav />
     <SocialLinks />
   </div>
@@ -10,6 +11,7 @@
 <script setup>
 import IntroSection from './IntroSection.vue'
 import MissionStatus from './MissionStatus.vue'
+import CommandDeck from './CommandDeck.vue'
 import ScrollspyNav from './ScrollspyNav.vue'
 import SocialLinks from './SocialLinks.vue'
 </script>
@@ -19,9 +21,9 @@ import SocialLinks from './SocialLinks.vue'
   position: fixed;
   left: 0;
   top: 0;
-  width: 40%;
+  width: 38%;
   height: 100vh;
-  padding: 3rem 3rem 3rem 8%;
+  padding: 2.6rem 3rem 2.4rem 7%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -37,15 +39,16 @@ import SocialLinks from './SocialLinks.vue'
 .left-panel::before {
   content: '';
   position: absolute;
-  right: -8rem;
-  bottom: 6rem;
-  width: 19rem;
-  height: 19rem;
+  right: -10rem;
+  bottom: 3rem;
+  width: 26rem;
+  height: 26rem;
   border: 1px solid rgba(235, 232, 222, 0.16);
   border-radius: 50%;
   transform: rotate(-18deg);
   box-shadow:
-    0 0 0 3.7rem rgba(235, 232, 222, 0.018),
+    0 0 0 4.8rem rgba(235, 232, 222, 0.012),
+    0 0 0 9rem rgba(120, 166, 200, 0.012),
     inset 0 0 42px rgba(120, 166, 200, 0.06);
   pointer-events: none;
 }
@@ -77,8 +80,8 @@ import SocialLinks from './SocialLinks.vue'
     width: 100%;
     height: auto;
     padding: 2rem;
-    background: rgba(10, 10, 26, 0.9);
-    backdrop-filter: blur(5px);
+    background: rgba(8, 10, 13, 0.94);
+    backdrop-filter: blur(10px);
     border-right: none;
     border-bottom: 1px solid var(--border-color);
   }

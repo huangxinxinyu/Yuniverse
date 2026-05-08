@@ -2,6 +2,45 @@
     scroll-margin-top: 2rem;
 }
 
+.right-panel > .content-section {
+    position: relative;
+    border: 1px solid rgba(235, 232, 222, 0.13);
+    border-left: 3px solid rgba(235, 232, 222, 0.2);
+    border-radius: 0.12rem;
+    background:
+        linear-gradient(135deg, rgba(235, 232, 222, 0.035), transparent 36%),
+        linear-gradient(180deg, rgba(17, 22, 29, 0.66), rgba(8, 10, 13, 0.34));
+    padding: 1.3rem;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+}
+
+.right-panel > .content-section::before,
+.right-panel > .content-section::after {
+    content: '';
+    position: absolute;
+    width: 1.1rem;
+    height: 1.1rem;
+    pointer-events: none;
+}
+
+.right-panel > .content-section::before {
+    top: -1px;
+    left: -1px;
+    border-top: 1px solid var(--accent-red);
+    border-left: 1px solid var(--accent-red);
+}
+
+.right-panel > .content-section::after {
+    right: -1px;
+    bottom: -1px;
+    border-right: 1px solid rgba(120, 166, 200, 0.5);
+    border-bottom: 1px solid rgba(120, 166, 200, 0.5);
+}
+
+.right-panel > .content-section.active {
+    border-left-color: var(--accent-red);
+}
+
 .content-section,
 .mission-card {
     isolation: isolate;
@@ -9,8 +48,24 @@
 
 .section-title {
     font-family: var(--font-display);
-    font-weight: 720;
+    font-weight: 760;
     letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+p,
+li,
+.identity-card p,
+.journey-item p,
+.hub-link p,
+.project-description,
+.project-description-list,
+.description-text,
+.description-list,
+.section-intro,
+.entry-preview p {
+    font-family: var(--font-body);
+    font-weight: 500;
 }
 
 .section-eyebrow,
@@ -31,4 +86,15 @@
 .shelf-card,
 .hub-link {
     backdrop-filter: blur(14px);
+}
+
+.hub-link,
+.experience-item,
+.project-item,
+.identity-card,
+.shelf-card,
+.entry-button,
+.entry-preview,
+.moment-preview {
+    clip-path: polygon(0 0, calc(100% - 0.55rem) 0, 100% 0.55rem, 100% 100%, 0.55rem 100%, 0 calc(100% - 0.55rem));
 }

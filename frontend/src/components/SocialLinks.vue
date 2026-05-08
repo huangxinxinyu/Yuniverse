@@ -83,21 +83,28 @@ const handleImageError = () => {
 <style scoped>
 .social-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.7rem;
   margin-top: auto;
   padding-bottom: 2rem;
 }
 
 .social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-secondary);
   transition: all var(--transition-base);
   text-decoration: none;
-  width: 24px;
-  height: 24px;
+  width: 2.45rem;
+  height: 2.45rem;
+  border: 1px solid var(--border-color);
+  background: rgba(235, 232, 222, 0.035);
 }
 
 .social-link:hover {
-  color: var(--primary-color);
+  color: var(--text-primary);
+  border-color: var(--accent-red);
+  background: rgba(214, 66, 50, 0.16);
   transform: translateY(-2px);
 }
 
@@ -109,7 +116,7 @@ const handleImageError = () => {
 }
 
 .wechat-link:hover {
-  color: #07c160; /* WeChat green color */
+  color: var(--text-primary);
 }
 
 /* QR Code Modal Styles */

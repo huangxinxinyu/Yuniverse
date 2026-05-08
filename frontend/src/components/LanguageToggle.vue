@@ -21,14 +21,15 @@ const { toggleLanguage } = store
   position: fixed;
   bottom: 6rem;
   right: 2rem;
-  background: var(--bg-secondary);
+  background: rgba(8, 10, 13, 0.78);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 1.5rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.12rem;
   cursor: pointer;
   transition: all var(--transition-base);
   z-index: var(--z-modal);
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -36,9 +37,10 @@ const { toggleLanguage } = store
 }
 
 .lang-toggle:hover {
-  background: var(--primary-color);
-  color: var(--bg-primary);
-  transform: scale(1.05);
+  background: var(--accent-red);
+  color: var(--text-primary);
+  border-color: var(--accent-red);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
