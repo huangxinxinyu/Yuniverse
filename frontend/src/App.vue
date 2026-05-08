@@ -4,11 +4,11 @@
     <RightPanel />
     <LanguageToggle />
     <RocketCursor
-        :color="'#ffa500'"
-        :size="40"
+        :color="'#38bdf8'"
+        :size="44"
         :trail="true"
-        :trail-length="25"
-        :speed="0.15"
+        :trail-length="38"
+        :speed="0.28"
         :enabled="true"
     />
   </div>

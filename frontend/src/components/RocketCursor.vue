@@ -1,59 +1,73 @@
 <template>
-  <div class="rocket-cursor-container">
-    <!-- Rocket cursor -->
-    <div
-        ref="rocketRef"
-        class="rocket-cursor"
-        :style="rocketStyle"
-    >
+  <div class="rocket-cursor-container" :class="{ 'is-active': isVisible }">
+    <div class="rocket-cursor" :style="rocketStyle">
       <svg
-          width="50"
-          height="50"
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        :width="props.size"
+        :height="props.size"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
-        <!-- Rocket body (red) -->
-        <ellipse cx="20" cy="15" rx="5" ry="10" fill="#ff4444"/>
+        <defs>
+          <linearGradient id="rocketBody" x1="18" y1="8" x2="46" y2="52" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="0.38" stop-color="#dff7ff" />
+            <stop offset="1" stop-color="#4a8dff" />
+          </linearGradient>
+          <linearGradient id="rocketWing" x1="11" y1="35" x2="53" y2="55" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ff3d81" />
+            <stop offset="1" stop-color="#8b5cf6" />
+          </linearGradient>
+          <radialGradient id="rocketWindow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(32 23) rotate(90) scale(8)">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="0.45" stop-color="#7df9ff" />
+            <stop offset="1" stop-color="#246bfe" />
+          </radialGradient>
+          <filter id="rocketGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feColorMatrix
+              in="blur"
+              type="matrix"
+              values="0 0 0 0 0.30 0 0 0 0 0.70 0 0 0 0 1 0 0 0 0.85 0"
+            />
+            <feBlend in="SourceGraphic" mode="screen" />
+          </filter>
+        </defs>
 
-        <!-- Rocket nose (darker red) -->
-        <path d="M20 5 L15 10 L25 10 Z" fill="#cc2222"/>
-
-        <!-- Rocket fins -->
-        <path d="M15 20 L10 25 L15 25 Z" fill="#ff6666"/>
-        <path d="M25 20 L30 25 L25 25 Z" fill="#ff6666"/>
-
-        <!-- Window -->
-        <circle cx="20" cy="12.5" r="2.5" fill="#87ceeb"/>
-
-        <!-- Flame (yellow/orange) -->
-        <path d="M17.5 25 Q20 35 20 35 Q22.5 35 22.5 25 Q21.25 30 20 32.5 Q18.75 30 17.5 25 Z" fill="#ffa500"/>
-        <path d="M18.75 25 Q20 32.5 20 32.5 Q21.25 32.5 21.25 25 Q20.625 28.75 20 31.25 Q19.375 28.75 18.75 25 Z" fill="#ffff00"/>
+        <g filter="url(#rocketGlow)">
+          <path d="M32 5C42 13 46 25 43 39C40 48 35 55 32 58C29 55 24 48 21 39C18 25 22 13 32 5Z" fill="url(#rocketBody)" />
+          <path d="M32 5C36 9 39 14 41 20C38 18 35 17 32 17C29 17 26 18 23 20C25 14 28 9 32 5Z" fill="#ff3d81" />
+          <path d="M21 38L9 51L25 48Z" fill="url(#rocketWing)" />
+          <path d="M43 38L55 51L39 48Z" fill="url(#rocketWing)" />
+          <circle cx="32" cy="25" r="7" fill="#08111f" opacity="0.95" />
+          <circle cx="32" cy="25" r="5" fill="url(#rocketWindow)" />
+          <path d="M27 50C29 56 31 60 32 62C33 60 35 56 37 50Z" fill="#ffb703" />
+          <path d="M30 51C31 56 32 59 32 60C32 59 33 56 34 51Z" fill="#fff176" />
+        </g>
       </svg>
     </div>
 
-    <!-- Trail particles -->
     <div
-        v-for="(particle, index) in particles"
-        :key="`particle-${index}`"
-        class="trail-particle"
-        :style="particle.style"
+      v-for="particle in particles"
+      :key="particle.id"
+      class="trail-particle"
+      :style="particle.style"
     />
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'
+import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
 
-// Props
 const props = defineProps({
   color: {
     type: String,
-    default: '#ffa500'
+    default: '#38bdf8'
   },
   size: {
     type: Number,
-    default: 40
+    default: 42
   },
   trail: {
     type: Boolean,
@@ -61,11 +75,11 @@ const props = defineProps({
   },
   trailLength: {
     type: Number,
-    default: 25
+    default: 34
   },
   speed: {
     type: Number,
-    default: 0.15
+    default: 0.22
   },
   enabled: {
     type: Boolean,
@@ -73,156 +87,157 @@ const props = defineProps({
   }
 })
 
-// Refs
-const rocketRef = ref(null)
-
-// Reactive data
-const mousePos = reactive({ x: 0, y: 0 })
-const rocketPos = reactive({ x: 0, y: 0 })
-const particles = ref([])
-const isMoving = ref(false)
+const pointer = reactive({ x: -100, y: -100, prevX: -100, prevY: -100 })
 const velocity = reactive({ x: 0, y: 0 })
+const particles = ref([])
+const isVisible = ref(false)
+const angle = ref(-Math.PI / 2)
 
-// Computed styles
+let frameId = null
+let lastFrame = 0
+let lastParticleAt = 0
+let cursorStyle = null
+let particleId = 0
+
+const rocketCenter = computed(() => {
+  const tipOffset = props.size * 0.42
+
+  return {
+    x: pointer.x - Math.cos(angle.value) * tipOffset,
+    y: pointer.y - Math.sin(angle.value) * tipOffset
+  }
+})
+
 const rocketStyle = computed(() => ({
-  left: `${rocketPos.x}px`,
-  top: `${rocketPos.y}px`,
+  left: `${rocketCenter.value.x}px`,
+  top: `${rocketCenter.value.y}px`,
   width: `${props.size}px`,
   height: `${props.size}px`,
-  transform: `rotate(${Math.atan2(velocity.y, velocity.x) + Math.PI / 2}rad) translate(-50%, -50%)`,
-  opacity: isMoving.value ? 1 : 0
+  opacity: isVisible.value ? 1 : 0,
+  transform: `translate(-50%, -50%) rotate(${angle.value + Math.PI / 2}rad)`
 }))
 
-// Animation frame ID
-let animationFrame = null
-
-// Mouse move handler
-const handleMouseMove = (e) => {
-  mousePos.x = e.clientX
-  mousePos.y = e.clientY
-  isMoving.value = true
+const shortestAngle = (from, to) => {
+  let diff = to - from
+  while (diff > Math.PI) diff -= Math.PI * 2
+  while (diff < -Math.PI) diff += Math.PI * 2
+  return diff
 }
 
-// Mouse enter handler
-const handleMouseEnter = () => {
-  isMoving.value = true
+const handlePointerMove = (event) => {
+  pointer.x = event.clientX
+  pointer.y = event.clientY
+  isVisible.value = true
 }
 
-// Mouse leave handler
-const handleMouseLeave = () => {
-  isMoving.value = false
+const handlePointerLeave = () => {
+  isVisible.value = false
 }
 
-// Update rocket position with smooth following
-const updateRocketPosition = () => {
-  const dx = mousePos.x - rocketPos.x
-  const dy = mousePos.y - rocketPos.y
+const addTrailParticle = (speed) => {
+  const tailDistance = props.size * 0.46
+  const tailX = rocketCenter.value.x - Math.cos(angle.value) * tailDistance
+  const tailY = rocketCenter.value.y - Math.sin(angle.value) * tailDistance
+  const drift = Math.min(8, speed * 0.08)
 
-  // Calculate velocity for rotation
-  velocity.x = dx * props.speed
-  velocity.y = dy * props.speed
-
-  // Smooth following with easing
-  rocketPos.x += dx * props.speed
-  rocketPos.y += dy * props.speed
-
-  // Add trail particles if enabled and moving fast enough
-  if (props.trail && isMoving.value && (Math.abs(velocity.x) > 0.5 || Math.abs(velocity.y) > 0.5)) {
-    addTrailParticle()
-  }
-
-  // Clean up old particles
-  particles.value = particles.value.filter(particle => particle.life > 0)
-
-  // Update particles with slight random movement
-  particles.value.forEach((particle, index) => {
-    particle.life -= 0.025
-    const fadeOut = Math.max(0, particle.life)
-    const scale = fadeOut * (0.8 + Math.random() * 0.4)
-
-    // Add slight random drift to particles
-    const drift = index * 0.5
-    particle.style.opacity = fadeOut
-    particle.style.transform = `translate(-50%, -50%) scale(${scale})`
-
-    // Parse current position and add drift
-    const currentLeft = parseFloat(particle.style.left)
-    const currentTop = parseFloat(particle.style.top)
-    particle.style.left = `${currentLeft + (Math.random() - 0.5) * drift}px`
-    particle.style.top = `${currentTop + (Math.random() - 0.5) * drift}px`
+  particles.value.push({
+    id: particleId++,
+    x: tailX,
+    y: tailY,
+    vx: -Math.cos(angle.value) * drift + (Math.random() - 0.5) * 1.2,
+    vy: -Math.sin(angle.value) * drift + (Math.random() - 0.5) * 1.2,
+    life: 1,
+    size: 5 + Math.random() * 8,
+    hue: Math.random() > 0.45 ? 198 : 36,
+    style: {}
   })
 
-  animationFrame = requestAnimationFrame(updateRocketPosition)
-}
-
-// Add trail particle
-const addTrailParticle = () => {
-  if (particles.value.length < props.trailLength) {
-    // Calculate rocket tail position based on rotation
-    const angle = Math.atan2(velocity.y, velocity.x) + Math.PI / 2
-    const tailOffset = 20 // Distance from rocket center to tail
-    const tailX = rocketPos.x - Math.sin(angle) * tailOffset
-    const tailY = rocketPos.y + Math.cos(angle) * tailOffset
-
-    const particle = {
-      id: Date.now() + Math.random(),
-      life: 1,
-      style: {
-        left: `${tailX}px`,
-        top: `${tailY}px`,
-        opacity: 1,
-        transform: 'translate(-50%, -50%) scale(1)'
-      }
-    }
-    particles.value.push(particle)
+  if (particles.value.length > props.trailLength) {
+    particles.value.splice(0, particles.value.length - props.trailLength)
   }
 }
 
-// Initialize cursor
-onMounted(() => {
-  if (!props.enabled) return
+const updateParticles = (dt) => {
+  particles.value.forEach((particle) => {
+    particle.life -= dt * 2.4
+    particle.x += particle.vx * dt * 60
+    particle.y += particle.vy * dt * 60
+    particle.vx *= 0.985
+    particle.vy *= 0.985
 
-  // Hide default cursor globally
-  const style = document.createElement('style')
-  style.textContent = `
+    const life = Math.max(0, particle.life)
+    const scale = 0.35 + life * 0.95
+    const alpha = life * 0.85
+    const blur = (1 - life) * 5
+
+    particle.style = {
+      left: `${particle.x}px`,
+      top: `${particle.y}px`,
+      width: `${particle.size}px`,
+      height: `${particle.size}px`,
+      opacity: alpha,
+      filter: `blur(${blur}px)`,
+      transform: `translate(-50%, -50%) scale(${scale})`,
+      background: particle.hue === 198
+        ? `radial-gradient(circle, rgba(255,255,255,0.95) 0%, ${props.color} 32%, rgba(14,165,233,0.38) 68%, transparent 100%)`
+        : 'radial-gradient(circle, rgba(255,255,255,0.95) 0%, #ffe66d 28%, #fb7185 62%, transparent 100%)'
+    }
+  })
+
+  particles.value = particles.value.filter((particle) => particle.life > 0)
+}
+
+const tick = (time) => {
+  const dt = Math.min(0.033, (time - lastFrame) / 1000 || 0.016)
+  lastFrame = time
+
+  velocity.x = pointer.x - pointer.prevX
+  velocity.y = pointer.y - pointer.prevY
+  const speed = Math.hypot(velocity.x, velocity.y)
+
+  if (speed > 0.2) {
+    const targetAngle = Math.atan2(velocity.y, velocity.x)
+    const turnRate = Math.min(1, 0.22 + props.speed)
+    angle.value += shortestAngle(angle.value, targetAngle) * turnRate
+  }
+
+  if (props.trail && isVisible.value && speed > 1.1 && time - lastParticleAt > 18) {
+    addTrailParticle(speed)
+    lastParticleAt = time
+  }
+
+  updateParticles(dt)
+
+  pointer.prevX = pointer.x
+  pointer.prevY = pointer.y
+  frameId = requestAnimationFrame(tick)
+}
+
+onMounted(() => {
+  const shouldDisable = window.matchMedia('(hover: none), (pointer: coarse), (prefers-reduced-motion: reduce)').matches
+  if (!props.enabled || shouldDisable) return
+
+  cursorStyle = document.createElement('style')
+  cursorStyle.dataset.rocketCursor = 'true'
+  cursorStyle.textContent = `
     *, *::before, *::after {
       cursor: none !important;
     }
-    a, button, [role="button"], input, textarea, select {
-      cursor: none !important;
-    }
   `
-  document.head.appendChild(style)
+  document.head.appendChild(cursorStyle)
 
-  // Add event listeners
-  document.addEventListener('mousemove', handleMouseMove)
-  document.addEventListener('mouseenter', handleMouseEnter)
-  document.addEventListener('mouseleave', handleMouseLeave)
-
-  // Start animation loop
-  updateRocketPosition()
+  window.addEventListener('pointermove', handlePointerMove, { passive: true })
+  document.addEventListener('mouseleave', handlePointerLeave)
+  frameId = requestAnimationFrame(tick)
 })
 
-// Cleanup
 onUnmounted(() => {
-  if (!props.enabled) return
+  cursorStyle?.remove()
+  window.removeEventListener('pointermove', handlePointerMove)
+  document.removeEventListener('mouseleave', handlePointerLeave)
 
-  // Restore default cursor by removing our style
-  const styles = document.head.querySelectorAll('style')
-  styles.forEach(style => {
-    if (style.textContent.includes('cursor: none !important')) {
-      style.remove()
-    }
-  })
-
-  // Remove event listeners
-  document.removeEventListener('mousemove', handleMouseMove)
-  document.removeEventListener('mouseenter', handleMouseEnter)
-  document.removeEventListener('mouseleave', handleMouseLeave)
-
-  // Cancel animation frame
-  if (animationFrame) {
-    cancelAnimationFrame(animationFrame)
+  if (frameId) {
+    cancelAnimationFrame(frameId)
   }
 })
 </script>
@@ -230,36 +245,44 @@ onUnmounted(() => {
 <style scoped>
 .rocket-cursor-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
   z-index: 9999;
+  mix-blend-mode: screen;
 }
 
 .rocket-cursor {
   position: fixed;
   pointer-events: none;
-  z-index: 9999;
-  transition: opacity 0.2s ease;
+  z-index: 10000;
   transform-origin: center center;
+  transition: opacity 140ms ease;
+  will-change: transform, left, top;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.75)) drop-shadow(0 0 22px rgba(168, 85, 247, 0.45));
+}
+
+.rocket-cursor::before {
+  position: absolute;
+  inset: 18% 26% auto;
+  height: 58%;
+  content: "";
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), transparent 62%);
+  opacity: 0.5;
+  transform: rotate(-18deg);
 }
 
 .trail-particle {
   position: fixed;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  border-radius: 999px;
   pointer-events: none;
   z-index: 9998;
-  transition: opacity 0.05s ease;
   transform-origin: center center;
-  background: radial-gradient(circle, #ffff00 0%, #ffa500 40%, #ff6600 80%, transparent 100%);
+  will-change: transform, opacity, left, top, filter;
+  box-shadow: 0 0 14px currentColor;
 }
 
-/* Hide cursor on touch devices */
-@media (hover: none) and (pointer: coarse) {
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
   .rocket-cursor-container {
     display: none;
   }
