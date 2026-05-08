@@ -9,7 +9,7 @@
     </div>
     <div class="mission-row compact">
       <span>Archive depth</span>
-      <strong>{{ activeIndex + 1 }}/{{ sectionIds.length }}</strong>
+      <strong>{{ activeIndex + 1 }}/{{ t.sitePages.length }}</strong>
     </div>
   </aside>
 </template>
@@ -18,13 +18,15 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { usePortfolioStore } from '@/stores/portfolio'
+import { useRoute } from 'vue-router'
 
 const store = usePortfolioStore()
-const { t, activeSection, sectionIds } = storeToRefs(store)
+const { t } = storeToRefs(store)
+const route = useRoute()
 
-const activeIndex = computed(() => Math.max(0, sectionIds.value.indexOf(activeSection.value)))
-const activeLabel = computed(() => t.value.nav[activeSection.value] || t.value.nav.identity)
-const progress = computed(() => ((activeIndex.value + 1) / sectionIds.value.length) * 100)
+const activeIndex = computed(() => Math.max(0, t.value.sitePages.findIndex((page) => page.path === route.path)))
+const activeLabel = computed(() => t.value.sitePages[activeIndex.value]?.title || t.value.sitePages[0].title)
+const progress = computed(() => ((activeIndex.value + 1) / t.value.sitePages.length) * 100)
 </script>
 
 <style scoped>

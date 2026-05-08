@@ -1,27 +1,26 @@
 <template>
   <nav class="scrollspy-nav">
-    <div
-        v-for="sectionId in sectionIds"
-        :key="sectionId"
+    <RouterLink
+        v-for="page in t.sitePages"
+        :key="page.path"
         class="nav-item"
-        :class="{ active: activeSection === sectionId }"
-        @click="scrollToSection(sectionId)"
+        :class="{ active: route.path === page.path }"
+        :to="page.path"
     >
       <div class="nav-line"></div>
-      <span class="nav-text">{{ t.nav[sectionId] }}</span>
-    </div>
+      <span class="nav-text">{{ page.title }}</span>
+    </RouterLink>
   </nav>
 </template>
 
 <script setup>
 import { usePortfolioStore } from '@/stores/portfolio'
 import { storeToRefs } from 'pinia'
-import { useScrollspy } from '@/composables/useScrollspy'
+import { RouterLink, useRoute } from 'vue-router'
 
 const store = usePortfolioStore()
-const { t, activeSection, sectionIds } = storeToRefs(store)
-
-const { scrollToSection } = useScrollspy()
+const { t } = storeToRefs(store)
+const route = useRoute()
 </script>
 
 <style scoped>
@@ -34,6 +33,7 @@ const { scrollToSection } = useScrollspy()
   align-items: center;
   padding: 0.75rem 0;
   cursor: pointer;
+  text-decoration: none;
   transition: all var(--transition-base);
   text-transform: uppercase;
   font-size: 0.8rem;

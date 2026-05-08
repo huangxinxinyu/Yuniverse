@@ -22,14 +22,14 @@
 
     <div class="sector-map" aria-label="Section minimap">
       <button
-        v-for="(sectionId, index) in sectionIds"
-        :key="sectionId"
+        v-for="(page, index) in t.sitePages"
+        :key="page.path"
         class="sector-dot"
-        :class="{ active: activeSection === sectionId }"
+        :class="{ active: route.path === page.path }"
         :style="dotStyle(index)"
         type="button"
-        :aria-label="`Jump to ${t.nav[sectionId]}`"
-        @click="jump(sectionId)"
+        :aria-label="`Open ${page.title}`"
+        @click="jump(page.path)"
       >
         <span>{{ index + 1 }}</span>
       </button>
@@ -39,10 +39,10 @@
     <div class="command-grid">
       <button
         v-for="command in commands"
-        :key="command.sectionId"
+        :key="command.path"
         type="button"
-        :class="{ active: activeSection === command.sectionId }"
-        @click="jump(command.sectionId)"
+        :class="{ active: route.path === command.path }"
+        @click="jump(command.path)"
       >
         <span>{{ command.key }}</span>
         {{ command.label }}
@@ -55,25 +55,26 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { usePortfolioStore } from '@/stores/portfolio'
-import { useScrollspy } from '@/composables/useScrollspy'
+import { useRoute, useRouter } from 'vue-router'
 
 const store = usePortfolioStore()
-const { t, activeSection, sectionIds } = storeToRefs(store)
-const { scrollToSection } = useScrollspy()
+const { t } = storeToRefs(store)
+const route = useRoute()
+const router = useRouter()
 
-const activeLabel = computed(() => t.value.nav[activeSection.value] || t.value.nav.identity)
-const commands = computed(() => sectionIds.value.slice(0, 6).map((sectionId, index) => ({
+const activeLabel = computed(() => t.value.sitePages.find((page) => page.path === route.path)?.title || t.value.sitePages[0].title)
+const commands = computed(() => t.value.sitePages.map((page, index) => ({
   key: `F${index + 1}`,
-  sectionId,
-  label: t.value.nav[sectionId]
+  path: page.path,
+  label: page.title
 })))
 
-const jump = (sectionId) => {
-  scrollToSection(sectionId)
+const jump = (path) => {
+  router.push(path)
 }
 
 const dotStyle = (index) => {
-  const angle = (index / sectionIds.value.length) * Math.PI * 2 - Math.PI / 2
+  const angle = (index / t.value.sitePages.length) * Math.PI * 2 - Math.PI / 2
   const radius = 41
   const x = 50 + Math.cos(angle) * radius
   const y = 50 + Math.sin(angle) * radius

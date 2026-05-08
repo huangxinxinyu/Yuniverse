@@ -1,38 +1,11 @@
 <template>
   <div class="right-panel">
-    <IdentitySection />
-    <JourneySection />
-    <NavigationHubSection />
-    <ExperienceSection />
-    <ProjectsSection />
-    <BlogSection />
-    <ShelfSection />
-    <MomentsSection />
+    <RouterView />
   </div>
 </template>
 
 <script setup>
-import {onMounted, onUnmounted} from 'vue'
-import {useScrollspy} from '@/composables/useScrollspy'
-import IdentitySection from './IdentitySection.vue'
-import JourneySection from './JourneySection.vue'
-import NavigationHubSection from './NavigationHubSection.vue'
-import ExperienceSection from './ExperienceSection.vue'
-import ProjectsSection from './ProjectsSection.vue'
-import BlogSection from './BlogSection.vue'
-import ShelfSection from './ShelfSection.vue'
-import MomentsSection from './MomentsSection.vue'
-
-const {updateActiveSection} = useScrollspy()
-
-onMounted(() => {
-  window.addEventListener('scroll', updateActiveSection)
-  updateActiveSection() // Initial check
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', updateActiveSection)
-})
+import { RouterView } from 'vue-router'
 </script>
 
 <style scoped>

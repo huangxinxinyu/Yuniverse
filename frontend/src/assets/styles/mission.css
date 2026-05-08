@@ -12,6 +12,7 @@
         linear-gradient(180deg, rgba(17, 22, 29, 0.66), rgba(8, 10, 13, 0.34));
     padding: 1.3rem;
     box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+    opacity: 1;
 }
 
 .right-panel > .content-section::before,

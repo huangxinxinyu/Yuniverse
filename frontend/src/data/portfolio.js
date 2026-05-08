@@ -7,7 +7,7 @@ export const portfolioData = {
     ],
     description: "Welcome to Yuniverse: a small map of where I am, what I build, and the taste that keeps me moving.",
     nav: {
-      identity: "Identity",
+      identity: "Home",
       journey: "Journey",
       hub: "Navigate",
       work: "Work",
@@ -16,6 +16,13 @@ export const portfolioData = {
       shelf: "Shelf",
       moments: "Moments"
     },
+    sitePages: [
+      { path: "/", key: "home", title: "Mission Control", description: "The abstract navigation deck for this personal universe." },
+      { path: "/journey", key: "journey", title: "Journey", description: "Learning trajectory, school orbit, and research direction." },
+      { path: "/work", key: "work", title: "Work", description: "Professional experience, selected projects, and technical signals." },
+      { path: "/blog", key: "blog", title: "Blog", description: "Life and study logs as a growing mission archive." },
+      { path: "/collection", key: "collection", title: "Collection", description: "Music, films, moments, and personal taste fragments." }
+    ],
     sectionOrder: ["identity", "journey", "hub", "work", "projects", "blog", "shelf", "moments"],
     identity: {
       title: "Current Orbit",
@@ -40,13 +47,12 @@ export const portfolioData = {
     hub: {
       title: "Find Your Path",
       items: [
-        { label: "Work", target: "work", description: "Internships and professional experience" },
-        { label: "Projects", target: "projects", description: "Selected engineering projects" },
-        { label: "Blog", target: "blog", description: "Learning notes and life logs" },
+        { label: "Journey", path: "/journey", description: "Trajectory, school orbit, and research direction" },
+        { label: "Work", path: "/work", description: "Experience and selected engineering projects" },
+        { label: "Blog", path: "/blog", description: "Learning notes and life logs" },
+        { label: "Collection", path: "/collection", description: "Music, films, and personal fragments" },
         { label: "Resume", href: "/resume-en.pdf", description: "Full resume PDF" },
-        { label: "Contact", href: "mailto:xinyuhimself@mgmail.com", description: "Email me directly" },
-        { label: "Shelf", target: "shelf", description: "Music, films, and taste" },
-        { label: "Moments", target: "moments", description: "Personal fragments" }
+        { label: "Contact", href: "mailto:xinyuhimself@mgmail.com", description: "Email me directly" }
       ]
     },
     blog: {
@@ -230,7 +236,7 @@ export const portfolioData = {
     ],
     description: "欢迎来到 Yuniverse：这里记录我现在的位置、正在构建的东西，以及让我保持流动的 taste。",
     nav: {
-      identity: "我是谁",
+      identity: "主页",
       journey: "轨迹",
       hub: "导航",
       work: "工作",
@@ -239,6 +245,13 @@ export const portfolioData = {
       shelf: "收藏",
       moments: "瞬间"
     },
+    sitePages: [
+      { path: "/", key: "home", title: "Mission Control", description: "这个个人宇宙的抽象导航主控台。" },
+      { path: "/journey", key: "journey", title: "轨迹", description: "学习路径、学校轨道和研究方向。" },
+      { path: "/work", key: "work", title: "工作", description: "专业经历、精选项目和技术信号。" },
+      { path: "/blog", key: "blog", title: "日志", description: "生活与学习记录，一个持续生长的任务档案。" },
+      { path: "/collection", key: "collection", title: "收藏", description: "音乐、电影、瞬间和个人 taste 碎片。" }
+    ],
     sectionOrder: ["identity", "journey", "hub", "work", "projects", "blog", "shelf", "moments"],
     identity: {
       title: "当前轨道",
@@ -263,13 +276,12 @@ export const portfolioData = {
     hub: {
       title: "你可以从这里开始",
       items: [
-        { label: "工作经历", target: "work", description: "实习与专业经历" },
-        { label: "个人项目", target: "projects", description: "精选工程项目" },
-        { label: "日志", target: "blog", description: "学习笔记与生活记录" },
+        { label: "轨迹", path: "/journey", description: "成长路径、学校轨道和研究方向" },
+        { label: "工作", path: "/work", description: "经历与精选工程项目" },
+        { label: "日志", path: "/blog", description: "学习笔记与生活记录" },
+        { label: "收藏", path: "/collection", description: "音乐、电影和生活碎片" },
         { label: "简历", href: "/resume-zh.pdf", description: "完整 PDF 简历" },
-        { label: "联系", href: "mailto:xinyuhimself@mgmail.com", description: "直接邮件联系" },
-        { label: "收藏", target: "shelf", description: "音乐、电影和 taste" },
-        { label: "瞬间", target: "moments", description: "生活碎片" }
+        { label: "联系", href: "mailto:xinyuhimself@mgmail.com", description: "直接邮件联系" }
       ]
     },
     blog: {

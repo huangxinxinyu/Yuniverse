@@ -33,7 +33,10 @@ import SocialLinks from './SocialLinks.vue'
     var(--bg-primary);
   backdrop-filter: blur(18px);
   border-right: 1px solid var(--border-color);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(235, 232, 222, 0.22) transparent;
 }
 
 .left-panel::before {

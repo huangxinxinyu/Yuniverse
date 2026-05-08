@@ -14,7 +14,7 @@
             :key="item.label"
             class="hub-link"
             :class="{ active: activeItem.label === item.label }"
-            :href="item.href || `#${item.target}`"
+            :href="item.href || item.path"
             :target="item.href && item.href.startsWith('http') ? '_blank' : undefined"
             :rel="item.href && item.href.startsWith('http') ? 'noopener noreferrer' : undefined"
             @mouseenter="hoveredLabel = item.label"
@@ -42,12 +42,12 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { usePortfolioStore } from '@/stores/portfolio'
-import { useScrollspy } from '@/composables/useScrollspy'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
 const store = usePortfolioStore()
 const { t, activeSection } = storeToRefs(store)
-const { scrollToSection } = useScrollspy()
+const router = useRouter()
 const hoveredLabel = ref('')
 
 const activeItem = computed(() => (
@@ -57,9 +57,9 @@ const activeItem = computed(() => (
 const activeIndex = computed(() => Math.max(0, t.value.hub.items.findIndex((item) => item.label === activeItem.value.label)))
 
 const handleClick = (event, item) => {
-  if (!item.target) return
+  if (!item.path) return
   event.preventDefault()
-  scrollToSection(item.target)
+  router.push(item.path)
 }
 </script>
 
