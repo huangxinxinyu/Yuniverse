@@ -19,12 +19,12 @@
         <span class="experience-period">{{ item.period }}</span>
       </div>
 
-      <ul v-if="Array.isArray(item.description)" class="experience-description-list">
+      <ul v-if="Array.isArray(item.description)" class="description-list">
         <li v-for="description in item.description" :key="description">
           {{ description }}
         </li>
       </ul>
-      <p v-else class="experience-description">{{ item.description }}</p>
+      <p v-else class="description-text">{{ item.description }}</p>
 
       <div class="tech-tags">
         <span
@@ -118,14 +118,14 @@ const { t, activeSection } = storeToRefs(store)
   white-space: nowrap;
 }
 
-.experience-description {
+.description-text {
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 1rem;
   font-size: 0.9rem;
 }
 
-.experience-description-list {
+.description-list {
   color: var(--text-secondary);
   line-height: 1.6;
   margin: 0 0 1rem 1.1rem;
@@ -133,11 +133,11 @@ const { t, activeSection } = storeToRefs(store)
   font-size: 0.9rem;
 }
 
-.experience-description-list li {
+.description-list li {
   margin-bottom: 0.5rem;
 }
 
-.experience-description-list li:last-child {
+.description-list li:last-child {
   margin-bottom: 0;
 }
 
@@ -210,8 +210,8 @@ const { t, activeSection } = storeToRefs(store)
     font-size: 0.95rem;
   }
 
-  .experience-description,
-  .experience-description-list {
+  .description-text,
+  .description-list {
     font-size: 0.85rem;
   }
 

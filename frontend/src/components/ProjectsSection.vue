@@ -10,7 +10,12 @@
         class="project-item"
     >
       <h4 class="project-title">{{ project.title }}</h4>
-      <p class="project-description">{{ project.description }}</p>
+      <ul v-if="Array.isArray(project.description)" class="project-description-list">
+        <li v-for="description in project.description" :key="description">
+          {{ description }}
+        </li>
+      </ul>
+      <p v-else class="project-description">{{ project.description }}</p>
       <div class="tech-tags">
         <span
             v-for="tech in project.tech"
@@ -103,6 +108,22 @@ const { t, activeSection } = storeToRefs(store)
   font-size: 0.9rem;
 }
 
+.project-description-list {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 1rem 1.1rem;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.project-description-list li {
+  margin-bottom: 0.5rem;
+}
+
+.project-description-list li:last-child {
+  margin-bottom: 0;
+}
+
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
@@ -147,7 +168,8 @@ const { t, activeSection } = storeToRefs(store)
     font-size: 1rem;
   }
 
-  .project-description {
+  .project-description,
+  .project-description-list {
     font-size: 0.85rem;
   }
 }
