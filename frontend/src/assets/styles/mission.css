@@ -1,0 +1,34 @@
+.content-section {
+    scroll-margin-top: 2rem;
+}
+
+.content-section,
+.mission-card {
+    isolation: isolate;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-weight: 720;
+    letter-spacing: 0;
+}
+
+.section-eyebrow,
+.section-kicker,
+.identity-label,
+.journey-period,
+.experience-period,
+.tech-tag,
+.nav-item,
+.intro-action,
+.moment-pill {
+    font-family: var(--font-mono);
+}
+
+.experience-item,
+.project-item,
+.identity-card,
+.shelf-card,
+.hub-link {
+    backdrop-filter: blur(14px);
+}

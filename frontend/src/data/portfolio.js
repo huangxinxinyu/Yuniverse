@@ -12,10 +12,11 @@ export const portfolioData = {
       hub: "Navigate",
       work: "Work",
       projects: "Projects",
+      blog: "Blog",
       shelf: "Shelf",
       moments: "Moments"
     },
-    sectionOrder: ["identity", "journey", "hub", "work", "projects", "shelf", "moments"],
+    sectionOrder: ["identity", "journey", "hub", "work", "projects", "blog", "shelf", "moments"],
     identity: {
       title: "Current Orbit",
       eyebrow: "Identity snapshot",
@@ -41,10 +42,47 @@ export const portfolioData = {
       items: [
         { label: "Work", target: "work", description: "Internships and professional experience" },
         { label: "Projects", target: "projects", description: "Selected engineering projects" },
+        { label: "Blog", target: "blog", description: "Learning notes and life logs" },
         { label: "Resume", href: "/resume-en.pdf", description: "Full resume PDF" },
         { label: "Contact", href: "mailto:xinyuhimself@mgmail.com", description: "Email me directly" },
         { label: "Shelf", target: "shelf", description: "Music, films, and taste" },
         { label: "Moments", target: "moments", description: "Personal fragments" }
+      ]
+    },
+    blog: {
+      title: "Mission Log",
+      intro: "A lightweight blog shelf for learning notes, life updates, and experiments. These are starter logs until the real writing grows in.",
+      filters: [
+        { id: "all", label: "All" },
+        { id: "study", label: "Study" },
+        { id: "life", label: "Life" },
+        { id: "build", label: "Build" }
+      ],
+      entries: [
+        {
+          id: "ucsd-prep",
+          category: "study",
+          date: "2026.05",
+          title: "Preparing for the next academic orbit",
+          summary: "Graduate school prep, systems fundamentals, and the questions I want to carry into UC San Diego.",
+          signal: "Study log"
+        },
+        {
+          id: "agent-infra",
+          category: "build",
+          date: "2026.05",
+          title: "Notes from building agent infrastructure",
+          summary: "Small observations about orchestration, runtime state, and making agent systems feel reliable instead of magical.",
+          signal: "Build log"
+        },
+        {
+          id: "life-shelf",
+          category: "life",
+          date: "Soon",
+          title: "A life log outside the resume",
+          summary: "A placeholder for gym notes, music discoveries, film fragments, and campus life once the archive has real material.",
+          signal: "Life log"
+        }
       ]
     },
     shelf: {
@@ -193,10 +231,11 @@ export const portfolioData = {
       hub: "导航",
       work: "工作",
       projects: "项目",
+      blog: "日志",
       shelf: "收藏",
       moments: "瞬间"
     },
-    sectionOrder: ["identity", "journey", "hub", "work", "projects", "shelf", "moments"],
+    sectionOrder: ["identity", "journey", "hub", "work", "projects", "blog", "shelf", "moments"],
     identity: {
       title: "当前轨道",
       eyebrow: "个人状态速写",
@@ -222,10 +261,47 @@ export const portfolioData = {
       items: [
         { label: "工作经历", target: "work", description: "实习与专业经历" },
         { label: "个人项目", target: "projects", description: "精选工程项目" },
+        { label: "日志", target: "blog", description: "学习笔记与生活记录" },
         { label: "简历", href: "/resume-zh.pdf", description: "完整 PDF 简历" },
         { label: "联系", href: "mailto:xinyuhimself@mgmail.com", description: "直接邮件联系" },
         { label: "收藏", target: "shelf", description: "音乐、电影和 taste" },
         { label: "瞬间", target: "moments", description: "生活碎片" }
+      ]
+    },
+    blog: {
+      title: "任务日志",
+      intro: "这里会放学习笔记、生活更新和一些实验记录。当前先用种子内容占位，之后可以逐渐长成真正的日志。",
+      filters: [
+        { id: "all", label: "全部" },
+        { id: "study", label: "学习" },
+        { id: "life", label: "生活" },
+        { id: "build", label: "构建" }
+      ],
+      entries: [
+        {
+          id: "ucsd-prep",
+          category: "study",
+          date: "2026.05",
+          title: "进入下一段学术轨道前",
+          summary: "关于读研准备、系统基础，以及我想带去 UC San Diego 的一些问题。",
+          signal: "学习日志"
+        },
+        {
+          id: "agent-infra",
+          category: "build",
+          date: "2026.05",
+          title: "构建 Agent Infra 的一些笔记",
+          summary: "关于任务编排、运行时状态，以及如何让 Agent 系统显得可靠而不是玄学的一些观察。",
+          signal: "构建日志"
+        },
+        {
+          id: "life-shelf",
+          category: "life",
+          date: "Soon",
+          title: "简历之外的生活记录",
+          summary: "为健身、音乐发现、电影片段和校园生活预留的占位日志，等真实内容慢慢填上。",
+          signal: "生活日志"
+        }
       ]
     },
     shelf: {

@@ -1,6 +1,7 @@
 <template>
   <div class="left-panel">
     <IntroSection />
+    <MissionStatus />
     <ScrollspyNav />
     <SocialLinks />
   </div>
@@ -8,6 +9,7 @@
 
 <script setup>
 import IntroSection from './IntroSection.vue'
+import MissionStatus from './MissionStatus.vue'
 import ScrollspyNav from './ScrollspyNav.vue'
 import SocialLinks from './SocialLinks.vue'
 </script>
@@ -24,8 +26,10 @@ import SocialLinks from './SocialLinks.vue'
   flex-direction: column;
   justify-content: flex-start;
   z-index: var(--z-fixed);
-  background: rgba(10, 10, 26, 0.8);
-  backdrop-filter: blur(10px);
+  background:
+    linear-gradient(180deg, rgba(8, 10, 13, 0.94), rgba(17, 22, 29, 0.88)),
+    var(--bg-primary);
+  backdrop-filter: blur(18px);
   border-right: 1px solid var(--border-color);
   overflow: hidden;
 }
@@ -37,12 +41,12 @@ import SocialLinks from './SocialLinks.vue'
   bottom: 6rem;
   width: 19rem;
   height: 19rem;
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(235, 232, 222, 0.16);
   border-radius: 50%;
   transform: rotate(-18deg);
   box-shadow:
-    0 0 0 3.7rem rgba(255, 215, 0, 0.025),
-    inset 0 0 42px rgba(196, 160, 255, 0.06);
+    0 0 0 3.7rem rgba(235, 232, 222, 0.018),
+    inset 0 0 42px rgba(120, 166, 200, 0.06);
   pointer-events: none;
 }
 
@@ -54,11 +58,11 @@ import SocialLinks from './SocialLinks.vue'
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
-  background: #38bdf8;
+  background: var(--accent-red);
   box-shadow:
-    0 0 18px rgba(56, 189, 248, 0.85),
-    -7rem 5.2rem 0 -0.08rem var(--primary-color),
-    -11rem -1.2rem 0 -0.16rem var(--secondary-color);
+    0 0 18px rgba(214, 66, 50, 0.5),
+    -7rem 5.2rem 0 -0.08rem var(--accent-warm),
+    -11rem -1.2rem 0 -0.16rem var(--accent-cool);
   pointer-events: none;
 }
 

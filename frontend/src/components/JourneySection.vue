@@ -65,11 +65,11 @@ const { t, activeSection } = storeToRefs(store)
   height: 0.45rem;
   border-radius: 50%;
   background: var(--primary-color);
-  box-shadow: 0 0 16px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 16px rgba(214, 66, 50, 0.34);
 }
 
 .journey-period {
-  color: var(--primary-color);
+  color: var(--accent-cool);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;

@@ -86,13 +86,15 @@ const { t, activeSection } = storeToRefs(store)
 .project-item {
   margin-bottom: 2.5rem;
   padding: 1.5rem;
-  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.35rem;
   transition: all var(--transition-base);
   cursor: pointer;
 }
 
 .project-item:hover {
-  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  background: var(--surface-raised);
   box-shadow: var(--hover-shadow);
   transform: translateY(-2px);
 }
@@ -138,8 +140,8 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .tech-tag {
-  background: rgba(255, 215, 0, 0.1);
-  color: var(--primary-color);
+  background: rgba(120, 166, 200, 0.1);
+  color: var(--accent-cool);
   padding: 0.2rem 0.6rem;
   border-radius: 1rem;
   font-size: 0.75rem;
@@ -163,7 +165,7 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .project-link:hover {
-  color: var(--primary-color);
+  color: var(--accent-red);
 }
 
 @media (max-width: 768px) {

@@ -10,7 +10,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
 
     // Getters
     const t = computed(() => portfolioData[currentLang.value])
-    const sectionIds = computed(() => t.value.sectionOrder || ['identity', 'journey', 'hub', 'work', 'projects', 'shelf', 'moments'])
+    const sectionIds = computed(() => t.value.sectionOrder || ['identity', 'journey', 'hub', 'work', 'projects', 'blog', 'shelf', 'moments'])
 
     // Actions
     const toggleTheme = () => {

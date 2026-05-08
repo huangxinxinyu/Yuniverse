@@ -26,7 +26,7 @@ const { scrollToSection } = useScrollspy()
 
 <style scoped>
 .scrollspy-nav {
-  margin: 2rem 0;
+  margin: 1.1rem 0 1.5rem;
 }
 
 .nav-item {
@@ -38,13 +38,13 @@ const { scrollToSection } = useScrollspy()
   text-transform: uppercase;
   font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 
 .nav-line {
   width: 2rem;
   height: 1px;
-  background: var(--text-secondary);
+  background: rgba(235, 232, 222, 0.26);
   margin-right: 1rem;
   transition: all var(--transition-base);
 }
@@ -57,12 +57,12 @@ const { scrollToSection } = useScrollspy()
 .nav-item:hover .nav-line,
 .nav-item.active .nav-line {
   width: 4rem;
-  background: var(--primary-color);
+  background: var(--accent-red);
 }
 
 .nav-item:hover .nav-text,
 .nav-item.active .nav-text {
-  color: var(--primary-color);
+  color: var(--text-primary);
 }
 
 @media (max-width: 1024px) {
@@ -87,14 +87,14 @@ const { scrollToSection } = useScrollspy()
     border: 1px solid var(--border-color);
     border-radius: 999px;
     padding: 0.45rem 0.75rem;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(235, 232, 222, 0.04);
   }
 
   .nav-item.active .nav-text,
   .nav-item:hover .nav-text {
-    color: var(--bg-primary);
-    background: var(--primary-color);
-    border-color: var(--primary-color);
+    color: var(--text-primary);
+    background: rgba(214, 66, 50, 0.18);
+    border-color: var(--accent-red);
   }
 }
 </style>

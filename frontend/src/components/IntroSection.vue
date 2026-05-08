@@ -35,22 +35,24 @@ const titleLines = computed(() => Array.isArray(t.value.title) ? t.value.title :
 }
 
 .name-title {
-  font-size: 2.8rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: clamp(2.45rem, 5vw, 4.25rem);
+  font-weight: 760;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
-  line-height: 1.1;
+  line-height: 0.98;
 }
 
 .job-title {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  font-size: 1.7rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
   font-weight: 600;
   color: var(--secondary-color);
   margin-bottom: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.35;
 }
 
 .intro-description {
@@ -74,7 +76,7 @@ const titleLines = computed(() => Array.isArray(t.value.title) ? t.value.title :
   border: 1px solid var(--border-color);
   border-radius: 999px;
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(235, 232, 222, 0.04);
   padding: 0.55rem 0.9rem;
   font-size: 0.78rem;
   font-weight: 700;
@@ -84,7 +86,7 @@ const titleLines = computed(() => Array.isArray(t.value.title) ? t.value.title :
 
 .intro-action.primary {
   background: var(--primary-color);
-  color: var(--bg-primary);
+  color: #111318;
   border-color: var(--primary-color);
 }
 

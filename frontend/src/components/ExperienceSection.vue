@@ -83,13 +83,15 @@ const { t, activeSection } = storeToRefs(store)
 .experience-item {
   margin-bottom: 2.5rem;
   padding: 1.5rem;
-  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.35rem;
   transition: all var(--transition-base);
   cursor: pointer;
 }
 
 .experience-item:hover {
-  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  background: var(--surface-raised);
   box-shadow: var(--hover-shadow);
   transform: translateY(-2px);
 }
@@ -113,7 +115,7 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .experience-company {
-  color: var(--primary-color);
+  color: var(--accent-cool);
   font-weight: 500;
 }
 
@@ -155,8 +157,8 @@ const { t, activeSection } = storeToRefs(store)
 }
 
 .tech-tag {
-  background: rgba(255, 215, 0, 0.1);
-  color: var(--primary-color);
+  background: rgba(120, 166, 200, 0.1);
+  color: var(--accent-cool);
   padding: 0.2rem 0.6rem;
   border-radius: 1rem;
   font-size: 0.75rem;
@@ -178,17 +180,17 @@ const { t, activeSection } = storeToRefs(store)
   text-decoration: none;
   padding: 0.8rem 1.5rem;
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
+  border-radius: 0.35rem;
   transition: all var(--transition-base);
-  background: rgba(255, 215, 0, 0.05);
+  background: rgba(235, 232, 222, 0.045);
 }
 
 .resume-link:hover {
   background: var(--primary-color);
-  color: var(--bg-primary);
+  color: #111318;
   border-color: var(--primary-color);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  box-shadow: var(--hover-shadow);
 }
 
 .resume-link svg {

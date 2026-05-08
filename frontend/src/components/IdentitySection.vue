@@ -41,12 +41,12 @@ const { t, activeSection } = storeToRefs(store)
 .identity-section {
   overflow: hidden;
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  padding: 1.4rem;
+  border-radius: 0.35rem;
+  padding: 1.5rem;
   background:
-    linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent 42%),
-    linear-gradient(225deg, rgba(56, 189, 248, 0.11), transparent 46%),
-    rgba(255, 255, 255, 0.035);
+    linear-gradient(135deg, rgba(214, 66, 50, 0.11), transparent 34%),
+    linear-gradient(225deg, rgba(120, 166, 200, 0.11), transparent 46%),
+    var(--surface-panel);
   box-shadow: var(--panel-shadow);
 }
 
@@ -56,9 +56,9 @@ const { t, activeSection } = storeToRefs(store)
   top: -8rem;
   width: 17rem;
   height: 17rem;
-  border: 1px solid rgba(255, 215, 0, 0.24);
+  border: 1px solid rgba(235, 232, 222, 0.18);
   border-radius: 50%;
-  box-shadow: inset 0 0 38px rgba(56, 189, 248, 0.08);
+  box-shadow: inset 0 0 38px rgba(120, 166, 200, 0.08);
 }
 
 .orbit-ring::after {
@@ -69,12 +69,12 @@ const { t, activeSection } = storeToRefs(store)
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
-  background: var(--primary-color);
-  box-shadow: 0 0 18px rgba(255, 215, 0, 0.75);
+  background: var(--accent-red);
+  box-shadow: 0 0 18px rgba(214, 66, 50, 0.42);
 }
 
 .section-eyebrow {
-  color: var(--primary-color);
+  color: var(--accent-cool);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -106,15 +106,15 @@ const { t, activeSection } = storeToRefs(store)
 
 .identity-card {
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  background: rgba(10, 10, 26, 0.42);
+  border-radius: 0.35rem;
+  background: rgba(0, 0, 0, 0.2);
   padding: 1rem;
   backdrop-filter: blur(8px);
 }
 
 .identity-label {
   display: block;
-  color: var(--secondary-color);
+  color: var(--accent-warm);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;

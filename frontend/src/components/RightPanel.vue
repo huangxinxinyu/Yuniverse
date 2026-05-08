@@ -5,6 +5,7 @@
     <NavigationHubSection />
     <ExperienceSection />
     <ProjectsSection />
+    <BlogSection />
     <ShelfSection />
     <MomentsSection />
   </div>
@@ -18,6 +19,7 @@ import JourneySection from './JourneySection.vue'
 import NavigationHubSection from './NavigationHubSection.vue'
 import ExperienceSection from './ExperienceSection.vue'
 import ProjectsSection from './ProjectsSection.vue'
+import BlogSection from './BlogSection.vue'
 import ShelfSection from './ShelfSection.vue'
 import MomentsSection from './MomentsSection.vue'
 
@@ -40,11 +42,11 @@ onUnmounted(() => {
   padding: 6rem 8% 4rem 4rem;
   max-width: 800px;
   background:
-    linear-gradient(180deg, rgba(26, 26, 46, 0.74), rgba(10, 10, 26, 0.62)),
-    rgba(26, 26, 46, 0.6);
-  backdrop-filter: blur(12px);
+    linear-gradient(180deg, rgba(17, 22, 29, 0.78), rgba(8, 10, 13, 0.58)),
+    var(--surface-panel);
+  backdrop-filter: blur(18px);
   min-height: 100vh;
-  border-left: 1px solid rgba(255, 255, 255, 0.04);
+  border-left: 1px solid rgba(235, 232, 222, 0.08);
 }
 
 @media (max-width: 1024px) {
@@ -52,8 +54,8 @@ onUnmounted(() => {
     margin-left: 0;
     width: 100%;
     padding: 2rem;
-    background: rgba(26, 26, 46, 0.7);
-    backdrop-filter: blur(5px);
+    background: rgba(17, 22, 29, 0.82);
+    backdrop-filter: blur(10px);
   }
 }
 </style>

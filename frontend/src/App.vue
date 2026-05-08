@@ -4,7 +4,7 @@
     <RightPanel />
     <LanguageToggle />
     <RocketCursor
-        :color="'#38bdf8'"
+        :color="'#78a6c8'"
         :size="44"
         :trail="true"
         :trail-length="38"

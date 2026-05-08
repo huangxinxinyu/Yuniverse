@@ -57,9 +57,11 @@ const { t, activeSection } = storeToRefs(store)
 
 .shelf-card {
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
+  border-radius: 0.35rem;
   padding: 1rem;
-  background: rgba(196, 160, 255, 0.06);
+  background:
+    linear-gradient(135deg, rgba(120, 166, 200, 0.08), transparent),
+    var(--surface-raised);
 }
 
 .shelf-card h4 {
