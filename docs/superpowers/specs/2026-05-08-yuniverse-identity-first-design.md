@@ -8,6 +8,8 @@ Evolve the personal site from a concise portfolio into a lightweight personal ho
 
 The first impression should feel like a personal orientation map, not a heavy professional pitch. Recruiters should quickly understand where to go, but the page should first answer: who is this person?
 
+The site must remain a frontend-only Vercel-deployable project. The main quality bar is visual design, distinct personality, and easy navigation, not backend functionality.
+
 ## Design Direction
 
 Use an identity-first, work-light structure.
@@ -18,6 +20,8 @@ The site should preserve the existing bilingual, starry "Yuniverse" feel and the
 
 - Left panel: identity anchor, short intro, social links, resume, navigation.
 - Right panel: scrollable sections that build a fuller picture of the person.
+
+The design should feel distinctive enough to be memorable, but simple enough for a first-time visitor to navigate without learning a custom interaction model.
 
 ## Recommended Page Structure
 
@@ -117,6 +121,30 @@ The left navigation should move from pure resume categories to a fuller personal
 
 Resume and contact can remain as direct action links rather than full sections.
 
+Navigation must be obvious on both desktop and mobile. Recruiters should be able to reach Work, Projects, Resume, and Contact in one clear action from the first screen.
+
+The site should avoid hidden-only navigation patterns. Visual flair is welcome, but core links should remain text-readable and predictable.
+
+## Visual Design Priorities
+
+The UI is the main product of this redesign.
+
+Priorities:
+
+- Preserve the Yuniverse concept through a refined space/orbit visual language.
+- Make the first screen visually distinctive without making it feel like a landing page.
+- Use clear section hierarchy, strong spacing, and readable text.
+- Keep work links visible but visually light.
+- Make interest sections feel curated and tasteful.
+- Ensure mobile navigation is simple and not cramped.
+
+Avoid:
+
+- Heavy dashboard-like recruiter blocks at the top.
+- Backend-dependent features.
+- Complex dynamic systems that make Vercel deployment harder.
+- Decorative effects that reduce readability or make navigation ambiguous.
+
 ## Tone
 
 The writing should be:
@@ -144,6 +172,7 @@ Likely implementation work:
 - Add new Vue section components.
 - Reorder the right panel sections.
 - Keep existing Experience and Projects components with minor naming/navigation adjustments.
+- Keep all content local and static so deployment remains simple on Vercel.
 
 ## Out of Scope For First Pass
 
@@ -151,6 +180,7 @@ Likely implementation work:
 - Full photo gallery.
 - Project case-study pages.
 - CMS or external data source.
+- Backend APIs or database integration.
 - Heavy animation redesign.
 
 These can be added later once the identity-first homepage is stable.
@@ -162,3 +192,5 @@ These can be added later once the identity-first homepage is stable.
 - The homepage feels lighter and more personal than a resume site.
 - Interest sections show taste without overwhelming the page.
 - The existing Yuniverse visual identity remains recognizable.
+- The site remains frontend-only and easy to deploy on Vercel.
+- Navigation is clear on desktop and mobile.
