@@ -39,12 +39,12 @@
 
     <div class="resume-section">
       <a
-        href="/resume.pdf"
+        :href="t.resume.href"
         class="resume-link"
         target="_blank"
         rel="noopener noreferrer"
       >
-        View Full Resume
+        {{ t.resume.label }}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M7 17L17 7"></path>
           <path d="M7 7h10v10"></path>

@@ -118,6 +118,10 @@ export const portfolioData = {
       github: "https://github.com/huangxinxinyu",
       wechat: "#"
     },
+    resume: {
+      href: "/resume-en.pdf",
+      label: "View Full Resume"
+    },
     ui: {
       themeToggle: "Toggle Theme",
       langToggle: "中文"
@@ -241,6 +245,10 @@ export const portfolioData = {
       linkedin: "https://www.linkedin.com/in/xinyu-huang-36b43723a/",
       github: "https://github.com/huangxinxinyu",
       wechat: "#"
+    },
+    resume: {
+      href: "/resume-zh.pdf",
+      label: "查看完整简历"
     },
     ui: {
       themeToggle: "切换主题",
