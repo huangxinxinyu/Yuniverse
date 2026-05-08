@@ -99,3 +99,55 @@ li,
 .moment-preview {
     clip-path: polygon(0 0, calc(100% - 0.55rem) 0, 100% 0.55rem, 100% 100%, 0.55rem 100%, 0 calc(100% - 0.55rem));
 }
+
+.page-view {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 7rem clamp(1.25rem, 6vw, 5rem) 3rem;
+}
+
+.back-link {
+    position: fixed;
+    left: clamp(1rem, 4vw, 3.5rem);
+    bottom: 2rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+}
+
+.page-panel {
+    width: min(72vw, 46rem);
+}
+
+.page-panel span {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.page-panel h1 {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 11vw, 9rem);
+    line-height: 0.86;
+    margin: 0.45rem 0 1rem;
+}
+
+.page-panel p {
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+}
+
+.placeholder-line {
+    width: min(22rem, 60vw);
+    height: 1px;
+    margin-top: 2rem;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+}

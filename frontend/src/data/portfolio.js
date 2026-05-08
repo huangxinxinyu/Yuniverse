@@ -17,11 +17,11 @@ export const portfolioData = {
       moments: "Moments"
     },
     sitePages: [
-      { path: "/", key: "home", title: "Mission Control", description: "The abstract navigation deck for this personal universe." },
-      { path: "/journey", key: "journey", title: "Journey", description: "Learning trajectory, school orbit, and research direction." },
-      { path: "/work", key: "work", title: "Work", description: "Professional experience, selected projects, and technical signals." },
-      { path: "/blog", key: "blog", title: "Blog", description: "Life and study logs as a growing mission archive." },
-      { path: "/collection", key: "collection", title: "Collection", description: "Music, films, moments, and personal taste fragments." }
+      { path: "/", key: "home", title: "Yuniverse", description: "A quiet entrance." },
+      { path: "/journey", key: "journey", title: "Journey", description: "A loose timeline." },
+      { path: "/work", key: "work", title: "Work", description: "Selected signals." },
+      { path: "/blog", key: "blog", title: "Blog", description: "Notes and drafts." },
+      { path: "/collection", key: "collection", title: "Collection", description: "Things worth keeping." }
     ],
     sectionOrder: ["identity", "journey", "hub", "work", "projects", "blog", "shelf", "moments"],
     identity: {
@@ -246,11 +246,11 @@ export const portfolioData = {
       moments: "瞬间"
     },
     sitePages: [
-      { path: "/", key: "home", title: "Mission Control", description: "这个个人宇宙的抽象导航主控台。" },
-      { path: "/journey", key: "journey", title: "轨迹", description: "学习路径、学校轨道和研究方向。" },
-      { path: "/work", key: "work", title: "工作", description: "专业经历、精选项目和技术信号。" },
-      { path: "/blog", key: "blog", title: "日志", description: "生活与学习记录，一个持续生长的任务档案。" },
-      { path: "/collection", key: "collection", title: "收藏", description: "音乐、电影、瞬间和个人 taste 碎片。" }
+      { path: "/", key: "home", title: "Yuniverse", description: "一个安静入口。" },
+      { path: "/journey", key: "journey", title: "轨迹", description: "松散时间线。" },
+      { path: "/work", key: "work", title: "工作", description: "一些技术信号。" },
+      { path: "/blog", key: "blog", title: "日志", description: "笔记和草稿。" },
+      { path: "/collection", key: "collection", title: "收藏", description: "值得留下的东西。" }
     ],
     sectionOrder: ["identity", "journey", "hub", "work", "projects", "blog", "shelf", "moments"],
     identity: {

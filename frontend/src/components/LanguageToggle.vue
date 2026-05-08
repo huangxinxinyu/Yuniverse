@@ -18,9 +18,7 @@ const { toggleLanguage } = store
 
 <style scoped>
 .lang-toggle {
-  position: fixed;
-  bottom: 6rem;
-  right: 2rem;
+  position: static;
   background: rgba(8, 10, 13, 0.78);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
@@ -28,7 +26,6 @@ const { toggleLanguage } = store
   border-radius: 0.12rem;
   cursor: pointer;
   transition: all var(--transition-base);
-  z-index: var(--z-modal);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 600;
