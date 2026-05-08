@@ -8,6 +8,7 @@
     --bg-secondary: #1a1a2e;
     --border-color: #2d2d4a;
     --hover-shadow: 0 4px 20px rgba(255, 215, 0, 0.15);
+    --panel-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
 
     /* Spacing */
     --spacing-xs: 0.25rem;

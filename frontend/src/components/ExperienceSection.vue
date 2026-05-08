@@ -1,8 +1,8 @@
 <template>
   <section
-    id="experience"
+    id="work"
     class="content-section"
-    :class="{ active: activeSection === 'experience' }"
+    :class="{ active: activeSection === 'work' }"
   >
     <div
       v-for="item in t.experience.items"
