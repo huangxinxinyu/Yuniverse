@@ -6,10 +6,11 @@ export const usePortfolioStore = defineStore('portfolio', () => {
     // State
     const currentLang = ref('en')
     const isDarkMode = ref(true)
-    const activeSection = ref('about')
+    const activeSection = ref('identity')
 
     // Getters
     const t = computed(() => portfolioData[currentLang.value])
+    const sectionIds = computed(() => t.value.sectionOrder || ['identity', 'journey', 'hub', 'work', 'projects', 'shelf', 'moments'])
 
     // Actions
     const toggleTheme = () => {
@@ -47,6 +48,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
         isDarkMode,
         activeSection,
         t,
+        sectionIds,
         toggleTheme,
         toggleLanguage,
         setActiveSection,

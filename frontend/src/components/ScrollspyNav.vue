@@ -1,14 +1,14 @@
 <template>
   <nav class="scrollspy-nav">
     <div
-        v-for="section in sections"
-        :key="section.id"
+        v-for="sectionId in sectionIds"
+        :key="sectionId"
         class="nav-item"
-        :class="{ active: activeSection === section.id }"
-        @click="scrollToSection(section.id)"
+        :class="{ active: activeSection === sectionId }"
+        @click="scrollToSection(sectionId)"
     >
       <div class="nav-line"></div>
-      <span class="nav-text">{{ t.nav[section.id] }}</span>
+      <span class="nav-text">{{ t.nav[sectionId] }}</span>
     </div>
   </nav>
 </template>
@@ -19,13 +19,7 @@ import { storeToRefs } from 'pinia'
 import { useScrollspy } from '@/composables/useScrollspy'
 
 const store = usePortfolioStore()
-const { t, activeSection } = storeToRefs(store)
-
-const sections = [
-  { id: 'about' },
-  { id: 'experience' },
-  { id: 'projects' }
-]
+const { t, activeSection, sectionIds } = storeToRefs(store)
 
 const { scrollToSection } = useScrollspy()
 </script>
@@ -73,7 +67,34 @@ const { scrollToSection } = useScrollspy()
 
 @media (max-width: 1024px) {
   .scrollspy-nav {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    margin: 1.5rem 0 0;
+    padding-bottom: 0.25rem;
+  }
+
+  .nav-item {
+    flex: 0 0 auto;
+    padding: 0.45rem 0;
+  }
+
+  .nav-line {
     display: none;
+  }
+
+  .nav-text {
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.45rem 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .nav-item.active .nav-text,
+  .nav-item:hover .nav-text {
+    color: var(--bg-primary);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
   }
 }
 </style>

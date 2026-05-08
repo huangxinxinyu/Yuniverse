@@ -6,13 +6,13 @@ export function useScrollspy() {
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId)
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
             store.setActiveSection(sectionId)
         }
     }
 
     const updateActiveSection = () => {
-        const sections = ['about', 'experience', 'projects']
+        const sections = store.sectionIds
         const scrollPosition = window.scrollY + window.innerHeight / 2
 
         for (let i = sections.length - 1; i >= 0; i--) {
