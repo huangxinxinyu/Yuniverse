@@ -1,7 +1,7 @@
 export const portfolioData = {
   en: {
     name: "Xinyu Huang",
-    title: "M.S. in ECE at UC San Diego | B.E. Honours (Software) at the University of Sydney",
+    title: "Incoming ECE M.S. Student at UC San Diego | B.E. Honours (Software) Graduate from the University of Sydney",
     description: "I am a software engineer focused on building robust backend systems and AI agent infrastructure. I thrive on turning complex requirements into reliable, high-performance systems.",
     nav: {
       about: "About",
@@ -12,7 +12,7 @@ export const portfolioData = {
       title: "About Me",
       content: [
         "Hello and welcome to Yuniverse. My name is Xinyu, and this space is my digital universe. The name is a nod to 'The Social Network' - simpler, cleaner, and it just sounds right.",
-        "I will be pursuing an M.S. in Electrical and Computer Engineering at UC San Diego, while also keeping my undergraduate foundation in Software Engineering from the University of Sydney.",
+        "I will be pursuing an M.S. in Electrical and Computer Engineering at UC San Diego after completing my undergraduate degree in Software Engineering at the University of Sydney.",
         "After exploring various fields, I've found my passion in backend development and AI agent systems. I get a great sense of accomplishment from designing clean APIs and ensuring every component of a system runs elegantly and robustly.",
         "I believe that truly effective solutions are born from a deep understanding of user needs. This principle guides my work, where I often blend creative thinking with engineering discipline to build products that solve real-world problems.",
         "I did my thesis in Embedded AI research with my advisor. Learning how robotics work is pretty cool.",
@@ -105,7 +105,7 @@ export const portfolioData = {
   },
   zh: {
     name: "黄新宇",
-    title: "加州大学圣地亚哥分校 ECE 硕士 | 悉尼大学荣誉工程学士（软件工程）",
+    title: "即将赴 UCSD 攻读 ECE 硕士 | 悉尼大学软件工程荣誉工程学士",
     description: "我专注于构建稳定的后端系统与 AI Agent 基础设施，擅长将复杂需求转化为可靠、高性能的工程系统。",
     nav: {
       about: "关于",
@@ -116,7 +116,7 @@ export const portfolioData = {
       title: "关于我",
       content: [
         "你好，欢迎来到 Yuniverse。我叫新宇，这里是我的数字宇宙。这个名字有点像《社交网络》里的那句“drop the the, just Facebook”：更简单，也更顺口。",
-        "我已获得加州大学圣地亚哥分校 Electrical and Computer Engineering 硕士 offer，同时保留悉尼大学软件工程荣誉工程学士的本科背景。",
+        "我即将赴加州大学圣地亚哥分校攻读 Electrical and Computer Engineering 硕士，本科毕业于悉尼大学软件工程荣誉工程学士项目。",
         "我做过不同方向的尝试，目前更确定自己对后端开发和 AI Agent 系统感兴趣。设计清晰的 API，并让系统的每个环节稳定、优雅地运行，会给我很大的成就感。",
         "我专注于理解需求并解决问题，也喜欢把有创造力的想法落到工程实现里，构建真正能解决用户问题的产品。",
         "毕业设计和导师做嵌入式 AI 领域的研究，主要是关于 Embodied AI 的攻防，能学到机器人的发展还是挺酷的。",
