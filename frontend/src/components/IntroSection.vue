@@ -1,7 +1,9 @@
 <template>
   <div class="intro-section">
     <h1 class="name-title">{{ t.name }}</h1>
-    <h2 class="job-title">{{ t.title }}</h2>
+    <h2 class="job-title">
+      <span v-for="line in titleLines" :key="line">{{ line }}</span>
+    </h2>
     <p class="intro-description">{{ t.description }}</p>
   </div>
 </template>
@@ -9,9 +11,12 @@
 <script setup>
 import { usePortfolioStore } from '@/stores/portfolio'
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 
 const store = usePortfolioStore()
 const { t } = storeToRefs(store)
+
+const titleLines = computed(() => Array.isArray(t.value.title) ? t.value.title : [t.value.title])
 </script>
 
 <style scoped>
@@ -30,6 +35,9 @@ const { t } = storeToRefs(store)
 }
 
 .job-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
   font-size: 1.7rem;
   font-weight: 600;
   color: var(--secondary-color);

@@ -1,7 +1,10 @@
 export const portfolioData = {
   en: {
     name: "Xinyu Huang",
-    title: "Incoming ECE M.S. Student at UC San Diego | B.E. Honours (Software) Graduate from the University of Sydney",
+    title: [
+      "Incoming ECE M.S. Student at UC San Diego",
+      "B.E. Honours (Software) Graduate from the University of Sydney"
+    ],
     description: "I am a software engineer focused on building robust backend systems and AI agent infrastructure. I thrive on turning complex requirements into reliable, high-performance systems.",
     nav: {
       about: "About",
@@ -129,7 +132,10 @@ export const portfolioData = {
   },
   zh: {
     name: "黄新宇",
-    title: "即将赴 UCSD 攻读 ECE 硕士 | 悉尼大学软件工程荣誉工程学士",
+    title: [
+      "即将赴 UCSD 攻读 ECE 硕士",
+      "悉尼大学软件工程荣誉工程学士"
+    ],
     description: "我专注于构建稳定的后端系统与 AI Agent 基础设施，擅长将复杂需求转化为可靠、高性能的工程系统。",
     nav: {
       about: "关于",
