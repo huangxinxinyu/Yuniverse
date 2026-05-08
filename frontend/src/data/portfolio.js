@@ -5,11 +5,60 @@ export const portfolioData = {
       "Incoming ECE M.S. Student at UC San Diego",
       "B.E. Honours (Software) Graduate from the University of Sydney"
     ],
-    description: "I am a software engineer focused on building robust backend systems and AI agent infrastructure. I thrive on turning complex requirements into reliable, high-performance systems.",
+    description: "Welcome to Yuniverse: a small map of where I am, what I build, and the taste that keeps me moving.",
     nav: {
-      about: "About",
-      experience: "Experience",
-      projects: "Projects"
+      identity: "Identity",
+      journey: "Journey",
+      hub: "Navigate",
+      work: "Work",
+      projects: "Projects",
+      shelf: "Shelf",
+      moments: "Moments"
+    },
+    sectionOrder: ["identity", "journey", "hub", "work", "projects", "shelf", "moments"],
+    identity: {
+      title: "Current Orbit",
+      eyebrow: "Identity snapshot",
+      lead: "I am Xinyu, an incoming UC San Diego ECE M.S. student and software engineer building toward backend systems, AI agent infrastructure, and reliable products.",
+      cards: [
+        { label: "Now", value: "Incoming UCSD ECE M.S. student" },
+        { label: "Focus", value: "Backend systems and AI agent infrastructure" },
+        { label: "Research", value: "Embodied AI, robotics, and LLM-controlled systems" },
+        { label: "Off-screen", value: "Gym, Neo-Soul, Funk, and films" }
+      ]
+    },
+    journey: {
+      title: "Journey",
+      items: [
+        { period: "Sydney", title: "Software Engineering foundation", text: "Studied Software Engineering at the University of Sydney and built a foundation in systems, product thinking, and engineering discipline." },
+        { period: "Research", title: "Embedded AI and robotics", text: "Worked on embodied AI research and became interested in how intelligent systems behave when software meets the physical world." },
+        { period: "Internships", title: "Backend and AI agent infrastructure", text: "Moved from backend systems into AI agent infrastructure, focusing on reliable execution, orchestration, and product-facing systems." },
+        { period: "Next", title: "UC San Diego ECE", text: "Preparing for graduate study at UCSD while continuing to build practical systems and explore AI infrastructure." }
+      ]
+    },
+    hub: {
+      title: "Find Your Path",
+      items: [
+        { label: "Work", target: "work", description: "Internships and professional experience" },
+        { label: "Projects", target: "projects", description: "Selected engineering projects" },
+        { label: "Resume", href: "/resume-en.pdf", description: "Full resume PDF" },
+        { label: "Contact", href: "mailto:xinyuhimself@mgmail.com", description: "Email me directly" },
+        { label: "Shelf", target: "shelf", description: "Music, films, and taste" },
+        { label: "Moments", target: "moments", description: "Personal fragments" }
+      ]
+    },
+    shelf: {
+      title: "Shelf",
+      intro: "A small shelf for taste, not a complete archive.",
+      groups: [
+        { title: "Music", items: ["Neo-Soul", "Funk", "albums with groove and warmth"] },
+        { title: "Films", items: ["films with rhythm, style, and human texture"] }
+      ]
+    },
+    moments: {
+      title: "Moments",
+      intro: "A growing space for photos, places, and small fragments from life outside the resume.",
+      items: ["Campus life", "Travel", "Gym", "Concerts", "Everyday scenes"]
     },
     about: {
       title: "About Me",
@@ -136,11 +185,60 @@ export const portfolioData = {
       "即将赴 UCSD 攻读 ECE 硕士",
       "悉尼大学软件工程荣誉工程学士"
     ],
-    description: "我专注于构建稳定的后端系统与 AI Agent 基础设施，擅长将复杂需求转化为可靠、高性能的工程系统。",
+    description: "欢迎来到 Yuniverse：这里记录我现在的位置、正在构建的东西，以及让我保持流动的 taste。",
     nav: {
-      about: "关于",
-      experience: "经历",
-      projects: "项目"
+      identity: "我是谁",
+      journey: "轨迹",
+      hub: "导航",
+      work: "工作",
+      projects: "项目",
+      shelf: "收藏",
+      moments: "瞬间"
+    },
+    sectionOrder: ["identity", "journey", "hub", "work", "projects", "shelf", "moments"],
+    identity: {
+      title: "当前轨道",
+      eyebrow: "个人状态速写",
+      lead: "我是新宇，即将赴 UC San Diego 攻读 ECE 硕士，也是一名专注后端系统、AI Agent 基础设施和可靠产品的 software engineer。",
+      cards: [
+        { label: "现在", value: "即将赴 UCSD 攻读 ECE 硕士" },
+        { label: "关注", value: "后端系统与 AI Agent 基础设施" },
+        { label: "研究", value: "Embodied AI、机器人与 LLM 控制系统" },
+        { label: "生活", value: "健身、Neo-Soul、Funk 和电影" }
+      ]
+    },
+    journey: {
+      title: "人生轨迹",
+      items: [
+        { period: "Sydney", title: "软件工程基础", text: "在悉尼大学完成软件工程学习，建立了系统设计、产品理解和工程纪律的基础。" },
+        { period: "Research", title: "嵌入式 AI 与机器人", text: "毕业设计接触 embodied AI 研究，也开始关注智能系统进入真实物理环境后的行为与安全问题。" },
+        { period: "Internships", title: "后端与 AI Agent 基础设施", text: "从后端系统逐步走向 AI Agent Infra，关注可靠执行、任务编排和面向产品的工程系统。" },
+        { period: "Next", title: "UC San Diego ECE", text: "即将赴 UCSD 读研，同时继续构建实际系统并探索 AI 基础设施方向。" }
+      ]
+    },
+    hub: {
+      title: "你可以从这里开始",
+      items: [
+        { label: "工作经历", target: "work", description: "实习与专业经历" },
+        { label: "个人项目", target: "projects", description: "精选工程项目" },
+        { label: "简历", href: "/resume-zh.pdf", description: "完整 PDF 简历" },
+        { label: "联系", href: "mailto:xinyuhimself@mgmail.com", description: "直接邮件联系" },
+        { label: "收藏", target: "shelf", description: "音乐、电影和 taste" },
+        { label: "瞬间", target: "moments", description: "生活碎片" }
+      ]
+    },
+    shelf: {
+      title: "收藏",
+      intro: "这里不是完整档案，更像一个关于 taste 的小架子。",
+      groups: [
+        { title: "音乐", items: ["Neo-Soul", "Funk", "有律动和温度的专辑"] },
+        { title: "电影", items: ["有节奏、风格和人味的电影"] }
+      ]
+    },
+    moments: {
+      title: "瞬间",
+      intro: "留给照片、地点和简历之外生活碎片的生长空间。",
+      items: ["校园生活", "旅行", "健身", "演出", "日常画面"]
     },
     about: {
       title: "关于我",
