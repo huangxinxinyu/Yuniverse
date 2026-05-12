@@ -46,7 +46,10 @@ describe('site content model', () => {
     )
 
     expect(categoryMap.music).toEqual(
-      expect.arrayContaining(['album', 'track', 'playlist']),
+      expect.arrayContaining(['album']),
+    )
+    expect(categoryMap.music).not.toEqual(
+      expect.arrayContaining(['track', 'playlist']),
     )
     expect(categoryMap.movies).toEqual(
       expect.arrayContaining(['film', 'watchlist', 'favorite']),
@@ -54,6 +57,32 @@ describe('site content model', () => {
     expect(categoryMap.pictures).toEqual(
       expect.arrayContaining(['gallery']),
     )
+  })
+
+  it('uses the curated music list instead of placeholder entries', () => {
+    const musicTitles = collections
+      .find((collection) => collection.id === 'music')
+      ?.items.map((item) => item.title)
+
+    expect(musicTitles).toEqual(
+      expect.arrayContaining([
+        "What's Going On",
+        '2014 Forest Hills Drive',
+        'THIS MUSIC MAY CONTAIN HOPE.',
+        'The Miseducation of Lauryn Hill',
+        'David Tao',
+      ]),
+    )
+    expect(musicTitles).not.toEqual(
+      expect.arrayContaining(['Dance', 'Rap', 'Music List Coming']),
+    )
+  })
+
+  it('keeps every music entry in the album view with local cover art', () => {
+    const musicItems = collections.find((collection) => collection.id === 'music')?.items
+
+    expect(musicItems?.every((item) => item.kind === 'album')).toBe(true)
+    expect(musicItems?.every((item) => item.visual?.startsWith('/images/albums/'))).toBe(true)
   })
 
   it('keeps collection empty states ready for future filtered views', () => {

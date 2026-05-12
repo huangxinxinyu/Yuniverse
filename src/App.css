@@ -779,6 +779,40 @@ h3 {
   margin: 0;
 }
 
+.music-artwork-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.album-art-card {
+  display: block;
+  min-width: 0;
+  line-height: 0;
+}
+
+.album-art {
+  aspect-ratio: 1;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 18px 34px rgba(35, 38, 34, 0.14);
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.album-art-card:hover .album-art,
+.album-art-card:focus-within .album-art {
+  box-shadow: 0 24px 46px rgba(35, 38, 34, 0.2);
+  transform: translateY(-2px) scale(1.015);
+}
+
+.music-artwork-grid .empty-state {
+  grid-column: 1 / -1;
+}
+
 .card-trigger,
 .timeline-button,
 .filter-button,
@@ -1284,6 +1318,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .music-artwork-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .portal-card:nth-child(2n) {
     transform: none;
   }
@@ -1338,6 +1376,10 @@ h3 {
   .signal-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px 18px;
+  }
+
+  .music-artwork-grid {
+    grid-template-columns: 1fr;
   }
 
   .signal-panel strong {

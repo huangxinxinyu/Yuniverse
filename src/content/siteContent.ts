@@ -512,16 +512,16 @@ export const blogCategories: readonly [BlogCategory, ...BlogCategory[]] = [
 
 export const blogPosts = posts
 
-const musicKinds = ['album', 'track', 'playlist'] as const
 const movieKinds = ['film', 'watchlist', 'favorite'] as const
 
-const toMusicCollectionItem = (item: MusicItem, index: number): CollectionItem => ({
+const toMusicCollectionItem = (item: MusicItem): CollectionItem => ({
   id: item.id,
   title: item.title,
   creator: item.artist,
-  kind: musicKinds[index % musicKinds.length],
+  kind: 'album',
   meta: item.mood,
   note: item.note,
+  visual: `/images/albums/${item.id.replace(/^music-/, '')}.jpg`,
 })
 
 const toMovieCollectionItem = (item: MovieItem, index: number): CollectionItem => ({

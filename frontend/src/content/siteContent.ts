@@ -376,9 +376,9 @@ export const aboutPageContent: AboutPageContent = {
   intro: {
     heading: 'Intro',
     body:
-      '我本科阶段在悉尼大学学习软件工程，研究生阶段会去 UCSD ECE。现在的身份很简单：学生、软件开发工程师，trying to build a good personal ip, might as well create something cool。',
+      '我本科阶段在悉尼大学学习软件工程，研究生阶段会去 UCSD ECE。现在的公开身份很简单：学生、软件开发工程师，trying to build a good personal ip, might as well create something cool。',
     coordinates: [
-      { label: 'Primary school', text: '浙江省湖州市递铺第三小学(i dont think people gon care tho)' },
+      { label: 'Primary school', text: '浙江省湖州市递铺第三小学' },
       { label: 'Middle / high school', text: '杭州英特外国语学校' },
       { label: 'Bachelor', text: '悉尼大学 Software Engineering' },
       { label: 'Postgraduate', text: 'UCSD ECE' },
@@ -395,11 +395,11 @@ export const aboutPageContent: AboutPageContent = {
       },
       {
         label: 'Warm',
-        text: 'Baby it‘s a cold world outside 🫶',
+        text: '公开信息保持简约，但语气要温暖，像一个真实的人在打招呼。',
       },
       {
         label: 'Fun',
-        text: 'Fun to read, fun to interact with.',
+        text: '软件、电影、健身、篮球和一点玩笑感，都可以成为 Yuniverse 的一部分。',
       },
     ],
   },
@@ -447,7 +447,7 @@ export const aboutPageContent: AboutPageContent = {
         id: 'interests',
         label: 'Interests',
         meta: 'Life',
-        detail: '唱跳 rap 篮球',
+        detail: '健身、电影、篮球，以及一点唱跳 rap 篮球式的玩笑感。',
       },
       {
         id: 'location',
@@ -512,16 +512,16 @@ export const blogCategories: readonly [BlogCategory, ...BlogCategory[]] = [
 
 export const blogPosts = posts
 
-const musicKinds = ['album', 'track', 'playlist'] as const
 const movieKinds = ['film', 'watchlist', 'favorite'] as const
 
-const toMusicCollectionItem = (item: MusicItem, index: number): CollectionItem => ({
+const toMusicCollectionItem = (item: MusicItem): CollectionItem => ({
   id: item.id,
   title: item.title,
   creator: item.artist,
-  kind: musicKinds[index % musicKinds.length],
+  kind: 'album',
   meta: item.mood,
   note: item.note,
+  visual: `/images/albums/${item.id.replace(/^music-/, '')}.jpg`,
 })
 
 const toMovieCollectionItem = (item: MovieItem, index: number): CollectionItem => ({

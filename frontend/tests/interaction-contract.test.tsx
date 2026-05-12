@@ -123,8 +123,23 @@ describe('interactive section contract', () => {
     expect(collectionHtml).toContain('aria-label="Collection media tabs"')
     expect(collectionHtml).toContain('aria-label="Collection view filters"')
     expect(collectionHtml).toContain('Albums')
+    expect(collectionHtml).toContain('Playlists')
+    expect(collectionHtml).not.toContain('Tracks')
     expect(collectionHtml).toContain('Watchlist')
     expect(collectionHtml).toContain('Gallery')
     expect(collectionHtml).toContain('aria-haspopup="dialog"')
+  })
+
+  it('renders music collection entries as a four-column artwork grid', () => {
+    const collectionHtml = renderToStaticMarkup(<App initialPath="/collection" />)
+
+    expect(collectionHtml).toContain('class="collection-list music-artwork-grid"')
+    expect(collectionHtml).toContain('class="album-art-card"')
+    expect(collectionHtml).toContain('src="/images/albums/')
+    expect(collectionHtml).not.toContain('class="album-meta"')
+    expect(collectionHtml).not.toContain('class="album-note"')
+    expect(css).toContain('.music-artwork-grid')
+    expect(css).toContain('grid-template-columns: repeat(4, minmax(0, 1fr))')
+    expect(css).toContain('aspect-ratio: 1')
   })
 })

@@ -15,7 +15,9 @@ const filterLabels: Record<string, string> = {
 const collectionFilters = Object.fromEntries(
   collections.map((collection) => [
     collection.id,
-    ['all', ...Array.from(new Set(collection.items.map((item) => item.kind)))],
+    collection.id === 'music'
+      ? ['all', 'album', 'playlist']
+      : ['all', ...Array.from(new Set(collection.items.map((item) => item.kind)))],
   ]),
 ) as Record<CollectionId, string[]>
 
@@ -98,7 +100,11 @@ export function CollectionPage() {
                 </button>
               ))}
             </div>
-            <div className="collection-list">
+            <div
+              className={`collection-list${
+                collection.id === 'music' ? ' music-artwork-grid' : ''
+              }`}
+            >
               {visibleItems.map((item) =>
               collection.id === 'pictures' ? (
                 <button
@@ -117,6 +123,15 @@ export function CollectionPage() {
                   <span>{item.meta}</span>
                   <h3>{item.title}</h3>
                 </button>
+              ) : collection.id === 'music' ? (
+                <article
+                  aria-label={`${item.title} by ${item.creator}`}
+                  className="album-art-card"
+                  key={item.id}
+                  title={`${item.title} / ${item.creator}`}
+                >
+                  <img alt="" className="album-art" src={item.visual} />
+                </article>
               ) : (
                 <article className="mini-card" key={item.id}>
                   <span>{filterLabels[item.kind] ?? item.kind}</span>
@@ -125,6 +140,9 @@ export function CollectionPage() {
                 </article>
               ),
               )}
+              {visibleItems.length === 0 ? (
+                <p className="empty-state">{collection.emptyState}</p>
+              ) : null}
             </div>
           </div>
         )
