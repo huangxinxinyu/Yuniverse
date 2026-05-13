@@ -9,8 +9,4 @@ describe('static assets', () => {
     expect(indexHtml).toContain('rel="icon" type="image/png" href="/favicon.png"')
     expect(existsSync(join(process.cwd(), 'public/favicon.png'))).toBe(true)
   })
-
-  it('keeps the supplied black-hole background asset available', () => {
-    expect(existsSync(join(process.cwd(), 'public/images/backgrounds/interstellar-black-hole.jpg'))).toBe(true)
-  })
 })

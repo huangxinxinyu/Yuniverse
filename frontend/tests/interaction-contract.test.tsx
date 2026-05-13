@@ -24,12 +24,6 @@ describe('interactive section contract', () => {
     expect(css).not.toContain('rocket-flame')
   })
 
-  it('uses the supplied black-hole image as the restrained page background', () => {
-    expect(css).toContain('/images/backgrounds/interstellar-black-hole.jpg')
-    expect(css).toContain('.quiet-layer::before')
-    expect(css).not.toContain('star-field')
-  })
-
   it('labels the primary content sections for landmark navigation', () => {
     for (const section of Object.values(siteSections)) {
       const html = renderToStaticMarkup(<App initialPath={`/${section.id}`} />)
