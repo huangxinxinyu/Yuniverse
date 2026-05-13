@@ -548,7 +548,7 @@ export const collections: readonly [Collection, ...Collection[]] = [
   {
     id: 'music',
     label: 'Music',
-    intro: 'Music and performance interests will become a more specific list later.',
+    intro: '灵魂歌王。',
     emptyState: 'No music has been pinned for this filter yet.',
     items: mapNonEmpty(musicItems, toMusicCollectionItem),
   },

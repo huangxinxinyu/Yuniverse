@@ -86,6 +86,12 @@ describe('site content model', () => {
     expect(dreamer?.creator).toBe('方大同')
   })
 
+  it('uses the concise music taste line for the music collection', () => {
+    const musicCollection = collections.find((collection) => collection.id === 'music')
+
+    expect(musicCollection?.intro).toBe('灵魂歌王。')
+  })
+
   it('includes the expanded album picks requested for the music collection', () => {
     const musicItems = collections.find((collection) => collection.id === 'music')?.items ?? []
     const musicCreatorsByTitle = Object.fromEntries(
