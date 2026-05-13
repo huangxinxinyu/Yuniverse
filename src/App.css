@@ -144,15 +144,22 @@
 
 .identity-mark {
   display: grid;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   place-items: center;
-  border-radius: 50%;
-  color: var(--accent-strong);
-  background:
-    radial-gradient(circle at 45% 30%, rgba(165, 83, 53, 0.16), transparent 46%),
-    var(--surface);
-  box-shadow: inset 0 1px 0 var(--soft-edge);
+  border: 1px solid color-mix(in srgb, var(--text-strong) 12%, transparent);
+  border-radius: 10px;
+  background: #fbf8f1;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.74),
+    0 10px 28px -22px rgba(34, 39, 35, 0.46);
+}
+
+.identity-mark img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .site-nav {

@@ -27,7 +27,7 @@ export function SiteNav({ currentPath, onNavigate }: SiteNavProps) {
         onClick={handleClick('/')}
       >
         <span className="identity-mark" aria-hidden="true">
-          Y
+          <img src="/favicon.png" alt="" />
         </span>
         <span>{profile.name}</span>
       </a>

@@ -33,6 +33,13 @@ describe('interactive section contract', () => {
     }
   })
 
+  it('renders the 宇 mark in the navbar identity', () => {
+    expect(homeHtml).toContain('class="identity-mark"')
+    expect(homeHtml).toContain('src="/favicon.png"')
+    expect(homeHtml).toContain('alt=""')
+    expect(css).toContain('.identity-mark img')
+  })
+
   it('disables continuous motion and smooth scrolling for reduced-motion users', () => {
     const reducedMotionCss = css.match(
       /@media\s*\(prefers-reduced-motion:\s*reduce\)\s*{[\s\S]*?\n}/,
