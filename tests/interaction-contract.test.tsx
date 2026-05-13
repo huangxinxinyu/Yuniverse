@@ -24,6 +24,15 @@ describe('interactive section contract', () => {
     expect(css).not.toContain('rocket-flame')
   })
 
+  it('uses a restrained cosmic atmosphere without literal stars or black-hole imagery', () => {
+    expect(css).toContain('.quiet-layer::before')
+    expect(css).toContain('.quiet-layer::after')
+    expect(css).toContain('ellipse at 74% 18%')
+    expect(css).toContain('border: 1px solid')
+    expect(css).not.toContain('interstellar-black-hole')
+    expect(css).not.toContain('star-field')
+  })
+
   it('labels the primary content sections for landmark navigation', () => {
     for (const section of Object.values(siteSections)) {
       const html = renderToStaticMarkup(<App initialPath={`/${section.id}`} />)
