@@ -86,6 +86,25 @@ describe('site content model', () => {
     expect(dreamer?.creator).toBe('方大同')
   })
 
+  it('includes the expanded album picks requested for the music collection', () => {
+    const musicItems = collections.find((collection) => collection.id === 'music')?.items ?? []
+    const musicCreatorsByTitle = Object.fromEntries(
+      musicItems.map((item) => [item.title, item.creator]),
+    )
+
+    expect(musicCreatorsByTitle).toMatchObject({
+      'Head Hunters': 'Herbie Hancock',
+      'Heal Me Good': 'Yufu',
+      'Random Access Memories': 'Daft Punk',
+      'My Beautiful Dark Twisted Fantasy': 'Kanye West',
+      '亚特兰蒂斯': 'GALI',
+      'Songs About Jane': 'Maroon 5',
+      Soulboy: '方大同',
+      '灰太阳': '施鑫文月',
+      SOS: 'SZA',
+    })
+  })
+
   it('keeps every music entry in the album view with local cover art', () => {
     const musicItems = collections.find((collection) => collection.id === 'music')?.items
 
