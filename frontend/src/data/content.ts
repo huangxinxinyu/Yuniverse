@@ -304,9 +304,9 @@ export const musicItems: readonly [MusicItem, ...MusicItem[]] = [
   {
     id: 'music-dreamer',
     title: '梦想家',
-    artist: 'To be confirmed',
-    mood: 'Mandarin favorite',
-    note: 'Kept as a named favorite; artist metadata can be tightened later.',
+    artist: '方大同',
+    mood: 'Mandarin R&B',
+    note: 'A late-career Khalil Fong album with gentle, grounded R&B clarity.',
   },
   {
     id: 'music-mixed-into-human-plan',

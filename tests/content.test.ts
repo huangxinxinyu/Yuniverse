@@ -78,6 +78,14 @@ describe('site content model', () => {
     )
   })
 
+  it('identifies 梦想家 as the Khalil Fong album', () => {
+    const dreamer = collections
+      .find((collection) => collection.id === 'music')
+      ?.items.find((item) => item.title === '梦想家')
+
+    expect(dreamer?.creator).toBe('方大同')
+  })
+
   it('keeps every music entry in the album view with local cover art', () => {
     const musicItems = collections.find((collection) => collection.id === 'music')?.items
 
