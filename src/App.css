@@ -57,9 +57,55 @@
   position: fixed;
   inset: 0;
   z-index: -1;
+  overflow: hidden;
   pointer-events: none;
   background:
     radial-gradient(circle at 78% 8%, rgba(165, 83, 53, 0.09), transparent 18rem);
+}
+
+.quiet-layer::before,
+.quiet-layer::after {
+  position: absolute;
+  content: '';
+  pointer-events: none;
+}
+
+.quiet-layer::before {
+  top: clamp(44px, 7vw, 98px);
+  right: clamp(-260px, -11vw, -80px);
+  width: clamp(560px, 56vw, 920px);
+  aspect-ratio: 16 / 9;
+  background: url('/images/backgrounds/interstellar-black-hole.jpg') center / cover no-repeat;
+  filter: saturate(0.96) sepia(0.08) brightness(1.06) contrast(1);
+  opacity: 0.42;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(
+    ellipse at 58% 48%,
+    #000 0 34%,
+    rgba(0, 0, 0, 0.74) 47%,
+    transparent 65%
+  );
+  mask-image: radial-gradient(
+    ellipse at 58% 48%,
+    #000 0 34%,
+    rgba(0, 0, 0, 0.74) 47%,
+    transparent 65%
+  );
+}
+
+.quiet-layer::after {
+  top: 0;
+  right: 0;
+  width: min(82vw, 1120px);
+  height: min(64vw, 760px);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(247, 244, 237, 0.88),
+      rgba(247, 244, 237, 0.1) 56%,
+      rgba(247, 244, 237, 0.48)
+    ),
+    radial-gradient(ellipse at 72% 30%, rgba(247, 244, 237, 0.08), transparent 48%);
 }
 
 .site-header {
@@ -1251,6 +1297,25 @@ h3 {
 }
 
 @media (max-width: 860px) {
+  .quiet-layer::before {
+    top: 132px;
+    right: -382px;
+    width: 620px;
+    opacity: 0.28;
+  }
+
+  .quiet-layer::after {
+    width: 100vw;
+    height: 440px;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(247, 244, 237, 0.68),
+        rgba(247, 244, 237, 0.18) 46%,
+        rgba(247, 244, 237, 0.82) 100%
+      );
+  }
+
   .site-header {
     width: calc(100% - 24px);
     align-items: flex-start;
