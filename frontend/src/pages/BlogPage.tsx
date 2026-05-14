@@ -134,13 +134,7 @@ export function BlogPage({ initialFilter = 'all' }: BlogPageProps = {}) {
             </article>
           ))}
         </div>
-      ) : (
-        <div className="empty-state" role="status">
-          <span className="panel-label">Future state</span>
-          <p>{section.emptyState}</p>
-        </div>
-      )}
-
+      ) : null}
     </section>
   )
 }

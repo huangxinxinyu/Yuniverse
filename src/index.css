@@ -2,7 +2,7 @@
   --text: #4f5664;
   --text-h: #111827;
   --muted: #737b8c;
-  --bg: #fbfbf8;
+  --bg: #f7f4ed;
   --surface: #f1f5f2;
   --border: #dde3dd;
   --border-strong: #b9c4bf;
@@ -27,25 +27,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #bdc4d0;
-    --text-h: #f8fafc;
-    --muted: #9199a8;
-    --bg: #111315;
-    --surface: #181d1c;
-    --border: #2c3332;
-    --border-strong: #46524f;
-    --accent: #5eead4;
-    --accent-2: #fbbf24;
-    --focus: #93c5fd;
-    --shadow:
-      rgba(0, 0, 0, 0.34) 0 18px 36px -18px,
-      rgba(0, 0, 0, 0.28) 0 8px 18px -10px;
-  }
+  color-scheme: light;
 }
 
 * {
@@ -53,13 +35,14 @@
 }
 
 html {
+  min-height: 100%;
   background: var(--bg);
   scroll-behavior: smooth;
 }
 
 body {
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100svh;
   margin: 0;
   background: var(--bg);
 }
@@ -79,7 +62,7 @@ a {
 }
 
 #root {
-  min-height: 100vh;
+  min-height: 100svh;
   width: min(1180px, 100%);
   margin: 0 auto;
   background: var(--bg);

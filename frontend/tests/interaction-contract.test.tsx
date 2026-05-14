@@ -7,6 +7,10 @@ import { blogFilters, collections, siteSections } from '../src/content/siteConte
 describe('interactive section contract', () => {
   const homeHtml = renderToStaticMarkup(<App initialPath="/" />)
   const css = readFileSync(new URL('../src/App.css', import.meta.url), 'utf8')
+  const globalCss = readFileSync(
+    new URL('../src/index.css', import.meta.url),
+    'utf8',
+  )
 
   it('keeps a restrained decorative layer hidden from assistive technology', () => {
     expect(homeHtml).toContain('class="quiet-layer" aria-hidden="true"')
@@ -82,6 +86,15 @@ describe('interactive section contract', () => {
     expect(css).toContain('--text-muted:')
     expect(css).toContain('--line:')
     expect(css).toContain('--surface:')
+  })
+
+  it('keeps the warm app background behind every routed page', () => {
+    expect(globalCss).toContain('color-scheme: light;')
+    expect(globalCss).not.toContain('color-scheme: light dark')
+    expect(globalCss).not.toContain('@media (prefers-color-scheme: dark)')
+    expect(css).not.toContain('@media (prefers-color-scheme: dark)')
+    expect(css).toContain('min-height: 100svh;')
+    expect(css).toContain('background:')
   })
 
   it('renders work items as disclosure controls', () => {

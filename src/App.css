@@ -43,7 +43,7 @@
 
   position: relative;
   isolation: isolate;
-  min-height: 100vh;
+  min-height: 100svh;
   overflow-x: clip;
   color: var(--text);
   background:
@@ -1290,36 +1290,6 @@ h3 {
 .reveal-section.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-@media (prefers-color-scheme: dark) {
-  #root {
-    background: #151613;
-  }
-
-  .site-shell {
-    --bg: #151613;
-    --paper: #e8dfd0;
-    --text: #c9c6bc;
-    --text-strong: #f3efe6;
-    --text-muted: #98968d;
-    --line: rgba(243, 239, 230, 0.13);
-    --line-strong: rgba(243, 239, 230, 0.27);
-    --accent: #a9b184;
-    --accent-strong: #d6a070;
-    --accent-soft: rgba(169, 177, 132, 0.13);
-    --control-active: #d6a070;
-    --control-hover: rgba(169, 177, 132, 0.13);
-    --control-quiet: rgba(243, 239, 230, 0.46);
-    --surface: rgba(25, 27, 23, 0.74);
-    --surface-strong: #1b1d19;
-    --shadow: rgba(0, 0, 0, 0.3) 0 18px 50px -30px;
-    background:
-      linear-gradient(90deg, var(--line) 1px, transparent 1px),
-      linear-gradient(180deg, rgba(27, 29, 25, 0.92), rgba(21, 22, 19, 0.94)),
-      var(--bg);
-    color-scheme: dark;
-  }
 }
 
 @media (max-width: 860px) {

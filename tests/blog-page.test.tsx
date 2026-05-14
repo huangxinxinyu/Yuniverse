@@ -34,12 +34,12 @@ describe('blog page', () => {
     expect(html).toContain('data-featured="true"')
   })
 
-  it('shows one empty future-state when a filter has no matches', () => {
+  it('does not render a future-state placeholder when a filter has no matches', () => {
     const futureHtml = renderToStaticMarkup(<BlogPage initialFilter="future" />)
 
-    expect(futureHtml).toContain('role="status"')
-    expect(futureHtml).toContain(siteSections.blog.emptyState)
-    expect(futureHtml.match(/Future state/g)).toHaveLength(1)
+    expect(futureHtml).not.toContain('role="status"')
+    expect(futureHtml).not.toContain(siteSections.blog.emptyState)
+    expect(futureHtml).not.toContain('Future state')
     expect(futureHtml).not.toContain('href="/blog/hello-world"')
   })
 
