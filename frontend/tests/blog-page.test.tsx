@@ -34,9 +34,13 @@ describe('blog page', () => {
     expect(html).toContain('data-featured="true"')
   })
 
-  it('keeps an empty future-state ready for filters with no matches', () => {
-    expect(html).toContain('role="status"')
-    expect(html).toContain(siteSections.blog.emptyState)
+  it('shows one empty future-state when a filter has no matches', () => {
+    const futureHtml = renderToStaticMarkup(<BlogPage initialFilter="future" />)
+
+    expect(futureHtml).toContain('role="status"')
+    expect(futureHtml).toContain(siteSections.blog.emptyState)
+    expect(futureHtml.match(/Future state/g)).toHaveLength(1)
+    expect(futureHtml).not.toContain('href="/blog/hello-world"')
   })
 
   it('links the blog index to the first readable Hello World article', () => {

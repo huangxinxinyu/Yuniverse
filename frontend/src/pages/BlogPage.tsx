@@ -9,9 +9,13 @@ import {
 type StatusFilterId = (typeof blogFilters)[number]['id']
 type ActiveBlogFilter = BlogCategoryId | StatusFilterId
 
-export function BlogPage() {
+type BlogPageProps = {
+  initialFilter?: ActiveBlogFilter
+}
+
+export function BlogPage({ initialFilter = 'all' }: BlogPageProps = {}) {
   const section = siteSections.blog
-  const [activeFilter, setActiveFilter] = useState<ActiveBlogFilter>('all')
+  const [activeFilter, setActiveFilter] = useState<ActiveBlogFilter>(initialFilter)
   const visiblePosts =
     activeFilter === 'featured'
       ? [section.featuredPost]
@@ -137,10 +141,6 @@ export function BlogPage() {
         </div>
       )}
 
-      <div className="empty-state blog-future-note" role="status">
-        <span className="panel-label">Future state</span>
-        <p>{section.emptyState}</p>
-      </div>
     </section>
   )
 }
