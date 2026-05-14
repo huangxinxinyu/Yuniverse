@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type MouseEvent } from 'react'
 import {
   blogCategories,
   blogFilters,
@@ -25,6 +25,17 @@ export function BlogPage() {
   const activeCategory =
     blogCategories.find((category) => category.id === activeFilter) ??
     blogCategories[0]
+  const handlePostClick =
+    (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+      if (typeof window === 'undefined') {
+        return
+      }
+
+      event.preventDefault()
+      window.history.pushState({}, '', href)
+      window.dispatchEvent(new PopStateEvent('popstate'))
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
 
   return (
     <section
@@ -109,6 +120,13 @@ export function BlogPage() {
                 <span>{post.readingTime}</span>
                 {post.featured ? <strong>Featured</strong> : null}
               </div>
+              <a
+                className="text-command secondary"
+                href={post.href}
+                onClick={handlePostClick(post.href)}
+              >
+                Read article
+              </a>
             </article>
           ))}
         </div>

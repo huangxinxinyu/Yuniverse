@@ -40,6 +40,8 @@ export type BlogPost = {
   title: string
   date: string
   excerpt: string
+  content: readonly string[]
+  aiDisclosure?: string
   readingMinutes: number
   category: 'software' | 'systems' | 'life' | 'taste' | 'notes'
   featured?: boolean

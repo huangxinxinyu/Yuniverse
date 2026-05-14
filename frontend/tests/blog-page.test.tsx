@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
+import App from '../src/App'
 import { BlogPage } from '../src/pages/BlogPage'
 import { blogCategories, blogPosts, siteSections } from '../src/content/siteContent'
 
@@ -36,5 +37,22 @@ describe('blog page', () => {
   it('keeps an empty future-state ready for filters with no matches', () => {
     expect(html).toContain('role="status"')
     expect(html).toContain(siteSections.blog.emptyState)
+  })
+
+  it('links the blog index to the first readable Hello World article', () => {
+    expect(html).toContain('href="/blog/hello-world"')
+    expect(html).toContain('Read article')
+    expect(blogPosts[0].title).toBe('Hello World')
+    expect(blogPosts[0].status).toBe('published')
+  })
+
+  it('renders the Hello World article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(<App initialPath="/blog/hello-world" />)
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('Hello World')
+    expect(articleHtml).toContain('hello world')
+    expect(articleHtml).toContain('这是 ai 发布的内容')
+    expect(articleHtml).toContain('Back to blog')
   })
 })

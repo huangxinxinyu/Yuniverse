@@ -110,16 +110,17 @@ export const lifeEvents: readonly [LifeEvent, ...LifeEvent[]] = [
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
   {
-    slug: 'yuniverse-and-the-universe',
-    title: 'Yuniverse and the Universe',
-    date: '2026-05-11',
-    excerpt:
-      'A future note about why this site is called Yuniverse, and how a personal universe can hold work, warmth, and curiosity.',
-    readingMinutes: 3,
-    category: 'systems',
+    slug: 'hello-world',
+    title: 'Hello World',
+    date: '2026-05-14',
+    excerpt: 'The first readable note on Yuniverse.',
+    content: ['hello world'],
+    aiDisclosure: '这是 ai 发布的内容',
+    readingMinutes: 1,
+    category: 'notes',
     featured: true,
-    tags: ['Yuniverse', 'Identity', 'Personal site'],
-    status: 'planned',
+    tags: ['Hello World', 'AI', 'Yuniverse'],
+    status: 'published',
   },
   {
     slug: 'bachelor-and-postgraduate-study',
@@ -127,6 +128,9 @@ export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
     date: '2026-05-11',
     excerpt:
       'A short education note separating the Sydney software engineering bachelor stage from the UCSD ECE postgraduate stage.',
+    content: [
+      'A future note separating the Sydney software engineering bachelor stage from the UCSD ECE postgraduate stage.',
+    ],
     readingMinutes: 4,
     category: 'life',
     tags: ['Bachelor', 'Postgraduate', 'Study'],
@@ -138,6 +142,9 @@ export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
     date: '2026-05-11',
     excerpt:
       'A place for future notes from internships, school projects, and software development practice.',
+    content: [
+      'A future place for notes from internships, school projects, and software development practice.',
+    ],
     readingMinutes: 4,
     category: 'software',
     tags: ['Software', 'Engineering', 'Projects'],
@@ -149,6 +156,9 @@ export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
     date: '2026-05-11',
     excerpt:
       'A lighter note for the parts of life around code: gym, movies, basketball, and playful taste.',
+    content: [
+      'A future note for the parts of life around code: gym, movies, basketball, and playful taste.',
+    ],
     readingMinutes: 4,
     category: 'life',
     tags: ['Fitness', 'Movies', 'Basketball'],
@@ -160,6 +170,9 @@ export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
     date: '2026-05-11',
     excerpt:
       'A holding note for project writeups that will be added after the public details are ready.',
+    content: [
+      'A holding note for project writeups that will be added after the public details are ready.',
+    ],
     readingMinutes: 2,
     category: 'notes',
     tags: ['Portfolio', 'Projects', 'Writing'],

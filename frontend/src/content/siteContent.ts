@@ -79,6 +79,7 @@ export type BlogPost = BaseBlogPost & {
   categoryLabel: string
   readingTime: string
   topics: readonly string[]
+  href: `/blog/${string}`
 }
 
 export type BlogCategoryId =
@@ -256,6 +257,7 @@ const posts = mapNonEmpty(baseBlogPosts, (post) => ({
   categoryLabel: blogCategoryLabels[post.category],
   readingTime: `${post.readingMinutes} min read`,
   topics: post.tags,
+  href: `/blog/${post.slug}` as const,
 }))
 
 const featuredPost = posts.find((post) => post.featured) ?? posts[0]
