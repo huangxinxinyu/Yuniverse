@@ -86,7 +86,7 @@ function App({ initialPath }: AppProps) {
     ) : currentPath === '/blog' ? (
       <BlogPage />
     ) : blogPostSlug ? (
-      <BlogPostPage slug={blogPostSlug} />
+      <BlogPostPage slug={blogPostSlug} onNavigate={handleNavigate} />
     ) : currentPath === '/collection' ? (
       <CollectionPage />
     ) : (

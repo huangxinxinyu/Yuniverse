@@ -1,11 +1,22 @@
+import type { MouseEvent } from 'react'
+import type { RoutePath } from '../App'
 import { blogPosts } from '../content/siteContent'
 
 type BlogPostPageProps = {
   slug: string
+  onNavigate?: (path: RoutePath) => void
 }
 
-export function BlogPostPage({ slug }: BlogPostPageProps) {
+export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
   const post = blogPosts.find((post) => post.slug === slug) ?? blogPosts[0]
+  const handleBackClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!onNavigate) {
+      return
+    }
+
+    event.preventDefault()
+    onNavigate('/blog')
+  }
 
   return (
     <article
@@ -14,7 +25,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
       data-page="blog-post"
       id="blog"
     >
-      <a className="text-command secondary" href="/blog">
+      <a className="text-command secondary" href="/blog" onClick={handleBackClick}>
         Back to blog
       </a>
       <p className="section-kicker">{`${post.categoryLabel} / ${post.date}`}</p>
