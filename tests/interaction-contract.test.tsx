@@ -95,6 +95,10 @@ describe('interactive section contract', () => {
     expect(css).toContain('@media (prefers-color-scheme: dark)')
     expect(css).toContain('--bg: #151613;')
     expect(css).toContain('min-height: 100svh;')
+    expect(css).toContain('.page-shell[data-route]:not([data-route="/"])')
+    expect(css).toContain('min-height: calc(100svh - 72px);')
+    expect(css).toContain('box-shadow: 0 0 0 100vmax')
+    expect(css).toContain('clip-path: inset(0 -100vmax);')
     expect(css).toContain('background:')
   })
 
