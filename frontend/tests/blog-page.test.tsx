@@ -46,6 +46,14 @@ describe('blog page', () => {
     expect(blogPosts[0].status).toBe('published')
   })
 
+  it('only keeps the published Hello World article in blog data', () => {
+    expect(blogPosts.map((post) => post.slug)).toEqual(['hello-world'])
+    expect(html).not.toContain('Bachelor and Postgraduate Study')
+    expect(html).not.toContain('Software Engineering Notes')
+    expect(html).not.toContain('Fitness, Films, and Fun')
+    expect(html).not.toContain('Work in Progress')
+  })
+
   it('renders the Hello World article as a readable page', () => {
     const articleHtml = renderToStaticMarkup(<App initialPath="/blog/hello-world" />)
 

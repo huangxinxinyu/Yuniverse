@@ -122,62 +122,6 @@ export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
     tags: ['Hello World', 'AI', 'Yuniverse'],
     status: 'published',
   },
-  {
-    slug: 'bachelor-and-postgraduate-study',
-    title: 'Bachelor and Postgraduate Study',
-    date: '2026-05-11',
-    excerpt:
-      'A short education note separating the Sydney software engineering bachelor stage from the UCSD ECE postgraduate stage.',
-    content: [
-      'A future note separating the Sydney software engineering bachelor stage from the UCSD ECE postgraduate stage.',
-    ],
-    readingMinutes: 4,
-    category: 'life',
-    tags: ['Bachelor', 'Postgraduate', 'Study'],
-    status: 'planned',
-  },
-  {
-    slug: 'software-engineering-notes',
-    title: 'Software Engineering Notes',
-    date: '2026-05-11',
-    excerpt:
-      'A place for future notes from internships, school projects, and software development practice.',
-    content: [
-      'A future place for notes from internships, school projects, and software development practice.',
-    ],
-    readingMinutes: 4,
-    category: 'software',
-    tags: ['Software', 'Engineering', 'Projects'],
-    status: 'planned',
-  },
-  {
-    slug: 'fitness-films-and-fun',
-    title: 'Fitness, Films, and Fun',
-    date: '2026-05-11',
-    excerpt:
-      'A lighter note for the parts of life around code: gym, movies, basketball, and playful taste.',
-    content: [
-      'A future note for the parts of life around code: gym, movies, basketball, and playful taste.',
-    ],
-    readingMinutes: 4,
-    category: 'life',
-    tags: ['Fitness', 'Movies', 'Basketball'],
-    status: 'planned',
-  },
-  {
-    slug: 'work-in-progress',
-    title: 'Work in Progress',
-    date: '2026-05-11',
-    excerpt:
-      'A holding note for project writeups that will be added after the public details are ready.',
-    content: [
-      'A holding note for project writeups that will be added after the public details are ready.',
-    ],
-    readingMinutes: 2,
-    category: 'notes',
-    tags: ['Portfolio', 'Projects', 'Writing'],
-    status: 'planned',
-  },
 ]
 
 export const musicItems: readonly [MusicItem, ...MusicItem[]] = [

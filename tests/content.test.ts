@@ -20,7 +20,9 @@ describe('site content model', () => {
     expect(siteSections.about.links.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
-    expect(siteSections.blog.posts.length).toBeGreaterThanOrEqual(3)
+    expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'hello-world',
+    ])
   })
 
   it('groups collection entries into the expected tabs', () => {
