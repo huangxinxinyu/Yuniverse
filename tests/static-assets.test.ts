@@ -11,12 +11,15 @@ describe('static assets', () => {
     expect(existsSync(join(process.cwd(), 'public/favicon.png'))).toBe(true)
   })
 
-  it('has local movie artwork for every movie collection item', () => {
+  it('uses real remote movie artwork instead of generated placeholders', () => {
     const movieItems = collections.find((collection) => collection.id === 'movies')?.items ?? []
 
     for (const item of movieItems) {
-      expect(item.visual).toMatch(/^\/images\/movies\/.+\.svg$/)
-      expect(existsSync(join(process.cwd(), 'public', item.visual ?? ''))).toBe(true)
+      expect(item.visual).toMatch(
+        /^https:\/\/(?:image\.tmdb\.org|media\.themoviedb\.org|www\.imfdb\.org)\/.+\.jpg$/,
+      )
+      expect(item.visual).not.toMatch(/^\/images\/movies\//)
+      expect(item.visual).not.toMatch(/\.svg$/)
     }
   })
 })

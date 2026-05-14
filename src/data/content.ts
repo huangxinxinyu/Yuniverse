@@ -401,6 +401,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Nick Cassavetes',
     year: 2004,
     note: 'Romantic melodrama pick for the softer side of the shelf.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/rNzQyW4f8B8cQeg7Dgj3n6eT5k9.jpg',
   },
   {
     id: 'movie-project-hail-mary',
@@ -408,6 +409,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Phil Lord and Christopher Miller',
     year: 2026,
     note: 'Recent science-fiction rescue story added from the requested list.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/cHaON0Os7blWVlSAE0FVcwIBrjq.jpg',
   },
   {
     id: 'movie-cold-war',
@@ -415,6 +417,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Longman Leung and Sunny Luk',
     year: 2012,
     note: 'Hong Kong police thriller pick from the requested list.',
+    posterUrl: 'https://www.imfdb.org/images/8/8e/Cold_War_%282012%29_Poster.jpg',
   },
   {
     id: 'movie-sicario',
@@ -422,6 +425,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Denis Villeneuve',
     year: 2015,
     note: 'Tense border thriller with a severe, procedural pulse.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/lz8vNyXeidqqOdJW9ZjnDAMb5Vr.jpg',
   },
   {
     id: 'movie-now-you-see-me',
@@ -429,6 +433,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Louis Leterrier',
     year: 2013,
     note: 'Sleight-of-hand heist spectacle for the lighter blockbuster row.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/tWsNYbrqy1p1w6K9zRk0mSchztT.jpg',
   },
   {
     id: 'movie-avatar',
@@ -436,6 +441,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'James Cameron',
     year: 2009,
     note: 'Large-scale world-building and theatrical sci-fi spectacle.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/kyeqWdyUXW608qlYkRqosgbbJyK.jpg',
   },
   {
     id: 'movie-one-battle-after-another',
@@ -443,6 +449,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Paul Thomas Anderson',
     year: 2025,
     note: 'A newer PTA pick from the requested movie shelf.',
+    posterUrl: 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/7U8V3o2585Q9m04wU9yUOjYflQF.jpg',
   },
   {
     id: 'movie-kill-bill-volume-1',
@@ -450,6 +457,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Quentin Tarantino',
     year: 2003,
     note: 'The requested Kill Bill entry.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/v7TaX8kXMXs5yFFGR41guUDNcnB.jpg',
   },
   {
     id: 'movie-pulp-fiction',
@@ -457,6 +465,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Quentin Tarantino',
     year: 1994,
     note: 'A core Tarantino pick with sharp structure and dialogue rhythm.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg',
   },
   {
     id: 'movie-inglourious-basterds',
@@ -464,6 +473,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Quentin Tarantino',
     year: 2009,
     note: 'Tarantino historical revenge cinema with long-scene pressure.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg',
   },
   {
     id: 'movie-django-unchained',
@@ -471,6 +481,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Quentin Tarantino',
     year: 2012,
     note: 'A western revenge pick for the Tarantino group.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/7oWY8VDWW7thTzWh3OKYRkWUlD5.jpg',
   },
   {
     id: 'movie-reservoir-dogs',
@@ -478,6 +489,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Quentin Tarantino',
     year: 1992,
     note: 'Lean crime-room Tarantino for the extra director pick.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/xi8Iu6qyTfyZVDVy60raIOYJJmk.jpg',
   },
   {
     id: 'movie-american-psycho',
@@ -485,6 +497,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Mary Harron',
     year: 2000,
     note: 'Glossy, cold satire from the requested list.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/9uGHEgsiUXjCNq8wdq4r49YL8A1.jpg',
   },
   {
     id: 'movie-interstellar',
@@ -492,6 +505,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Christopher Nolan',
     year: 2014,
     note: 'Nolan scale, time, family, and cosmic engineering.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg',
   },
   {
     id: 'movie-inception',
@@ -499,6 +513,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Christopher Nolan',
     year: 2010,
     note: 'A clean Nolan puzzle-blockbuster pick.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg',
   },
   {
     id: 'movie-the-dark-knight',
@@ -506,6 +521,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Christopher Nolan',
     year: 2008,
     note: 'Nolan crime-superhero pressure with blockbuster precision.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/qJ2tW6WMUDux911r6m7haRef0WH.jpg',
   },
   {
     id: 'movie-oppenheimer',
@@ -513,6 +529,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Christopher Nolan',
     year: 2023,
     note: 'A recent Nolan biography pick with institutional scale.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
   },
   {
     id: 'movie-spider-man-across-the-spider-verse',
@@ -520,6 +537,7 @@ export const movieItems: readonly [MovieItem, ...MovieItem[]] = [
     director: 'Joaquim Dos Santos, Kemp Powers, and Justin K. Thompson',
     year: 2023,
     note: 'The latest released animated Spider-Verse feature.',
+    posterUrl: 'https://image.tmdb.org/t/p/original/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg',
   },
 ]
 

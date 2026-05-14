@@ -153,11 +153,14 @@ describe('site content model', () => {
     )
   })
 
-  it('keeps every movie entry in the film view with local poster art', () => {
+  it('keeps every movie entry in the film view with real poster art', () => {
     const movieItems = collections.find((collection) => collection.id === 'movies')?.items
 
     expect(movieItems?.every((item) => item.kind === 'film')).toBe(true)
-    expect(movieItems?.every((item) => item.visual?.startsWith('/images/movies/'))).toBe(true)
+    expect(
+      movieItems?.every((item) => item.visual?.startsWith('https://')),
+    ).toBe(true)
+    expect(movieItems?.some((item) => item.visual?.endsWith('.svg'))).toBe(false)
   })
 
   it('keeps collection empty states ready for future filtered views', () => {

@@ -530,7 +530,7 @@ const toMovieCollectionItem = (item: MovieItem): CollectionItem => ({
   meta: `${item.director} / ${item.year}`,
   note: item.note,
   year: String(item.year),
-  visual: `/images/movies/${item.id.replace(/^movie-/, '')}.svg`,
+  visual: item.posterUrl,
 })
 
 const toPictureCollectionItem = (item: PictureItem): CollectionItem => ({

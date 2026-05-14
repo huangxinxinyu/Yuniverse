@@ -61,6 +61,7 @@ export type MovieItem = {
   director: string
   year: number
   note: string
+  posterUrl: string
 }
 
 export type PictureItem = {

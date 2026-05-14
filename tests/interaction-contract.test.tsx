@@ -165,10 +165,11 @@ describe('interactive section contract', () => {
 
     expect(collectionHtml).toContain('class="collection-list movie-artwork-grid"')
     expect(collectionHtml).toContain('class="movie-poster-card"')
-    expect(collectionHtml).toContain('src="/images/movies/')
+    expect(collectionHtml).toContain('src="https://image.tmdb.org/')
     expect(collectionHtml).not.toContain('class="movie-meta"')
     expect(collectionHtml).not.toContain('class="movie-note"')
     expect(css).toContain('.movie-artwork-grid')
+    expect(css).toContain('grid-template-columns: repeat(4, minmax(0, 1fr))')
     expect(css).toContain('.movie-poster')
     expect(css).toContain('aspect-ratio: 2 / 3')
   })
