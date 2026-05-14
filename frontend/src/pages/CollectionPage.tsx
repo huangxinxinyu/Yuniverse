@@ -102,7 +102,11 @@ export function CollectionPage() {
             </div>
             <div
               className={`collection-list${
-                collection.id === 'music' ? ' music-artwork-grid' : ''
+                collection.id === 'music'
+                  ? ' music-artwork-grid'
+                  : collection.id === 'movies'
+                    ? ' movie-artwork-grid'
+                    : ''
               }`}
             >
               {visibleItems.map((item) =>
@@ -131,6 +135,15 @@ export function CollectionPage() {
                   title={`${item.title} / ${item.creator}`}
                 >
                   <img alt="" className="album-art" src={item.visual} />
+                </article>
+              ) : collection.id === 'movies' ? (
+                <article
+                  aria-label={`${item.title} by ${item.creator}`}
+                  className="movie-poster-card"
+                  key={item.id}
+                  title={`${item.title} / ${item.creator}`}
+                >
+                  <img alt="" className="movie-poster" src={item.visual} />
                 </article>
               ) : (
                 <article className="mini-card" key={item.id}>

@@ -30,17 +30,43 @@ export function CollectionSection() {
       </div>
       <div
         aria-labelledby={`tab-${activeCollection.id}`}
-        className="collection-panel"
+        className={`collection-panel${
+          activeCollection.id === 'music'
+            ? ' collection-list music-artwork-grid'
+            : activeCollection.id === 'movies'
+              ? ' collection-list movie-artwork-grid'
+              : ''
+        }`}
         id={`collection-${activeCollection.id}`}
         role="tabpanel"
       >
-        {activeCollection.items.map((item) => (
-          <article className="project-card collection-card" key={item.title}>
-            <p>{item.meta}</p>
-            <h3>{item.title}</h3>
-            <p>{item.note}</p>
-          </article>
-        ))}
+        {activeCollection.items.map((item) =>
+          activeCollection.id === 'music' ? (
+            <article
+              aria-label={`${item.title} by ${item.creator}`}
+              className="album-art-card"
+              key={item.id}
+              title={`${item.title} / ${item.creator}`}
+            >
+              <img alt="" className="album-art" src={item.visual} />
+            </article>
+          ) : activeCollection.id === 'movies' ? (
+            <article
+              aria-label={`${item.title} by ${item.creator}`}
+              className="movie-poster-card"
+              key={item.id}
+              title={`${item.title} / ${item.creator}`}
+            >
+              <img alt="" className="movie-poster" src={item.visual} />
+            </article>
+          ) : (
+            <article className="project-card collection-card" key={item.title}>
+              <p>{item.meta}</p>
+              <h3>{item.title}</h3>
+              <p>{item.note}</p>
+            </article>
+          ),
+        )}
       </div>
     </section>
   )

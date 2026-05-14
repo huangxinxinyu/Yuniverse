@@ -823,13 +823,20 @@ h3 {
   gap: clamp(14px, 2vw, 24px);
 }
 
-.album-art-card {
+.movie-artwork-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.album-art-card,
+.movie-poster-card {
   display: block;
   min-width: 0;
   line-height: 0;
 }
 
-.album-art {
+.album-art,
+.movie-poster {
   aspect-ratio: 1;
   display: block;
   width: 100%;
@@ -842,13 +849,20 @@ h3 {
     transform 180ms ease;
 }
 
+.movie-poster {
+  aspect-ratio: 2 / 3;
+}
+
 .album-art-card:hover .album-art,
-.album-art-card:focus-within .album-art {
+.album-art-card:focus-within .album-art,
+.movie-poster-card:hover .movie-poster,
+.movie-poster-card:focus-within .movie-poster {
   box-shadow: 0 24px 46px rgba(35, 38, 34, 0.2);
   transform: translateY(-2px) scale(1.015);
 }
 
-.music-artwork-grid .empty-state {
+.music-artwork-grid .empty-state,
+.movie-artwork-grid .empty-state {
   grid-column: 1 / -1;
 }
 
@@ -1381,6 +1395,10 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .movie-artwork-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .portal-card:nth-child(2n) {
     transform: none;
   }
@@ -1439,6 +1457,10 @@ h3 {
 
   .music-artwork-grid {
     grid-template-columns: 1fr;
+  }
+
+  .movie-artwork-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .signal-panel strong {
