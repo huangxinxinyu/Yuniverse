@@ -88,11 +88,12 @@ describe('interactive section contract', () => {
     expect(css).toContain('--surface:')
   })
 
-  it('keeps the warm app background behind every routed page', () => {
-    expect(globalCss).toContain('color-scheme: light;')
-    expect(globalCss).not.toContain('color-scheme: light dark')
-    expect(globalCss).not.toContain('@media (prefers-color-scheme: dark)')
-    expect(css).not.toContain('@media (prefers-color-scheme: dark)')
+  it('keeps the dark theme while covering the full routed page background', () => {
+    expect(globalCss).toContain('color-scheme: light dark;')
+    expect(globalCss).toContain('@media (prefers-color-scheme: dark)')
+    expect(globalCss).toContain('--bg: #111315;')
+    expect(css).toContain('@media (prefers-color-scheme: dark)')
+    expect(css).toContain('--bg: #151613;')
     expect(css).toContain('min-height: 100svh;')
     expect(css).toContain('background:')
   })

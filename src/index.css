@@ -27,7 +27,25 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: light;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #bdc4d0;
+    --text-h: #f8fafc;
+    --muted: #9199a8;
+    --bg: #111315;
+    --surface: #181d1c;
+    --border: #2c3332;
+    --border-strong: #46524f;
+    --accent: #5eead4;
+    --accent-2: #fbbf24;
+    --focus: #93c5fd;
+    --shadow:
+      rgba(0, 0, 0, 0.34) 0 18px 36px -18px,
+      rgba(0, 0, 0, 0.28) 0 8px 18px -10px;
+  }
 }
 
 * {
