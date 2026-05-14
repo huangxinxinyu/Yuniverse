@@ -21,6 +21,9 @@
   --focus: #a55335;
   --surface: rgba(255, 253, 248, 0.72);
   --surface-strong: #fffdf8;
+  --shell-background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.92), rgba(247, 244, 237, 0.84)),
+    var(--bg);
   --content-width: 1120px;
   --measure: 640px;
   --measure-wide: 720px;
@@ -46,11 +49,18 @@
   min-height: 100svh;
   overflow-x: clip;
   color: var(--text);
-  background:
-    linear-gradient(180deg, rgba(255, 253, 248, 0.92), rgba(247, 244, 237, 0.84)),
-    var(--bg);
+  background: var(--shell-background);
   color-scheme: light;
   font: 16px/1.75 var(--sans);
+}
+
+.site-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: var(--shell-background);
 }
 
 .quiet-layer {
@@ -256,15 +266,6 @@
 .page-shell[data-route]:not([data-route="/"]) {
   min-height: calc(100svh - 72px);
   padding-bottom: var(--section-space-tight);
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      color-mix(in srgb, var(--bg) 22%, transparent) 50%,
-      transparent 100%
-    );
-  box-shadow: 0 0 0 100vmax color-mix(in srgb, var(--bg) 10%, transparent);
-  clip-path: inset(0 -100vmax);
 }
 
 .page-shell[data-route]:not([data-route="/"]) > .page-section {
@@ -1330,23 +1331,12 @@ h3 {
     --surface: rgba(25, 27, 23, 0.74);
     --surface-strong: #1b1d19;
     --shadow: rgba(0, 0, 0, 0.3) 0 18px 50px -30px;
-    background:
+    --shell-background:
       linear-gradient(90deg, var(--line) 1px, transparent 1px),
       linear-gradient(180deg, rgba(27, 29, 25, 0.92), rgba(21, 22, 19, 0.94)),
       var(--bg);
+    background: var(--shell-background);
     color-scheme: dark;
-  }
-
-  .page-shell[data-route]:not([data-route="/"]) {
-    background:
-      radial-gradient(ellipse at 74% 0%, rgba(214, 160, 112, 0.055), transparent 28rem),
-      linear-gradient(
-        180deg,
-        rgba(21, 22, 19, 0.02) 0%,
-        rgba(21, 22, 19, 0.44) 68%,
-        rgba(21, 22, 19, 0.26) 100%
-      );
-    box-shadow: 0 0 0 100vmax rgba(21, 22, 19, 0.28);
   }
 }
 

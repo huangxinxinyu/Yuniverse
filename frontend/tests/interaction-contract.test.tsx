@@ -95,11 +95,12 @@ describe('interactive section contract', () => {
     expect(css).toContain('@media (prefers-color-scheme: dark)')
     expect(css).toContain('--bg: #151613;')
     expect(css).toContain('min-height: 100svh;')
-    expect(css).toContain('.page-shell[data-route]:not([data-route="/"])')
-    expect(css).toContain('min-height: calc(100svh - 72px);')
-    expect(css).toContain('box-shadow: 0 0 0 100vmax')
-    expect(css).toContain('clip-path: inset(0 -100vmax);')
-    expect(css).toContain('background:')
+    expect(css).toContain('--shell-background:')
+    expect(css).toContain('.site-shell::before')
+    expect(css).toContain('position: fixed;')
+    expect(css).toContain('inset: 0;')
+    expect(css).not.toContain('box-shadow: 0 0 0 100vmax')
+    expect(css).not.toContain('clip-path: inset(0 -100vmax);')
   })
 
   it('renders work items as disclosure controls', () => {
