@@ -52,7 +52,10 @@ describe('site content model', () => {
       expect.arrayContaining(['track', 'playlist']),
     )
     expect(categoryMap.movies).toEqual(
-      expect.arrayContaining(['film', 'watchlist', 'favorite']),
+      expect.arrayContaining(['film']),
+    )
+    expect(categoryMap.movies).not.toEqual(
+      expect.arrayContaining(['watchlist', 'favorite']),
     )
     expect(categoryMap.pictures).toEqual(
       expect.arrayContaining(['gallery']),
@@ -116,6 +119,45 @@ describe('site content model', () => {
 
     expect(musicItems?.every((item) => item.kind === 'album')).toBe(true)
     expect(musicItems?.every((item) => item.visual?.startsWith('/images/albums/'))).toBe(true)
+  })
+
+  it('uses the requested movie picks instead of placeholder entries', () => {
+    const movieItems = collections.find((collection) => collection.id === 'movies')?.items ?? []
+    const movieCreatorsByTitle = Object.fromEntries(
+      movieItems.map((item) => [item.title, item.creator]),
+    )
+
+    expect(movieCreatorsByTitle).toMatchObject({
+      'The Notebook': 'Nick Cassavetes',
+      'Project Hail Mary': 'Phil Lord and Christopher Miller',
+      'Cold War': 'Longman Leung and Sunny Luk',
+      Sicario: 'Denis Villeneuve',
+      'Now You See Me': 'Louis Leterrier',
+      Avatar: 'James Cameron',
+      'One Battle After Another': 'Paul Thomas Anderson',
+      'Kill Bill: Volume 1': 'Quentin Tarantino',
+      'Pulp Fiction': 'Quentin Tarantino',
+      'Inglourious Basterds': 'Quentin Tarantino',
+      'Django Unchained': 'Quentin Tarantino',
+      'Reservoir Dogs': 'Quentin Tarantino',
+      'American Psycho': 'Mary Harron',
+      Interstellar: 'Christopher Nolan',
+      Inception: 'Christopher Nolan',
+      'The Dark Knight': 'Christopher Nolan',
+      Oppenheimer: 'Christopher Nolan',
+      'Spider-Man: Across the Spider-Verse':
+        'Joaquim Dos Santos, Kemp Powers, and Justin K. Thompson',
+    })
+    expect(movieItems.map((item) => item.title)).not.toEqual(
+      expect.arrayContaining(['Film Notes', 'Watchlist', 'Favorites Coming']),
+    )
+  })
+
+  it('keeps every movie entry in the film view with local poster art', () => {
+    const movieItems = collections.find((collection) => collection.id === 'movies')?.items
+
+    expect(movieItems?.every((item) => item.kind === 'film')).toBe(true)
+    expect(movieItems?.every((item) => item.visual?.startsWith('/images/movies/'))).toBe(true)
   })
 
   it('keeps collection empty states ready for future filtered views', () => {

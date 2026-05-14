@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
+import { collections } from '../src/content/siteContent'
 
 describe('static assets', () => {
   it('uses the 宇 mark as the site favicon', () => {
@@ -8,5 +9,14 @@ describe('static assets', () => {
 
     expect(indexHtml).toContain('rel="icon" type="image/png" href="/favicon.png"')
     expect(existsSync(join(process.cwd(), 'public/favicon.png'))).toBe(true)
+  })
+
+  it('has local movie artwork for every movie collection item', () => {
+    const movieItems = collections.find((collection) => collection.id === 'movies')?.items ?? []
+
+    for (const item of movieItems) {
+      expect(item.visual).toMatch(/^\/images\/movies\/.+\.svg$/)
+      expect(existsSync(join(process.cwd(), 'public', item.visual ?? ''))).toBe(true)
+    }
   })
 })

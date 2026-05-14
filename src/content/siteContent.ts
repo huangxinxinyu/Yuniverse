@@ -512,8 +512,6 @@ export const blogCategories: readonly [BlogCategory, ...BlogCategory[]] = [
 
 export const blogPosts = posts
 
-const movieKinds = ['film', 'watchlist', 'favorite'] as const
-
 const toMusicCollectionItem = (item: MusicItem): CollectionItem => ({
   id: item.id,
   title: item.title,
@@ -524,14 +522,15 @@ const toMusicCollectionItem = (item: MusicItem): CollectionItem => ({
   visual: `/images/albums/${item.id.replace(/^music-/, '')}.jpg`,
 })
 
-const toMovieCollectionItem = (item: MovieItem, index: number): CollectionItem => ({
+const toMovieCollectionItem = (item: MovieItem): CollectionItem => ({
   id: item.id,
   title: item.title,
   creator: item.director,
-  kind: movieKinds[index % movieKinds.length],
+  kind: 'film',
   meta: `${item.director} / ${item.year}`,
   note: item.note,
   year: String(item.year),
+  visual: `/images/movies/${item.id.replace(/^movie-/, '')}.svg`,
 })
 
 const toPictureCollectionItem = (item: PictureItem): CollectionItem => ({
@@ -555,7 +554,7 @@ export const collections: readonly [Collection, ...Collection[]] = [
   {
     id: 'movies',
     label: 'Movies',
-    intro: 'A place for movie notes once the public favorites list is ready.',
+    intro: 'Only the posters for now.',
     emptyState: 'No movies match this view yet.',
     items: mapNonEmpty(movieItems, toMovieCollectionItem),
   },
