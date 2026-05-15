@@ -218,7 +218,7 @@ export const profile: Profile = {
   location: baseProfile.locationLabel,
   eyebrow: 'Yuniverse / 黄新宇',
   heroText:
-    'Yuniverse 是黄新宇的个人宇宙：这里简单介绍下自己, 会放一些生活、工作的碎片。',
+    'Yuniverse 是黄新宇的个人宇宙也是我的创意工坊：这里简单介绍下自己, 会放一些生活、工作的碎片，也会写点博客',
   signals: [
     { label: 'Mode', value: 'Student / Developer' },
     { label: 'Focus', value: 'Software / AI tools / Personal site' },
