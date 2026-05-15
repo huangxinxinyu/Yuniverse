@@ -105,6 +105,9 @@ describe('blog page', () => {
     expect(articleHtml).toContain('multica daemon start')
     expect(articleHtml).toContain('Yuniverse')
     expect(articleHtml).toContain('指挥官')
+    expect(articleHtml).toContain('一边实习')
+    expect(articleHtml).not.toContain('cd ~/code/yuniverse/frontend')
+    expect(articleHtml).not.toContain('git push origin main:master')
   })
 
   it('renders markdown-style command blocks in technical blog posts', () => {
@@ -115,7 +118,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('<h3>WSL 下的本地流程</h3>')
     expect(articleHtml).toContain('<pre class="blog-code-block"')
     expect(articleHtml).toContain('<code class="language-bash">')
-    expect(articleHtml).toContain('cd ~/code/yuniverse/frontend')
+    expect(articleHtml).toContain('multica issue create --title &quot;Build a personal website&quot;')
     expect(articleHtml).toContain('multica issue run-messages')
   })
 })
