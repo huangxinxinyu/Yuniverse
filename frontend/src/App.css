@@ -1103,10 +1103,6 @@ h3 {
   margin-top: clamp(30px, 4vw, 46px);
 }
 
-.blog-status-row {
-  margin-top: 12px;
-}
-
 .filter-button,
 .tab-button {
   position: relative;

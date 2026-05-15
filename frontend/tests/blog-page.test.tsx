@@ -34,6 +34,13 @@ describe('blog page', () => {
     expect(html).toContain('data-featured="true"')
   })
 
+  it('does not expose draft, planned, or published status filters to readers', () => {
+    expect(html).not.toContain('aria-label="Blog status filters"')
+    expect(html).not.toContain('Drafts')
+    expect(html).not.toContain('Planned')
+    expect(html).not.toContain('Published')
+  })
+
   it('does not render a future-state placeholder when a filter has no matches', () => {
     const futureHtml = renderToStaticMarkup(<BlogPage initialFilter="future" />)
 

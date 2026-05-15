@@ -98,11 +98,6 @@ export type BlogCategory = {
   description: string
 }
 
-export type BlogFilter = {
-  id: 'featured' | 'all' | 'draft' | 'planned' | 'published'
-  label: string
-}
-
 export type NoteItem = {
   title: string
   date: string
@@ -480,14 +475,6 @@ export const aboutPageContent: AboutPageContent = {
     ],
   },
 }
-
-export const blogFilters: readonly [BlogFilter, ...BlogFilter[]] = [
-  { id: 'featured', label: 'Featured' },
-  { id: 'all', label: 'All' },
-  { id: 'draft', label: 'Drafts' },
-  { id: 'planned', label: 'Planned' },
-  { id: 'published', label: 'Published' },
-]
 
 export const blogCategories: readonly [BlogCategory, ...BlogCategory[]] = [
   {

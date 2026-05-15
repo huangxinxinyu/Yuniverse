@@ -2,7 +2,6 @@ export {
   blogCategories,
   blogPosts,
   collections,
-  blogFilters,
   focusAreas,
   navigationItems,
   navigationItems as navItems,

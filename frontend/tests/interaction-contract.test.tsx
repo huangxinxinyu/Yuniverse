@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import App from '../src/App'
-import { blogFilters, collections, siteSections } from '../src/content/siteContent'
+import { blogCategories, collections, siteSections } from '../src/content/siteContent'
 
 describe('interactive section contract', () => {
   const homeHtml = renderToStaticMarkup(<App initialPath="/" />)
@@ -131,12 +131,16 @@ describe('interactive section contract', () => {
   it('renders blog filters with an accessible featured state', () => {
     const html = renderToStaticMarkup(<App initialPath="/blog" />)
 
-    for (const filter of blogFilters) {
-      expect(html).toContain(`data-filter="${filter.id}"`)
+    for (const category of blogCategories) {
+      expect(html).toContain(`data-filter="${category.id}"`)
     }
 
     expect(html).toContain('Featured')
     expect(html).toContain('aria-pressed="true"')
+    expect(html).not.toContain('Blog status filters')
+    expect(html).not.toContain('Drafts')
+    expect(html).not.toContain('Planned')
+    expect(html).not.toContain('Published')
   })
 
   it('renders collection tabs and picture gallery controls', () => {

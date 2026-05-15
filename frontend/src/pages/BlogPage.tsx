@@ -1,21 +1,17 @@
 import { useState, type MouseEvent } from 'react'
 import {
   blogCategories,
-  blogFilters,
   siteSections,
   type BlogCategoryId,
 } from '../content/siteContent'
 
-type StatusFilterId = (typeof blogFilters)[number]['id']
-type ActiveBlogFilter = BlogCategoryId | StatusFilterId
-
 type BlogPageProps = {
-  initialFilter?: ActiveBlogFilter
+  initialFilter?: BlogCategoryId
 }
 
 export function BlogPage({ initialFilter = 'all' }: BlogPageProps = {}) {
   const section = siteSections.blog
-  const [activeFilter, setActiveFilter] = useState<ActiveBlogFilter>(initialFilter)
+  const [activeFilter, setActiveFilter] = useState<BlogCategoryId>(initialFilter)
   const visiblePosts =
     activeFilter === 'featured'
       ? [section.featuredPost]
@@ -23,9 +19,7 @@ export function BlogPage({ initialFilter = 'all' }: BlogPageProps = {}) {
         ? section.posts
         : activeFilter === 'future'
           ? []
-          : ['draft', 'planned', 'published'].includes(activeFilter)
-            ? section.posts.filter((post) => post.status === activeFilter)
-            : section.posts.filter((post) => post.category === activeFilter)
+          : section.posts.filter((post) => post.category === activeFilter)
   const activeCategory =
     blogCategories.find((category) => category.id === activeFilter) ??
     blogCategories[0]
@@ -85,21 +79,6 @@ export function BlogPage({ initialFilter = 'all' }: BlogPageProps = {}) {
         ))}
       </div>
 
-      <div className="filter-bar blog-status-row" aria-label="Blog status filters">
-        {blogFilters.map((filter) => (
-          <button
-            aria-pressed={filter.id === activeFilter}
-            className="filter-button"
-            data-filter={filter.id}
-            key={filter.id}
-            onClick={() => setActiveFilter(filter.id)}
-            type="button"
-          >
-            {filter.label}
-          </button>
-        ))}
-      </div>
-
       <div className="blog-filter-summary">
         <span className="panel-label">{activeCategory.label}</span>
         <p>{activeCategory.description}</p>
@@ -110,7 +89,7 @@ export function BlogPage({ initialFilter = 'all' }: BlogPageProps = {}) {
           {visiblePosts.map((post) => (
             <article className="mini-card post-card" key={post.slug}>
               <div className="post-card-meta">
-                <span>{`${post.date} / ${post.status}`}</span>
+                <span>{post.date}</span>
                 <strong>{post.categoryLabel}</strong>
               </div>
               <h3>{post.title}</h3>
