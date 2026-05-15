@@ -40,4 +40,30 @@ describe('about page', () => {
 
     expect(html).toContain('aria-pressed="true"')
   })
+
+  it('models contact email and GitHub as dedicated links instead of plain detail text', () => {
+    const contact = aboutPageContent.personalDetails.items.find(
+      (detail) => detail.id === 'contact',
+    )
+
+    expect(html).toContain('href="mailto:xinyuhimself@gmail.com"')
+    expect(html).toContain('href="https://github.com/huangxinxinyu"')
+    expect(html).toContain('detail-link-icon')
+    expect(contact?.detail).not.toContain('xinyuhimself@gmail.com')
+    expect(contact?.detail).not.toContain('github.com/huangxinxinyu')
+    expect(contact?.links).toEqual([
+      {
+        label: 'Email',
+        href: 'mailto:xinyuhimself@gmail.com',
+        description: 'xinyuhimself@gmail.com',
+        icon: 'mail',
+      },
+      {
+        label: 'GitHub',
+        href: 'https://github.com/huangxinxinyu',
+        description: 'github.com/huangxinxinyu',
+        icon: 'github',
+      },
+    ])
+  })
 })

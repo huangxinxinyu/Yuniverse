@@ -762,7 +762,9 @@ h3 {
 
 .detail-link-list a {
   display: grid;
-  gap: 2px;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 2px 12px;
+  align-items: center;
   padding: 12px 0;
   border-top: 1px solid var(--line);
   color: var(--text-strong);
@@ -774,14 +776,30 @@ h3 {
   color: var(--accent-strong);
 }
 
-.detail-link-list span {
+.detail-link-list a > span:not(.detail-link-icon) {
   font-family: var(--mono);
   font-size: 0.84rem;
 }
 
 .detail-link-list small {
+  grid-column: 2;
   color: var(--text-muted);
   font-size: 0.92rem;
+}
+
+.detail-link-icon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent-strong);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  line-height: 1;
 }
 
 .portal-section {

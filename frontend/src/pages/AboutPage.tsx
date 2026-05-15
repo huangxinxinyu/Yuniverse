@@ -3,7 +3,8 @@ import { aboutPageContent } from '../content/siteContent'
 
 export function AboutPage() {
   const [activeDetailId, setActiveDetailId] = useState(
-    aboutPageContent.personalDetails.items[0].id,
+    aboutPageContent.personalDetails.items.find((detail) => detail.id === 'contact')?.id ??
+      aboutPageContent.personalDetails.items[0].id,
   )
   const activeDetail =
     aboutPageContent.personalDetails.items.find(
@@ -109,6 +110,19 @@ export function AboutPage() {
             <div className="detail-panel" id={`detail-panel-${activeDetail.id}`} role="status">
               <span className="panel-label">{activeDetail.label}</span>
               <p>{activeDetail.detail}</p>
+              {activeDetail.links ? (
+                <div className="detail-link-list" aria-label={`${activeDetail.label} links`}>
+                  {activeDetail.links.map((link) => (
+                    <a href={link.href} key={link.href}>
+                      <span className="detail-link-icon" aria-hidden="true">
+                        {link.icon === 'mail' ? '@' : 'GH'}
+                      </span>
+                      <span>{link.label}</span>
+                      <small>{link.description}</small>
+                    </a>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
         </article>
