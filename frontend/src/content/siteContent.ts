@@ -339,7 +339,7 @@ export const siteSections: SiteSections = {
     kicker: 'Blog',
     title: 'Notes planned for Yuniverse.',
     body:
-      '这里先放未来会写的主题：Yuniverse 的想法、本科和研究生阶段的学习记录、软件工程笔记，以及生活兴趣。',
+      '啥都写点，不好维护了我再新建个网站😜',
     summary: 'Yuniverse 未来文章和笔记的规划区。',
     meta: ['Software', 'Study', 'Life', 'Yuniverse', 'Notes'],
     posts,
