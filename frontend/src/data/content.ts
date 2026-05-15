@@ -7,6 +7,7 @@ import type {
   Profile,
   WorkItem,
 } from './types'
+import { blogPosts as postItems } from '../content/posts'
 
 export type {
   BlogPost,
@@ -108,74 +109,7 @@ export const lifeEvents: readonly [LifeEvent, ...LifeEvent[]] = [
   },
 ]
 
-export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
-  {
-    slug: 'multica-local-agent-workflow',
-    title: 'Multica：把本地 AI Coding Agent 变成可管理的长任务',
-    date: '2026-05-15',
-    excerpt:
-      '记录一下最近用 Multica 管理本地 AI Coding Agent 的体验：它更像一个让人当指挥官的任务协作层。',
-    content: [
-      '最近试了一下 Multica。它给我的第一印象不是又一个聊天窗口，而是一个把 AI Coding Agent 放进工作流里的协作层：你创建 issue，选择 agent，把任务交出去，然后在看板、运行记录和消息流里看它怎么推进、哪里卡住、最后交付了什么。',
-      '## Multica 是什么',
-      'Multica 的核心结构可以理解成三层：服务端负责 workspace、issue、task queue 和状态同步；本机 daemon 负责轮询任务、启动本地 AI coding tool；真正写代码的还是本地的 Claude Code、Codex、Cursor、Copilot CLI、Gemini 等工具。也就是说，它不是把你的代码和 key 丢给一个远端黑盒 runner，而是让本地机器成为 agent runtime。',
-      '- Server：保存 workspace、issue、task queue、评论和状态。\n- Daemon：跑在自己的机器上，轮询任务并启动本地 coding agent。\n- AI coding tool：真正执行代码修改和验证，比如 Claude Code、Codex、Cursor、Copilot CLI、Gemini。',
-      '## WSL 下的本地流程',
-      '这个模型对我这种 WSL 用户比较舒服。我的代码、Node 环境、git、npm、Vite 项目都在 WSL 里，daemon 也可以跟着本地工具链一起跑。常见流程大概是先 setup，再确认登录状态，最后启动 daemon。',
-      '```bash\n# 初次配置，登录并启动本地执行端\nmultica setup\n\n# 如果已经配置过，可以单独检查状态\nmultica auth status\nmultica daemon status\n\n# 启动、重启和查看 daemon 日志\nmultica daemon start\nmultica daemon restart\nmultica daemon logs\n```',
-      '## 派任务和看交付',
-      '真正开始派活时，CLI 也比较直接。可以先看 workspace 和 agent，再创建 issue，把 issue 分配给 agent。任务跑起来之后，用 runs 和 run-messages 看执行记录、消息、工具调用和错误。',
-      '```bash\n# 看 workspace 和 agent\nmultica workspace list\nmultica agent list\nmultica agent create\n\n# 创建和分配任务\nmultica issue create --title "Polish About contact links"\nmultica issue list\nmultica issue assign <issue-id> --agent <agent-slug>\n\n# 查看交付和执行日志\nmultica issue runs <issue-id>\nmultica issue run-messages <task-id>\nmultica issue run-messages <task-id> --output json\n```',
-      '## 回到 Yuniverse 的开发命令',
-      '放到本地开发里，我常用的命令还是围绕项目本身。Multica 的价值不是替代这些命令，而是把这些命令背后的长任务组织起来，让 agent 能按任务目标去执行、汇报和交付。',
-      '```bash\n# WSL 里进入这个网站项目\ncd ~/code/yuniverse/frontend\n\n# 本地开发和验证\nnpm install\nnpm run dev\nnpm test\nnpm run build\n\n# 交付前检查和推送\ngit status\ngit add frontend/src/data/content.ts frontend/tests/blog-page.test.tsx\ngit commit -m "Add Multica workflow blog post"\ngit push\ngit push origin main:master\n```',
-      '这次 Yuniverse 这个网站就是一个很适合这种模式的例子。它不是一个只改一行的小需求，而是持续拆分出来的长任务：整理内容结构、调整 About、写 blog、处理部署分支、统一只维护 frontend、跑测试和 build、确认线上 bundle。人如果手动做当然也能做，但很容易在上下文切换里漏掉一步。Multica 这类工具的好处是把任务变成一条可以被观察的执行链。',
-      '我自己的感觉是，我更像一个指挥官，而不是每一步都亲手敲代码的人。我需要描述目标、检查交付信息、判断方向是否对、在关键节点接管决策；agent 负责展开计划、读代码、改文件、跑验证、汇报结果。短时间内，一个长任务就能被规划成可执行的路径，而且每一步都有状态和日志可以回看。',
-      '它好用的地方还在于“本地”。严格说，任务同步和看板仍然需要服务端，但核心执行发生在自己的机器上：本地仓库、本地 CLI、本地 API key、本地测试环境。对于个人项目或者还没准备完全云端托管的开发流，这种方式比纯云端 agent 更有安全感，也更接近我平时真实写代码的环境。',
-      '当然，这类工具也不是魔法。issue 要写清楚，验收标准要具体，agent 的权限和工作目录要管好，最后的测试和线上验证也不能省。但作为一个把多个 coding agent 管起来的协作层，Multica 给我的感觉是：它把 vibe coding 从“开一个聊天窗口反复催”推进到“像安排队友一样安排任务”。这对长任务尤其有用。',
-      '这篇先作为使用记录。后面如果继续用 Multica 跑更多任务，可以再单独写一篇，把 agent 配置、run messages、失败重试、日志分析和具体交付案例拆开讲。',
-    ],
-    aiDisclosure: '本文由 AI 协助整理表达，内容来自个人使用体验和 Multica 官方文档。',
-    readingMinutes: 4,
-    category: 'software',
-    featured: true,
-    tags: ['Multica', 'Agent', 'Vibe Coding', 'WSL'],
-    status: 'published',
-  },
-  {
-    slug: 'internship-agent-infrastructure-notes',
-    title: '实习记录：做 AI Agent Infrastructure 的阶段小结',
-    date: '2026-05-15',
-    excerpt:
-      '这篇先简单记录实习中参与 AI Agent 开发和基础设施搭建的一些阶段性工作。',
-    content: [
-      '最近在实习中主要参与 AI Agent 相关开发，业务方向和本地生活商户的运营扶持有关，希望通过 Agent 帮助商户更高效地理解经营情况、完成运营动作，并逐步沉淀可复用的智能化能力。',
-      '我目前主要负责的是 Agent Infrastructure。相比直接做某一个具体的 Agent 功能，我的工作更多集中在底层链路、观测、成本分析、实验评估和性能优化上。',
-      '其中一部分工作是把模型的思考过程和执行过程做成可观测日志。我们基于 Claude Agent SDK 自带的 OpenTelemetry，把模型调用、工具调用、MCP 入参、span 耗时等信息接入后端，并按用户和 conversation_id 做分析。这样可以比较清楚地看到一次对话中 token 是怎么消耗的、工具是怎么被调用的、各个环节分别花了多少时间。',
-      '后端链路上，项目使用 LiteLLM 作为模型网关。我做了一些简单的队列和入库逻辑，把相关 transaction 写入数据库，并补充了用户查询接口。查询侧会按 group 聚合每个 action 的 token 用量，方便后续做成本拆解、行为分析和定价参考。基于这些数据，也参考 Manus 以及一些 Agent 产品的形态，做过一版定价建议。',
-      '除此之外，我还做了一些工程实验。主要是在不同环节对比模型表现、输出质量和性能差异，帮助判断哪些地方适合用更强的模型，哪些地方可以用更轻量的方案。后面也针对 leader agent 做了一轮性能优化，砍掉了很多它其实不需要知道的工具，减少上下文负担，让它在执行任务时更加聚焦。',
-      '这一阶段的工作整体比较偏基础设施：不是直接做一个单点功能，而是在搭建 Agent 系统长期运行所需要的观测、分析、成本控制和性能优化能力。很多细节后面可以单独拆开写，比如 OpenTelemetry 怎么接入、token 成本怎么统计、LiteLLM 网关怎么配合后端链路、leader agent 为什么需要裁剪工具集等等。',
-      '这篇先作为一个简单记录。后面每隔一段时间再继续补，把实习期间做过的事情慢慢整理完整。',
-    ],
-    aiDisclosure: '本文由 AI 协助整理表达，内容来自个人实习记录。',
-    readingMinutes: 3,
-    category: 'software',
-    tags: ['实习记录', 'Agent', 'Vibe Coding'],
-    status: 'published',
-  },
-  {
-    slug: 'hello-world',
-    title: 'Hello World',
-    date: '2026-05-14',
-    excerpt: 'The first readable note on Yuniverse.',
-    content: ['hello world'],
-    aiDisclosure: '这是 ai 发布的内容',
-    readingMinutes: 1,
-    category: 'notes',
-    tags: ['Hello World', 'AI', 'Yuniverse'],
-    status: 'published',
-  },
-]
+export const blogPosts: readonly [BlogPost, ...BlogPost[]] = postItems
 
 export const musicItems: readonly [MusicItem, ...MusicItem[]] = [
   {

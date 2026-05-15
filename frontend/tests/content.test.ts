@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest'
+import { readdirSync } from 'node:fs'
+import { join } from 'node:path'
 import {
   aboutPageContent,
   blogPosts,
@@ -25,6 +27,19 @@ describe('site content model', () => {
       'internship-agent-infrastructure-notes',
       'hello-world',
     ])
+  })
+
+  it('keeps blog post bodies in dedicated post files', () => {
+    const postsDirectory = join(process.cwd(), 'src/content/posts')
+    const postFiles = readdirSync(postsDirectory)
+      .filter((file) => file.endsWith('.ts') && file !== 'index.ts')
+      .sort()
+
+    expect(postFiles).toEqual(
+      blogPosts
+        .map((post) => `${post.slug}.ts`)
+        .sort(),
+    )
   })
 
   it('groups collection entries into the expected tabs', () => {
