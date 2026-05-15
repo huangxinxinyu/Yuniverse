@@ -754,6 +754,36 @@ h3 {
     inset 0 -1px 0 rgba(34, 39, 35, 0.06);
 }
 
+.detail-link-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.detail-link-list a {
+  display: grid;
+  gap: 2px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  color: var(--text-strong);
+  text-decoration: none;
+}
+
+.detail-link-list a:hover,
+.detail-link-list a:focus-visible {
+  color: var(--accent-strong);
+}
+
+.detail-link-list span {
+  font-family: var(--mono);
+  font-size: 0.84rem;
+}
+
+.detail-link-list small {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
 .portal-section {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1142,6 +1172,10 @@ h3 {
 .blog-post-summary,
 .blog-post-body {
   margin-top: clamp(24px, 4vw, 42px);
+}
+
+.blog-post-page .tag-list {
+  margin-top: 20px;
 }
 
 .blog-post-body {

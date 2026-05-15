@@ -1,5 +1,6 @@
 import type { MouseEvent } from 'react'
 import type { RoutePath } from '../App'
+import { TagList } from '../components/TagList'
 import { blogPosts } from '../content/siteContent'
 
 type BlogPostPageProps = {
@@ -31,6 +32,7 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
       <p className="section-kicker">{`${post.categoryLabel} / ${post.date}`}</p>
       <h2 id="blog-post-title">{post.title}</h2>
       <p className="blog-post-summary">{post.excerpt}</p>
+      <TagList tags={post.tags} />
       {post.aiDisclosure ? (
         <p className="ai-disclosure">{post.aiDisclosure}</p>
       ) : null}
