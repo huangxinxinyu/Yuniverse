@@ -143,6 +143,7 @@ export type AboutPersonalDetail = {
   label: string
   meta: string
   detail: string
+  links?: readonly AboutLink[]
 }
 
 export type AboutPageContent = {
@@ -431,7 +432,19 @@ export const aboutPageContent: AboutPageContent = {
         id: 'contact',
         label: 'Contact',
         meta: 'Open',
-        detail: 'Email: xinyuhimself@gmail.com / GitHub: github.com/huangxinxinyu / WeChat: XinyuHimself / Phone: 13567277836.',
+        detail: 'Email and GitHub are open contact links. WeChat: XinyuHimself / Phone: 13567277836.',
+        links: [
+          {
+            label: 'Email',
+            href: 'mailto:xinyuhimself@gmail.com',
+            description: 'xinyuhimself@gmail.com',
+          },
+          {
+            label: 'GitHub',
+            href: 'https://github.com/huangxinxinyu',
+            description: 'github.com/huangxinxinyu',
+          },
+        ],
       },
       {
         id: 'bachelor',

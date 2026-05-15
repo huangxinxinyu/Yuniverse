@@ -40,4 +40,23 @@ describe('about page', () => {
 
     expect(html).toContain('aria-pressed="true"')
   })
+
+  it('defines contact links for email and GitHub', () => {
+    const contact = aboutPageContent.personalDetails.items.find(
+      (detail) => detail.id === 'contact',
+    )
+
+    expect(contact?.links).toEqual([
+      {
+        label: 'Email',
+        href: 'mailto:xinyuhimself@gmail.com',
+        description: 'xinyuhimself@gmail.com',
+      },
+      {
+        label: 'GitHub',
+        href: 'https://github.com/huangxinxinyu',
+        description: 'github.com/huangxinxinyu',
+      },
+    ])
+  })
 })

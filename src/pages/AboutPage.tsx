@@ -109,6 +109,16 @@ export function AboutPage() {
             <div className="detail-panel" id={`detail-panel-${activeDetail.id}`} role="status">
               <span className="panel-label">{activeDetail.label}</span>
               <p>{activeDetail.detail}</p>
+              {activeDetail.links ? (
+                <div className="detail-link-list" aria-label={`${activeDetail.label} links`}>
+                  {activeDetail.links.map((link) => (
+                    <a href={link.href} key={link.href}>
+                      <span>{link.label}</span>
+                      <small>{link.description}</small>
+                    </a>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
         </article>
