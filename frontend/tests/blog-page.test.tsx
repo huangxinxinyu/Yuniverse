@@ -99,4 +99,16 @@ describe('blog page', () => {
     expect(articleHtml).toContain('Yuniverse')
     expect(articleHtml).toContain('指挥官')
   })
+
+  it('renders markdown-style command blocks in technical blog posts', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/multica-local-agent-workflow" />,
+    )
+
+    expect(articleHtml).toContain('<h3>WSL 下的本地流程</h3>')
+    expect(articleHtml).toContain('<pre class="blog-code-block"')
+    expect(articleHtml).toContain('<code class="language-bash">')
+    expect(articleHtml).toContain('cd ~/code/yuniverse/frontend')
+    expect(articleHtml).toContain('multica issue run-messages')
+  })
 })

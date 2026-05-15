@@ -8,6 +8,36 @@ type BlogPostPageProps = {
   onNavigate?: (path: RoutePath) => void
 }
 
+function renderContentBlock(block: string) {
+  if (block.startsWith('```')) {
+    const [fence, ...codeLines] = block.split('\n')
+    const language = fence.replace('```', '').trim() || 'text'
+    const code = codeLines.join('\n').replace(/\n```$/, '')
+
+    return (
+      <pre className="blog-code-block" key={block}>
+        <code className={`language-${language}`}>{code}</code>
+      </pre>
+    )
+  }
+
+  if (block.startsWith('## ')) {
+    return <h3 key={block}>{block.replace(/^## /, '')}</h3>
+  }
+
+  if (block.startsWith('- ')) {
+    return (
+      <ul className="blog-markdown-list" key={block}>
+        {block.split('\n').map((item) => (
+          <li key={item}>{item.replace(/^- /, '')}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  return <p key={block}>{block}</p>
+}
+
 export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
   const post = blogPosts.find((post) => post.slug === slug) ?? blogPosts[0]
   const handleBackClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -37,9 +67,7 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
         <p className="ai-disclosure">{post.aiDisclosure}</p>
       ) : null}
       <div className="blog-post-body">
-        {post.content.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+        {post.content.map(renderContentBlock)}
       </div>
     </article>
   )

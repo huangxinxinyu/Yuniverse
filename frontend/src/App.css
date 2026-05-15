@@ -1207,6 +1207,41 @@ h3 {
   line-height: 1.85;
 }
 
+.blog-post-body h3 {
+  margin-top: 10px;
+  color: var(--text-strong);
+  font-family: var(--display);
+  font-size: clamp(1.18rem, 1.7vw, 1.42rem);
+  font-weight: 540;
+  line-height: 1.35;
+}
+
+.blog-markdown-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 22px;
+  margin: 0;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.blog-code-block {
+  overflow-x: auto;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-strong) 78%, var(--text-strong) 8%);
+  color: var(--text-strong);
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.blog-code-block code {
+  font-family: inherit;
+  white-space: pre;
+}
+
 .ai-disclosure {
   color: var(--accent-strong);
   font-family: var(--mono);
