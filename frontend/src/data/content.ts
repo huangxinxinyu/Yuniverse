@@ -110,6 +110,31 @@ export const lifeEvents: readonly [LifeEvent, ...LifeEvent[]] = [
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
   {
+    slug: 'multica-local-agent-workflow',
+    title: 'Multica：把本地 AI Coding Agent 变成可管理的长任务',
+    date: '2026-05-15',
+    excerpt:
+      '记录一下最近用 Multica 管理本地 AI Coding Agent 的体验：它更像一个让人当指挥官的任务协作层。',
+    content: [
+      '最近试了一下 Multica。它给我的第一印象不是又一个聊天窗口，而是一个把 AI Coding Agent 放进工作流里的协作层：你创建 issue，选择 agent，把任务交出去，然后在看板、运行记录和消息流里看它怎么推进、哪里卡住、最后交付了什么。',
+      'Multica 的核心结构可以理解成三层：服务端负责 workspace、issue、task queue 和状态同步；本机 daemon 负责轮询任务、启动本地 AI coding tool；真正写代码的还是本地的 Claude Code、Codex、Cursor、Copilot CLI、Gemini 等工具。也就是说，它不是把你的代码和 key 丢给一个远端黑盒 runner，而是让本地机器成为 agent runtime。',
+      '这个模型对我这种 WSL 用户比较舒服。我的代码、Node 环境、git、npm、Vite 项目都在 WSL 里，daemon 也可以跟着本地工具链一起跑。常见流程大概是：先在 WSL 里安装或更新 multica，然后执行 multica setup；如果已经登录过，可以用 multica auth status 检查状态；需要启动执行端时跑 multica daemon start，想看是否在线就跑 multica daemon status，排查问题可以跑 multica daemon logs。',
+      '真正开始派活时，CLI 也比较直接。可以用 multica workspace list 看 workspace，用 multica agent list 看可用 agent，用 multica agent create 新建 agent；任务侧可以用 multica issue create --title "..." 建 issue，用 multica issue list 找任务，用 multica issue assign <issue-id> --agent <agent-slug> 把 issue 分给 agent。任务跑起来之后，multica issue runs <issue-id> 可以看执行记录，multica issue run-messages <task-id> 可以看更细的消息和工具调用日志。',
+      '放到本地开发里，我常用的命令还是围绕项目本身：cd ~/code/yuniverse/frontend 进入站点；npm install 准备依赖；npm test 跑测试；npm run build 做生产构建；git status 看工作区；git add、git commit、git push 把交付推上去。Multica 的价值不是替代这些命令，而是把这些命令背后的长任务组织起来，让 agent 能按任务目标去执行、汇报和交付。',
+      '这次 Yuniverse 这个网站就是一个很适合这种模式的例子。它不是一个只改一行的小需求，而是持续拆分出来的长任务：整理内容结构、调整 About、写 blog、处理部署分支、统一只维护 frontend、跑测试和 build、确认线上 bundle。人如果手动做当然也能做，但很容易在上下文切换里漏掉一步。Multica 这类工具的好处是把任务变成一条可以被观察的执行链。',
+      '我自己的感觉是，我更像一个指挥官，而不是每一步都亲手敲代码的人。我需要描述目标、检查交付信息、判断方向是否对、在关键节点接管决策；agent 负责展开计划、读代码、改文件、跑验证、汇报结果。短时间内，一个长任务就能被规划成可执行的路径，而且每一步都有状态和日志可以回看。',
+      '它好用的地方还在于“本地”。严格说，任务同步和看板仍然需要服务端，但核心执行发生在自己的机器上：本地仓库、本地 CLI、本地 API key、本地测试环境。对于个人项目或者还没准备完全云端托管的开发流，这种方式比纯云端 agent 更有安全感，也更接近我平时真实写代码的环境。',
+      '当然，这类工具也不是魔法。issue 要写清楚，验收标准要具体，agent 的权限和工作目录要管好，最后的测试和线上验证也不能省。但作为一个把多个 coding agent 管起来的协作层，Multica 给我的感觉是：它把 vibe coding 从“开一个聊天窗口反复催”推进到“像安排队友一样安排任务”。这对长任务尤其有用。',
+      '这篇先作为使用记录。后面如果继续用 Multica 跑更多任务，可以再单独写一篇，把 agent 配置、run messages、失败重试、日志分析和具体交付案例拆开讲。',
+    ],
+    aiDisclosure: '本文由 AI 协助整理表达，内容来自个人使用体验和 Multica 官方文档。',
+    readingMinutes: 4,
+    category: 'software',
+    featured: true,
+    tags: ['Multica', 'Agent', 'Vibe Coding', 'WSL'],
+    status: 'published',
+  },
+  {
     slug: 'internship-agent-infrastructure-notes',
     title: '实习记录：做 AI Agent Infrastructure 的阶段小结',
     date: '2026-05-15',
@@ -127,7 +152,6 @@ export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
     aiDisclosure: '本文由 AI 协助整理表达，内容来自个人实习记录。',
     readingMinutes: 3,
     category: 'software',
-    featured: true,
     tags: ['实习记录', 'Agent', 'Vibe Coding'],
     status: 'published',
   },

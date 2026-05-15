@@ -44,15 +44,17 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/multica-local-agent-workflow"')
     expect(html).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(html).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('实习记录：做 AI Agent Infrastructure 的阶段小结')
+    expect(blogPosts[0].title).toBe('Multica：把本地 AI Coding Agent 变成可管理的长任务')
     expect(blogPosts[0].status).toBe('published')
   })
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'multica-local-agent-workflow',
       'internship-agent-infrastructure-notes',
       'hello-world',
     ])
@@ -83,5 +85,18 @@ describe('blog page', () => {
     expect(articleHtml).toContain('Vibe Coding')
     expect(articleHtml).not.toContain('上海食物主义')
     expect(articleHtml).toContain('Back to blog')
+  })
+
+  it('renders the Multica local agent workflow article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/multica-local-agent-workflow" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('Multica：把本地 AI Coding Agent 变成可管理的长任务')
+    expect(articleHtml).toContain('WSL')
+    expect(articleHtml).toContain('multica daemon start')
+    expect(articleHtml).toContain('Yuniverse')
+    expect(articleHtml).toContain('指挥官')
   })
 })
