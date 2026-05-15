@@ -213,7 +213,7 @@ export const profile: Profile = {
   displayName: '黄新宇',
   tagline: 'A personal universe for software work, study, warmth, and curiosity.',
   intro:
-    '黄新宇，本科就读于悉尼大学软件工程专业，研究生阶段将前往 UCSD ECE。现在关注软件开发、AI 工具和个人网站里的创造力。',
+    '黄新宇，本科就读于悉尼大学软件工程专业，研究生阶段将前往 UCSD ECE。现在关注软件开发、AI 工具。',
   email: 'xinyuhimself@gmail.com',
   location: baseProfile.locationLabel,
   eyebrow: 'Yuniverse / 黄新宇',
@@ -303,7 +303,7 @@ export const siteSections: SiteSections = {
       {
         label: 'Life',
         href: '/life',
-        description: '湖州、杭州、悉尼本科和 UCSD 研究生阶段的公开时间线。',
+        description: '湖州、杭州、USYD本科和 UCSD 研究生阶段的公开时间线。',
       },
     ],
   },
@@ -373,7 +373,7 @@ export const aboutPageContent: AboutPageContent = {
   eyebrow: 'Yuniverse / personal identity',
   title: '黄新宇',
   subtitle:
-    '学生、软件开发工程师，正在从上海实习走向 UCSD ECE 的下一段旅程。',
+    '学生、软件开发工程师，正准备去UCSD读书。',
   statusNotice:
     'This page uses the current public draft. More project details and writing will be added as they are ready.',
   intro: {
@@ -381,7 +381,7 @@ export const aboutPageContent: AboutPageContent = {
     body:
       '我本科阶段在悉尼大学学习软件工程，研究生阶段会去 UCSD ECE。现在的公开身份很简单：学生、软件开发工程师，trying to build a good personal ip, might as well create something cool。',
     coordinates: [
-      { label: 'Primary school', text: '浙江省湖州市递铺第三小学' },
+      { label: 'Primary school', text: '浙江省湖州市递铺第三小学（i dont think people gon care tho）' },
       { label: 'Middle / high school', text: '杭州英特外国语学校' },
       { label: 'Bachelor', text: '悉尼大学 Software Engineering' },
       { label: 'Postgraduate', text: 'UCSD ECE' },
@@ -390,19 +390,19 @@ export const aboutPageContent: AboutPageContent = {
   values: {
     heading: 'What this site should feel like',
     body:
-      'Yuniverse 不只是简历页，也不是单纯的作品集。它应该像一个个人宇宙，能装下工作机会、交友入口、学习轨迹和一点有趣的生活气质。',
+      'Yuniverse 是一个个人宇宙，生活、学习、工作我都会放进去。',
     items: [
       {
-        label: 'Creative',
-        text: '希望这个网站让人先记住创造力，而不是只记住一串经历。',
+        label: 'Inspiration',
+        text: '这是个创意工坊，后面会有各种各样的想法在这里实践。',
       },
       {
         label: 'Warm',
-        text: '公开信息保持简约，但语气要温暖，像一个真实的人在打招呼。',
+        text: 'It‘s a cold world out there, babe 🫶💋',
       },
       {
         label: 'Fun',
-        text: '软件、电影、健身、篮球和一点玩笑感，都可以成为 Yuniverse 的一部分。',
+        text: '希望这个网站看起来好玩。',
       },
     ],
   },
@@ -464,7 +464,7 @@ export const aboutPageContent: AboutPageContent = {
         id: 'interests',
         label: 'Interests',
         meta: 'Life',
-        detail: '健身、电影、篮球，以及一点唱跳 rap 篮球式的玩笑感。',
+        detail: '唱跳 rap 篮球。',
       },
       {
         id: 'location',
@@ -556,14 +556,14 @@ export const collections: readonly [Collection, ...Collection[]] = [
   {
     id: 'music',
     label: 'Music',
-    intro: '灵魂歌王。',
+    intro: '我是灵魂歌王。',
     emptyState: 'No music has been pinned for this filter yet.',
     items: mapNonEmpty(musicItems, toMusicCollectionItem),
   },
   {
     id: 'movies',
     label: 'Movies',
-    intro: 'Only the posters for now.',
+    intro: '我看的爆米花电影偏多，啥都放，i aint no pro',
     emptyState: 'No movies match this view yet.',
     items: mapNonEmpty(movieItems, toMovieCollectionItem),
   },
