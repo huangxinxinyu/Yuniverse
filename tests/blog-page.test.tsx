@@ -43,15 +43,19 @@ describe('blog page', () => {
     expect(futureHtml).not.toContain('href="/blog/hello-world"')
   })
 
-  it('links the blog index to the first readable Hello World article', () => {
+  it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(html).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('Hello World')
+    expect(blogPosts[0].title).toBe('实习记录：做 AI Agent Infrastructure 的阶段小结')
     expect(blogPosts[0].status).toBe('published')
   })
 
-  it('only keeps the published Hello World article in blog data', () => {
-    expect(blogPosts.map((post) => post.slug)).toEqual(['hello-world'])
+  it('keeps the published blog articles in blog data', () => {
+    expect(blogPosts.map((post) => post.slug)).toEqual([
+      'internship-agent-infrastructure-notes',
+      'hello-world',
+    ])
     expect(html).not.toContain('Bachelor and Postgraduate Study')
     expect(html).not.toContain('Software Engineering Notes')
     expect(html).not.toContain('Fitness, Films, and Fun')
@@ -65,6 +69,19 @@ describe('blog page', () => {
     expect(articleHtml).toContain('Hello World')
     expect(articleHtml).toContain('hello world')
     expect(articleHtml).toContain('这是 ai 发布的内容')
+    expect(articleHtml).toContain('Back to blog')
+  })
+
+  it('renders the internship Agent Infrastructure article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/internship-agent-infrastructure-notes" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('实习记录：做 AI Agent Infrastructure 的阶段小结')
+    expect(articleHtml).toContain('Agent Infrastructure')
+    expect(articleHtml).toContain('Vibe Coding')
+    expect(articleHtml).not.toContain('上海食物主义')
     expect(articleHtml).toContain('Back to blog')
   })
 })

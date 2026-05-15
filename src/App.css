@@ -1174,6 +1174,10 @@ h3 {
   margin-top: clamp(24px, 4vw, 42px);
 }
 
+.blog-post-page .tag-list {
+  margin-top: 20px;
+}
+
 .blog-post-body {
   display: grid;
   gap: 18px;
