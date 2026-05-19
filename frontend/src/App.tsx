@@ -5,11 +5,13 @@ import { BlogPage } from './pages/BlogPage'
 import { BlogPostPage } from './pages/BlogPostPage'
 import { CollectionPage } from './pages/CollectionPage'
 import { HomePage } from './pages/HomePage'
+import { IntroPage } from './pages/IntroPage'
 import { LifePage } from './pages/LifePage'
 import { WorkPage } from './pages/WorkPage'
 import './App.css'
 
 const routePaths = ['/', '/about', '/work', '/life', '/blog', '/collection'] as const
+const previewPaths = ['/intro'] as const
 
 export type RoutePath = (typeof routePaths)[number]
 
@@ -24,7 +26,9 @@ type AppProps = {
 const normalizePath = (path: string): string => {
   const cleanPath = path.split(/[?#]/)[0] || '/'
 
-  return routePaths.includes(cleanPath as RoutePath) || cleanPath.startsWith('/blog/')
+  return routePaths.includes(cleanPath as RoutePath) ||
+    previewPaths.includes(cleanPath as (typeof previewPaths)[number]) ||
+    cleanPath.startsWith('/blog/')
     ? cleanPath
     : '/'
 }
@@ -63,10 +67,13 @@ function App({ initialPath }: AppProps) {
   }
 
   const pageProps: PageProps = { onNavigate: handleNavigate }
+  const isIntroPath = currentPath === '/intro'
   const blogPostSlug = currentPath.startsWith('/blog/')
     ? currentPath.replace(/^\/blog\//, '')
     : null
-  const navPath: RoutePath = blogPostSlug ? '/blog' : (currentPath as RoutePath)
+  const navPath: RoutePath = blogPostSlug
+    ? '/blog'
+    : (currentPath as RoutePath)
   const shouldRenderFullOverview = !initialPath && typeof window === 'undefined'
   const page = shouldRenderFullOverview ? (
     <>
@@ -77,6 +84,8 @@ function App({ initialPath }: AppProps) {
       <BlogPage />
       <CollectionPage />
     </>
+  ) : isIntroPath ? (
+      <IntroPage />
   ) : currentPath === '/about' ? (
       <AboutPage />
     ) : currentPath === '/work' ? (
@@ -92,6 +101,10 @@ function App({ initialPath }: AppProps) {
     ) : (
       <HomePage {...pageProps} />
     )
+
+  if (isIntroPath) {
+    return page
+  }
 
   return (
     <div className="site-shell">
