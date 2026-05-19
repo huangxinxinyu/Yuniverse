@@ -270,7 +270,7 @@ export function IntroPage() {
           style={{ opacity: finalGateOpacity, y: finalGateY, scale: finalGateScale }}
         >
           <p className="intro-label">Final gate</p>
-          <a href="/" className="intro-enter">
+          <a href="/home" className="intro-enter">
             Enter Yuniverse
           </a>
         </motion.div>

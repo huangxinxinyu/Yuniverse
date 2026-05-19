@@ -10,7 +10,7 @@ import { LifePage } from './pages/LifePage'
 import { WorkPage } from './pages/WorkPage'
 import './App.css'
 
-const routePaths = ['/', '/about', '/work', '/life', '/blog', '/collection'] as const
+const routePaths = ['/home', '/about', '/work', '/life', '/blog', '/collection'] as const
 const previewPaths = ['/intro'] as const
 
 export type RoutePath = (typeof routePaths)[number]
@@ -67,7 +67,7 @@ function App({ initialPath }: AppProps) {
   }
 
   const pageProps: PageProps = { onNavigate: handleNavigate }
-  const isIntroPath = currentPath === '/intro'
+  const isIntroPath = currentPath === '/' || currentPath === '/intro'
   const blogPostSlug = currentPath.startsWith('/blog/')
     ? currentPath.replace(/^\/blog\//, '')
     : null
@@ -86,7 +86,9 @@ function App({ initialPath }: AppProps) {
     </>
   ) : isIntroPath ? (
       <IntroPage />
-  ) : currentPath === '/about' ? (
+  ) : currentPath === '/home' ? (
+      <HomePage {...pageProps} />
+    ) : currentPath === '/about' ? (
       <AboutPage />
     ) : currentPath === '/work' ? (
       <WorkPage />
@@ -99,7 +101,7 @@ function App({ initialPath }: AppProps) {
     ) : currentPath === '/collection' ? (
       <CollectionPage />
     ) : (
-      <HomePage {...pageProps} />
+      <IntroPage />
     )
 
   if (isIntroPath) {

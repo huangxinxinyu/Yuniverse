@@ -5,7 +5,7 @@ import App from '../src/App'
 import { blogCategories, collections, siteSections } from '../src/content/siteContent'
 
 describe('interactive section contract', () => {
-  const homeHtml = renderToStaticMarkup(<App initialPath="/" />)
+  const homeHtml = renderToStaticMarkup(<App initialPath="/home" />)
   const css = readFileSync(new URL('../src/App.css', import.meta.url), 'utf8')
   const globalCss = readFileSync(
     new URL('../src/index.css', import.meta.url),
@@ -69,7 +69,7 @@ describe('interactive section contract', () => {
   })
 
   it('uses a quiet modern control language instead of legacy pill buttons', () => {
-    const homeHtml = renderToStaticMarkup(<App initialPath="/" />)
+    const homeHtml = renderToStaticMarkup(<App initialPath="/home" />)
 
     expect(homeHtml).toContain('class="text-command primary"')
     expect(homeHtml).toContain('class="text-command secondary"')

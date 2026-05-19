@@ -3,14 +3,23 @@ import { describe, expect, it } from 'vitest'
 import App from '../src/App'
 import { navigationItems, siteSections } from '../src/content/siteContent'
 
-const requiredRoutes = ['/', '/about', '/work', '/life', '/blog', '/collection'] as const
+const requiredRoutes = ['/home', '/about', '/work', '/life', '/blog', '/collection'] as const
 
 describe('multi-page route contract', () => {
-  it('renders shared navigation with links to every required route', () => {
+  it('serves the immersive intro at the public root before the normal home page', () => {
     const html = renderToStaticMarkup(<App initialPath="/" />)
 
+    expect(html).toContain('data-route="/intro"')
+    expect(html).toContain('Follow the comet')
+    expect(html).toContain('href="/home"')
+    expect(html).not.toContain('aria-label="Primary navigation"')
+  })
+
+  it('renders shared navigation with links to every required route', () => {
+    const html = renderToStaticMarkup(<App initialPath="/home" />)
+
     expect(html).toContain('aria-label="Primary navigation"')
-    expect(html).toContain('href="/"')
+    expect(html).toContain('href="/home"')
 
     for (const item of navigationItems) {
       expect(html).toContain(`href="/${item.href.slice(1)}"`)
@@ -25,7 +34,7 @@ describe('multi-page route contract', () => {
   })
 
   it('keeps home as a portal instead of rendering every full section', () => {
-    const html = renderToStaticMarkup(<App initialPath="/" />)
+    const html = renderToStaticMarkup(<App initialPath="/home" />)
 
     for (const section of Object.values(siteSections)) {
       expect(html).toContain(`href="/${section.id}"`)

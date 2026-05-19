@@ -26,7 +26,7 @@ describe('ContainerScroll integration', () => {
     expect(html).toContain('data-route="/intro"')
     expect(html).toContain('Follow the comet')
     expect(html).toContain('Enter Yuniverse')
-    expect(html).toContain('href="/"')
+    expect(html).toContain('href="/home"')
     expect(html).not.toContain('aria-label="Primary navigation"')
   })
 
@@ -210,7 +210,7 @@ describe('ContainerScroll integration', () => {
     expect(html).toContain('<section class="intro-gate" aria-label="Yuniverse entry">')
     expect(html).toContain('class="intro-comet-final-gate"')
     expect(html).toContain('<p class="intro-label">Final gate</p>')
-    expect(html).toContain('<a href="/" class="intro-enter">Enter Yuniverse</a>')
+    expect(html).toContain('<a href="/home" class="intro-enter">Enter Yuniverse</a>')
     expect(html).not.toContain('intro-comet-final-title')
     expect(html).not.toContain('class="intro-gate-panel"')
     expect(html).not.toContain('<h2 id="intro-gate-title">Enter Yuniverse</h2>')

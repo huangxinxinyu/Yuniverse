@@ -22,9 +22,9 @@ export function SiteNav({ currentPath, onNavigate }: SiteNavProps) {
     <header className="site-header">
       <a
         className="identity"
-        href="/"
+        href="/home"
         aria-label={`${profile.name} home`}
-        onClick={handleClick('/')}
+        onClick={handleClick('/home')}
       >
         <span className="identity-mark" aria-hidden="true">
           <img src="/favicon.png" alt="" />
@@ -33,9 +33,9 @@ export function SiteNav({ currentPath, onNavigate }: SiteNavProps) {
       </a>
       <nav className="site-nav" aria-label="Primary navigation">
         <a
-          className={currentPath === '/' ? 'is-active' : undefined}
-          href="/"
-          onClick={handleClick('/')}
+          className={currentPath === '/home' ? 'is-active' : undefined}
+          href="/home"
+          onClick={handleClick('/home')}
         >
           Home
         </a>
