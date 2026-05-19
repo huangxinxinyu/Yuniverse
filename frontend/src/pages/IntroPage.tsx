@@ -1,12 +1,15 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { profile, siteSections } from '../content/siteContent'
 
+type IntroCosmosType = 'home-star' | 'planet' | 'signal' | 'star' | 'rays' | 'galaxy'
+
 const introChapters = [
   {
     id: 'home',
     label: 'Home',
     sound: 'WHOOSH',
     soundStyle: 'burst',
+    cosmosType: 'home-star',
     title: profile.name,
     body: profile.heroText,
   },
@@ -15,6 +18,7 @@ const introChapters = [
     label: siteSections.about.label,
     sound: 'SHOOM',
     soundStyle: 'slash',
+    cosmosType: 'planet',
     title: '黄新宇',
     body: siteSections.about.summary,
   },
@@ -23,6 +27,7 @@ const introChapters = [
     label: siteSections.work.label,
     sound: 'SKRRR',
     soundStyle: 'stamp',
+    cosmosType: 'signal',
     title: 'All AI',
     body: 'Projects, tools, and software craft.',
   },
@@ -31,6 +36,7 @@ const introChapters = [
     label: siteSections.life.label,
     sound: 'SWISH',
     soundStyle: 'caption',
+    cosmosType: 'star',
     title: 'razzle dazzle',
     body: 'Cities, school chapters, and small field notes.',
   },
@@ -39,6 +45,7 @@ const introChapters = [
     label: 'Blog',
     sound: 'SNAP',
     soundStyle: 'stamp',
+    cosmosType: 'rays',
     title: 'all kinds of craps',
     body: '',
   },
@@ -47,6 +54,7 @@ const introChapters = [
     label: 'Collection',
     sound: null,
     soundStyle: null,
+    cosmosType: 'galaxy',
     title: 'music, movie, picture',
     body: '',
   },
@@ -60,6 +68,60 @@ const renderIntroTitle = (title: string | readonly string[]) =>
         </span>
       ))
     : title
+
+const renderSectionCosmos = (type: IntroCosmosType) => {
+  switch (type) {
+    case 'home-star':
+      return (
+        <>
+          <span className="intro-section-home-star" />
+          <span className="intro-section-dust" />
+        </>
+      )
+    case 'planet':
+      return (
+        <>
+          <span className="intro-section-orbit" />
+          <span className="intro-section-planet" />
+          <span className="intro-section-dust" />
+        </>
+      )
+    case 'signal':
+      return (
+        <>
+          <span className="intro-section-signal-grid" />
+          <span className="intro-section-signal-core" />
+          <span className="intro-section-signal-node intro-section-signal-node-a" />
+          <span className="intro-section-signal-node intro-section-signal-node-b" />
+          <span className="intro-section-signal-node intro-section-signal-node-c" />
+          <span className="intro-section-dust" />
+        </>
+      )
+    case 'star':
+      return (
+        <>
+          <span className="intro-section-star-halo" />
+          <span className="intro-section-star" />
+          <span className="intro-section-dust" />
+        </>
+      )
+    case 'rays':
+      return (
+        <>
+          <span className="intro-section-rays" />
+          <span className="intro-section-dust" />
+        </>
+      )
+    case 'galaxy':
+      return (
+        <>
+          <span className="intro-section-galaxy" />
+          <span className="intro-section-orbit" />
+          <span className="intro-section-dust" />
+        </>
+      )
+  }
+}
 
 export function IntroPage() {
   const { scrollYProgress } = useScroll()
@@ -77,6 +139,8 @@ export function IntroPage() {
   const starShiftY = useTransform(scrollYProgress, [0, 1], ['0vh', '6vh'])
   const dustScale = useTransform(scrollYProgress, [0, 0.82, 1], [0.82, 1.42, 0.62])
   const rayOpacity = useTransform(scrollYProgress, [0, 0.55, 0.82, 1], [0.05, 0.22, 0.72, 0.28])
+  const openingCosmosOpacity = useTransform(scrollYProgress, [0, 0.16, 0.34], [0.74, 0.58, 0])
+  const openingCosmosY = useTransform(scrollYProgress, [0, 0.34], ['0vh', '-8vh'])
   const nearCosmosOpacity = useTransform(scrollYProgress, [0, 0.2, 0.5, 1], [0.48, 0.58, 0.28, 0.16])
   const nearCosmosX = useTransform(scrollYProgress, [0, 1], ['0vw', '-3vw'])
   const nearCosmosY = useTransform(scrollYProgress, [0, 1], ['0vh', '4vh'])
@@ -114,6 +178,11 @@ export function IntroPage() {
         <motion.span className="intro-scroll-starfield" style={{ x: starShiftX, y: starShiftY }} />
         <motion.span className="intro-scroll-dust" style={{ scaleX: dustScale }} />
         <motion.span className="intro-scroll-rays" style={{ opacity: rayOpacity }} />
+        <motion.span className="intro-cosmos-opening-ui" style={{ opacity: openingCosmosOpacity, y: openingCosmosY }}>
+          <span className="intro-cosmos-opening-galaxy" />
+          <span className="intro-cosmos-opening-halftone" />
+          <span className="intro-cosmos-opening-orbit" />
+        </motion.span>
         <motion.span className="intro-cosmos-layer intro-cosmos-near" style={{ opacity: nearCosmosOpacity, x: nearCosmosX, y: nearCosmosY }}>
           <span className="intro-cosmos-comic-stars" />
           <span className="intro-cosmos-orbits" />
@@ -170,6 +239,16 @@ export function IntroPage() {
 
       {introChapters.map((chapter, index) => (
         <section className="intro-chapter" key={chapter.id}>
+          <motion.div
+            className={`intro-section-cosmos intro-section-cosmos-${index} intro-section-cosmos-${chapter.cosmosType}`}
+            aria-hidden="true"
+            initial={{ opacity: 0, scale: 0.78, rotate: index % 2 === 0 ? -7 : 7 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: index % 2 === 0 ? 0 : -2 }}
+            viewport={{ amount: 0.46, once: false }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {renderSectionCosmos(chapter.cosmosType)}
+          </motion.div>
           <motion.div
             className={`intro-copy intro-copy-${index % 2 === 0 ? 'left' : 'right'}${
               chapter.id === 'collection' ? ' intro-copy-collection' : ''
