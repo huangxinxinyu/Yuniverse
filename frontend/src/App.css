@@ -2259,36 +2259,13 @@ body:has(.intro-page),
   width: clamp(132px, 16vw, 230px);
   aspect-ratio: 1;
   border: 7px solid #fff;
-  background:
-    radial-gradient(circle at 2px 2px, rgba(0, 0, 0, 0.5) 0 1px, transparent 1.5px),
-    #fff;
-  background-size: 10px 10px, auto;
+  background: #fff;
   box-shadow:
     0 0 0 9px #000,
     0 0 0 14px rgba(255, 255, 255, 0.72),
     18px 18px 0 #3f3f3f;
   clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
   transform: rotate(-12deg);
-}
-
-.intro-section-home-star::before,
-.intro-section-home-star::after {
-  position: absolute;
-  content: '';
-  background: #000;
-}
-
-.intro-section-home-star::before {
-  inset: 29%;
-  border-radius: 50%;
-}
-
-.intro-section-home-star::after {
-  top: 18%;
-  left: 18%;
-  width: 20%;
-  height: 20%;
-  clip-path: polygon(50% 0, 60% 39%, 100% 50%, 60% 61%, 50% 100%, 40% 61%, 0 50%, 40% 39%);
 }
 
 .intro-section-planet {
@@ -2394,10 +2371,7 @@ body:has(.intro-page),
   width: clamp(128px, 16vw, 240px);
   aspect-ratio: 1;
   border: 7px solid #fff;
-  background:
-    radial-gradient(circle at 2px 2px, rgba(0, 0, 0, 0.46) 0 1px, transparent 1.5px),
-    #fff;
-  background-size: 10px 10px, auto;
+  background: #fff;
   box-shadow:
     0 0 0 9px #000,
     0 0 0 14px rgba(255, 255, 255, 0.72),
