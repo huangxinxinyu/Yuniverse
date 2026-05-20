@@ -25,4 +25,33 @@ describe('static assets', () => {
       expect(item.visual).not.toMatch(/\.svg$/)
     }
   })
+
+  it('publishes search crawler metadata for the production domain', () => {
+    const indexHtml = readFileSync(join(process.cwd(), 'index.html'), 'utf8')
+    const robotsPath = join(process.cwd(), 'public/robots.txt')
+    const sitemapPath = join(process.cwd(), 'public/sitemap.xml')
+
+    expect(existsSync(robotsPath)).toBe(true)
+    expect(existsSync(sitemapPath)).toBe(true)
+
+    const robotsTxt = readFileSync(robotsPath, 'utf8')
+    const sitemapXml = readFileSync(sitemapPath, 'utf8')
+
+    expect(indexHtml).toContain('<title>Xinyu Huang | Yuniverse Lab</title>')
+    expect(indexHtml).toContain(
+      '<meta name="description" content="Xinyu Huang\'s personal site: AI projects, writing, software experiments, and Yuniverse Lab." />',
+    )
+    expect(indexHtml).toContain(
+      '<meta name="google-site-verification" content="AjQSF08mJksHY8R0OE1w0WOLjEJQJozVO7X8HGEvfIQ" />',
+    )
+    expect(indexHtml).toContain('<link rel="canonical" href="https://www.xinyuhuang.space/" />')
+
+    expect(robotsTxt).toContain('User-agent: *')
+    expect(robotsTxt).toContain('Allow: /')
+    expect(robotsTxt).toContain('Sitemap: https://www.xinyuhuang.space/sitemap.xml')
+
+    for (const path of ['/', '/home', '/about', '/work', '/life', '/blog', '/collection']) {
+      expect(sitemapXml).toContain(`<loc>https://www.xinyuhuang.space${path}</loc>`)
+    }
+  })
 })
