@@ -8,7 +8,10 @@ describe('static assets', () => {
     const indexHtml = readFileSync(join(process.cwd(), 'index.html'), 'utf8')
 
     expect(indexHtml).toContain('rel="icon" type="image/png" href="/favicon.png"')
+    expect(indexHtml).toContain('rel="apple-touch-icon" href="/favicon.png"')
+    expect(indexHtml).not.toMatch(/href="\/favicon\.svg"/)
     expect(existsSync(join(process.cwd(), 'public/favicon.png'))).toBe(true)
+    expect(existsSync(join(process.cwd(), 'public/favicon.svg'))).toBe(false)
   })
 
   it('uses real remote movie artwork instead of generated placeholders', () => {
