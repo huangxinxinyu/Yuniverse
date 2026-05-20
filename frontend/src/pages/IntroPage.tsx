@@ -171,6 +171,7 @@ export function IntroPage() {
   const finalGateOpacity = useTransform(scrollYProgress, [0, 0.93, 0.98, 1], [0, 0, 0.5, 1])
   const finalGateY = useTransform(scrollYProgress, [0.93, 1], [54, 0])
   const finalGateScale = useTransform(scrollYProgress, [0.93, 1], [0.86, 1])
+  const cometSfxOpacity = useTransform(scrollYProgress, [0, 0.3, 0.36, 0.48, 0.56, 1], [0, 0, 1, 1, 0, 0])
 
   return (
     <main className="intro-page" data-route="/intro">
@@ -206,27 +207,46 @@ export function IntroPage() {
         aria-hidden="true"
         style={{ x: cometX, y: cometY }}
       >
-        <div className="intro-comet-shell">
-          <motion.span
-            className="intro-comet-fire-scale"
-            style={{ opacity: cometCoreOpacity, scaleX: tailScale }}
+        <div className="intro-comet-jitter">
+          <motion.div
+            className="intro-comet-sfx"
+            style={{ opacity: cometSfxOpacity }}
           >
-            <span className="intro-comet-fire" />
-          </motion.span>
-          <motion.span
-            className="intro-comet-core-spin"
-            style={{ opacity: cometCoreOpacity, rotate: coreRotate }}
-          >
-            <span className="intro-comet-core">
-              <span className="intro-comet-ring intro-comet-ring-1" />
-              <span className="intro-comet-ring intro-comet-ring-2" />
-              <span className="intro-comet-ring intro-comet-ring-3" />
-            </span>
-          </motion.span>
-          <motion.span
-            className="intro-comet-compression"
-            style={{ opacity: compressionOpacity, scale: compressionScale }}
-          />
+            <span>comet</span>
+            <strong data-text="FWOOOOOOSH">FWOOOOOOSH</strong>
+          </motion.div>
+          <div className="intro-comet-shell">
+            <motion.span
+              className="intro-comet-fire-scale"
+              style={{ opacity: cometCoreOpacity, scaleX: tailScale }}
+            >
+              <span className="intro-comet-fire" />
+              <span className="intro-comet-fire intro-comet-fire-echo intro-comet-fire-echo-a" />
+              <span className="intro-comet-fire intro-comet-fire-echo intro-comet-fire-echo-b" />
+              <span className="intro-comet-tail-lines" />
+              <span className="intro-comet-sparks">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </span>
+            </motion.span>
+            <motion.span
+              className="intro-comet-core-spin"
+              style={{ opacity: cometCoreOpacity, rotate: coreRotate }}
+            >
+              <span className="intro-comet-core">
+                <span className="intro-comet-ring intro-comet-ring-1" />
+                <span className="intro-comet-ring intro-comet-ring-2" />
+                <span className="intro-comet-ring intro-comet-ring-3" />
+              </span>
+            </motion.span>
+            <motion.span
+              className="intro-comet-compression"
+              style={{ opacity: compressionOpacity, scale: compressionScale }}
+            />
+          </div>
         </div>
       </motion.div>
 

@@ -1966,6 +1966,77 @@ body:has(.intro-page),
   }
 }
 
+@keyframes introCometJitter {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  25% {
+    translate: -2px 1px;
+  }
+
+  50% {
+    translate: 2px -1px;
+  }
+
+  75% {
+    translate: -1px -2px;
+  }
+}
+
+@keyframes introCometCoreFlicker {
+  0%,
+  100% {
+    clip-path: polygon(6% 31%, 21% 7%, 58% 0, 91% 20%, 100% 57%, 77% 91%, 35% 100%, 6% 74%);
+    filter: contrast(1.1) brightness(1.08);
+  }
+
+  33% {
+    clip-path: polygon(0 39%, 26% 4%, 62% 7%, 96% 29%, 93% 67%, 68% 100%, 28% 91%, 8% 70%);
+    filter: contrast(1.35) brightness(1.22);
+  }
+
+  66% {
+    clip-path: polygon(8% 24%, 34% 0, 72% 8%, 100% 41%, 86% 82%, 52% 100%, 11% 86%, 0 51%);
+    filter: contrast(1.2) brightness(1.16);
+  }
+}
+
+@keyframes introCometTailTear {
+  0%,
+  100% {
+    translate: 0 0;
+    scale: 1 1;
+    filter: contrast(1.05);
+  }
+
+  33% {
+    translate: 8px -3px;
+    scale: 1.04 0.92;
+    filter: contrast(1.35);
+  }
+
+  66% {
+    translate: -5px 4px;
+    scale: 0.96 1.12;
+    filter: contrast(1.2);
+  }
+}
+
+@keyframes introCometSparkRip {
+  0%,
+  100% {
+    translate: 0 0;
+    opacity: 0.42;
+  }
+
+  50% {
+    translate: 18px -8px;
+    opacity: 0.92;
+  }
+}
+
 .intro-comet-track {
   position: fixed;
   top: 0;
@@ -1976,12 +2047,138 @@ body:has(.intro-page),
   pointer-events: none;
 }
 
+.intro-comet-jitter {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+  animation: introCometJitter 0.18s steps(2, end) infinite;
+}
+
 .intro-comet-shell {
   position: absolute;
   width: clamp(42px, 5vw, 68px);
   height: clamp(42px, 5vw, 68px);
   transform: translate(-50%, -50%) rotate(var(--comet-tail-angle));
   transform-origin: center center;
+}
+
+.intro-comet-sfx {
+  position: absolute;
+  z-index: 8;
+  top: clamp(-74px, -5.1vw, -58px);
+  left: clamp(-94px, -6.45vw, -74px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  width: max-content;
+  max-width: min(340px, 50vw);
+  color: #fff;
+  font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+  line-height: 0.86;
+  text-transform: uppercase;
+  isolation: isolate;
+  transform-origin: left center;
+  rotate: var(--comet-tail-angle);
+  translate: 0 -50%;
+  filter: drop-shadow(5px 5px 0 #000) drop-shadow(10px 10px 0 #3f3f3f);
+}
+
+.intro-comet-sfx::before {
+  position: absolute;
+  top: 50%;
+  right: clamp(-178px, -15vw, -104px);
+  left: 42%;
+  z-index: -1;
+  height: clamp(30px, 3.5vw, 54px);
+  content: '';
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(255, 255, 255, 0.72) 8% 66%, transparent 66%),
+    linear-gradient(90deg, transparent 0 22%, rgba(255, 255, 255, 0.5) 22% 78%, transparent 78%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.78) 0 8px, transparent 8px 22px);
+  clip-path: polygon(0 34%, 100% 0, 84% 30%, 100% 55%, 78% 70%, 100% 100%, 0 68%);
+  opacity: 0.74;
+  transform: translateY(-50%) skewX(-12deg);
+}
+
+.intro-comet-sfx::after {
+  position: absolute;
+  top: calc(50% + clamp(16px, 1.8vw, 28px));
+  right: clamp(-142px, -12vw, -86px);
+  left: 22%;
+  z-index: -1;
+  height: 6px;
+  content: '';
+  background:
+    linear-gradient(90deg, #fff 0 18%, transparent 18% 27%, #fff 27% 48%, transparent 48% 62%, #fff 62% 82%, transparent 82%),
+    repeating-linear-gradient(90deg, #3f3f3f 0 5px, transparent 5px 18px);
+  opacity: 0.8;
+  transform: skewX(-18deg);
+}
+
+.intro-comet-sfx span {
+  position: absolute;
+  bottom: calc(100% + clamp(7px, 0.72vw, 11px));
+  left: 0;
+  z-index: 1;
+  border: 3px solid #fff;
+  padding: 5px 8px 4px;
+  color: #000;
+  background: #fff;
+  font-family: var(--mono);
+  font-size: clamp(0.56rem, 0.82vw, 0.74rem);
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 5px 5px 0 #3f3f3f;
+}
+
+.intro-comet-sfx strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  transform: scaleX(1.18) skewX(-7deg);
+  transform-origin: left center;
+  color: #fff;
+  font-size: clamp(30px, 4vw, 62px);
+  font-weight: 900;
+  letter-spacing: 0;
+  -webkit-text-stroke: clamp(3px, 0.44vw, 6px) #000;
+  paint-order: stroke fill;
+  text-shadow:
+    3px 3px 0 #000,
+    7px 7px 0 #000,
+    11px 11px 0 #3f3f3f,
+    15px 15px 0 rgba(255, 255, 255, 0.2),
+    -2px -2px 0 #fff;
+}
+
+.intro-comet-sfx strong::before,
+.intro-comet-sfx strong::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: attr(data-text);
+  color: transparent;
+  -webkit-text-stroke: clamp(2px, 0.34vw, 5px) currentColor;
+  paint-order: stroke fill;
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.intro-comet-sfx strong::before {
+  color: rgba(255, 255, 255, 0.42);
+  transform: translateX(12px) translateY(4px) scaleX(0.96);
+  text-shadow:
+    10px 2px 0 rgba(255, 255, 255, 0.22),
+    22px 4px 0 rgba(63, 63, 63, 0.78);
+}
+
+.intro-comet-sfx strong::after {
+  color: rgba(63, 63, 63, 0.74);
+  transform: translateX(24px) translateY(8px) scaleX(0.9);
+  text-shadow:
+    14px 3px 0 rgba(255, 255, 255, 0.16),
+    32px 6px 0 rgba(255, 255, 255, 0.1);
 }
 
 .intro-comet-core-spin {
@@ -1995,31 +2192,41 @@ body:has(.intro-page),
   inset: 0;
   width: 100%;
   height: 100%;
-  border: 5px solid #fff;
+  border: 5px solid #000;
   border-radius: 50%;
-  background: #000;
+  background:
+    radial-gradient(circle at 66% 31%, #000 0 8%, transparent 9%),
+    radial-gradient(circle at 31% 60%, #000 0 6%, transparent 7%),
+    linear-gradient(135deg, #fff 0 64%, #d7d7d7 64% 73%, #fff 73%);
   box-shadow:
-    0 0 0 7px #000,
-    0 0 0 11px #fff,
-    14px 14px 0 rgba(255, 255, 255, 0.12);
-  filter: drop-shadow(16px 16px 0 rgba(255, 255, 255, 0.12));
+    0 0 0 5px #fff,
+    0 0 0 10px #000,
+    0 0 0 15px #fff,
+    16px 16px 0 rgba(255, 255, 255, 0.18),
+    -8px -6px 0 rgba(255, 255, 255, 0.16);
+  filter: drop-shadow(18px 18px 0 rgba(255, 255, 255, 0.12));
+  animation: introCometCoreFlicker 0.22s steps(2, end) infinite;
 }
 
 .intro-comet-core::after {
   position: absolute;
-  inset: 36%;
+  inset: 16% 12% 58% 48%;
   border: 3px solid #000;
   border-radius: 50%;
   content: '';
   background: #fff;
+  box-shadow:
+    -18px 22px 0 -6px #000,
+    -26px 31px 0 -8px #fff,
+    16px 23px 0 -7px #000;
 }
 
 .intro-comet-ring {
   position: absolute;
   display: block;
-  border: 3px solid #fff;
+  border: 3px solid #000;
   border-radius: 50%;
-  background: #000;
+  background: transparent;
 }
 
 .intro-comet-ring-1 {
@@ -2046,28 +2253,108 @@ body:has(.intro-page),
 
 .intro-comet-fire-scale {
   position: absolute;
-  top: calc(50% - clamp(16px, 2.5vw, 31px));
-  left: calc(100% - 8px);
-  width: clamp(160px, 26vw, 360px);
-  height: clamp(32px, 5vw, 62px);
+  top: calc(50% - clamp(24px, 3.2vw, 42px));
+  left: calc(100% - 10px);
+  width: clamp(220px, 34vw, 500px);
+  height: clamp(48px, 6.8vw, 92px);
   transform-origin: left center;
+  animation: introCometTailTear 0.16s steps(2, end) infinite;
 }
 
 .intro-comet-fire {
   position: absolute;
   inset: 0;
-  background: #fff;
-  clip-path: polygon(0 40%, 100% 0, 80% 50%, 100% 100%, 0 60%);
-  opacity: 0.92;
+  background:
+    linear-gradient(90deg, #fff 0 34%, rgba(255, 255, 255, 0.86) 34% 58%, transparent 58%),
+    repeating-linear-gradient(90deg, #fff 0 9px, transparent 9px 22px);
+  clip-path: polygon(0 39%, 9% 25%, 20% 42%, 31% 6%, 44% 39%, 61% 0, 74% 35%, 100% 10%, 84% 50%, 100% 92%, 72% 66%, 58% 100%, 43% 63%, 27% 87%, 13% 60%, 0 68%);
+  opacity: 0.96;
+  filter: drop-shadow(10px 8px 0 #000) drop-shadow(19px 14px 0 #3f3f3f);
 }
 
 .intro-comet-fire::after {
   position: absolute;
-  inset: -18px -36px -18px 0;
+  inset: -24px -62px -24px 4px;
   content: '';
-  background: repeating-linear-gradient(90deg, #fff 0 2px, transparent 2px 10px);
-  clip-path: polygon(0 38%, 100% 0, 75% 50%, 100% 100%, 0 62%);
+  background:
+    linear-gradient(90deg, #fff 0 18%, transparent 18% 25%, #fff 25% 43%, transparent 43% 54%, rgba(255, 255, 255, 0.7) 54% 70%, transparent 70%),
+    repeating-linear-gradient(90deg, #fff 0 3px, transparent 3px 13px);
+  clip-path: polygon(0 40%, 30% 18%, 48% 45%, 73% 0, 100% 50%, 75% 100%, 48% 56%, 27% 78%, 0 62%);
+  opacity: 0.42;
+}
+
+.intro-comet-fire-echo {
+  background: #fff;
+  opacity: 0.34;
+  mix-blend-mode: screen;
+}
+
+.intro-comet-fire-echo-a {
+  inset: 10px -22px -7px 28px;
+  clip-path: polygon(0 45%, 15% 27%, 33% 46%, 50% 18%, 70% 39%, 100% 0, 82% 50%, 100% 100%, 70% 63%, 52% 88%, 31% 57%, 14% 75%, 0 60%);
+}
+
+.intro-comet-fire-echo-b {
+  inset: -12px -48px 11px 68px;
+  clip-path: polygon(0 36%, 24% 11%, 42% 44%, 63% 4%, 100% 30%, 82% 52%, 100% 83%, 62% 61%, 42% 98%, 22% 59%, 0 70%);
   opacity: 0.22;
+}
+
+.intro-comet-tail-lines {
+  position: absolute;
+  inset: -24px -104px -24px 44px;
+  background:
+    linear-gradient(90deg, transparent 0 10%, #fff 10% 12%, transparent 12% 27%, #fff 27% 28.2%, transparent 28.2% 44%, #fff 44% 45.5%, transparent 45.5%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.62) 0 3px, transparent 3px 18px);
+  clip-path: polygon(0 36%, 100% 0, 86% 31%, 100% 50%, 84% 67%, 100% 100%, 0 66%);
+  opacity: 0.58;
+  transform: skewX(-14deg);
+}
+
+.intro-comet-sparks {
+  position: absolute;
+  inset: -24px -76px -24px 34px;
+  pointer-events: none;
+}
+
+.intro-comet-sparks span {
+  position: absolute;
+  display: block;
+  width: clamp(5px, 0.55vw, 9px);
+  height: clamp(5px, 0.55vw, 9px);
+  background: #fff;
+  box-shadow: 4px 4px 0 #000;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  animation: introCometSparkRip 0.28s steps(2, end) infinite;
+}
+
+.intro-comet-sparks span:nth-child(1) {
+  top: 6%;
+  left: 27%;
+}
+
+.intro-comet-sparks span:nth-child(2) {
+  top: 68%;
+  left: 39%;
+  animation-delay: -0.08s;
+}
+
+.intro-comet-sparks span:nth-child(3) {
+  top: 22%;
+  left: 57%;
+  animation-delay: -0.16s;
+}
+
+.intro-comet-sparks span:nth-child(4) {
+  top: 78%;
+  left: 72%;
+  animation-delay: -0.22s;
+}
+
+.intro-comet-sparks span:nth-child(5) {
+  top: 42%;
+  left: 86%;
+  animation-delay: -0.12s;
 }
 
 .intro-comet-compression {
