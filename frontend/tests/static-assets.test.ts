@@ -7,9 +7,11 @@ describe('static assets', () => {
   it('uses the 宇 mark as the site favicon', () => {
     const indexHtml = readFileSync(join(process.cwd(), 'index.html'), 'utf8')
 
-    expect(indexHtml).toContain('rel="icon" type="image/png" href="/favicon.png"')
+    expect(indexHtml).toContain('rel="icon" href="/favicon.ico" sizes="any"')
+    expect(indexHtml).toContain('rel="icon" type="image/png" sizes="512x512" href="/favicon.png"')
     expect(indexHtml).toContain('rel="apple-touch-icon" href="/favicon.png"')
     expect(indexHtml).not.toMatch(/href="\/favicon\.svg"/)
+    expect(existsSync(join(process.cwd(), 'public/favicon.ico'))).toBe(true)
     expect(existsSync(join(process.cwd(), 'public/favicon.png'))).toBe(true)
     expect(existsSync(join(process.cwd(), 'public/favicon.svg'))).toBe(false)
   })
