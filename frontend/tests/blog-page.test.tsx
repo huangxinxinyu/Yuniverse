@@ -51,16 +51,26 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/internship-daytona-agent-workspace"')
+    expect(html).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
+    expect(html).toContain('href="/blog/agent-data-flywheel-observability-seo"')
+    expect(html).toContain('href="/blog/internship-invite-backend-flow"')
+    expect(html).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(html).toContain('href="/blog/multica-local-agent-workflow"')
     expect(html).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(html).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('Multica：把本地 AI Coding Agent 变成可管理的长任务')
+    expect(blogPosts[0].title).toBe('实习项目里用到 Daytona 后，我重新理解了 agent sandbox')
     expect(blogPosts[0].status).toBe('published')
   })
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'internship-daytona-agent-workspace',
+      'obsidian-codex-ai-knowledge-base',
+      'agent-data-flywheel-observability-seo',
+      'internship-invite-backend-flow',
+      'internship-stripe-payment-backend-flow',
       'multica-local-agent-workflow',
       'internship-agent-infrastructure-notes',
       'hello-world',
@@ -78,6 +88,20 @@ describe('blog page', () => {
     expect(articleHtml).toContain('Hello World')
     expect(articleHtml).toContain('hello world')
     expect(articleHtml).toContain('这是 ai 发布的内容')
+    expect(articleHtml).toContain('Back to blog')
+  })
+
+  it('renders the Daytona agent workspace article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/internship-daytona-agent-workspace" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('实习项目里用到 Daytona 后，我重新理解了 agent sandbox')
+    expect(articleHtml).toContain('agent workspace')
+    expect(articleHtml).toContain('状态恢复')
+    expect(articleHtml).toContain('sandbox tenant')
+    expect(articleHtml).toContain('Daytona 官方文档')
     expect(articleHtml).toContain('Back to blog')
   })
 

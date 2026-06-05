@@ -23,6 +23,11 @@ describe('site content model', () => {
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'internship-daytona-agent-workspace',
+      'obsidian-codex-ai-knowledge-base',
+      'agent-data-flywheel-observability-seo',
+      'internship-invite-backend-flow',
+      'internship-stripe-payment-backend-flow',
       'multica-local-agent-workflow',
       'internship-agent-infrastructure-notes',
       'hello-world',
@@ -111,7 +116,7 @@ describe('site content model', () => {
   it('uses the concise music taste line for the music collection', () => {
     const musicCollection = collections.find((collection) => collection.id === 'music')
 
-    expect(musicCollection?.intro).toBe('灵魂歌王。')
+    expect(musicCollection?.intro).toBe('我是灵魂歌王。')
   })
 
   it('includes the expanded album picks requested for the music collection', () => {
