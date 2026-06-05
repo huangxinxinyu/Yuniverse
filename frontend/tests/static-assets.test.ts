@@ -56,4 +56,24 @@ describe('static assets', () => {
       expect(sitemapXml).toContain(`<loc>https://www.xinyuhuang.space${path}</loc>`)
     }
   })
+
+  it('adds CDN-friendly cache headers for collection album artwork', () => {
+    const vercelConfig = JSON.parse(
+      readFileSync(join(process.cwd(), 'vercel.json'), 'utf8'),
+    ) as {
+      headers?: {
+        source: string
+        headers: { key: string; value: string }[]
+      }[]
+    }
+
+    const albumHeaders = vercelConfig.headers?.find(
+      (header) => header.source === '/images/albums/(.*)',
+    )
+
+    expect(albumHeaders?.headers).toContainEqual({
+      key: 'Cache-Control',
+      value: 'public, max-age=31536000, immutable',
+    })
+  })
 })

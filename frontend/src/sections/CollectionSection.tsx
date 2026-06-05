@@ -48,7 +48,13 @@ export function CollectionSection() {
               key={item.id}
               title={`${item.title} / ${item.creator}`}
             >
-              <img alt="" className="album-art" src={item.visual} />
+              <img
+                alt=""
+                className="album-art"
+                decoding="async"
+                loading="lazy"
+                src={item.visual}
+              />
             </article>
           ) : activeCollection.id === 'movies' ? (
             <article
@@ -57,7 +63,13 @@ export function CollectionSection() {
               key={item.id}
               title={`${item.title} / ${item.creator}`}
             >
-              <img alt="" className="movie-poster" src={item.visual} />
+              <img
+                alt=""
+                className="movie-poster"
+                decoding="async"
+                loading="lazy"
+                src={item.visual}
+              />
             </article>
           ) : (
             <article className="project-card collection-card" key={item.title}>

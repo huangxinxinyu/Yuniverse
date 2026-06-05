@@ -134,7 +134,13 @@ export function CollectionPage() {
                   key={item.id}
                   title={`${item.title} / ${item.creator}`}
                 >
-                  <img alt="" className="album-art" src={item.visual} />
+                  <img
+                    alt=""
+                    className="album-art"
+                    decoding="async"
+                    loading="lazy"
+                    src={item.visual}
+                  />
                 </article>
               ) : collection.id === 'movies' ? (
                 <article
@@ -143,7 +149,13 @@ export function CollectionPage() {
                   key={item.id}
                   title={`${item.title} / ${item.creator}`}
                 >
-                  <img alt="" className="movie-poster" src={item.visual} />
+                  <img
+                    alt=""
+                    className="movie-poster"
+                    decoding="async"
+                    loading="lazy"
+                    src={item.visual}
+                  />
                 </article>
               ) : (
                 <article className="mini-card" key={item.id}>
