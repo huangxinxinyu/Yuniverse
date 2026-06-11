@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Blog to Frontend"
+  short_description: "Draft, review, publish blog posts"
+  default_prompt: "Use $write-blog-to-frontend when I say 写博客 so we can draft, review, update the frontend, and push."
