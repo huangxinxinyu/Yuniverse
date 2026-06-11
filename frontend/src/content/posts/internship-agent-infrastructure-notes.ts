@@ -18,7 +18,7 @@ export const internshipAgentInfrastructureNotes = {
   aiDisclosure: '本文由 AI 协助整理表达，内容来自个人实习记录。',
   readingMinutes: 3,
   category: 'software',
-  series: 'internship-notes',
+  topic: 'internship-summary',
   tags: ['实习记录', 'Agent', 'Vibe Coding'],
   status: 'published',
 } satisfies BlogPost

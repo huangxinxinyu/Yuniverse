@@ -62,7 +62,7 @@ export const internshipStripePaymentBackendFlow = {
   aiDisclosure: '本文由 AI 协助整理表达，内容来自个人实习中的代码阅读和技术总结。',
   readingMinutes: 7,
   category: 'software',
-  series: 'backend-flow',
+  topic: 'internship-summary',
   tags: ['实习总结', 'Stripe', '支付系统', '后端'],
   status: 'published',
 } satisfies BlogPost

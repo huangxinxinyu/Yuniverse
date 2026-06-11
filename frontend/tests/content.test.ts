@@ -5,6 +5,7 @@ import {
   aboutPageContent,
   blogPosts,
   blogSeries,
+  blogTopics,
   collections,
   navigationItems,
   siteSections,
@@ -50,14 +51,31 @@ describe('site content model', () => {
     )
   })
 
-  it('groups recurring blog themes into series', () => {
+  it('groups software writing into focused topics and scoped series', () => {
+    expect(blogTopics.map((topic) => topic.id)).toEqual([
+      'all',
+      'internship-summary',
+      'agent-architecture',
+      'ai-tools',
+    ])
+
     expect(blogSeries.map((series) => series.id)).toEqual([
       'all',
       'codex-legendary-driver',
-      'internship-notes',
-      'backend-flow',
-      'agent-infrastructure',
-      'knowledge-workflow',
+    ])
+
+    expect(blogSeries.find((series) => series.id === 'codex-legendary-driver')?.topic)
+      .toBe('ai-tools')
+
+    expect(
+      blogPosts
+        .filter((post) => post.topic === 'ai-tools')
+        .map((post) => post.slug),
+    ).toEqual([
+      'codex-legendary-driver-context-noise',
+      'codex-legendary-driver-skill-workflows',
+      'obsidian-codex-ai-knowledge-base',
+      'multica-local-agent-workflow',
     ])
 
     expect(
@@ -71,11 +89,21 @@ describe('site content model', () => {
 
     expect(
       blogPosts
-        .filter((post) => post.series === 'backend-flow')
+        .filter((post) => post.topic === 'internship-summary')
         .map((post) => post.slug),
     ).toEqual([
+      'internship-daytona-agent-workspace',
       'internship-invite-backend-flow',
       'internship-stripe-payment-backend-flow',
+      'internship-agent-infrastructure-notes',
+    ])
+
+    expect(
+      blogPosts
+        .filter((post) => post.topic === 'agent-architecture')
+        .map((post) => post.slug),
+    ).toEqual([
+      'agent-data-flywheel-observability-seo',
     ])
   })
 

@@ -35,6 +35,7 @@ export const codexLegendaryDriverSkillWorkflows = {
   aiDisclosure: '本文由 AI 协助整理表达，内容来自个人使用 Codex 的经验。',
   readingMinutes: 4,
   category: 'software',
+  topic: 'ai-tools',
   series: 'codex-legendary-driver',
   tags: ['Codex', 'Skill', 'AI Coding', 'Workflow'],
   status: 'published',

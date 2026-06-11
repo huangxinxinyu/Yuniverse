@@ -5,7 +5,7 @@ import { BlogPage } from '../src/pages/BlogPage'
 import {
   blogCategories,
   blogPosts,
-  blogSeries,
+  blogTopics,
   siteSections,
 } from '../src/content/siteContent'
 
@@ -46,17 +46,38 @@ describe('blog page', () => {
     expect(html).toContain('data-featured="true"')
   })
 
-  it('shows series filters for more focused blog navigation', () => {
-    expect(html).toContain('aria-label="Blog series"')
+  it('shows software topics under the software category', () => {
+    const softwareHtml = renderToStaticMarkup(<BlogPage initialFilter="software" />)
 
-    for (const series of blogSeries) {
-      expect(html).toContain(`data-series="${series.id}"`)
-      expect(html).toContain(series.label)
+    expect(html).not.toContain('data-category="systems"')
+    expect(softwareHtml).toContain('aria-label="Blog topics"')
+
+    for (const topic of blogTopics) {
+      expect(softwareHtml).toContain(`data-topic="${topic.id}"`)
+      expect(softwareHtml).toContain(topic.label)
     }
 
-    expect(html).toContain('Codex 传奇驾驶员')
-    expect(html).toContain('后端链路复盘')
-    expect(html).toContain('Agent Infrastructure')
+    expect(softwareHtml).toContain('实习总结')
+    expect(softwareHtml).toContain('Agent 架构分享')
+    expect(softwareHtml).toContain('AI 工具分享')
+    expect(softwareHtml).not.toContain('aria-label="Blog series"')
+  })
+
+  it('shows series only for the active software topic when that topic has series', () => {
+    const aiToolsHtml = renderToStaticMarkup(
+      <BlogPage initialFilter="software" initialTopic="ai-tools" />,
+    )
+    const internshipHtml = renderToStaticMarkup(
+      <BlogPage initialFilter="software" initialTopic="internship-summary" />,
+    )
+
+    expect(aiToolsHtml).toContain('aria-label="Blog series"')
+    expect(aiToolsHtml).toContain('data-series="codex-legendary-driver"')
+    expect(aiToolsHtml).toContain('Codex 传奇驾驶员')
+    expect(aiToolsHtml).not.toContain('data-series="agent-infrastructure"')
+    expect(aiToolsHtml).not.toContain('data-series="backend-flow"')
+
+    expect(internshipHtml).not.toContain('aria-label="Blog series"')
   })
 
   it('does not expose draft, planned, or published status filters to readers', () => {
@@ -122,7 +143,11 @@ describe('blog page', () => {
 
   it('filters the blog index by series', () => {
     const codexSeriesHtml = renderToStaticMarkup(
-      <BlogPage initialSeries="codex-legendary-driver" />,
+      <BlogPage
+        initialFilter="software"
+        initialTopic="ai-tools"
+        initialSeries="codex-legendary-driver"
+      />,
     )
 
     expect(codexSeriesHtml).toContain('Codex 传奇驾驶员')

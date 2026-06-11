@@ -43,13 +43,9 @@ export type BlogPost = {
   content: readonly string[]
   aiDisclosure?: string
   readingMinutes: number
-  category: 'software' | 'systems' | 'life' | 'taste' | 'notes'
-  series?:
-    | 'codex-legendary-driver'
-    | 'internship-notes'
-    | 'backend-flow'
-    | 'agent-infrastructure'
-    | 'knowledge-workflow'
+  category: 'software' | 'life' | 'taste' | 'notes'
+  topic?: 'internship-summary' | 'agent-architecture' | 'ai-tools'
+  series?: 'codex-legendary-driver'
   featured?: boolean
   tags: readonly string[]
   status: 'draft' | 'planned' | 'published'

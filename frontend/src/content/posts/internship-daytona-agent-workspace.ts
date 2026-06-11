@@ -50,7 +50,7 @@ export const internshipDaytonaAgentWorkspace = {
   aiDisclosure: '本文由 AI 协助整理表达，内容来自个人实习项目经验和 Daytona 官方文档核对。',
   readingMinutes: 6,
   category: 'software',
-  series: 'internship-notes',
+  topic: 'internship-summary',
   featured: true,
   tags: ['实习记录', 'Daytona', 'Agent', 'Sandbox'],
   status: 'published',

@@ -77,10 +77,19 @@ export type LifeEvent = BaseLifeEvent & {
 
 export type BlogPost = BaseBlogPost & {
   categoryLabel: string
+  topicLabel?: string
   seriesLabel?: string
   readingTime: string
   topics: readonly string[]
   href: `/blog/${string}`
+}
+
+export type BlogTopicId = 'all' | NonNullable<BaseBlogPost['topic']>
+
+export type BlogTopic = {
+  id: BlogTopicId
+  label: string
+  description: string
 }
 
 export type BlogSeriesId = 'all' | NonNullable<BaseBlogPost['series']>
@@ -89,13 +98,13 @@ export type BlogSeries = {
   id: BlogSeriesId
   label: string
   description: string
+  topic?: NonNullable<BaseBlogPost['topic']>
 }
 
 export type BlogCategoryId =
   | 'featured'
   | 'all'
   | 'software'
-  | 'systems'
   | 'life'
   | 'taste'
   | 'notes'
@@ -256,23 +265,25 @@ const timelineEvents = mapNonEmpty(lifeEvents, (event) => ({
 
 const blogCategoryLabels: Record<BaseBlogPost['category'], string> = {
   software: 'Software',
-  systems: 'Systems',
   life: 'Life',
   taste: 'Taste',
   notes: 'Notes',
 }
 
+const blogTopicLabels: Record<NonNullable<BaseBlogPost['topic']>, string> = {
+  'internship-summary': '实习总结',
+  'agent-architecture': 'Agent 架构分享',
+  'ai-tools': 'AI 工具分享',
+}
+
 const blogSeriesLabels: Record<NonNullable<BaseBlogPost['series']>, string> = {
   'codex-legendary-driver': 'Codex 传奇驾驶员',
-  'internship-notes': '实习记录',
-  'backend-flow': '后端链路复盘',
-  'agent-infrastructure': 'Agent Infrastructure',
-  'knowledge-workflow': '知识工作流',
 }
 
 const posts = mapNonEmpty(baseBlogPosts, (post) => ({
   ...post,
   categoryLabel: blogCategoryLabels[post.category],
+  topicLabel: post.topic ? blogTopicLabels[post.topic] : undefined,
   seriesLabel: post.series ? blogSeriesLabels[post.series] : undefined,
   readingTime: `${post.readingMinutes} min read`,
   topics: post.tags,
@@ -508,12 +519,7 @@ export const blogCategories: readonly [BlogCategory, ...BlogCategory[]] = [
   {
     id: 'software',
     label: 'Software',
-    description: 'Implementation notes, interface decisions, and build logs.',
-  },
-  {
-    id: 'systems',
-    label: 'Systems',
-    description: 'Personal operating loops, rituals, and durable structures.',
+    description: 'Software writing, including internship notes, agent architecture, and AI tools.',
   },
   {
     id: 'life',
@@ -537,36 +543,40 @@ export const blogCategories: readonly [BlogCategory, ...BlogCategory[]] = [
   },
 ]
 
+export const blogTopics: readonly [BlogTopic, ...BlogTopic[]] = [
+  {
+    id: 'all',
+    label: 'All software',
+    description: 'All software writing in the current blog index.',
+  },
+  {
+    id: 'internship-summary',
+    label: '实习总结',
+    description: 'Internship writeups, backend flow notes, and project learning.',
+  },
+  {
+    id: 'agent-architecture',
+    label: 'Agent 架构分享',
+    description: 'Agent architecture, observability, infrastructure, and system design notes.',
+  },
+  {
+    id: 'ai-tools',
+    label: 'AI 工具分享',
+    description: 'AI tools, Codex usage, local workflows, and reusable working patterns.',
+  },
+]
+
 export const blogSeries: readonly [BlogSeries, ...BlogSeries[]] = [
   {
     id: 'all',
-    label: 'All series',
-    description: 'All writing series and standalone posts.',
+    label: 'All AI tools',
+    description: 'All AI tools posts in this topic.',
   },
   {
     id: 'codex-legendary-driver',
     label: 'Codex 传奇驾驶员',
     description: 'Codex usage notes, driving patterns, and context discipline.',
-  },
-  {
-    id: 'internship-notes',
-    label: '实习记录',
-    description: 'Internship notes from agent infrastructure and sandbox work.',
-  },
-  {
-    id: 'backend-flow',
-    label: '后端链路复盘',
-    description: 'Backend flow notes for payments, invite systems, and growth logic.',
-  },
-  {
-    id: 'agent-infrastructure',
-    label: 'Agent Infrastructure',
-    description: 'Agent systems, observability, sandbox, and local workflow notes.',
-  },
-  {
-    id: 'knowledge-workflow',
-    label: '知识工作流',
-    description: 'Personal knowledge systems and AI-assisted writing workflows.',
+    topic: 'ai-tools',
   },
 ]
 

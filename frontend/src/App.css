@@ -1100,6 +1100,7 @@ h3 {
   margin-top: clamp(30px, 4vw, 46px);
 }
 
+.topic-filter-row,
 .series-filter-row {
   margin-top: 12px;
 }

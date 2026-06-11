@@ -56,7 +56,7 @@ export const agentDataFlywheelObservabilitySeo = {
   aiDisclosure: '本文由 AI 协助整理表达，内容来自个人实习记录和对 Agent 数据飞轮的技术思考。',
   readingMinutes: 5,
   category: 'software',
-  series: 'agent-infrastructure',
+  topic: 'agent-architecture',
   tags: ['Agent', '数据飞轮', '可观测性', 'SEO', 'LLMOps'],
   status: 'published',
 } satisfies BlogPost
