@@ -2,7 +2,12 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import App from '../src/App'
 import { BlogPage } from '../src/pages/BlogPage'
-import { blogCategories, blogPosts, siteSections } from '../src/content/siteContent'
+import {
+  blogCategories,
+  blogPosts,
+  blogSeries,
+  siteSections,
+} from '../src/content/siteContent'
 
 describe('blog page', () => {
   const html = renderToStaticMarkup(<BlogPage />)
@@ -39,6 +44,19 @@ describe('blog page', () => {
 
     expect(html).toContain('aria-labelledby="featured-post-title"')
     expect(html).toContain('data-featured="true"')
+  })
+
+  it('shows series filters for more focused blog navigation', () => {
+    expect(html).toContain('aria-label="Blog series"')
+
+    for (const series of blogSeries) {
+      expect(html).toContain(`data-series="${series.id}"`)
+      expect(html).toContain(series.label)
+    }
+
+    expect(html).toContain('Codex 传奇驾驶员')
+    expect(html).toContain('后端链路复盘')
+    expect(html).toContain('Agent Infrastructure')
   })
 
   it('does not expose draft, planned, or published status filters to readers', () => {
@@ -100,6 +118,18 @@ describe('blog page', () => {
 
     expect(notesHtml).not.toContain('aria-label="Blog pagination"')
     expect(notesHtml).toContain('Hello World')
+  })
+
+  it('filters the blog index by series', () => {
+    const codexSeriesHtml = renderToStaticMarkup(
+      <BlogPage initialSeries="codex-legendary-driver" />,
+    )
+
+    expect(codexSeriesHtml).toContain('Codex 传奇驾驶员')
+    expect(codexSeriesHtml).toContain('Codex 传奇驾驶员 02：减少噪音，别把上下文当垃圾桶')
+    expect(codexSeriesHtml).toContain('Codex 传奇驾驶员 01：Skill 是把好用的工作流复用起来')
+    expect(codexSeriesHtml).not.toContain('实习项目里用到 Daytona 后，我重新理解了 agent sandbox')
+    expect(codexSeriesHtml).not.toContain('aria-label="Blog pagination"')
   })
 
   it('keeps the published blog articles in blog data', () => {

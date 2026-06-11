@@ -70,6 +70,7 @@ export const obsidianCodexAiKnowledgeBase = {
   aiDisclosure: '本文由 AI 协助整理表达，内容来自个人使用 Obsidian、Codex 和 AI Agent 的实践记录。',
   readingMinutes: 5,
   category: 'software',
+  series: 'knowledge-workflow',
   tags: ['Obsidian', 'Codex', 'AI', '知识库', '个人知识管理'],
   status: 'published',
 } satisfies BlogPost

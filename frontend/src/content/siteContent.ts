@@ -77,9 +77,18 @@ export type LifeEvent = BaseLifeEvent & {
 
 export type BlogPost = BaseBlogPost & {
   categoryLabel: string
+  seriesLabel?: string
   readingTime: string
   topics: readonly string[]
   href: `/blog/${string}`
+}
+
+export type BlogSeriesId = 'all' | NonNullable<BaseBlogPost['series']>
+
+export type BlogSeries = {
+  id: BlogSeriesId
+  label: string
+  description: string
 }
 
 export type BlogCategoryId =
@@ -253,9 +262,18 @@ const blogCategoryLabels: Record<BaseBlogPost['category'], string> = {
   notes: 'Notes',
 }
 
+const blogSeriesLabels: Record<NonNullable<BaseBlogPost['series']>, string> = {
+  'codex-legendary-driver': 'Codex 传奇驾驶员',
+  'internship-notes': '实习记录',
+  'backend-flow': '后端链路复盘',
+  'agent-infrastructure': 'Agent Infrastructure',
+  'knowledge-workflow': '知识工作流',
+}
+
 const posts = mapNonEmpty(baseBlogPosts, (post) => ({
   ...post,
   categoryLabel: blogCategoryLabels[post.category],
+  seriesLabel: post.series ? blogSeriesLabels[post.series] : undefined,
   readingTime: `${post.readingMinutes} min read`,
   topics: post.tags,
   href: `/blog/${post.slug}` as const,
@@ -516,6 +534,39 @@ export const blogCategories: readonly [BlogCategory, ...BlogCategory[]] = [
     id: 'future',
     label: 'Future',
     description: 'A category for writing ideas that are still being shaped.',
+  },
+]
+
+export const blogSeries: readonly [BlogSeries, ...BlogSeries[]] = [
+  {
+    id: 'all',
+    label: 'All series',
+    description: 'All writing series and standalone posts.',
+  },
+  {
+    id: 'codex-legendary-driver',
+    label: 'Codex 传奇驾驶员',
+    description: 'Codex usage notes, driving patterns, and context discipline.',
+  },
+  {
+    id: 'internship-notes',
+    label: '实习记录',
+    description: 'Internship notes from agent infrastructure and sandbox work.',
+  },
+  {
+    id: 'backend-flow',
+    label: '后端链路复盘',
+    description: 'Backend flow notes for payments, invite systems, and growth logic.',
+  },
+  {
+    id: 'agent-infrastructure',
+    label: 'Agent Infrastructure',
+    description: 'Agent systems, observability, sandbox, and local workflow notes.',
+  },
+  {
+    id: 'knowledge-workflow',
+    label: '知识工作流',
+    description: 'Personal knowledge systems and AI-assisted writing workflows.',
   },
 ]
 

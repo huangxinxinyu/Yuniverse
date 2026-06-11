@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import {
   aboutPageContent,
   blogPosts,
+  blogSeries,
   collections,
   navigationItems,
   siteSections,
@@ -47,6 +48,35 @@ describe('site content model', () => {
         .map((post) => `${post.slug}.ts`)
         .sort(),
     )
+  })
+
+  it('groups recurring blog themes into series', () => {
+    expect(blogSeries.map((series) => series.id)).toEqual([
+      'all',
+      'codex-legendary-driver',
+      'internship-notes',
+      'backend-flow',
+      'agent-infrastructure',
+      'knowledge-workflow',
+    ])
+
+    expect(
+      blogPosts
+        .filter((post) => post.series === 'codex-legendary-driver')
+        .map((post) => post.slug),
+    ).toEqual([
+      'codex-legendary-driver-context-noise',
+      'codex-legendary-driver-skill-workflows',
+    ])
+
+    expect(
+      blogPosts
+        .filter((post) => post.series === 'backend-flow')
+        .map((post) => post.slug),
+    ).toEqual([
+      'internship-invite-backend-flow',
+      'internship-stripe-payment-backend-flow',
+    ])
   })
 
   it('groups collection entries into the expected tabs', () => {

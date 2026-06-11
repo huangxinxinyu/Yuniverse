@@ -385,7 +385,6 @@ h3 {
 .about-panel p,
 .featured-post p,
 .empty-state p,
-.blog-filter-summary p,
 .collection-panel > p,
 .mini-card p,
 .timeline p,
@@ -542,7 +541,6 @@ h3 {
 .about-panel p,
 .featured-post p,
 .empty-state p,
-.blog-filter-summary p,
 .collection-panel > p,
 .mini-card p,
 .timeline p,
@@ -618,7 +616,6 @@ h3 {
 .about-notice,
 .featured-post,
 .empty-state,
-.blog-filter-summary,
 .detail-panel {
   display: grid;
   gap: 8px;
@@ -1103,6 +1100,10 @@ h3 {
   margin-top: clamp(30px, 4vw, 46px);
 }
 
+.series-filter-row {
+  margin-top: 12px;
+}
+
 .filter-button,
 .tab-button {
   position: relative;
@@ -1165,7 +1166,6 @@ h3 {
   font-weight: 500;
 }
 
-.blog-filter-summary,
 .empty-state {
   margin-top: 30px;
 }

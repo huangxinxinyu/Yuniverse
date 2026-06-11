@@ -32,6 +32,7 @@ export const multicaLocalAgentWorkflow = {
   aiDisclosure: '本文由 AI 协助整理表达，内容来自个人使用体验和 Multica 官方文档。',
   readingMinutes: 4,
   category: 'software',
+  series: 'agent-infrastructure',
   featured: true,
   tags: ['Multica', 'Agent', 'Vibe Coding', 'WSL'],
   status: 'published',

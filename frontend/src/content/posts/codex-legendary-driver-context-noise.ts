@@ -72,6 +72,7 @@ export const codexLegendaryDriverContextNoise = {
     '本文由 AI 协助整理表达，内容来自个人使用 Codex 和阅读主流 agent 工程资料后的总结。',
   readingMinutes: 6,
   category: 'software',
+  series: 'codex-legendary-driver',
   tags: ['Codex', 'Context Engineering', 'Agent', 'AI Coding'],
   status: 'published',
 } satisfies BlogPost

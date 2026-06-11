@@ -1,12 +1,15 @@
 import { useState, type MouseEvent } from 'react'
 import {
   blogCategories,
+  blogSeries,
   siteSections,
   type BlogCategoryId,
+  type BlogSeriesId,
 } from '../content/siteContent'
 
 type BlogPageProps = {
   initialFilter?: BlogCategoryId
+  initialSeries?: BlogSeriesId
   initialPage?: number
 }
 
@@ -14,12 +17,14 @@ const postsPerPage = 6
 
 export function BlogPage({
   initialFilter = 'all',
+  initialSeries = 'all',
   initialPage = 1,
 }: BlogPageProps = {}) {
   const section = siteSections.blog
   const [activeFilter, setActiveFilter] = useState<BlogCategoryId>(initialFilter)
+  const [activeSeries, setActiveSeries] = useState<BlogSeriesId>(initialSeries)
   const [activePage, setActivePage] = useState(() => Math.max(1, initialPage))
-  const visiblePosts =
+  const categoryPosts =
     activeFilter === 'featured'
       ? [section.featuredPost]
       : activeFilter === 'all'
@@ -27,6 +32,10 @@ export function BlogPage({
         : activeFilter === 'future'
           ? []
           : section.posts.filter((post) => post.category === activeFilter)
+  const visiblePosts =
+    activeSeries === 'all'
+      ? categoryPosts
+      : categoryPosts.filter((post) => post.series === activeSeries)
   const pageCount = Math.max(1, Math.ceil(visiblePosts.length / postsPerPage))
   const currentPage = Math.min(activePage, pageCount)
   const paginatedPosts = visiblePosts.slice(
@@ -34,11 +43,13 @@ export function BlogPage({
     currentPage * postsPerPage,
   )
   const showPagination = visiblePosts.length > postsPerPage
-  const activeCategory =
-    blogCategories.find((category) => category.id === activeFilter) ??
-    blogCategories[0]
+  const highlightedPost = visiblePosts[0] ?? section.featuredPost
   const handleFilterClick = (categoryId: BlogCategoryId) => {
     setActiveFilter(categoryId)
+    setActivePage(1)
+  }
+  const handleSeriesClick = (seriesId: BlogSeriesId) => {
+    setActiveSeries(seriesId)
     setActivePage(1)
   }
   const handlePageClick = (page: number) => {
@@ -81,11 +92,11 @@ export function BlogPage({
           data-featured="true"
         >
           <span className="panel-label">Featured post</span>
-          <h3 id="featured-post-title">{section.featuredPost.title}</h3>
-          <p>{section.featuredPost.excerpt}</p>
+          <h3 id="featured-post-title">{highlightedPost.title}</h3>
+          <p>{highlightedPost.excerpt}</p>
           <div className="post-footer">
-            <span>{`${section.featuredPost.date} / ${section.featuredPost.readingTime}`}</span>
-            <strong>{section.featuredPost.categoryLabel}</strong>
+            <span>{`${highlightedPost.date} / ${highlightedPost.readingTime}`}</span>
+            <strong>{highlightedPost.seriesLabel ?? highlightedPost.categoryLabel}</strong>
           </div>
         </aside>
       </div>
@@ -106,9 +117,19 @@ export function BlogPage({
         ))}
       </div>
 
-      <div className="blog-filter-summary">
-        <span className="panel-label">{activeCategory.label}</span>
-        <p>{activeCategory.description}</p>
+      <div className="filter-bar filter-row series-filter-row" aria-label="Blog series">
+        {blogSeries.map((series) => (
+          <button
+            aria-pressed={series.id === activeSeries}
+            className="filter-button"
+            data-series={series.id}
+            key={series.id}
+            onClick={() => handleSeriesClick(series.id)}
+            type="button"
+          >
+            {series.label}
+          </button>
+        ))}
       </div>
 
       {paginatedPosts.length > 0 ? (
@@ -118,7 +139,7 @@ export function BlogPage({
               <article className="mini-card post-card" key={post.slug}>
                 <div className="post-card-meta">
                   <span>{post.date}</span>
-                  <strong>{post.categoryLabel}</strong>
+                  <strong>{post.seriesLabel ?? post.categoryLabel}</strong>
                 </div>
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>
