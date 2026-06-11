@@ -58,17 +58,18 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(html).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(html).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(html).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(html).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(html).toContain('href="/blog/internship-invite-backend-flow"')
-    expect(html).toContain('href="/blog/internship-stripe-payment-backend-flow"')
+    expect(pageTwoHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/multica-local-agent-workflow"')
     expect(pageTwoHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageTwoHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('Codex 传奇驾驶员 01：Skill 是把好用的工作流复用起来')
+    expect(blogPosts[0].title).toBe('Codex 传奇驾驶员 02：减少噪音，别把上下文当垃圾桶')
     expect(blogPosts[0].status).toBe('published')
   })
 
@@ -103,6 +104,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'codex-legendary-driver-context-noise',
       'codex-legendary-driver-skill-workflows',
       'internship-daytona-agent-workspace',
       'obsidian-codex-ai-knowledge-base',
@@ -117,6 +119,21 @@ describe('blog page', () => {
     expect(html).not.toContain('Software Engineering Notes')
     expect(html).not.toContain('Fitness, Films, and Fun')
     expect(html).not.toContain('Work in Progress')
+  })
+
+  it('renders the Codex context noise article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/codex-legendary-driver-context-noise" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('Codex 传奇驾驶员 02：减少噪音，别把上下文当垃圾桶')
+    expect(articleHtml).toContain('tool search')
+    expect(articleHtml).toContain('55k tokens')
+    expect(articleHtml).toContain('85%')
+    expect(articleHtml).toContain('write、select、compress、isolate')
+    expect(articleHtml).toContain('https://openai.github.io/openai-agents-python/context/')
+    expect(articleHtml).toContain('Back to blog')
   })
 
   it('renders the Codex skill workflows article as a readable page', () => {
