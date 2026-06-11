@@ -1,5 +1,6 @@
 import type { BlogPost } from '../../data/types'
 import { agentDataFlywheelObservabilitySeo } from './agent-data-flywheel-observability-seo'
+import { codexLegendaryDriverSkillWorkflows } from './codex-legendary-driver-skill-workflows'
 import { helloWorld } from './hello-world'
 import { internshipAgentInfrastructureNotes } from './internship-agent-infrastructure-notes'
 import { internshipDaytonaAgentWorkspace } from './internship-daytona-agent-workspace'
@@ -9,6 +10,7 @@ import { multicaLocalAgentWorkflow } from './multica-local-agent-workflow'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  codexLegendaryDriverSkillWorkflows,
   internshipDaytonaAgentWorkspace,
   obsidianCodexAiKnowledgeBase,
   agentDataFlywheelObservabilitySeo,

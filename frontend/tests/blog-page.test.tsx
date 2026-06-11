@@ -51,6 +51,7 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(html).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(html).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(html).toContain('href="/blog/agent-data-flywheel-observability-seo"')
@@ -60,12 +61,13 @@ describe('blog page', () => {
     expect(html).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(html).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('实习项目里用到 Daytona 后，我重新理解了 agent sandbox')
+    expect(blogPosts[0].title).toBe('Codex 传奇驾驶员 01：Skill 是把好用的工作流复用起来')
     expect(blogPosts[0].status).toBe('published')
   })
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'codex-legendary-driver-skill-workflows',
       'internship-daytona-agent-workspace',
       'obsidian-codex-ai-knowledge-base',
       'agent-data-flywheel-observability-seo',
@@ -79,6 +81,22 @@ describe('blog page', () => {
     expect(html).not.toContain('Software Engineering Notes')
     expect(html).not.toContain('Fitness, Films, and Fun')
     expect(html).not.toContain('Work in Progress')
+  })
+
+  it('renders the Codex skill workflows article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/codex-legendary-driver-skill-workflows" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('Codex 传奇驾驶员 01：Skill 是把好用的工作流复用起来')
+    expect(articleHtml).toContain('skill-creator')
+    expect(articleHtml).toContain('brainstorming')
+    expect(articleHtml).toContain('planning-with-files')
+    expect(articleHtml).toContain('grill-me')
+    expect(articleHtml).toContain('Superpower 全家桶')
+    expect(articleHtml).toContain('https://developers.openai.com/codex/skills')
+    expect(articleHtml).toContain('Back to blog')
   })
 
   it('renders the Hello World article as a readable page', () => {
