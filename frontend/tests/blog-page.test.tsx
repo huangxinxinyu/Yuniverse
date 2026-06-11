@@ -6,15 +6,22 @@ import { blogCategories, blogPosts, siteSections } from '../src/content/siteCont
 
 describe('blog page', () => {
   const html = renderToStaticMarkup(<BlogPage />)
+  const pageTwoHtml = renderToStaticMarkup(<BlogPage initialPage={2} />)
+  const firstPagePosts = blogPosts.slice(0, 6)
+  const secondPagePosts = blogPosts.slice(6)
 
   it('renders a dedicated blog index from real planning data', () => {
     expect(html).toContain('data-page="blog"')
     expect(html).toContain('aria-labelledby="blog-title"')
     expect(siteSections.blog.summary.toLowerCase()).not.toContain('mock')
 
-    for (const post of siteSections.blog.posts) {
+    for (const post of firstPagePosts) {
       expect(html).toContain(post.title)
       expect(html).toContain(post.excerpt)
+    }
+
+    for (const post of secondPagePosts) {
+      expect(html).not.toContain(post.title)
     }
   })
 
@@ -24,7 +31,7 @@ describe('blog page', () => {
       expect(html).toContain(category.label)
     }
 
-    for (const post of blogPosts) {
+    for (const post of firstPagePosts) {
       for (const tag of post.tags) {
         expect(html).toContain(tag)
       }
@@ -57,12 +64,41 @@ describe('blog page', () => {
     expect(html).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(html).toContain('href="/blog/internship-invite-backend-flow"')
     expect(html).toContain('href="/blog/internship-stripe-payment-backend-flow"')
-    expect(html).toContain('href="/blog/multica-local-agent-workflow"')
-    expect(html).toContain('href="/blog/internship-agent-infrastructure-notes"')
-    expect(html).toContain('href="/blog/hello-world"')
+    expect(pageTwoHtml).toContain('href="/blog/multica-local-agent-workflow"')
+    expect(pageTwoHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
+    expect(pageTwoHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
     expect(blogPosts[0].title).toBe('Codex 传奇驾驶员 01：Skill 是把好用的工作流复用起来')
     expect(blogPosts[0].status).toBe('published')
+  })
+
+  it('paginates the blog index in groups of six posts', () => {
+    expect(html).toContain('aria-label="Blog pagination"')
+    expect(html).toContain('Page 1 of 2')
+    expect(html).toContain('aria-current="page"')
+    expect(html).toContain('data-page-button="1"')
+    expect(html).toContain('data-page-button="2"')
+    expect(html).toContain('Next')
+    expect(html).not.toContain('Previous')
+
+    for (const post of firstPagePosts) {
+      expect(html).toContain(post.title)
+    }
+
+    for (const post of secondPagePosts) {
+      expect(pageTwoHtml).toContain(post.title)
+    }
+
+    expect(pageTwoHtml).toContain('Page 2 of 2')
+    expect(pageTwoHtml).toContain('Previous')
+    expect(pageTwoHtml).not.toContain('Next')
+  })
+
+  it('hides pagination when the active category fits on one page', () => {
+    const notesHtml = renderToStaticMarkup(<BlogPage initialFilter="notes" />)
+
+    expect(notesHtml).not.toContain('aria-label="Blog pagination"')
+    expect(notesHtml).toContain('Hello World')
   })
 
   it('keeps the published blog articles in blog data', () => {
