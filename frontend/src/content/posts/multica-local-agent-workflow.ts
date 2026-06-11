@@ -33,6 +33,7 @@ export const multicaLocalAgentWorkflow = {
   readingMinutes: 4,
   category: 'software',
   topic: 'ai-tools',
+  series: 'codex-legendary-driver',
   featured: true,
   tags: ['Multica', 'Agent', 'Vibe Coding', 'WSL'],
   status: 'published',

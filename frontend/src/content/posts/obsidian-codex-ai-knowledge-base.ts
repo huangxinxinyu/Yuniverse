@@ -71,6 +71,7 @@ export const obsidianCodexAiKnowledgeBase = {
   readingMinutes: 5,
   category: 'software',
   topic: 'ai-tools',
+  series: 'codex-legendary-driver',
   tags: ['Obsidian', 'Codex', 'AI', '知识库', '个人知识管理'],
   status: 'published',
 } satisfies BlogPost

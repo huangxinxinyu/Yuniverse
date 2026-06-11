@@ -153,6 +153,8 @@ describe('blog page', () => {
     expect(codexSeriesHtml).toContain('Codex 传奇驾驶员')
     expect(codexSeriesHtml).toContain('Codex 传奇驾驶员 02：减少噪音，别把上下文当垃圾桶')
     expect(codexSeriesHtml).toContain('Codex 传奇驾驶员 01：Skill 是把好用的工作流复用起来')
+    expect(codexSeriesHtml).toContain('不要只和 AI 聊天：我是怎么用 Obsidian + Codex 建知识库的')
+    expect(codexSeriesHtml).toContain('Multica：把本地 AI Coding Agent 变成可管理的长任务')
     expect(codexSeriesHtml).not.toContain('实习项目里用到 Daytona 后，我重新理解了 agent sandbox')
     expect(codexSeriesHtml).not.toContain('aria-label="Blog pagination"')
   })

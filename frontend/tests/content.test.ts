@@ -85,6 +85,8 @@ describe('site content model', () => {
     ).toEqual([
       'codex-legendary-driver-context-noise',
       'codex-legendary-driver-skill-workflows',
+      'obsidian-codex-ai-knowledge-base',
+      'multica-local-agent-workflow',
     ])
 
     expect(
