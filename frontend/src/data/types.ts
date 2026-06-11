@@ -45,7 +45,7 @@ export type BlogPost = {
   readingMinutes: number
   category: 'software' | 'life' | 'taste' | 'notes'
   topic?: 'internship-summary' | 'agent-architecture' | 'ai-tools'
-  series?: 'codex-legendary-driver'
+  series?: 'codex-legendary-driver' | 'claude-agent-sdk'
   featured?: boolean
   tags: readonly string[]
   status: 'draft' | 'planned' | 'published'

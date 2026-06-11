@@ -80,6 +80,17 @@ describe('blog page', () => {
     expect(internshipHtml).not.toContain('aria-label="Blog series"')
   })
 
+  it('shows the Claude Agent SDK series under agent architecture', () => {
+    const agentArchitectureHtml = renderToStaticMarkup(
+      <BlogPage initialFilter="software" initialTopic="agent-architecture" />,
+    )
+
+    expect(agentArchitectureHtml).toContain('aria-label="Blog series"')
+    expect(agentArchitectureHtml).toContain('data-series="claude-agent-sdk"')
+    expect(agentArchitectureHtml).toContain('Claude Agent SDK')
+    expect(agentArchitectureHtml).toContain('Claude Agent SDK 01：Trace 不是终点，Eval 才是')
+  })
+
   it('does not expose draft, planned, or published status filters to readers', () => {
     expect(html).not.toContain('aria-label="Blog status filters"')
     expect(html).not.toContain('Drafts')
@@ -97,18 +108,19 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(html).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(html).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(html).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(html).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(html).toContain('href="/blog/agent-data-flywheel-observability-seo"')
-    expect(html).toContain('href="/blog/internship-invite-backend-flow"')
+    expect(pageTwoHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/multica-local-agent-workflow"')
     expect(pageTwoHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageTwoHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('Codex 传奇驾驶员 02：减少噪音，别把上下文当垃圾桶')
+    expect(blogPosts[0].title).toBe('Claude Agent SDK 01：Trace 不是终点，Eval 才是')
     expect(blogPosts[0].status).toBe('published')
   })
 
@@ -161,6 +173,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'claude-agent-sdk-trace-to-eval',
       'codex-legendary-driver-context-noise',
       'codex-legendary-driver-skill-workflows',
       'internship-daytona-agent-workspace',
@@ -190,6 +203,20 @@ describe('blog page', () => {
     expect(articleHtml).toContain('85%')
     expect(articleHtml).toContain('write、select、compress、isolate')
     expect(articleHtml).toContain('https://openai.github.io/openai-agents-python/context/')
+    expect(articleHtml).toContain('Back to blog')
+  })
+
+  it('renders the Claude Agent SDK trace article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/claude-agent-sdk-trace-to-eval" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('Claude Agent SDK 01：Trace 不是终点，Eval 才是')
+    expect(articleHtml).toContain('claude_code.interaction')
+    expect(articleHtml).toContain('线上 trace 发现问题')
+    expect(articleHtml).toContain('OpenTelemetry')
+    expect(articleHtml).toContain('LangSmith Evaluation')
     expect(articleHtml).toContain('Back to blog')
   })
 

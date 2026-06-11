@@ -25,6 +25,7 @@ describe('site content model', () => {
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'claude-agent-sdk-trace-to-eval',
       'codex-legendary-driver-context-noise',
       'codex-legendary-driver-skill-workflows',
       'internship-daytona-agent-workspace',
@@ -62,10 +63,13 @@ describe('site content model', () => {
     expect(blogSeries.map((series) => series.id)).toEqual([
       'all',
       'codex-legendary-driver',
+      'claude-agent-sdk',
     ])
 
     expect(blogSeries.find((series) => series.id === 'codex-legendary-driver')?.topic)
       .toBe('ai-tools')
+    expect(blogSeries.find((series) => series.id === 'claude-agent-sdk')?.topic)
+      .toBe('agent-architecture')
 
     expect(
       blogPosts
@@ -105,8 +109,15 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'agent-architecture')
         .map((post) => post.slug),
     ).toEqual([
+      'claude-agent-sdk-trace-to-eval',
       'agent-data-flywheel-observability-seo',
     ])
+
+    expect(
+      blogPosts
+        .filter((post) => post.series === 'claude-agent-sdk')
+        .map((post) => post.slug),
+    ).toEqual(['claude-agent-sdk-trace-to-eval'])
   })
 
   it('groups collection entries into the expected tabs', () => {
