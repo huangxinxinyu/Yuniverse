@@ -203,7 +203,29 @@ describe('blog page', () => {
     expect(articleHtml).toContain('GitHub Actions 负责 CI 和制品生产')
     expect(articleHtml).toContain('环境变量不是密钥保险箱')
     expect(articleHtml).toContain('Dokploy Applications')
+    expect(articleHtml).toContain(
+      'href="https://docs.dokploy.com/docs/core/applications"',
+    )
+    expect(articleHtml).toContain(
+      'href="https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images"',
+    )
     expect(articleHtml).toContain('Back to blog')
+  })
+
+  it('renders markdown reference links as clickable anchors', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/agent-data-flywheel-observability-seo" />,
+    )
+
+    expect(articleHtml).toContain(
+      'href="https://zylos.ai/research/2026-04-16-ai-agent-data-flywheels-production-feedback-loops"',
+    )
+    expect(articleHtml).toContain(
+      'AI Agent Data Flywheels: Closing the Loop Between Production Deployments and Model Improvement',
+    )
+    expect(articleHtml).not.toContain(
+      '[AI Agent Data Flywheels: Closing the Loop Between Production Deployments and Model Improvement]',
+    )
   })
 
   it('renders the Codex context noise article as a readable page', () => {
