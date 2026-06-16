@@ -25,6 +25,7 @@ describe('site content model', () => {
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'dokploy-lightweight-paas-deployment-tradeoffs',
       'claude-agent-sdk-trace-to-eval',
       'codex-legendary-driver-context-noise',
       'codex-legendary-driver-skill-workflows',

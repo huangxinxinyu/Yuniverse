@@ -108,19 +108,20 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(html).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(html).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(html).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(html).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(html).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
-    expect(html).toContain('href="/blog/agent-data-flywheel-observability-seo"')
+    expect(pageTwoHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageTwoHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/multica-local-agent-workflow"')
     expect(pageTwoHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageTwoHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('Claude Agent SDK 01：Trace 不是终点，Eval 才是')
+    expect(blogPosts[0].title).toBe('Dokploy：实习中接触到的轻量 PaaS 技术选型思路')
     expect(blogPosts[0].status).toBe('published')
   })
 
@@ -173,6 +174,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'dokploy-lightweight-paas-deployment-tradeoffs',
       'claude-agent-sdk-trace-to-eval',
       'codex-legendary-driver-context-noise',
       'codex-legendary-driver-skill-workflows',
@@ -189,6 +191,19 @@ describe('blog page', () => {
     expect(html).not.toContain('Software Engineering Notes')
     expect(html).not.toContain('Fitness, Films, and Fun')
     expect(html).not.toContain('Work in Progress')
+  })
+
+  it('renders the Dokploy deployment selection article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/dokploy-lightweight-paas-deployment-tradeoffs" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('Dokploy：实习中接触到的轻量 PaaS 技术选型思路')
+    expect(articleHtml).toContain('GitHub Actions 负责 CI 和制品生产')
+    expect(articleHtml).toContain('环境变量不是密钥保险箱')
+    expect(articleHtml).toContain('Dokploy Applications')
+    expect(articleHtml).toContain('Back to blog')
   })
 
   it('renders the Codex context noise article as a readable page', () => {

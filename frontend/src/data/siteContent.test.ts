@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { navItems, profile, sectionSummaries } from './siteContent'
+import { blogPosts, navItems, profile, sectionSummaries } from './siteContent'
 
 describe('site content', () => {
   it('keeps navigation targets aligned with visible sections', () => {
@@ -15,5 +15,11 @@ describe('site content', () => {
     expect(profile.displayName).toBe('黄新宇')
     expect(profile.email).toBe('xinyuhimself@gmail.com')
     expect(profile.tagline.toLowerCase()).not.toContain('mock')
+  })
+
+  it('publishes the Dokploy deployment selection post', () => {
+    expect(blogPosts.map((post) => post.slug)).toContain(
+      'dokploy-lightweight-paas-deployment-tradeoffs',
+    )
   })
 })

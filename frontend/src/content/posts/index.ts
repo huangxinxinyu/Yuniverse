@@ -3,6 +3,7 @@ import { agentDataFlywheelObservabilitySeo } from './agent-data-flywheel-observa
 import { claudeAgentSdkTraceToEval } from './claude-agent-sdk-trace-to-eval'
 import { codexLegendaryDriverContextNoise } from './codex-legendary-driver-context-noise'
 import { codexLegendaryDriverSkillWorkflows } from './codex-legendary-driver-skill-workflows'
+import { dokployLightweightPaasDeploymentTradeoffs } from './dokploy-lightweight-paas-deployment-tradeoffs'
 import { helloWorld } from './hello-world'
 import { internshipAgentInfrastructureNotes } from './internship-agent-infrastructure-notes'
 import { internshipDaytonaAgentWorkspace } from './internship-daytona-agent-workspace'
@@ -12,6 +13,7 @@ import { multicaLocalAgentWorkflow } from './multica-local-agent-workflow'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  dokployLightweightPaasDeploymentTradeoffs,
   claudeAgentSdkTraceToEval,
   codexLegendaryDriverContextNoise,
   codexLegendaryDriverSkillWorkflows,
