@@ -28,4 +28,10 @@ describe('site content', () => {
       'internship-agent-memory-governance',
     )
   })
+
+  it('publishes the Codex loop engineering post', () => {
+    expect(blogPosts.map((post) => post.slug)).toContain(
+      'codex-legendary-driver-loop-engineering',
+    )
+  })
 })

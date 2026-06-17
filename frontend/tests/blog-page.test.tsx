@@ -111,17 +111,18 @@ describe('blog page', () => {
 
   it('links the blog index to the readable articles', () => {
     expect(html).toContain('href="/blog/internship-agent-memory-governance"')
+    expect(html).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
     expect(html).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(html).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(html).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(html).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
-    expect(html).toContain('href="/blog/internship-daytona-agent-workspace"')
+    expect(pageTwoHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(pageTwoHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(pageTwoHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageTwoHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/multica-local-agent-workflow"')
-    expect(pageTwoHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
+    expect(pageThreeHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageThreeHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
     expect(blogPosts[0].title).toBe(
@@ -177,6 +178,9 @@ describe('blog page', () => {
     )
 
     expect(codexSeriesHtml).toContain('Codex 传奇驾驶员')
+    expect(codexSeriesHtml).toContain(
+      'Codex 传奇驾驶员 03：Loop Engineering，让 Agent 在无人盯守时工作',
+    )
     expect(codexSeriesHtml).toContain('Codex 传奇驾驶员 02：减少噪音，别把上下文当垃圾桶')
     expect(codexSeriesHtml).toContain('Codex 传奇驾驶员 01：Skill 是把好用的工作流复用起来')
     expect(codexSeriesHtml).toContain('不要只和 AI 聊天：我是怎么用 Obsidian + Codex 建知识库的')
@@ -188,6 +192,7 @@ describe('blog page', () => {
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
       'internship-agent-memory-governance',
+      'codex-legendary-driver-loop-engineering',
       'dokploy-lightweight-paas-deployment-tradeoffs',
       'claude-agent-sdk-trace-to-eval',
       'codex-legendary-driver-context-noise',
