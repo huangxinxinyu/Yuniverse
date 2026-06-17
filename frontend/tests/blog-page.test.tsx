@@ -12,8 +12,10 @@ import {
 describe('blog page', () => {
   const html = renderToStaticMarkup(<BlogPage />)
   const pageTwoHtml = renderToStaticMarkup(<BlogPage initialPage={2} />)
+  const pageThreeHtml = renderToStaticMarkup(<BlogPage initialPage={3} />)
   const firstPagePosts = blogPosts.slice(0, 6)
-  const secondPagePosts = blogPosts.slice(6)
+  const secondPagePosts = blogPosts.slice(6, 12)
+  const thirdPagePosts = blogPosts.slice(12)
 
   it('renders a dedicated blog index from real planning data', () => {
     expect(html).toContain('data-page="blog"')
@@ -108,29 +110,33 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/internship-agent-memory-governance"')
     expect(html).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(html).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(html).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(html).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(html).toContain('href="/blog/internship-daytona-agent-workspace"')
-    expect(html).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
+    expect(pageTwoHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(pageTwoHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageTwoHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageTwoHtml).toContain('href="/blog/multica-local-agent-workflow"')
     expect(pageTwoHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
-    expect(pageTwoHtml).toContain('href="/blog/hello-world"')
+    expect(pageThreeHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('Dokploy：实习中接触到的轻量 PaaS 技术选型思路')
+    expect(blogPosts[0].title).toBe(
+      '实习中设计 memory 板块后，我意识到记忆系统的难点不是“记住更多”',
+    )
     expect(blogPosts[0].status).toBe('published')
   })
 
   it('paginates the blog index in groups of six posts', () => {
     expect(html).toContain('aria-label="Blog pagination"')
-    expect(html).toContain('Page 1 of 2')
+    expect(html).toContain('Page 1 of 3')
     expect(html).toContain('aria-current="page"')
     expect(html).toContain('data-page-button="1"')
     expect(html).toContain('data-page-button="2"')
+    expect(html).toContain('data-page-button="3"')
     expect(html).toContain('Next')
     expect(html).not.toContain('Previous')
 
@@ -142,9 +148,16 @@ describe('blog page', () => {
       expect(pageTwoHtml).toContain(post.title)
     }
 
-    expect(pageTwoHtml).toContain('Page 2 of 2')
+    for (const post of thirdPagePosts) {
+      expect(pageThreeHtml).toContain(post.title)
+    }
+
+    expect(pageTwoHtml).toContain('Page 2 of 3')
     expect(pageTwoHtml).toContain('Previous')
-    expect(pageTwoHtml).not.toContain('Next')
+    expect(pageTwoHtml).toContain('Next')
+    expect(pageThreeHtml).toContain('Page 3 of 3')
+    expect(pageThreeHtml).toContain('Previous')
+    expect(pageThreeHtml).not.toContain('Next')
   })
 
   it('hides pagination when the active category fits on one page', () => {
@@ -174,6 +187,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'internship-agent-memory-governance',
       'dokploy-lightweight-paas-deployment-tradeoffs',
       'claude-agent-sdk-trace-to-eval',
       'codex-legendary-driver-context-noise',

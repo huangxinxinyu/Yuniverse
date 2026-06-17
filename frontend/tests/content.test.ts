@@ -25,6 +25,7 @@ describe('site content model', () => {
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'internship-agent-memory-governance',
       'dokploy-lightweight-paas-deployment-tradeoffs',
       'claude-agent-sdk-trace-to-eval',
       'codex-legendary-driver-context-noise',
@@ -99,6 +100,7 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'internship-summary')
         .map((post) => post.slug),
     ).toEqual([
+      'internship-agent-memory-governance',
       'internship-daytona-agent-workspace',
       'internship-invite-backend-flow',
       'internship-stripe-payment-backend-flow',

@@ -22,4 +22,10 @@ describe('site content', () => {
       'dokploy-lightweight-paas-deployment-tradeoffs',
     )
   })
+
+  it('publishes the agent memory governance internship post', () => {
+    expect(blogPosts.map((post) => post.slug)).toContain(
+      'internship-agent-memory-governance',
+    )
+  })
 })
