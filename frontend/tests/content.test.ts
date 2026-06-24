@@ -25,6 +25,7 @@ describe('site content model', () => {
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'codex-legendary-driver-open-source-skill-set',
       'internship-agent-memory-governance',
       'codex-legendary-driver-loop-engineering',
       'dokploy-lightweight-paas-deployment-tradeoffs',
@@ -79,6 +80,7 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'ai-tools')
         .map((post) => post.slug),
     ).toEqual([
+      'codex-legendary-driver-open-source-skill-set',
       'codex-legendary-driver-loop-engineering',
       'codex-legendary-driver-context-noise',
       'codex-legendary-driver-skill-workflows',
@@ -91,6 +93,7 @@ describe('site content model', () => {
         .filter((post) => post.series === 'codex-legendary-driver')
         .map((post) => post.slug),
     ).toEqual([
+      'codex-legendary-driver-open-source-skill-set',
       'codex-legendary-driver-loop-engineering',
       'codex-legendary-driver-context-noise',
       'codex-legendary-driver-skill-workflows',
