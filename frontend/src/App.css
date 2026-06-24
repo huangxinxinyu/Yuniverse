@@ -1279,6 +1279,14 @@ h3 {
   line-height: 1.85;
 }
 
+.blog-post-body a {
+  color: var(--text-strong);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
 .blog-post-body h3 {
   margin-top: 10px;
   color: var(--text-strong);
@@ -1295,6 +1303,26 @@ h3 {
   margin: 0;
   color: var(--text);
   line-height: 1.8;
+}
+
+.blog-image-block {
+  display: grid;
+  gap: 10px;
+  margin: 6px 0;
+}
+
+.blog-image-block img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.blog-image-block figcaption {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .blog-code-block {

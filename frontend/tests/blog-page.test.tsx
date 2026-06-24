@@ -361,4 +361,19 @@ describe('blog page', () => {
     expect(articleHtml).toContain('multica issue create --title &quot;Build a personal website&quot;')
     expect(articleHtml).toContain('multica issue run-messages')
   })
+
+  it('renders markdown images and source links in blog posts', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/codex-legendary-driver-open-source-skill-set" />,
+    )
+
+    expect(articleHtml).toContain('<h3>Source</h3>')
+    expect(articleHtml).toContain(
+      'href="https://github.com/huangxinxinyu/xinyu-s-skill-set"',
+    )
+    expect(articleHtml).toContain(
+      'src="/images/blog/xinyu-s-skill-set-repo.png"',
+    )
+    expect(articleHtml).toContain('class="blog-image-block"')
+  })
 })

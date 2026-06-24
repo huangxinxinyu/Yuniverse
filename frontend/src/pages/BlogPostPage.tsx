@@ -10,6 +10,7 @@ type BlogPostPageProps = {
 
 const inlineLinkPattern = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s<]+)/g
 const trailingUrlPunctuation = /[.,;!?，。；！？、]+$/
+const markdownImagePattern = /^!\[([^\]]*)\]\(([^)\s]+)\)$/
 
 function renderExternalLink(href: string, label: string, key: string) {
   return (
@@ -71,6 +72,19 @@ function renderContentBlock(block: string) {
       <pre className="blog-code-block" key={block}>
         <code className={`language-${language}`}>{code}</code>
       </pre>
+    )
+  }
+
+  const imageMatch = block.match(markdownImagePattern)
+
+  if (imageMatch) {
+    const [, alt, src] = imageMatch
+
+    return (
+      <figure className="blog-image-block" key={block}>
+        <img alt={alt} loading="lazy" src={src} />
+        {alt ? <figcaption>{alt}</figcaption> : null}
+      </figure>
     )
   }
 
