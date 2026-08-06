@@ -24,3 +24,6 @@ output/
 *.njsproj
 *.sln
 *.sw?
+
+# Local blog planning notes (not published)
+blog-topics/
