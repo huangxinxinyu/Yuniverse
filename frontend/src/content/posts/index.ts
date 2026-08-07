@@ -19,9 +19,11 @@ import { nanoNotebookDevLog03 } from './nano-notebook-dev-log-03'
 import { nanoNotebookDevLog04 } from './nano-notebook-dev-log-04'
 import { nanoNotebookDevLog05 } from './nano-notebook-dev-log-05'
 import { nanoNotebookDevLog06 } from './nano-notebook-dev-log-06'
+import { nanoNotebookDevLog07 } from './nano-notebook-dev-log-07'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  nanoNotebookDevLog07,
   nanoNotebookDevLog06,
   nanoNotebookDevLog05,
   nanoNotebookDevLog04,
