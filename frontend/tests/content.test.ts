@@ -25,6 +25,7 @@ describe('site content model', () => {
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-01',
       'codex-legendary-driver-open-source-skill-set',
       'internship-agent-memory-governance',
       'codex-legendary-driver-loop-engineering',
@@ -68,11 +69,14 @@ describe('site content model', () => {
       'all',
       'codex-legendary-driver',
       'claude-agent-sdk',
+      'nano-notebook-dev-log',
     ])
 
     expect(blogSeries.find((series) => series.id === 'codex-legendary-driver')?.topic)
       .toBe('ai-tools')
     expect(blogSeries.find((series) => series.id === 'claude-agent-sdk')?.topic)
+      .toBe('agent-architecture')
+    expect(blogSeries.find((series) => series.id === 'nano-notebook-dev-log')?.topic)
       .toBe('agent-architecture')
 
     expect(
@@ -118,6 +122,7 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'agent-architecture')
         .map((post) => post.slug),
     ).toEqual([
+      'nano-notebook-dev-log-01',
       'claude-agent-sdk-trace-to-eval',
       'agent-data-flywheel-observability-seo',
     ])
@@ -127,6 +132,12 @@ describe('site content model', () => {
         .filter((post) => post.series === 'claude-agent-sdk')
         .map((post) => post.slug),
     ).toEqual(['claude-agent-sdk-trace-to-eval'])
+
+    expect(
+      blogPosts
+        .filter((post) => post.series === 'nano-notebook-dev-log')
+        .map((post) => post.slug),
+    ).toEqual(['nano-notebook-dev-log-01'])
   })
 
   it('groups collection entries into the expected tabs', () => {

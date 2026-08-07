@@ -110,23 +110,26 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/nano-notebook-dev-log-01"')
     expect(html).toContain('href="/blog/internship-agent-memory-governance"')
     expect(html).toContain('href="/blog/codex-legendary-driver-open-source-skill-set"')
     expect(html).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
     expect(html).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(html).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
-    expect(html).toContain('href="/blog/codex-legendary-driver-context-noise"')
+    expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(pageTwoHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(pageTwoHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(pageTwoHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageTwoHtml).toContain('href="/blog/internship-invite-backend-flow"')
-    expect(pageTwoHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
+    expect(pageThreeHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageThreeHtml).toContain('href="/blog/multica-local-agent-workflow"')
     expect(pageThreeHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageThreeHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
-    expect(blogPosts[0].title).toBe('Codex 传奇驾驶员 04：我把自己的 Skill Set 开源了')
+    expect(blogPosts[0].title).toBe(
+      'nano-notebook 开发日志 01：我为什么做一个自己的 NotebookLM',
+    )
     expect(blogPosts[0].status).toBe('published')
   })
 
@@ -191,6 +194,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-01',
       'codex-legendary-driver-open-source-skill-set',
       'internship-agent-memory-governance',
       'codex-legendary-driver-loop-engineering',
@@ -211,6 +215,17 @@ describe('blog page', () => {
     expect(html).not.toContain('Software Engineering Notes')
     expect(html).not.toContain('Fitness, Films, and Fun')
     expect(html).not.toContain('Work in Progress')
+  })
+
+  it('renders the nano-notebook dev log article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/nano-notebook-dev-log-01" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain('nano-notebook 开发日志 01：我为什么做一个自己的 NotebookLM')
+    expect(articleHtml).toContain('PostgreSQL 和 S3 是真相来源')
+    expect(articleHtml).toContain('Back to blog')
   })
 
   it('renders the Dokploy deployment selection article as a readable page', () => {

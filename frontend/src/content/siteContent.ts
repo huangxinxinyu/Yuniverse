@@ -279,6 +279,7 @@ const blogTopicLabels: Record<NonNullable<BaseBlogPost['topic']>, string> = {
 const blogSeriesLabels: Record<NonNullable<BaseBlogPost['series']>, string> = {
   'codex-legendary-driver': 'Codex 传奇驾驶员',
   'claude-agent-sdk': 'Claude Agent SDK',
+  'nano-notebook-dev-log': 'nano-notebook 开发日志',
 }
 
 const posts = mapNonEmpty(baseBlogPosts, (post) => ({
@@ -583,6 +584,12 @@ export const blogSeries: readonly [BlogSeries, ...BlogSeries[]] = [
     id: 'claude-agent-sdk',
     label: 'Claude Agent SDK',
     description: 'Claude Agent SDK architecture, observability, and eval notes.',
+    topic: 'agent-architecture',
+  },
+  {
+    id: 'nano-notebook-dev-log',
+    label: 'nano-notebook 开发日志',
+    description: 'nano-notebook 的产品故事、Agent 基础设施选型与真实实现记录。',
     topic: 'agent-architecture',
   },
 ]
