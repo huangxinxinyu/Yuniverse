@@ -116,28 +116,29 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/nano-notebook-dev-log-05"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-04"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-03"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-02"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-01"')
-    expect(html).toContain('href="/blog/internship-agent-memory-governance"')
+    expect(pageTwoHtml).toContain('href="/blog/internship-agent-memory-governance"')
     expect(html).toContain('href="/blog/codex-legendary-driver-open-source-skill-set"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
     expect(pageTwoHtml).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(pageTwoHtml).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
-    expect(pageTwoHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
+    expect(pageThreeHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(pageThreeHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(pageThreeHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageThreeHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageThreeHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageThreeHtml).toContain('href="/blog/multica-local-agent-workflow"')
-    expect(pageThreeHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
+    expect(pageFourHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageFourHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
     expect(blogPosts[0].title).toBe(
-      'nano-notebook 开发日志 04：RAG 全流程、混合检索与离线评测',
+      'nano-notebook 开发日志 05：给知识库装上受控工具：MCP Tool Plane、权限与编排',
     )
     expect(blogPosts[0].status).toBe('published')
   })
@@ -211,6 +212,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-05',
       'nano-notebook-dev-log-04',
       'nano-notebook-dev-log-03',
       'nano-notebook-dev-log-02',
@@ -290,6 +292,22 @@ describe('blog page', () => {
     expect(articleHtml).toContain('为什么要用 RAG')
     expect(articleHtml).toContain('RRF')
     expect(articleHtml).toContain('先拿引用')
+    expect(articleHtml).toContain('Back to blog')
+  })
+
+  it('renders the nano-notebook dev log 05 article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/nano-notebook-dev-log-05" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain(
+      'nano-notebook 开发日志 05：给知识库装上受控工具：MCP Tool Plane、权限与编排',
+    )
+    expect(articleHtml).toContain('模型提议，系统审批执行')
+    expect(articleHtml).toContain('search_evidence')
+    expect(articleHtml).toContain('ToolCallError')
+    expect(articleHtml).toContain('Claude Code')
     expect(articleHtml).toContain('Back to blog')
   })
 

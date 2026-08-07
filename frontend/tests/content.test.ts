@@ -25,6 +25,7 @@ describe('site content model', () => {
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-05',
       'nano-notebook-dev-log-04',
       'nano-notebook-dev-log-03',
       'nano-notebook-dev-log-02',
@@ -125,6 +126,7 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'agent-architecture')
         .map((post) => post.slug),
     ).toEqual([
+      'nano-notebook-dev-log-05',
       'nano-notebook-dev-log-04',
       'nano-notebook-dev-log-03',
       'nano-notebook-dev-log-02',
@@ -144,6 +146,7 @@ describe('site content model', () => {
         .filter((post) => post.series === 'nano-notebook-dev-log')
         .map((post) => post.slug),
     ).toEqual([
+      'nano-notebook-dev-log-05',
       'nano-notebook-dev-log-04',
       'nano-notebook-dev-log-03',
       'nano-notebook-dev-log-02',
