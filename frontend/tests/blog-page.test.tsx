@@ -114,18 +114,19 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/nano-notebook-dev-log-03"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-02"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-01"')
     expect(html).toContain('href="/blog/internship-agent-memory-governance"')
     expect(html).toContain('href="/blog/codex-legendary-driver-open-source-skill-set"')
     expect(html).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
-    expect(html).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
+    expect(pageTwoHtml).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(pageTwoHtml).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(pageTwoHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(pageTwoHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
-    expect(pageTwoHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
+    expect(pageThreeHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageThreeHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageThreeHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageThreeHtml).toContain('href="/blog/multica-local-agent-workflow"')
@@ -133,7 +134,7 @@ describe('blog page', () => {
     expect(pageThreeHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
     expect(blogPosts[0].title).toBe(
-      'nano-notebook 开发日志 02：可恢复、可中断的 Agent Runtime 为什么必须自研',
+      'nano-notebook 开发日志 03：Trace 链路建模与 Observability SDK 设计、埋点',
     )
     expect(blogPosts[0].status).toBe('published')
   })
@@ -199,6 +200,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-03',
       'nano-notebook-dev-log-02',
       'nano-notebook-dev-log-01',
       'codex-legendary-driver-open-source-skill-set',
@@ -246,6 +248,21 @@ describe('blog page', () => {
     expect(articleHtml).toContain('可恢复')
     expect(articleHtml).toContain('LangGraph')
     expect(articleHtml).toContain('Publication Barrier')
+    expect(articleHtml).toContain('Back to blog')
+  })
+
+  it('renders the nano-notebook dev log 03 article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/nano-notebook-dev-log-03" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain(
+      'nano-notebook 开发日志 03：Trace 链路建模与 Observability SDK 设计、埋点',
+    )
+    expect(articleHtml).toContain('Durable Agent Trace')
+    expect(articleHtml).toContain('obs_trace_records')
+    expect(articleHtml).toContain('canonical hash')
     expect(articleHtml).toContain('Back to blog')
   })
 
