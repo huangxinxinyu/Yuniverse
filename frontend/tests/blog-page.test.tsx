@@ -13,9 +13,11 @@ describe('blog page', () => {
   const html = renderToStaticMarkup(<BlogPage />)
   const pageTwoHtml = renderToStaticMarkup(<BlogPage initialPage={2} />)
   const pageThreeHtml = renderToStaticMarkup(<BlogPage initialPage={3} />)
+  const pageFourHtml = renderToStaticMarkup(<BlogPage initialPage={4} />)
   const firstPagePosts = blogPosts.slice(0, 6)
   const secondPagePosts = blogPosts.slice(6, 12)
-  const thirdPagePosts = blogPosts.slice(12)
+  const thirdPagePosts = blogPosts.slice(12, 18)
+  const fourthPagePosts = blogPosts.slice(18)
 
   it('renders a dedicated blog index from real planning data', () => {
     expect(html).toContain('data-page="blog"')
@@ -114,38 +116,40 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/nano-notebook-dev-log-04"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-03"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-02"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-01"')
     expect(html).toContain('href="/blog/internship-agent-memory-governance"')
     expect(html).toContain('href="/blog/codex-legendary-driver-open-source-skill-set"')
-    expect(html).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
+    expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
     expect(pageTwoHtml).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(pageTwoHtml).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(pageTwoHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
-    expect(pageTwoHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
+    expect(pageThreeHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(pageThreeHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageThreeHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageThreeHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageThreeHtml).toContain('href="/blog/multica-local-agent-workflow"')
     expect(pageThreeHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
-    expect(pageThreeHtml).toContain('href="/blog/hello-world"')
+    expect(pageFourHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
     expect(blogPosts[0].title).toBe(
-      'nano-notebook 开发日志 03：Trace 链路建模与 Observability SDK 设计、埋点',
+      'nano-notebook 开发日志 04：RAG 全流程、混合检索与离线评测',
     )
     expect(blogPosts[0].status).toBe('published')
   })
 
   it('paginates the blog index in groups of six posts', () => {
     expect(html).toContain('aria-label="Blog pagination"')
-    expect(html).toContain('Page 1 of 3')
+    expect(html).toContain('Page 1 of 4')
     expect(html).toContain('aria-current="page"')
     expect(html).toContain('data-page-button="1"')
     expect(html).toContain('data-page-button="2"')
     expect(html).toContain('data-page-button="3"')
+    expect(html).toContain('data-page-button="4"')
     expect(html).toContain('Next')
     expect(html).not.toContain('Previous')
 
@@ -161,12 +165,19 @@ describe('blog page', () => {
       expect(pageThreeHtml).toContain(post.title)
     }
 
-    expect(pageTwoHtml).toContain('Page 2 of 3')
+    for (const post of fourthPagePosts) {
+      expect(pageFourHtml).toContain(post.title)
+    }
+
+    expect(pageTwoHtml).toContain('Page 2 of 4')
     expect(pageTwoHtml).toContain('Previous')
     expect(pageTwoHtml).toContain('Next')
-    expect(pageThreeHtml).toContain('Page 3 of 3')
+    expect(pageThreeHtml).toContain('Page 3 of 4')
     expect(pageThreeHtml).toContain('Previous')
-    expect(pageThreeHtml).not.toContain('Next')
+    expect(pageThreeHtml).toContain('Next')
+    expect(pageFourHtml).toContain('Page 4 of 4')
+    expect(pageFourHtml).toContain('Previous')
+    expect(pageFourHtml).not.toContain('Next')
   })
 
   it('hides pagination when the active category fits on one page', () => {
@@ -200,6 +211,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-04',
       'nano-notebook-dev-log-03',
       'nano-notebook-dev-log-02',
       'nano-notebook-dev-log-01',
@@ -263,6 +275,21 @@ describe('blog page', () => {
     expect(articleHtml).toContain('Durable Agent Trace')
     expect(articleHtml).toContain('obs_trace_records')
     expect(articleHtml).toContain('canonical hash')
+    expect(articleHtml).toContain('Back to blog')
+  })
+
+  it('renders the nano-notebook dev log 04 article as a readable page', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/nano-notebook-dev-log-04" />,
+    )
+
+    expect(articleHtml).toContain('data-page="blog-post"')
+    expect(articleHtml).toContain(
+      'nano-notebook 开发日志 04：RAG 全流程、混合检索与离线评测',
+    )
+    expect(articleHtml).toContain('为什么要用 RAG')
+    expect(articleHtml).toContain('RRF')
+    expect(articleHtml).toContain('先拿引用')
     expect(articleHtml).toContain('Back to blog')
   })
 

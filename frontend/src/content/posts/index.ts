@@ -16,9 +16,11 @@ import { multicaLocalAgentWorkflow } from './multica-local-agent-workflow'
 import { nanoNotebookDevLog01 } from './nano-notebook-dev-log-01'
 import { nanoNotebookDevLog02 } from './nano-notebook-dev-log-02'
 import { nanoNotebookDevLog03 } from './nano-notebook-dev-log-03'
+import { nanoNotebookDevLog04 } from './nano-notebook-dev-log-04'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  nanoNotebookDevLog04,
   nanoNotebookDevLog03,
   nanoNotebookDevLog02,
   nanoNotebookDevLog01,
