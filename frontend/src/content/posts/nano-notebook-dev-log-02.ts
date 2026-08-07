@@ -1,0 +1,43 @@
+import type { BlogPost } from '../../data/types'
+
+export const nanoNotebookDevLog02 = {
+  slug: 'nano-notebook-dev-log-02',
+  title: 'nano-notebook 开发日志 02：可恢复、可中断的 Agent Runtime 为什么必须自研',
+  date: '2026-08-07',
+  excerpt:
+    '第二篇讲 Agent Runtime 的核心目标：可恢复、可中断。先比较 LangChain、LangGraph、ADK、Claude Agent SDK，再落到 Go + PostgreSQL 自研 runtime 的 Run/Job/Lease/Checkpoint 骨架。',
+  content: [
+    '这是 nano-notebook 开发日志的第二篇。第一篇定下了产品形状和整体技术栈，这一篇回答一个更具体的问题：当 Agent Runtime 的首要目标是可恢复、可中断时，为什么我们没有直接选用 LangChain、LangGraph、Google ADK 或 Claude Agent SDK，而是在 Go + PostgreSQL 上自研。',
+    '## 先分清两件事：可恢复和可中断',
+    '这两个词很容易被当成同一个能力，但它们是两个不同的语义：\n- 可恢复：进程崩溃、Worker 被回收、Lease 丢失后，同一次 Run 能从最后已提交的边界继续，而不是从头开始。\n- 可中断：用户发起 Stop 后，任务立即进入终端 `cancelled` 状态，不再消耗执行预算，也永远不会把半成品发布成正式答案。',
+    '关键不是“能不能暂停”，而是“什么状态是权威的、谁有权继续执行、谁有权发布结果”。',
+    '## 这个目标会怎么影响技术选型',
+    '如果把 Agent 循环只放在进程内存里，模型调用、工具调用和中间 Draft 都会跟着进程消失。即使一个框架提供了 in-memory loop，也只是把这个问题藏起来，没有真正解决。',
+    '要让可恢复和可中断成为产品承诺，就必须拥有 Durable Run、Durable Job、Lease Fencing、Checkpoint、Cancellation 和 Publication Barrier。技术选型的第一问不是“哪个框架写 Loop 最爽”，而是“这个方案能不能让我拥有这些状态”。',
+    '## 我们比较的四类方案',
+    '当时按这个标准，我们比较了 LangChain、LangGraph、Google ADK 和 Claude Agent SDK。\n- **LangChain**：应用层编排和工具生态最全，快速搭 demo 很有价值。但它本质上不是自带 Job、Lease、Cancellation、Publication Barrier 的运行时；把产品状态放在框架外面，等于我们该写的持久化、权限、取消和发布一致性一个不少，还要跟着框架的 Loop 语义走。\n- **LangGraph**：比 LangChain 更接近目标，有 Graph、State 和 Checkpointer。但它提供的是图状态模型，不是我们需要的产品 Job 控制面；我们还要把 RLS、权限、用户取消、Publication Barrier 和它的 Graph State 对齐。对一个有界状态机来说，多引入一个状态模型不会减少复杂度，反而增加适配层。\n- **Google ADK**：multi-agent 组织、routing 和生态是强项，但它主要解决“多个 Agent 怎么协作”，不是“一个 Run 怎么在 PostgreSQL 上恢复”。如果采用它，产品权威状态仍然在框架外面，还要处理框架自己的 Session/Agent 模型，形成两个 authority 对齐的问题。\n- **Claude Agent SDK**：它是 SDK，不是 Runtime。它把 Agent Loop 和 Tool Handling 交给你嵌入 Host 应用，但持久化、任务恢复、取消语义仍由 Host 负责。用了它以后我们还是要写 Job、Lease、Checkpoint，而且它的内部状态不在我们的权威事务里，恢复时多一层黑盒。',
+    '结论不是这些框架不好，而是它们都默认 Host 负责 Durable State；而 Durable State 恰好是我们这个项目的核心目标。所以自研不是“为了酷”，而是把本来就必须自己拥有的 Runtime 直接做成第一公民。',
+    '## 自研 Runtime 的骨架',
+    'nano-notebook 的自研 Runtime 刻意做得很窄：它不是通用 Workflow Engine，而是一套固定产品 Job + Agent Run 状态机。核心链路是：',
+    '```text\n提交消息 + Run + Job（同一事务）\n  -> Worker 用 Lease 认领 Job\n  -> 模型决策\n  -> Checkpoint Proposal\n  -> 执行 Action\n  -> Checkpoint Result\n  -> Final Draft Checkpoint\n  -> Publication Barrier 发布正式答案\n```',
+    '一次提交时，用户消息、Agent Run 和 Agent Job 在同一个 PostgreSQL 事务里写入。Job Row 是队列真相，`LISTEN/NOTIFY` 只负责低延迟唤醒；即使通知丢失，Worker 也会用索引扫描兜底，不会把“没收到通知”当成“没有任务”。',
+    'Worker 用 Lease 认领 Job，默认 30 秒租约、10 秒心跳。每次心跳都带当前 Lease Token 做条件更新；如果更新零行，说明权威已经丢失，旧 Worker 只能取消本地执行，不能继续写任何状态。这样即使两个 Worker 都认为自己在跑同一个 Run，也只有当前 Lease 持有者能推进。',
+    '模型决策、Action 和最终 Draft 都以 Append-Only Checkpoint 落库。每个已接受边界有唯一 Identity，恢复时从第一个不完整步骤继续，已接受的 Proposal/Result 不会被重复计费。最终答案不会直接写进 Chat，而是通过 Publication Barrier 重新校验用户、权限、Source、Cancellation、Lease Token 和 Citation 后，才变成正式消息。',
+    '## 崩溃恢复和用户取消不是同一件事',
+    '这是自研 Runtime 里最重要的边界：\n- 崩溃或 Lease 丢失后，同一 Run 可以从 Checkpoint 恢复，但外部调用只承诺 bounded at-least-once，不承诺 exactly-once。\n- 用户 Stop 是终端事务：Run 和 Job 直接变成 `cancelled`，不可能再发布答案。\n- Stop 之后的 Retry 创建新 Run，不复用旧 Checkpoint，也不继承旧执行预算。',
+    '这样做的好处是语义可预测：崩溃恢复只发生在基础设施中断场景，用户取消则是产品级终端状态，半成品永远不冒充正式答案。',
+    '模型层我们也没有把 Provider SDK 直接长进 Worker，而是通过 Bifrost Gateway 做协议归一化和 bounded retry。Runtime 关心模型决策和工具调用边界，不关心某个 Provider 的内部状态；换模型不会改变 Job、Lease、Checkpoint 和发布语义。',
+    '这些决策在仓库里有对应记录：[ADR 0007](https://github.com/huangxinxinyu/nano-notebook/blob/main/docs/technical-architecture/adr/0007-build-a-bounded-postgresql-durable-runtime.md)、[ADR 0012](https://github.com/huangxinxinyu/nano-notebook/blob/main/docs/technical-architecture/adr/0012-bound-the-durable-runtime-to-product-jobs.md)、[ADR 0030](https://github.com/huangxinxinyu/nano-notebook/blob/main/docs/technical-architecture/adr/0030-cancel-cooperatively-and-publish-through-a-barrier.md)、[ADR 0041](https://github.com/huangxinxinyu/nano-notebook/blob/main/docs/technical-architecture/adr/0041-build-a-bounded-agent-delegation-kernel.md)。',
+    '## 这篇没有展开什么',
+    '这篇只讲 Runtime 骨架。RAG、Durable Trace、MCP Tool Plane、权限、并发工具调用会留给后续日志；它们在仓库里都有真实实现和测试，不是只存在于概念层的设计稿。',
+    '仓库：[huangxinxinyu/nano-notebook](https://github.com/huangxinxinyu/nano-notebook)',
+  ],
+  aiDisclosure:
+    '本文由 AI 协助整理表达，技术决策与实现来自 nano-notebook 项目的真实开发记录、ADR 和架构文档。',
+  readingMinutes: 7,
+  category: 'software',
+  topic: 'agent-architecture',
+  series: 'nano-notebook-dev-log',
+  tags: ['nano-notebook', 'Agent Runtime', '技术选型', 'PostgreSQL', 'Checkpoint', 'LangGraph'],
+  status: 'published',
+} satisfies BlogPost

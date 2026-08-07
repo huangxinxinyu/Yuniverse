@@ -14,9 +14,11 @@ import { internshipInviteBackendFlow } from './internship-invite-backend-flow'
 import { internshipStripePaymentBackendFlow } from './internship-stripe-payment-backend-flow'
 import { multicaLocalAgentWorkflow } from './multica-local-agent-workflow'
 import { nanoNotebookDevLog01 } from './nano-notebook-dev-log-01'
+import { nanoNotebookDevLog02 } from './nano-notebook-dev-log-02'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  nanoNotebookDevLog02,
   nanoNotebookDevLog01,
   codexLegendaryDriverOpenSourceSkillSet,
   internshipAgentMemoryGovernance,
