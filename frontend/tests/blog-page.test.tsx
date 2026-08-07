@@ -270,7 +270,7 @@ describe('blog page', () => {
 
     expect(articleHtml).toContain('data-page="blog-post"')
     expect(articleHtml).toContain(
-      'nano-notebook 开发日志 03：Trace 链路建模与 Observability SDK 设计、埋点',
+      'nano-notebook 开发日志 03：Trace 链路建模、Observability SDK 与 Dashboard 设计',
     )
     expect(articleHtml).toContain('Durable Agent Trace')
     expect(articleHtml).toContain('obs_trace_records')
