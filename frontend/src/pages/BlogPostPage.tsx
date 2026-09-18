@@ -92,6 +92,10 @@ function renderContentBlock(block: string) {
     return <h3 key={block}>{renderInlineContent(block.replace(/^## /, ''))}</h3>
   }
 
+  if (block.startsWith('**') && block.endsWith('**')) {
+    return <p key={block}><strong>{block.slice(2, -2)}</strong></p>
+  }
+
   if (block.startsWith('- ')) {
     return (
       <ul className="blog-markdown-list" key={block}>
