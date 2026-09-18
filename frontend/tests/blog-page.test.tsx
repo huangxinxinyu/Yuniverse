@@ -125,24 +125,25 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/nano-notebook-dev-log-09"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-08"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-07"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-06"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-05"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-04"')
-    expect(html).toContain('href="/blog/nano-notebook-dev-log-03"')
+    expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-03"')
     expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-02"')
     expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-01"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-open-source-skill-set"')
     expect(pageTwoHtml).toContain('href="/blog/internship-agent-memory-governance"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
-    expect(pageTwoHtml).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
+    expect(pageThreeHtml).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(pageThreeHtml).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(pageThreeHtml).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(pageThreeHtml).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(pageThreeHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(pageThreeHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
-    expect(pageThreeHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
+    expect(pageFourHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageFourHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageFourHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageFourHtml).toContain('href="/blog/multica-local-agent-workflow"')
@@ -150,7 +151,7 @@ describe('blog page', () => {
     expect(pageFourHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
     expect(blogPosts[0].title).toBe(
-      'nano-notebook 开发日志 08：日志为什么从 PostgreSQL 走向 Kafka + ClickHouse',
+      'nano-notebook 开发日志 09：一篇网页是怎么被读出来的',
     )
     expect(blogPosts[0].status).toBe('published')
   })
@@ -224,6 +225,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-09',
       'nano-notebook-dev-log-08',
       'nano-notebook-dev-log-07',
       'nano-notebook-dev-log-06',
