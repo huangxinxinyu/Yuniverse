@@ -26,8 +26,8 @@ export const profile = {
   romanizedName: 'Xinyu',
   brandName: 'Yuniverse',
   shortBio:
-    '学生和软件开发工程师，正在从上海实习走向 UCSD 的新阶段。',
-  locationLabel: 'Shanghai / UCSD',
+    '学生和软件开发工程师，目前在 UCSD ECE 攻读研究生。',
+  locationLabel: 'San Diego, California',
   focusAreas: ['Software engineering', 'AI tools', 'Creative systems', 'Fitness and film'],
   links: [
     { label: 'Work', href: '#work' },
@@ -104,7 +104,7 @@ export const lifeEvents: readonly [LifeEvent, ...LifeEvent[]] = [
     title: 'UCSD ECE',
     place: 'San Diego',
     summary:
-      'Postgraduate stage: preparing to continue ECE study at UCSD.',
+      'Postgraduate stage: studying ECE at UCSD.',
     type: 'milestone',
   },
 ]

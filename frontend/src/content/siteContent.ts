@@ -231,7 +231,7 @@ export const profile: Profile = {
   displayName: '黄新宇',
   tagline: 'A personal universe for software work, study, warmth, and curiosity.',
   intro:
-    '黄新宇，本科就读于悉尼大学软件工程专业，研究生阶段将前往 UCSD ECE。现在关注软件开发、AI 工具。',
+    '黄新宇，本科毕业于悉尼大学软件工程专业，目前在 UCSD ECE 攻读研究生。现在关注软件开发、AI 工具。',
   email: 'xinyuhimself@gmail.com',
   location: baseProfile.locationLabel,
   eyebrow: 'Yuniverse / 黄新宇',
@@ -240,7 +240,7 @@ export const profile: Profile = {
   signals: [
     { label: 'Mode', value: 'Student / Developer' },
     { label: 'Focus', value: 'Software / AI tools / Personal site' },
-    { label: 'Status', value: 'Interning in Shanghai, heading to UCSD' },
+    { label: 'Status', value: 'Studying at UCSD ECE' },
   ],
 }
 
@@ -310,7 +310,7 @@ export const siteSections: SiteSections = {
     intro:
       '学生、软件开发工程师，也是 Yuniverse 这个个人宇宙的整理者。',
     body:
-      '本科阶段在悉尼大学学习软件工程。研究生阶段将前往 UCSD ECE；目前在上海实习，继续积累软件开发和真实项目经验。',
+      '本科毕业于悉尼大学软件工程专业，目前在 UCSD ECE 攻读研究生，继续积累软件开发和真实项目经验。',
     summary:
       '关于黄新宇的学习轨迹、软件开发方向和个人兴趣。',
     meta: baseProfile.focusAreas,
@@ -404,13 +404,13 @@ export const aboutPageContent: AboutPageContent = {
   eyebrow: 'Yuniverse / personal identity',
   title: '黄新宇',
   subtitle:
-    '学生、软件开发工程师，正准备去UCSD读书。',
+    '学生、软件开发工程师，正在 UCSD 读书。',
   statusNotice:
     'This page uses the current public draft. More project details and writing will be added as they are ready.',
   intro: {
     heading: 'Intro',
     body:
-      '我本科阶段在悉尼大学学习软件工程，研究生阶段会去 UCSD ECE。现在的公开身份很简单：学生、软件开发工程师，trying to build a good personal ip, might as well create something cool。',
+      '我本科毕业于悉尼大学软件工程专业，目前在 UCSD ECE 攻读研究生。现在的公开身份很简单：学生、软件开发工程师，trying to build a good personal ip, might as well create something cool。',
     coordinates: [
       { label: 'Primary school', text: '浙江省湖州市递铺第三小学（i dont think people gon care tho）' },
       { label: 'Middle / high school', text: '杭州英特外国语学校' },
@@ -443,7 +443,7 @@ export const aboutPageContent: AboutPageContent = {
       '目前先用简单的方式介绍软件开发方向，具体项目、技术细节和截图会在 Work 页面逐步补全。',
     tools: [
       { name: 'Software Engineering', role: '本科主线和项目基础' },
-      { name: 'UCSD ECE', role: '下一阶段学习方向' },
+      { name: 'UCSD ECE', role: '当前研究生学习方向' },
       { name: 'AI tools', role: '感兴趣的开发和使用方向' },
       { name: 'Personal website', role: '持续整理身份、作品和兴趣' },
     ],
@@ -489,7 +489,7 @@ export const aboutPageContent: AboutPageContent = {
         id: 'postgraduate',
         label: 'Postgraduate',
         meta: 'UCSD ECE',
-        detail: '研究生阶段将前往 UCSD ECE。',
+        detail: '目前在 UCSD ECE 攻读研究生。',
       },
       {
         id: 'interests',
@@ -500,8 +500,8 @@ export const aboutPageContent: AboutPageContent = {
       {
         id: 'location',
         label: 'Location',
-        meta: 'Now',
-        detail: '目前在上海实习，之后会去 UCSD 继续读书。',
+        meta: 'San Diego',
+        detail: '目前在 UCSD 读书。',
       },
     ],
   },

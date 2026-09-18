@@ -110,7 +110,7 @@
 
 公开联系方式：电话：13567277836，github：https://github.com/huangxinxinyu， 微信号：XinyuHimself，邮箱：xinyuhimself@gmail.com
 
-公开所在地：目前在上海实习，之后会去UCSD念书
+公开所在地：目前在 UCSD ECE 攻读研究生
 
 不希望公开的信息：
 
@@ -307,4 +307,3 @@ Pictures 3：
 导航语言：中文 / 英文 / 中英混排：
 
 其他备注：
-

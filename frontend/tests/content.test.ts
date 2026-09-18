@@ -8,6 +8,7 @@ import {
   blogTopics,
   collections,
   navigationItems,
+  profile,
   siteSections,
 } from '../src/content/siteContent'
 
@@ -323,5 +324,27 @@ describe('site content model', () => {
     )
     expect(studyDetails).toHaveLength(2)
     expect(blogPosts.map((post) => post.title)).not.toContain('From Sydney to UCSD')
+  })
+
+  it('presents UCSD postgraduate study as current', () => {
+    const postgraduate = aboutPageContent.personalDetails.items.find(
+      (detail) => detail.id === 'postgraduate',
+    )
+    const location = aboutPageContent.personalDetails.items.find(
+      (detail) => detail.id === 'location',
+    )
+
+    expect(profile.intro).toContain('目前在 UCSD ECE 攻读研究生')
+    expect(profile.signals).toContainEqual({
+      label: 'Status',
+      value: 'Studying at UCSD ECE',
+    })
+    expect(siteSections.about.body).toContain('目前在 UCSD ECE 攻读研究生')
+    expect(aboutPageContent.subtitle).toContain('正在 UCSD 读书')
+    expect(postgraduate?.detail).toContain('目前在 UCSD ECE 攻读研究生')
+    expect(location).toMatchObject({
+      meta: 'San Diego',
+      detail: '目前在 UCSD 读书。',
+    })
   })
 })
