@@ -306,13 +306,13 @@ export const siteSections: SiteSections = {
     label: 'About',
     eyebrow: 'About',
     kicker: 'Personal identity',
-    title: 'About 黄新宇',
+    title: '关于黄新宇',
     intro:
       '学生、软件开发工程师，也是 Yuniverse 这个个人宇宙的整理者。',
     body:
-      '本科毕业于悉尼大学软件工程专业，目前在 UCSD ECE 攻读研究生，继续积累软件开发和真实项目经验。',
+      '本科毕业于悉尼大学软件工程专业，现在在 UCSD ECE 读研。我做软件开发，也把项目、生活和兴趣慢慢放进 Yuniverse。',
     summary:
-      '关于黄新宇的学习轨迹、软件开发方向和个人兴趣。',
+      '学习、软件开发和兴趣的简单介绍。',
     meta: baseProfile.focusAreas,
     focusAreas,
     links: [
@@ -343,12 +343,12 @@ export const siteSections: SiteSections = {
     label: 'Work',
     eyebrow: 'Work',
     kicker: 'Selected work',
-    title: 'Software work, projects, and things still being organized.',
+    title: '我在做的软件项目',
     body:
-      '具体项目还在整理公开范围。现在先保留软件开发、个人网站和未来项目说明，避免把未确认的信息写成作品案例。',
+      '这里放我做过的软件项目，也记录我还在继续做的东西。',
     summary:
-      '软件开发相关经历和项目整理区。',
-    meta: ['Software development', 'Student work', 'Portfolio in progress'],
+      '软件开发和项目的公开记录。',
+    meta: ['Software development', 'Student work', 'Personal projects'],
     projects: workProjects,
   },
   life: {
@@ -402,15 +402,15 @@ export const workItems = workProjects
 
 export const aboutPageContent: AboutPageContent = {
   eyebrow: 'Yuniverse / personal identity',
-  title: '黄新宇',
+  title: '关于我',
   subtitle:
-    '学生、软件开发工程师，正在 UCSD 读书。',
+    'UCSD ECE 在读，做软件开发。',
   statusNotice:
     'This page uses the current public draft. More project details and writing will be added as they are ready.',
   intro: {
     heading: 'Intro',
     body:
-      '我本科毕业于悉尼大学软件工程专业，目前在 UCSD ECE 攻读研究生。现在的公开身份很简单：学生、软件开发工程师，trying to build a good personal ip, might as well create something cool。',
+      '本科毕业于悉尼大学软件工程专业，现在在 UCSD ECE 读研。我做软件开发，也把项目、生活和兴趣慢慢放进 Yuniverse。',
     coordinates: [
       { label: 'Primary school', text: '浙江省湖州市递铺第三小学（i dont think people gon care tho）' },
       { label: 'Middle / high school', text: '杭州英特外国语学校' },
@@ -421,11 +421,11 @@ export const aboutPageContent: AboutPageContent = {
   values: {
     heading: 'What this site should feel like',
     body:
-      'Yuniverse 是一个个人宇宙，生活、学习、工作我都会放进去。',
+      'Yuniverse 是我放生活、学习和工作的地方。',
     items: [
       {
         label: 'Inspiration',
-        text: '这是个创意工坊，后面会有各种各样的想法在这里实践。',
+        text: '我会在这里试一些新想法。',
       },
       {
         label: 'Warm',
@@ -440,7 +440,7 @@ export const aboutPageContent: AboutPageContent = {
   craft: {
     heading: 'Software development',
     body:
-      '目前先用简单的方式介绍软件开发方向，具体项目、技术细节和截图会在 Work 页面逐步补全。',
+      '这里先介绍软件开发方向。项目细节、技术说明和截图会慢慢放进 Work 页面。',
     tools: [
       { name: 'Software Engineering', role: '本科主线和项目基础' },
       { name: 'UCSD ECE', role: '当前研究生学习方向' },
@@ -457,7 +457,7 @@ export const aboutPageContent: AboutPageContent = {
         id: 'software',
         label: 'Software',
         meta: 'Work',
-        detail: '学生 / 软件开发工程师，项目细节会继续整理到 Work 页面。',
+        detail: '学生、软件开发工程师。项目细节会慢慢放到 Work 页面。',
       },
       {
         id: 'contact',
@@ -483,7 +483,7 @@ export const aboutPageContent: AboutPageContent = {
         id: 'bachelor',
         label: 'Bachelor',
         meta: 'Sydney',
-        detail: '本科阶段在悉尼大学学习软件工程。',
+        detail: '本科毕业于悉尼大学软件工程专业。',
       },
       {
         id: 'postgraduate',

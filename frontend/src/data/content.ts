@@ -39,36 +39,25 @@ export const profile = {
 export const workItems: readonly [WorkItem, ...WorkItem[]] = [
   {
     id: 'work-software-engineering',
-    title: 'Software Engineering Practice',
+    title: '软件开发',
     role: 'Student / Software developer',
     timeframe: 'In progress',
     summary:
-      'A growing record of software engineering work, internships, and project practice.',
+      '我做软件开发，也把实习和项目里的东西慢慢记下来。',
     tags: ['Software', 'Engineering', 'Learning'],
     links: [{ label: 'GitHub', href: 'https://github.com/huangxinxinyu' }],
-    featuredMetric: 'Software development',
+    featuredMetric: '一直在做',
   },
   {
     id: 'work-yuniverse-site',
-    title: 'Yuniverse Website',
+    title: 'Yuniverse',
     role: 'Designer / Developer',
     timeframe: '2026',
     summary:
-      'A personal website that gives work, school, interests, and contact information a clearer home.',
+      '这个网站把我的项目、学校、兴趣和联系方式放在一起。',
     tags: ['React', 'TypeScript', 'Personal site'],
     links: [{ label: 'Current site', href: '#work-yuniverse-site' }],
-    featuredMetric: 'Personal identity',
-  },
-  {
-    id: 'work-more-coming',
-    title: 'More Projects Coming',
-    role: 'Software developer',
-    timeframe: 'To be updated',
-    summary:
-      'Detailed project notes will be added after the public scope, links, and screenshots are confirmed.',
-    tags: ['Portfolio', 'Projects', 'In progress'],
-    links: [{ label: 'Contact', href: 'mailto:xinyuhimself@gmail.com' }],
-    featuredMetric: 'Details pending',
+    featuredMetric: '个人网站',
   },
 ]
 

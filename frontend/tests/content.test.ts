@@ -23,7 +23,7 @@ describe('site content model', () => {
     ])
 
     expect(siteSections.about.links.length).toBeGreaterThanOrEqual(3)
-    expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(3)
+    expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(2)
     expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
       'nano-notebook-dev-log-07',
@@ -339,12 +339,31 @@ describe('site content model', () => {
       label: 'Status',
       value: 'Studying at UCSD ECE',
     })
-    expect(siteSections.about.body).toContain('目前在 UCSD ECE 攻读研究生')
-    expect(aboutPageContent.subtitle).toContain('正在 UCSD 读书')
+    expect(siteSections.about.body).toContain('现在在 UCSD ECE 读研')
+    expect(aboutPageContent.subtitle).toContain('UCSD ECE 在读')
     expect(postgraduate?.detail).toContain('目前在 UCSD ECE 攻读研究生')
     expect(location).toMatchObject({
       meta: 'San Diego',
       detail: '目前在 UCSD 读书。',
     })
+  })
+
+  it('uses direct personal copy for the work and about pages', () => {
+    expect(siteSections.work.title).toBe('我在做的软件项目')
+    expect(siteSections.work.body).toBe(
+      '这里放我做过的软件项目，也记录我还在继续做的东西。',
+    )
+    expect(siteSections.work.body).not.toMatch(/不确定|公开范围|确认/)
+    expect(siteSections.work.projects.map((project) => project.title)).toEqual([
+      '软件开发',
+      'Yuniverse',
+    ])
+    expect(JSON.stringify(siteSections.work)).not.toMatch(
+      /不确定|公开范围|确认|整理|待定|To be updated/,
+    )
+    expect(aboutPageContent.subtitle).toBe('UCSD ECE 在读，做软件开发。')
+    expect(aboutPageContent.intro.body).toBe(
+      '本科毕业于悉尼大学软件工程专业，现在在 UCSD ECE 读研。我做软件开发，也把项目、生活和兴趣慢慢放进 Yuniverse。',
+    )
   })
 })
