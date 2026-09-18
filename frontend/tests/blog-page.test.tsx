@@ -100,7 +100,7 @@ describe('blog page', () => {
     expect(agentArchitectureHtml).toContain('data-series="claude-agent-sdk"')
     expect(agentArchitectureHtml).toContain('Claude Agent SDK')
     expect(agentArchitectureHtml).toContain('data-series="nano-notebook-dev-log"')
-    expect(agentArchitectureHtml).toContain(
+    expect(agentArchitecturePageTwoHtml).toContain(
       'nano-notebook 开发日志 02：可恢复、可中断的 Agent Runtime 为什么必须自研',
     )
     expect(agentArchitecturePageTwoHtml).toContain(
@@ -125,31 +125,32 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/nano-notebook-dev-log-08"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-07"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-06"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-05"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-04"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-03"')
-    expect(html).toContain('href="/blog/nano-notebook-dev-log-02"')
+    expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-02"')
     expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-01"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-open-source-skill-set"')
     expect(pageTwoHtml).toContain('href="/blog/internship-agent-memory-governance"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
     expect(pageTwoHtml).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
-    expect(pageTwoHtml).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
+    expect(pageThreeHtml).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(pageThreeHtml).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(pageThreeHtml).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
     expect(pageThreeHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(pageThreeHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(pageThreeHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
-    expect(pageThreeHtml).toContain('href="/blog/internship-invite-backend-flow"')
+    expect(pageFourHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageFourHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageFourHtml).toContain('href="/blog/multica-local-agent-workflow"')
     expect(pageFourHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageFourHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
     expect(blogPosts[0].title).toBe(
-      'nano-notebook 开发日志 07：Prompt 版本控制，让 Agent 定义和运行现场都能复现',
+      'nano-notebook 开发日志 08：日志为什么从 PostgreSQL 走向 Kafka + ClickHouse',
     )
     expect(blogPosts[0].status).toBe('published')
   })
@@ -223,6 +224,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-08',
       'nano-notebook-dev-log-07',
       'nano-notebook-dev-log-06',
       'nano-notebook-dev-log-05',
