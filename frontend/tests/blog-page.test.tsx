@@ -127,34 +127,35 @@ describe('blog page', () => {
   })
 
   it('links the blog index to the readable articles', () => {
+    expect(html).toContain('href="/blog/nano-notebook-dev-log-11"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-10"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-09"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-08"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-07"')
     expect(html).toContain('href="/blog/nano-notebook-dev-log-06"')
-    expect(html).toContain('href="/blog/nano-notebook-dev-log-05"')
+    expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-05"')
     expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-04"')
     expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-03"')
     expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-02"')
     expect(pageTwoHtml).toContain('href="/blog/nano-notebook-dev-log-01"')
     expect(pageTwoHtml).toContain('href="/blog/codex-legendary-driver-open-source-skill-set"')
-    expect(pageTwoHtml).toContain('href="/blog/internship-agent-memory-governance"')
+    expect(pageThreeHtml).toContain('href="/blog/internship-agent-memory-governance"')
     expect(pageThreeHtml).toContain('href="/blog/codex-legendary-driver-loop-engineering"')
     expect(pageThreeHtml).toContain('href="/blog/dokploy-lightweight-paas-deployment-tradeoffs"')
     expect(pageThreeHtml).toContain('href="/blog/claude-agent-sdk-trace-to-eval"')
     expect(pageThreeHtml).toContain('href="/blog/codex-legendary-driver-context-noise"')
     expect(pageThreeHtml).toContain('href="/blog/codex-legendary-driver-skill-workflows"')
-    expect(pageThreeHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
+    expect(pageFourHtml).toContain('href="/blog/internship-daytona-agent-workspace"')
     expect(pageFourHtml).toContain('href="/blog/obsidian-codex-ai-knowledge-base"')
     expect(pageFourHtml).toContain('href="/blog/agent-data-flywheel-observability-seo"')
     expect(pageFourHtml).toContain('href="/blog/internship-invite-backend-flow"')
     expect(pageFourHtml).toContain('href="/blog/internship-stripe-payment-backend-flow"')
     expect(pageFourHtml).toContain('href="/blog/multica-local-agent-workflow"')
-    expect(pageFourHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
+    expect(pageFiveHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageFiveHtml).toContain('href="/blog/hello-world"')
     expect(html).toContain('Read article')
     expect(blogPosts[0].title).toBe(
-      'nano-notebook 开发日志 10：长任务里的上下文该怎么管',
+      'nano-notebook 开发日志 11：Pass@k 怎样衡量 Agent 的稳定性',
     )
     expect(blogPosts[0].status).toBe('published')
   })
@@ -236,6 +237,7 @@ describe('blog page', () => {
 
   it('keeps the published blog articles in blog data', () => {
     expect(blogPosts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-11',
       'nano-notebook-dev-log-10',
       'nano-notebook-dev-log-09',
       'nano-notebook-dev-log-08',
@@ -286,6 +288,16 @@ describe('blog page', () => {
 
     expect(articleHtml).toContain('nano-notebook 开发日志 10：长任务里的上下文该怎么管')
     expect(articleHtml).toContain('<strong>理解是上下文管理的宗旨。</strong>')
+  })
+
+  it('renders dev log 11 without unverified evaluation scores', () => {
+    const articleHtml = renderToStaticMarkup(
+      <App initialPath="/blog/nano-notebook-dev-log-11" />,
+    )
+
+    expect(articleHtml).toContain('nano-notebook 开发日志 11：Pass@k 怎样衡量 Agent 的稳定性')
+    expect(articleHtml).toContain('一次成功和稳定成功怎么区分')
+    expect(blogPosts[0].content.join(' ')).not.toMatch(/\b(?:78|95|45)%/)
   })
 
   it('renders the nano-notebook dev log 02 article as a readable page', () => {
