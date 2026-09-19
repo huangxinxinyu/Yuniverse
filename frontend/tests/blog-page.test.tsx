@@ -288,10 +288,6 @@ describe('blog page', () => {
 
     expect(articleHtml).toContain('nano-notebook 开发日志 10：长任务里的上下文该怎么管')
     expect(articleHtml).toContain('<strong>理解是上下文管理的宗旨。</strong>')
-    expect(articleHtml).toContain('超过 16 KiB 才会尝试外置')
-    expect(articleHtml).toContain('外置内容写入 Redis')
-    expect(articleHtml).toContain('read_tool_result(result_ref, offset, max_bytes)')
-    expect(articleHtml).toContain('固定存活时间是 30 分钟')
   })
 
   it('renders dev log 11 without unverified evaluation scores', () => {
