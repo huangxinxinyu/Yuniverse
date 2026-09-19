@@ -27,6 +27,10 @@ describe('site content model', () => {
     expect('life' in siteSections).toBe(false)
     expect(blogCategories.some((category) => category.id === 'life')).toBe(false)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-11',
+      'nano-notebook-dev-log-10',
+      'nano-notebook-dev-log-09',
+      'nano-notebook-dev-log-08',
       'nano-notebook-dev-log-07',
       'nano-notebook-dev-log-06',
       'nano-notebook-dev-log-05',
@@ -130,6 +134,10 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'agent-architecture')
         .map((post) => post.slug),
     ).toEqual([
+      'nano-notebook-dev-log-11',
+      'nano-notebook-dev-log-10',
+      'nano-notebook-dev-log-09',
+      'nano-notebook-dev-log-08',
       'nano-notebook-dev-log-07',
       'nano-notebook-dev-log-06',
       'nano-notebook-dev-log-05',
@@ -152,6 +160,10 @@ describe('site content model', () => {
         .filter((post) => post.series === 'nano-notebook-dev-log')
         .map((post) => post.slug),
     ).toEqual([
+      'nano-notebook-dev-log-11',
+      'nano-notebook-dev-log-10',
+      'nano-notebook-dev-log-09',
+      'nano-notebook-dev-log-08',
       'nano-notebook-dev-log-07',
       'nano-notebook-dev-log-06',
       'nano-notebook-dev-log-05',

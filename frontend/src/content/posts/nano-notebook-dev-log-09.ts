@@ -1,0 +1,43 @@
+import type { BlogPost } from '../../data/types'
+
+export const nanoNotebookDevLog09 = {
+  slug: 'nano-notebook-dev-log-09',
+  title: 'nano-notebook 开发日志 09：一篇网页是怎么被读出来的',
+  date: '2026-09-18',
+  excerpt:
+    '从早期爬虫、DOM 选择器讲到 nano-notebook 的网页正文提取：为什么需要清洗和质量判断，什么时候才启用浏览器，以及 Cloudflare challenge 为什么仍是边界。',
+  content: [
+    '网页阅读是 nano-notebook 感知层里很具体的一件事：给它一个公开 URL，它要拿到文章内容，供后续处理使用。早期实现从请求 HTML、抽取 DOM 文本做起。网络请求、正文定位和浏览器渲染各自会在不同的网页上出问题。把这些问题混在一个“爬网页”步骤里，抓错内容时很难知道错在哪里。',
+    '## 从古早爬虫到正文抽取',
+    '早期的 crawler 解决的是“去哪儿抓”。从几个种子 URL 出发，下载页面、提取链接，再把新链接放进队列。`wget -r` 就能做有限深度的递归下载；规模再大一些，Heritrix 这类系统还要管理抓取范围、调度和访问节奏。[GNU Wget 手册](https://www.gnu.org/software/wget/manual/html_node/Recursive-Download.html) [Heritrix 项目](https://github.com/internetarchive/heritrix3)',
+    '下载到 HTML 后，还有另一个问题：哪一块是我们要的内容。过去常为固定网站写正则，后来更多用 DOM 解析器配 CSS 或 XPath 选择器。比如先找到 `.article-body`，再取它下面的段落。Scrapy 的抽取接口至今仍以 CSS 和 XPath 为基础。这种方法适合目标站点固定、字段结构稳定的采集任务；网站改版，选择器也得跟着改。[Scrapy Selectors](https://docs.scrapy.org/en/latest/topics/selectors.html)',
+    'JavaScript 让事情又复杂了一层。有些网页第一次返回的 HTML 只有一个空容器，正文要等脚本运行后才出现。Selenium 等浏览器自动化工具能拿到渲染后的 DOM，但每个页面都要付出启动浏览器、等待加载和控制并发的成本。[Selenium 项目历史](https://www.selenium.dev/history/) nano-notebook 接收的是用户给定的公开链接，重点在单页正文提取，没有必要为它建立全站链接队列。',
+    '## 一篇文章的 DOM 里有什么',
+    '拿 OpenAI 2022 年的 [ChatGPT 发布文章归档快照](https://web.archive.org/web/20230101000602id_/https://openai.com/blog/chatgpt/) 来看，下面几行分别直接截自当时保存的 HTML；中间的 `…` 表示省略了其他原始节点：',
+    '```html\n<article class="post" id="post-chatgpt">\n…\n  <nav class="nav" data-url="/blog/chatgpt/">\n…\n    <time datetime="2022-11-30">November 30, 2022</time>\n…\n      <div class="js-post-content">\n```',
+    '`article` 看上去是理想的正文根，里面却嵌着全站导航。文章的标题和发布日期位于它的 `header` 中，正文则在更深的 `js-post-content` 容器里。只取 `article` 的全部文字，导航会跟着进来；简单删掉所有 `header`，标题又可能丢失。这里的 `post`、`js-post-content` 能帮助理解这个页面，却不能当成所有网站通用的 class 名。',
+    '再看 [Guardian 的一篇新闻页](https://www.theguardian.com/technology/2026/sep/15/could-ai-really-wipe-out-humanity-and-hijack-the-internet)：它的静态 HTML 有 `main`、`article`、`h1`、`time`、`p` 和图片说明。页面还带着导航和广告位，也有多个 `aside`、推荐内容与页脚。这类页面要保留标题与小节，也要保留正文段落。列表和引用，以及代码与表格的结构同样需要保留；页面操作和跨文章重复的模块则要剪掉。`main` 和 `article` 是很好的起点，但标签的位置仍要结合内容判断。[MDN 对 `<main>` 的说明](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/main)',
+    '## nano-notebook 最初怎么做',
+    '早期的 HTML 处理很直接：把页面解析成 DOM，按 `main → article → body` 找一个根节点，跳过 `script` 和 `nav`，也排除 `aside` 与表单等明显无关的元素，再把标题、段落和列表等块抽出来。服务端已经输出正文的文章页通常能走通；碰到复杂页面，`body` 兜底可能把大量页面框架也带进来。更麻烦的是，返回一份 HTML 并不代表拿到了文章。JS 空壳、登录页和错误页同样可能被当作输入。',
+    '第一轮增强仍然从静态 DOM 入手，但增加了判断。系统优先找 `main` 或 `article`；找不到时，在 `div`、`section` 和 `role="main"` 的区域里，根据文本长度、链接密度与语义提示选择候选。随后剪掉导航和广告，也移除侧栏、分享入口与弹窗等节点。输出标题与段落时，还会保留列表、代码块和表格的块类型。正文太短或几乎全是链接，出现异常重复区块，或者命中登录与错误提示时，就让这次提取过不了质量门槛。',
+    '这套规则也有误判空间。OpenAI 归档页的标题恰好在文章内部的 `header` 里，而当前静态规则会排除 `header`；正文足够长时，质量门槛不一定察觉标题已丢。质量判断只能挡住已知的坏结果，无法证明所有留下的内容都完整。',
+    '## 现在的网页阅读管线',
+    '目前，普通公开 URL 导入已经直接交给独立的 Web Reader。它先做有边界的 HTTP 获取，把 HTML 解析为 DOM，预先清理脚本、导航和页面杂项，再用 Mozilla Readability 推断正文，最后转为 Markdown。Readability 使用的是通用正文抽取逻辑，无需为每个网站保存一条 CSS 选择器。[Mozilla Readability](https://github.com/mozilla/readability)',
+    'Web Reader 默认先走轻量路径。遇到轻量请求可恢复地失败、抽取失败或正文过薄，才申请有限的 Chromium 渲染槽位。浏览器执行页面脚本，拿到渲染后的 DOM，再交给同一套清洗和正文抽取流程。这样，普通文章页不用承担浏览器成本，JS 页面也有机会取得真正的正文。',
+    '```text\n公开 URL → Web Reader\n              ├─ 轻量 HTTP 获取 → DOM 预清理 → Readability ─┐\n              └─ 可恢复的失败或正文过薄                      │\n                       ↓                                   │\n                    Chromium 渲染 → DOM 预清理 → Readability ┘\n                                      ↓\n                                   Markdown\n                                      ↓\n                         保存为 Source → 归一化\n```',
+    '这里有一处实现上的演进需要说清楚。现在的普通 URL 导入把清洗后的 Markdown 作为 Source 输入保存，后续处理这份 Markdown。代码里仍保留 HTML Source 的静态提取路径；它在质量门槛失败、且存在最终 URL 时，可以调用 Web Reader 补救。两条路径共享网页阅读能力，但入口和保存的内容不同。[当前 URL 导入实现](https://github.com/huangxinxinyu/nano-notebook/blob/main/internal/app/source_routes.go) [架构决策 ADR 0049](https://github.com/huangxinxinyu/nano-notebook/blob/main/docs/technical-architecture/adr/0049-use-web-reader-as-the-public-url-boundary.md)',
+    '## 能处理的页面，以及拿不到的内容',
+    '这条管线改善了两类情况。服务端返回完整文章时，轻量获取和正文抽取能去掉大部分页面框架；首个 HTML 只有应用空壳时，按需渲染让正文有机会出现。Web Reader 的正文长度下限可以拦住一部分空页。HTML Source 的静态路径还会检查链接密度、错误页和重复区块，减少把无关文字送进后续处理的机会。',
+    '浏览器无法保证拿到所有网页。为本文核对一篇当前 OpenAI 页面时，直接请求收到 `HTTP 403` 和 `cf-mitigated: challenge`；用 Chromium 打开也停在“请稍候…”页，没有文章的 `main` 或 `article`。Cloudflare 文档说明，这个响应头表示返回的是挑战页。此时问题发生在内容交付之前，DOM 清洗没有文章可选。登录内容、付费墙和必须持续交互才能出现的页面也有类似的获取边界；超时则可能让浏览器来不及形成可用结果。[OpenAI 当前页面](https://openai.com/index/research-acceleration-view-inside-openai/) [Cloudflare Challenge 检测说明](https://developers.cloudflare.com/cloudflare-challenges/challenge-types/challenge-pages/detect-response/)',
+    '遇到 Cloudflare challenge，可以先寻找站点提供的公开 API、RSS，或同一内容的公开原始文档。这些入口如果可用，就无需依赖挑战页获取正文。当前不会为了抓取正文去自动解决 challenge；拿到的若只是验证页，就应明确告诉用户这次没有取得文章内容。',
+    '网页阅读最后依赖的仍是判断：这次得到的是文章、页面框架，还是站点给出的另一份页面。先分清它们，后续清洗才有意义。',
+  ],
+  aiDisclosure:
+    '本文由 AI 协助整理表达；项目实现以 nano-notebook 当前代码和架构文档为准。',
+  readingMinutes: 6,
+  category: 'software',
+  topic: 'agent-architecture',
+  series: 'nano-notebook-dev-log',
+  tags: ['nano-notebook', 'Web Reader', 'DOM', 'Readability', 'Agent'],
+  status: 'published',
+} satisfies BlogPost
