@@ -3,6 +3,7 @@ import { readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   aboutPageContent,
+  blogCategories,
   blogPosts,
   blogSeries,
   blogTopics,
@@ -17,14 +18,14 @@ describe('site content model', () => {
     expect(navigationItems.map((item) => item.href)).toEqual([
       '/about',
       '/work',
-      '/life',
       '/blog',
       '/collection',
     ])
 
     expect(siteSections.about.links.length).toBeGreaterThanOrEqual(3)
     expect(siteSections.work.projects.length).toBeGreaterThanOrEqual(2)
-    expect(siteSections.life.events.length).toBeGreaterThanOrEqual(3)
+    expect('life' in siteSections).toBe(false)
+    expect(blogCategories.some((category) => category.id === 'life')).toBe(false)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
       'nano-notebook-dev-log-07',
       'nano-notebook-dev-log-06',
@@ -308,7 +309,6 @@ describe('site content model', () => {
   })
 
   it('separates bachelor and postgraduate education content', () => {
-    const lifeTitles = siteSections.life.events.map((event) => event.title)
     const aboutCoordinates = aboutPageContent.intro.coordinates.map(
       (coordinate) => coordinate.label,
     )
@@ -316,9 +316,6 @@ describe('site content model', () => {
       (detail) => ['bachelor', 'postgraduate'].includes(detail.id),
     )
 
-    expect(lifeTitles).toEqual(
-      expect.arrayContaining(['University of Sydney', 'UCSD ECE']),
-    )
     expect(aboutCoordinates).toEqual(
       expect.arrayContaining(['Bachelor', 'Postgraduate']),
     )
@@ -349,15 +346,50 @@ describe('site content model', () => {
   })
 
   it('uses direct personal copy for the work and about pages', () => {
-    expect(siteSections.work.title).toBe('我在做的软件项目')
+    expect(siteSections.work.title).toBe('Selected work')
     expect(siteSections.work.body).toBe(
-      '这里放我做过的软件项目，也记录我还在继续做的东西。',
+      'A few things I build, research, and keep evolving.',
     )
     expect(siteSections.work.body).not.toMatch(/不确定|公开范围|确认/)
     expect(siteSections.work.projects.map((project) => project.title)).toEqual([
-      '软件开发',
+      'Nano Notebook',
+      'CodeRemote',
       'Yuniverse',
+      'Trust in LLM-controlled Robotics',
     ])
+    expect(siteSections.work.projects.map((project) => project.status)).toEqual([
+      'In development',
+      'Planned',
+      'Ongoing',
+      'Preprint under revision',
+    ])
+    expect(siteSections.work.projects.map((project) => project.links[0]?.href)).toEqual([
+      'https://github.com/huangxinxinyu/nano-notebook',
+      undefined,
+      '/home',
+      'https://arxiv.org/abs/2601.02377',
+    ])
+    const nanoNotebook = siteSections.work.projects.find(
+      (project) => project.title === 'Nano Notebook',
+    )
+    const roboticsSurvey = siteSections.work.projects.find(
+      (project) => project.title === 'Trust in LLM-controlled Robotics',
+    )
+    const codeRemote = siteSections.work.projects.find(
+      (project) => project.title === 'CodeRemote',
+    )
+
+    expect(nanoNotebook?.summary).toContain('durable research agent')
+    expect(nanoNotebook?.tags).toContain('Research Agent')
+    expect(nanoNotebook?.highlights).toEqual([
+      'Built around evidence-grounded research rather than general-purpose chat.',
+    ])
+    expect(codeRemote).toMatchObject({
+      kind: 'Product',
+      status: 'Planned',
+      links: [],
+    })
+    expect(roboticsSurvey?.role).toBe('First author')
     expect(JSON.stringify(siteSections.work)).not.toMatch(
       /不确定|公开范围|确认|整理|待定|To be updated/,
     )

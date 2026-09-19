@@ -1,13 +1,11 @@
 import {
   blogPosts,
-  lifeEvents,
   movieItems,
   musicItems,
   pictureItems,
   profile,
   workItems,
   type BlogPost,
-  type LifeEvent,
   type MovieItem,
   type MusicItem,
   type PictureItem,
@@ -25,7 +23,6 @@ const assertNonEmpty = <T,>(items: readonly T[]) => {
 
 const typedProfile: Profile = profile
 const typedWork: readonly [WorkItem, ...WorkItem[]] = assertNonEmpty(workItems)
-const typedLife: readonly [LifeEvent, ...LifeEvent[]] = assertNonEmpty(lifeEvents)
 const typedPosts: readonly [BlogPost, ...BlogPost[]] = assertNonEmpty(blogPosts)
 const typedMusic: readonly [MusicItem, ...MusicItem[]] = assertNonEmpty(musicItems)
 const typedMovies: readonly [MovieItem, ...MovieItem[]] = assertNonEmpty(movieItems)
@@ -35,7 +32,6 @@ const typedPictures: readonly [PictureItem, ...PictureItem[]] =
 void [
   typedProfile,
   typedWork,
-  typedLife,
   typedPosts,
   typedMusic,
   typedMovies,

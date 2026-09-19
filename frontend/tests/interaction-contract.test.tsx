@@ -115,17 +115,11 @@ describe('interactive section contract', () => {
     }
 
     expect(html).toContain('aria-expanded="true"')
-  })
-
-  it('renders the life timeline with selectable focus controls', () => {
-    const html = renderToStaticMarkup(<App initialPath="/life" />)
-
-    for (const event of siteSections.life.events) {
-      expect(html).toContain(`aria-controls="life-panel-${event.id}"`)
-      expect(html).toContain(`id="life-panel-${event.id}"`)
-    }
-
-    expect(html).toContain('aria-current="step"')
+    expect(html).toContain('class="project-links"')
+    expect(html).toContain('href="https://github.com/huangxinxinyu/nano-notebook"')
+    expect(html).toContain('href="/home"')
+    expect(html).toContain('href="https://arxiv.org/abs/2601.02377"')
+    expect(html).not.toContain('aria-label="CodeRemote links"')
   })
 
   it('renders blog filters with an accessible featured state', () => {

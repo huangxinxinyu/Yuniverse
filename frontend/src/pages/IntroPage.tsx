@@ -1,11 +1,12 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { profile, siteSections } from '../content/siteContent'
 
-type IntroCosmosType = 'home-star' | 'planet' | 'signal' | 'star' | 'rays' | 'galaxy'
+type IntroCosmosType = 'home-star' | 'planet' | 'signal' | 'rays' | 'galaxy'
 
 const introChapters = [
   {
     id: 'home',
+    layoutIndex: 0,
     label: 'Home',
     sound: 'WHOOSH',
     soundStyle: 'burst',
@@ -15,6 +16,7 @@ const introChapters = [
   },
   {
     id: 'about',
+    layoutIndex: 1,
     label: siteSections.about.label,
     sound: 'SHOOM',
     soundStyle: 'slash',
@@ -24,6 +26,7 @@ const introChapters = [
   },
   {
     id: 'work',
+    layoutIndex: 2,
     label: siteSections.work.label,
     sound: 'SKRRR',
     soundStyle: 'stamp',
@@ -32,16 +35,8 @@ const introChapters = [
     body: 'Projects, tools, and software craft.',
   },
   {
-    id: 'life',
-    label: siteSections.life.label,
-    sound: 'SWISH',
-    soundStyle: 'caption',
-    cosmosType: 'star',
-    title: 'razzle dazzle',
-    body: 'Cities, school chapters, and small field notes.',
-  },
-  {
     id: 'blog',
+    layoutIndex: 4,
     label: 'Blog',
     sound: 'SNAP',
     soundStyle: 'stamp',
@@ -51,6 +46,7 @@ const introChapters = [
   },
   {
     id: 'collection',
+    layoutIndex: 5,
     label: 'Collection',
     sound: null,
     soundStyle: null,
@@ -94,14 +90,6 @@ const renderSectionCosmos = (type: IntroCosmosType) => {
           <span className="intro-section-signal-node intro-section-signal-node-a" />
           <span className="intro-section-signal-node intro-section-signal-node-b" />
           <span className="intro-section-signal-node intro-section-signal-node-c" />
-          <span className="intro-section-dust" />
-        </>
-      )
-    case 'star':
-      return (
-        <>
-          <span className="intro-section-star-halo" />
-          <span className="intro-section-star" />
           <span className="intro-section-dust" />
         </>
       )
@@ -257,20 +245,20 @@ export function IntroPage() {
         <motion.span style={{ scaleY: scrollYProgress }} />
       </div>
 
-      {introChapters.map((chapter, index) => (
+      {introChapters.map((chapter) => (
         <section className="intro-chapter" key={chapter.id}>
           <motion.div
-            className={`intro-section-cosmos intro-section-cosmos-${index} intro-section-cosmos-${chapter.cosmosType}`}
+            className={`intro-section-cosmos intro-section-cosmos-${chapter.layoutIndex} intro-section-cosmos-${chapter.cosmosType}`}
             aria-hidden="true"
-            initial={{ opacity: 0, scale: 0.78, rotate: index % 2 === 0 ? -7 : 7 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: index % 2 === 0 ? 0 : -2 }}
+            initial={{ opacity: 0, scale: 0.78, rotate: chapter.layoutIndex % 2 === 0 ? -7 : 7 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: chapter.layoutIndex % 2 === 0 ? 0 : -2 }}
             viewport={{ amount: 0.46, once: false }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             {renderSectionCosmos(chapter.cosmosType)}
           </motion.div>
           <motion.div
-            className={`intro-copy intro-copy-${index % 2 === 0 ? 'left' : 'right'}${
+            className={`intro-copy intro-copy-${chapter.layoutIndex % 2 === 0 ? 'left' : 'right'}${
               chapter.id === 'collection' ? ' intro-copy-collection' : ''
             }`}
             initial={{ opacity: 0, y: 36 }}
@@ -284,7 +272,7 @@ export function IntroPage() {
           </motion.div>
           {chapter.sound && chapter.soundStyle ? (
             <motion.div
-              className={`intro-sound intro-sound-cloud intro-sound-cloud-${index}`}
+              className={`intro-sound intro-sound-cloud intro-sound-cloud-${chapter.layoutIndex}`}
               aria-hidden="true"
               initial={{ opacity: 0, scale: 0.82, x: 22, y: -14 }}
               whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}

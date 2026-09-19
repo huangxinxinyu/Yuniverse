@@ -985,7 +985,7 @@ h3 {
 }
 
 .project-card.is-expanded .work-details {
-  max-height: 260px;
+  max-height: 560px;
   margin-top: 8px;
   opacity: 1;
 }
@@ -1010,6 +1010,99 @@ h3 {
   background: color-mix(in srgb, var(--surface) 68%, transparent);
   font-family: var(--mono);
   font-size: 0.7rem;
+}
+
+.work-details .project-highlights {
+  display: grid;
+  gap: 8px;
+  max-width: var(--measure);
+  margin-top: 18px;
+}
+
+.work-details .project-highlights li {
+  position: relative;
+  padding: 0 0 0 18px;
+  color: var(--text);
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+}
+
+.work-details .project-highlights li::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--accent-strong);
+  content: '—';
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.project-links a {
+  min-height: 44px;
+  color: var(--text-strong);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 44px;
+  text-decoration: none;
+}
+
+.project-links a:hover,
+.project-links a:focus-visible {
+  color: var(--accent-strong);
+}
+
+.site-footer {
+  display: grid;
+  width: min(var(--content-width), calc(100% - (var(--gutter) * 2)));
+  grid-template-columns: minmax(180px, 0.34fr) minmax(0, 1fr);
+  gap: clamp(32px, 7vw, 88px);
+  margin: 0 auto;
+  padding: clamp(52px, 8vw, 92px) 0 clamp(36px, 6vw, 68px);
+  box-shadow: inset 0 1px 0 var(--line);
+}
+
+.site-footer h2 {
+  font-size: clamp(1.6rem, 2.4vw, 2.3rem);
+}
+
+.footer-contact-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.footer-contact-list > div {
+  min-width: 0;
+  padding: 14px 0;
+  box-shadow: inset 0 1px 0 var(--line);
+}
+
+.footer-contact-list dt {
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+}
+
+.footer-contact-list dd {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+  color: var(--text-strong);
+}
+
+.footer-contact-list a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-contact-list a:hover,
+.footer-contact-list a:focus-visible {
+  color: var(--accent-strong);
 }
 
 .timeline {
@@ -1579,8 +1672,13 @@ h3 {
   .about-panel,
   .about-details-section,
   .blog-hero,
-  .blog-index {
+  .blog-index,
+  .site-footer {
     grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    width: min(100% - 24px, 680px);
   }
 
   .hero-section {

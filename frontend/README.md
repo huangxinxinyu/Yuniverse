@@ -56,7 +56,6 @@ The site uses a lightweight in-app router with a restrained shared layout and na
 - `/` - concise overview with links into the main sections
 - `/about` - public identity, values, craft, and personal details
 - `/work` - selected project and software development notes
-- `/life` - public life and education timeline
 - `/blog` - planned writing index with categories and status filters
 - `/collection` - music, movie, and picture collection notes
 

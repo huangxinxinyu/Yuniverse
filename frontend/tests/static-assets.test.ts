@@ -52,9 +52,10 @@ describe('static assets', () => {
     expect(robotsTxt).toContain('Allow: /')
     expect(robotsTxt).toContain('Sitemap: https://www.xinyuhuang.space/sitemap.xml')
 
-    for (const path of ['/', '/home', '/about', '/work', '/life', '/blog', '/collection']) {
+    for (const path of ['/', '/home', '/about', '/work', '/blog', '/collection']) {
       expect(sitemapXml).toContain(`<loc>https://www.xinyuhuang.space${path}</loc>`)
     }
+    expect(sitemapXml).not.toContain('<loc>https://www.xinyuhuang.space/life</loc>')
   })
 
   it('adds CDN-friendly cache headers for collection album artwork', () => {

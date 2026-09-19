@@ -26,17 +26,42 @@ export function WorkPage() {
                 onClick={() => setExpandedWorkId(project.id)}
                 type="button"
               >
-                <span>{project.title}</span>
-                <h3>{project.featuredMetric}</h3>
+                <span>{`${project.kind} / ${project.status}`}</span>
+                <h3>{project.title}</h3>
               </button>
               <div className="work-details" id={`work-details-${project.id}`}>
-                <span>{`${project.category} / ${project.year}`}</span>
+                <span>{`${project.role} / ${project.year}`}</span>
                 <p>{project.summary}</p>
-                <ul>
+                {project.highlights.length > 0 ? (
+                  <ul className="project-highlights" aria-label={`${project.title} highlights`}>
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                <ul className="project-tags" aria-label={`${project.title} technologies and topics`}>
                   {project.stack.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
+                {project.links.length > 0 ? (
+                  <div className="project-links" aria-label={`${project.title} links`}>
+                    {project.links.map((link) => {
+                      const isExternal = link.href.startsWith('http')
+
+                      return (
+                        <a
+                          href={link.href}
+                          key={link.href}
+                          rel={isExternal ? 'noreferrer' : undefined}
+                          target={isExternal ? '_blank' : undefined}
+                        >
+                          {link.label} <span aria-hidden="true">↗</span>
+                        </a>
+                      )
+                    })}
+                  </div>
+                ) : null}
               </div>
             </article>
           )

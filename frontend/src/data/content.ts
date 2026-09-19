@@ -1,6 +1,5 @@
 import type {
   BlogPost,
-  LifeEvent,
   MovieItem,
   MusicItem,
   PictureItem,
@@ -12,7 +11,6 @@ import { blogPosts as postItems } from '../content/posts'
 export type {
   BlogPost,
   ContentLink,
-  LifeEvent,
   MovieItem,
   MusicItem,
   PictureItem,
@@ -38,63 +36,71 @@ export const profile = {
 
 export const workItems: readonly [WorkItem, ...WorkItem[]] = [
   {
-    id: 'work-software-engineering',
-    title: '软件开发',
-    role: 'Student / Software developer',
-    timeframe: 'In progress',
+    id: 'work-nano-notebook',
+    title: 'Nano Notebook',
+    kind: 'Product',
+    status: 'In development',
+    role: 'Creator / Full-stack developer',
+    timeframe: '2026',
     summary:
-      '我做软件开发，也把实习和项目里的东西慢慢记下来。',
-    tags: ['Software', 'Engineering', 'Learning'],
-    links: [{ label: 'GitHub', href: 'https://github.com/huangxinxinyu' }],
-    featuredMetric: '一直在做',
+      'A source-grounded research workspace with a durable research agent for asking multi-step questions and tracing conclusions back to original evidence.',
+    highlights: [
+      'Built around evidence-grounded research rather than general-purpose chat.',
+    ],
+    tags: ['Research Agent', 'Go', 'React', 'TypeScript', 'AI systems'],
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/huangxinxinyu/nano-notebook',
+      },
+    ],
+  },
+  {
+    id: 'work-code-remote',
+    title: 'CodeRemote',
+    kind: 'Product',
+    status: 'Planned',
+    role: 'Creator / Developer',
+    timeframe: '2026',
+    summary:
+      'A planned mobile vibe-coding app for building software from a phone.',
+    highlights: [],
+    tags: ['Mobile', 'Vibe coding', 'AI coding'],
+    links: [],
   },
   {
     id: 'work-yuniverse-site',
     title: 'Yuniverse',
+    kind: 'Personal website',
+    status: 'Ongoing',
     role: 'Designer / Developer',
     timeframe: '2026',
     summary:
-      '这个网站把我的项目、学校、兴趣和联系方式放在一起。',
-    tags: ['React', 'TypeScript', 'Personal site'],
-    links: [{ label: 'Current site', href: '#work-yuniverse-site' }],
-    featuredMetric: '个人网站',
-  },
-]
-
-export const lifeEvents: readonly [LifeEvent, ...LifeEvent[]] = [
-  {
-    id: 'life-huzhou',
-    year: 'Primary school',
-    title: '浙江省湖州市递铺第三小学',
-    place: 'Huzhou, Zhejiang',
-    summary: 'The earliest public education coordinate for this timeline.',
-    type: 'study',
+      'A personal space for the software I build, the things I write, and the ideas I want to keep.',
+    highlights: [
+      'Designed and built as an evolving archive rather than a fixed portfolio.',
+      'Brings projects, writing, interests, and personal history into one visual system.',
+    ],
+    tags: ['React', 'TypeScript', 'Visual design'],
+    links: [{ label: 'View site', href: '/home' }],
   },
   {
-    id: 'life-hangzhou',
-    year: 'Middle and high school',
-    title: '杭州英特外国语学校',
-    place: 'Hangzhou',
-    summary: 'A long middle-school and high-school stage before studying abroad.',
-    type: 'study',
-  },
-  {
-    id: 'life-sydney',
-    year: 'Bachelor',
-    title: 'University of Sydney',
-    place: 'Sydney',
+    id: 'work-llm-robotics-survey',
+    title: 'Trust in LLM-controlled Robotics',
+    kind: 'Research',
+    status: 'Preprint under revision',
+    role: 'First author',
+    timeframe: '2026',
     summary:
-      'Bachelor stage: studied Software Engineering at the University of Sydney.',
-    type: 'study',
-  },
-  {
-    id: 'life-ucsd',
-    year: 'Postgraduate',
-    title: 'UCSD ECE',
-    place: 'San Diego',
-    summary:
-      'Postgraduate stage: studying ECE at UCSD.',
-    type: 'milestone',
+      'A systematic survey of security threats and defenses in LLM-controlled robotics, with a focus on the gap between language-model reasoning and physical-world action.',
+    highlights: [],
+    tags: ['LLM Robotics', 'Security', 'Survey'],
+    links: [
+      {
+        label: 'View on arXiv',
+        href: 'https://arxiv.org/abs/2601.02377',
+      },
+    ],
   },
 ]
 

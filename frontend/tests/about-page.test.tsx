@@ -14,6 +14,15 @@ describe('about page', () => {
     expect(aboutPageContent.statusNotice.toLowerCase()).not.toContain('mock')
   })
 
+  it('frames the page as a living archive instead of replaceable draft content', () => {
+    expect(html).toContain('A living archive')
+    expect(html).toContain(
+      'Yuniverse grows with me—one project, note, and moment at a time.',
+    )
+    expect(html).not.toContain('Replaceable content')
+    expect(html).not.toContain('current public draft')
+  })
+
   it('renders each required content block from centralized data', () => {
     expect(html).toContain(aboutPageContent.intro.heading)
     expect(html).toContain(aboutPageContent.values.heading)
@@ -41,29 +50,11 @@ describe('about page', () => {
     expect(html).toContain('aria-pressed="true"')
   })
 
-  it('models contact email and GitHub as dedicated links instead of plain detail text', () => {
-    const contact = aboutPageContent.personalDetails.items.find(
-      (detail) => detail.id === 'contact',
+  it('keeps contact details out of the About detail controls', () => {
+    expect(aboutPageContent.personalDetails.items.some((detail) => detail.id === 'contact')).toBe(
+      false,
     )
-
-    expect(html).toContain('href="mailto:xinyuhimself@gmail.com"')
-    expect(html).toContain('href="https://github.com/huangxinxinyu"')
-    expect(html).toContain('detail-link-icon')
-    expect(contact?.detail).not.toContain('xinyuhimself@gmail.com')
-    expect(contact?.detail).not.toContain('github.com/huangxinxinyu')
-    expect(contact?.links).toEqual([
-      {
-        label: 'Email',
-        href: 'mailto:xinyuhimself@gmail.com',
-        description: 'xinyuhimself@gmail.com',
-        icon: 'mail',
-      },
-      {
-        label: 'GitHub',
-        href: 'https://github.com/huangxinxinyu',
-        description: 'github.com/huangxinxinyu',
-        icon: 'github',
-      },
-    ])
+    expect(html).not.toContain('aria-controls="detail-panel-contact"')
+    expect(html).not.toContain('Personal details and contact')
   })
 })

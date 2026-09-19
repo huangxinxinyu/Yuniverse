@@ -1,20 +1,18 @@
 import {
   blogPosts as baseBlogPosts,
-  lifeEvents,
   movieItems,
   musicItems,
   pictureItems,
   profile as baseProfile,
   workItems as baseWorkItems,
   type BlogPost as BaseBlogPost,
-  type LifeEvent as BaseLifeEvent,
   type MovieItem,
   type MusicItem,
   type PictureItem,
   type WorkItem as BaseWorkItem,
 } from '../data/content'
 
-export type SectionId = 'about' | 'work' | 'life' | 'blog' | 'collection'
+export type SectionId = 'about' | 'work' | 'blog' | 'collection'
 export type CollectionId = 'music' | 'movies' | 'pictures'
 
 export type NavigationItem = {
@@ -60,7 +58,6 @@ export type AboutLink = {
 export type WorkProject = BaseWorkItem & {
   category: string
   year: string
-  status: 'Prototype' | 'Study' | 'Draft'
   stack: readonly string[]
   meta: string
   description: string
@@ -68,12 +65,6 @@ export type WorkProject = BaseWorkItem & {
 
 export type Project = WorkProject
 export type WorkItem = WorkProject
-
-export type LifeEvent = BaseLifeEvent & {
-  date: string
-  note: string
-  tags: readonly string[]
-}
 
 export type BlogPost = BaseBlogPost & {
   categoryLabel: string
@@ -105,7 +96,6 @@ export type BlogCategoryId =
   | 'featured'
   | 'all'
   | 'software'
-  | 'life'
   | 'taste'
   | 'notes'
   | 'future'
@@ -156,12 +146,12 @@ export type AboutPersonalDetail = {
   label: string
   meta: string
   detail: string
-  links?: readonly {
-    label: string
-    href: string
-    description: string
-    icon: 'mail' | 'github'
-  }[]
+}
+
+export type ContactItem = {
+  label: string
+  value: string
+  href?: string
 }
 
 export type AboutPageContent = {
@@ -200,9 +190,6 @@ export type SiteSections = {
   work: SectionSummary & {
     projects: readonly [WorkProject, ...WorkProject[]]
   }
-  life: SectionSummary & {
-    events: readonly [LifeEvent, ...LifeEvent[]]
-  }
   blog: SectionSummary & {
     posts: readonly [BlogPost, ...BlogPost[]]
     featuredPost: BlogPost
@@ -220,7 +207,6 @@ const mapNonEmpty = <Input, Output>(
 export const navigationItems: readonly [NavigationItem, ...NavigationItem[]] = [
   { href: '/about', label: 'About' },
   { href: '/work', label: 'Work' },
-  { href: '/life', label: 'Life' },
   { href: '/blog', label: 'Blog' },
   { href: '/collection', label: 'Collection' },
 ]
@@ -246,26 +232,34 @@ export const profile: Profile = {
 
 export const focusAreas = baseProfile.focusAreas
 
-const workProjects = mapNonEmpty(baseWorkItems, (item, index) => ({
+const workProjects = mapNonEmpty(baseWorkItems, (item) => ({
   ...item,
-  category: ['Software development', 'Personal website', 'Portfolio planning'][index],
+  category: item.kind,
   year: item.timeframe,
-  status: (['Prototype', 'Study', 'Draft'] as const)[index],
   stack: item.tags,
-  meta: `${item.role} / ${item.timeframe}`,
+  meta: `${item.role} / ${item.status}`,
   description: item.summary,
 }))
 
-const timelineEvents = mapNonEmpty(lifeEvents, (event) => ({
-  ...event,
-  date: event.year,
-  note: event.summary,
-  tags: [event.type, event.place],
-}))
+export const contactItems: readonly ContactItem[] = [
+  { label: 'WeChat', value: 'XinyuHimself' },
+  {
+    label: 'Email',
+    value: 'xinyuhimself@gmail.com',
+    href: 'mailto:xinyuhimself@gmail.com',
+  },
+  { label: 'Phone', value: '135 6727 7836', href: 'tel:+8613567277836' },
+  {
+    label: 'GitHub',
+    value: 'huangxinxinyu',
+    href: 'https://github.com/huangxinxinyu',
+  },
+  { label: 'Douyin', value: '@新新 man · 57967116619' },
+  { label: 'RedNote', value: '天目路耐面王 · 1475758150' },
+]
 
 const blogCategoryLabels: Record<BaseBlogPost['category'], string> = {
   software: 'Software',
-  life: 'Life',
   taste: 'Taste',
   notes: 'Notes',
 }
@@ -331,11 +325,6 @@ export const siteSections: SiteSections = {
         href: '/collection',
         description: '电影、健身、音乐和其他兴趣会在这里慢慢补充。',
       },
-      {
-        label: 'Life',
-        href: '/life',
-        description: '湖州、杭州、USYD本科和 UCSD 研究生阶段的公开时间线。',
-      },
     ],
   },
   work: {
@@ -343,25 +332,13 @@ export const siteSections: SiteSections = {
     label: 'Work',
     eyebrow: 'Work',
     kicker: 'Selected work',
-    title: '我在做的软件项目',
+    title: 'Selected work',
     body:
-      '这里放我做过的软件项目，也记录我还在继续做的东西。',
+      'A few things I build, research, and keep evolving.',
     summary:
       '软件开发和项目的公开记录。',
     meta: ['Software development', 'Student work', 'Personal projects'],
     projects: workProjects,
-  },
-  life: {
-    id: 'life',
-    label: 'Life',
-    eyebrow: 'Life',
-    kicker: 'Life experience',
-    title: 'A public timeline across school, bachelor, and postgraduate chapters.',
-    body:
-      '这条时间线只放我主要学习和生活过的城市坐标，后续可以继续补充更多生活节点。',
-    summary: '湖州、杭州、悉尼本科阶段和圣地亚哥研究生阶段组成的公开成长线。',
-    meta: ['Huzhou', 'Hangzhou', 'Sydney', 'San Diego, CA'],
-    events: timelineEvents,
   },
   blog: {
     id: 'blog',
@@ -372,7 +349,7 @@ export const siteSections: SiteSections = {
     body:
       '啥都写点，不好维护了我再新建个网站😜',
     summary: 'Yuniverse 未来文章和笔记的规划区。',
-    meta: ['Software', 'Study', 'Life', 'Yuniverse', 'Notes'],
+    meta: ['Software', 'Study', 'Yuniverse', 'Notes'],
     posts,
     featuredPost,
     emptyState:
@@ -393,7 +370,6 @@ export const siteSections: SiteSections = {
 export const sectionSummaries = [
   siteSections.about,
   siteSections.work,
-  siteSections.life,
   siteSections.blog,
   siteSections.collection,
 ] as const satisfies readonly [SectionSummary, ...SectionSummary[]]
@@ -406,7 +382,7 @@ export const aboutPageContent: AboutPageContent = {
   subtitle:
     'UCSD ECE 在读，做软件开发。',
   statusNotice:
-    'This page uses the current public draft. More project details and writing will be added as they are ready.',
+    'Yuniverse grows with me—one project, note, and moment at a time.',
   intro: {
     heading: 'Intro',
     body:
@@ -449,35 +425,15 @@ export const aboutPageContent: AboutPageContent = {
     ],
   },
   personalDetails: {
-    heading: 'Personal details and contact',
+    heading: 'Personal details',
     body:
-      '这些信息先以公开安全的方式放在页面上，之后可以继续调整展示层级。',
+      '一些关于学习、工作和兴趣的补充。',
     items: [
       {
         id: 'software',
         label: 'Software',
         meta: 'Work',
         detail: '学生、软件开发工程师。项目细节会慢慢放到 Work 页面。',
-      },
-      {
-        id: 'contact',
-        label: 'Contact',
-        meta: 'Open',
-        detail: 'WeChat: XinyuHimself / Phone: 13567277836.',
-        links: [
-          {
-            label: 'Email',
-            href: 'mailto:xinyuhimself@gmail.com',
-            description: 'xinyuhimself@gmail.com',
-            icon: 'mail',
-          },
-          {
-            label: 'GitHub',
-            href: 'https://github.com/huangxinxinyu',
-            description: 'github.com/huangxinxinyu',
-            icon: 'github',
-          },
-        ],
       },
       {
         id: 'bachelor',
@@ -494,7 +450,7 @@ export const aboutPageContent: AboutPageContent = {
       {
         id: 'interests',
         label: 'Interests',
-        meta: 'Life',
+        meta: 'Personal',
         detail: '唱跳 rap 篮球。',
       },
       {
@@ -522,11 +478,6 @@ export const blogCategories: readonly [BlogCategory, ...BlogCategory[]] = [
     id: 'software',
     label: 'Software',
     description: 'Software writing, including internship notes, agent architecture, and AI tools.',
-  },
-  {
-    id: 'life',
-    label: 'Life',
-    description: 'Field notes from routines, walks, and transitions.',
   },
   {
     id: 'taste',

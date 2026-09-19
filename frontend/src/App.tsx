@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ContactFooter } from './components/ContactFooter'
 import { SiteNav } from './components/SiteNav'
 import { AboutPage } from './pages/AboutPage'
 import { BlogPage } from './pages/BlogPage'
@@ -6,11 +7,10 @@ import { BlogPostPage } from './pages/BlogPostPage'
 import { CollectionPage } from './pages/CollectionPage'
 import { HomePage } from './pages/HomePage'
 import { IntroPage } from './pages/IntroPage'
-import { LifePage } from './pages/LifePage'
 import { WorkPage } from './pages/WorkPage'
 import './App.css'
 
-const routePaths = ['/home', '/about', '/work', '/life', '/blog', '/collection'] as const
+const routePaths = ['/home', '/about', '/work', '/blog', '/collection'] as const
 const previewPaths = ['/intro'] as const
 
 export type RoutePath = (typeof routePaths)[number]
@@ -80,7 +80,6 @@ function App({ initialPath }: AppProps) {
       <HomePage {...pageProps} />
       <AboutPage />
       <WorkPage />
-      <LifePage />
       <BlogPage />
       <CollectionPage />
     </>
@@ -92,8 +91,6 @@ function App({ initialPath }: AppProps) {
       <AboutPage />
     ) : currentPath === '/work' ? (
       <WorkPage />
-    ) : currentPath === '/life' ? (
-      <LifePage />
     ) : currentPath === '/blog' ? (
       <BlogPage />
     ) : blogPostSlug ? (
@@ -115,6 +112,7 @@ function App({ initialPath }: AppProps) {
       <main className="page-shell" data-route={currentPath}>
         {page}
       </main>
+      <ContactFooter />
     </div>
   )
 }

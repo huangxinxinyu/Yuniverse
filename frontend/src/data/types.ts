@@ -18,21 +18,14 @@ export type Profile = {
 export type WorkItem = {
   id: string
   title: string
+  kind: 'Product' | 'Personal website' | 'Research'
+  status: 'In development' | 'Planned' | 'Ongoing' | 'Preprint under revision'
   role: string
   timeframe: string
   summary: string
+  highlights: readonly string[]
   tags: readonly string[]
   links: readonly ContentLink[]
-  featuredMetric: string
-}
-
-export type LifeEvent = {
-  id: string
-  year: string
-  title: string
-  place: string
-  summary: string
-  type: string
 }
 
 export type BlogPost = {
@@ -43,7 +36,7 @@ export type BlogPost = {
   content: readonly string[]
   aiDisclosure?: string
   readingMinutes: number
-  category: 'software' | 'life' | 'taste' | 'notes'
+  category: 'software' | 'taste' | 'notes'
   topic?: 'internship-summary' | 'agent-architecture' | 'ai-tools'
   series?: 'codex-legendary-driver' | 'claude-agent-sdk' | 'nano-notebook-dev-log'
   featured?: boolean
