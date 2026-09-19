@@ -366,6 +366,7 @@ describe('site content model', () => {
     expect(siteSections.work.projects.map((project) => project.title)).toEqual([
       'Nano Notebook',
       'CodeRemote',
+      'xinyu-s-skill-set',
       'Yuniverse',
       'Trust in LLM-controlled Robotics',
     ])
@@ -373,11 +374,13 @@ describe('site content model', () => {
       'In development',
       'Planned',
       'Ongoing',
+      'Ongoing',
       'Preprint under revision',
     ])
     expect(siteSections.work.projects.map((project) => project.links[0]?.href)).toEqual([
       'https://github.com/huangxinxinyu/nano-notebook',
       undefined,
+      'https://github.com/huangxinxinyu/xinyu-s-skill-set',
       '/home',
       'https://arxiv.org/abs/2601.02377',
     ])
@@ -390,6 +393,9 @@ describe('site content model', () => {
     const codeRemote = siteSections.work.projects.find(
       (project) => project.title === 'CodeRemote',
     )
+    const skillSet = siteSections.work.projects.find(
+      (project) => project.title === 'xinyu-s-skill-set',
+    )
 
     expect(nanoNotebook?.summary).toContain('durable research agent')
     expect(nanoNotebook?.tags).toContain('Research Agent')
@@ -400,6 +406,11 @@ describe('site content model', () => {
       kind: 'Product',
       status: 'Planned',
       links: [],
+    })
+    expect(skillSet).toMatchObject({
+      kind: 'Open source',
+      role: 'Creator / Maintainer',
+      tags: expect.arrayContaining(['Codex', 'Agent workflows']),
     })
     expect(roboticsSurvey?.role).toBe('First author')
     expect(JSON.stringify(siteSections.work)).not.toMatch(

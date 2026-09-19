@@ -69,6 +69,26 @@ export const workItems: readonly [WorkItem, ...WorkItem[]] = [
     links: [],
   },
   {
+    id: 'work-xinyu-s-skill-set',
+    title: 'xinyu-s-skill-set',
+    kind: 'Open source',
+    status: 'Ongoing',
+    role: 'Creator / Maintainer',
+    timeframe: '2026',
+    summary:
+      'A personal Codex skill collection for syncing reusable agent and engineering workflows across machines.',
+    highlights: [
+      'Keeps skills and engineering instructions versioned, reusable, and portable.',
+    ],
+    tags: ['Codex', 'Agent workflows', 'Developer tooling'],
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/huangxinxinyu/xinyu-s-skill-set',
+      },
+    ],
+  },
+  {
     id: 'work-yuniverse-site',
     title: 'Yuniverse',
     kind: 'Personal website',

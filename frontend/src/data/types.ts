@@ -18,7 +18,7 @@ export type Profile = {
 export type WorkItem = {
   id: string
   title: string
-  kind: 'Product' | 'Personal website' | 'Research'
+  kind: 'Product' | 'Open source' | 'Personal website' | 'Research'
   status: 'In development' | 'Planned' | 'Ongoing' | 'Preprint under revision'
   role: string
   timeframe: string
