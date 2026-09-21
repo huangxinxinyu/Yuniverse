@@ -1361,6 +1361,54 @@ h3 {
   margin-top: 20px;
 }
 
+.post-metrics {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  color: var(--text-muted);
+  font: 0.78rem/1.4 var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.post-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.post-like-button {
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  padding: 6px 10px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.post-like-button:hover:not(:disabled),
+.post-like-button:focus-visible,
+.post-like-button[aria-pressed='true'] {
+  border-color: var(--accent-strong);
+  color: var(--accent-strong);
+}
+
+.post-like-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.post-like-button:disabled {
+  cursor: default;
+  opacity: 0.58;
+}
+
 .blog-post-body {
   display: grid;
   gap: 18px;

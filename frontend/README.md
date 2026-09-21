@@ -62,3 +62,34 @@ The site uses a lightweight in-app router with a restrained shared layout and na
 ## Content Notes
 
 Profile, contact, education, and interest copy now reflects the current public draft. Project writeups, blog posts, and collection entries can be expanded as more details are ready to publish.
+
+## Anonymous Post Metrics
+
+The article engagement widget uses one Vercel Function call per article view or
+like action. Its shared counters live in an Upstash Redis database and are not
+stored in the Vercel Function process.
+
+Configure these variables in Vercel for Production, Preview, and Development:
+
+```text
+UPSTASH_REDIS_REST_URL
+UPSTASH_REDIS_REST_TOKEN
+POST_METRICS_SALT
+```
+
+The first two values are provided by an Upstash Redis integration. Generate the
+salt once (for example with `openssl rand -hex 32`) and keep the same value
+across deployments. Changing it makes existing browsers appear as new anonymous
+visitors, but it does not erase the stored counts.
+
+For local end-to-end testing of both Vite and the function, copy `.env.example`
+to `.env.local`, fill the values, and run the project through Vercel CLI:
+
+```bash
+npx vercel dev
+```
+
+The metrics endpoint performs one atomic Redis request per action. Views are
+deduplicated per article, anonymous browser, and UTC day. If the service is not
+configured or temporarily unavailable, the article remains readable and the
+widget quietly disables itself.

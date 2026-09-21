@@ -1,5 +1,6 @@
 import type { MouseEvent, ReactNode } from 'react'
 import type { RoutePath } from '../App'
+import { PostMetrics } from '../components/PostMetrics'
 import { TagList } from '../components/TagList'
 import { blogPosts } from '../content/siteContent'
 
@@ -134,6 +135,7 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
       <h2 id="blog-post-title">{post.title}</h2>
       <p className="blog-post-summary">{post.excerpt}</p>
       <TagList tags={post.tags} />
+      <PostMetrics key={post.slug} slug={post.slug} />
       {post.aiDisclosure ? (
         <p className="ai-disclosure">{post.aiDisclosure}</p>
       ) : null}
