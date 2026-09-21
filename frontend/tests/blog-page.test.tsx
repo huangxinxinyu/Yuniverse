@@ -317,9 +317,15 @@ describe('blog page', () => {
     const articleHtml = renderToStaticMarkup(
       <App initialPath="/blog/jev-decision-model" />,
     )
+    const post = blogPosts.find((candidate) => candidate.slug === 'jev-decision-model')
+    const speedSectionIndex = post?.content.indexOf('## 先看速度：官方给出的延迟是 70–500ms') ?? -1
+    const errorSectionIndex = post?.content.indexOf('## 输出不会越界，判断仍然会错') ?? -1
 
     expect(articleHtml).toContain('data-page="blog-post"')
     expect(articleHtml).toContain('Jev：把判断从 LLM 里拆出来')
+    expect(post?.excerpt).toContain('官方给出的服务延迟是 70–500ms')
+    expect(speedSectionIndex).toBeGreaterThan(-1)
+    expect(speedSectionIndex).toBeLessThan(errorSectionIndex)
     expect(articleHtml).toContain('RLCD 希望让概率能进入程序')
     expect(articleHtml).toContain('把 Jev 放进一个 100-tool Agent')
     expect(articleHtml).toContain('Back to blog')
