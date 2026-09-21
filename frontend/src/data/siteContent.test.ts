@@ -2,6 +2,14 @@ import { describe, expect, it } from 'vitest'
 import { blogPosts, navItems, profile, sectionSummaries } from './siteContent'
 
 describe('site content', () => {
+  it('publishes the Jev decision model post', () => {
+    expect(blogPosts[0]).toMatchObject({
+      slug: 'jev-decision-model',
+      title: 'Jev：把判断从 LLM 里拆出来',
+      status: 'published',
+    })
+  })
+
   it('keeps navigation targets aligned with visible sections', () => {
     const summaryIds = sectionSummaries.map((section) => section.id)
 

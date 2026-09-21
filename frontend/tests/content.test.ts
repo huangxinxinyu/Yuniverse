@@ -27,6 +27,7 @@ describe('site content model', () => {
     expect('life' in siteSections).toBe(false)
     expect(blogCategories.some((category) => category.id === 'life')).toBe(false)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'jev-decision-model',
       'nano-notebook-dev-log-11',
       'nano-notebook-dev-log-10',
       'nano-notebook-dev-log-09',
@@ -134,6 +135,7 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'agent-architecture')
         .map((post) => post.slug),
     ).toEqual([
+      'jev-decision-model',
       'nano-notebook-dev-log-11',
       'nano-notebook-dev-log-10',
       'nano-notebook-dev-log-09',

@@ -12,6 +12,7 @@ import { internshipAgentMemoryGovernance } from './internship-agent-memory-gover
 import { internshipDaytonaAgentWorkspace } from './internship-daytona-agent-workspace'
 import { internshipInviteBackendFlow } from './internship-invite-backend-flow'
 import { internshipStripePaymentBackendFlow } from './internship-stripe-payment-backend-flow'
+import { jevDecisionModel } from './jev-decision-model'
 import { multicaLocalAgentWorkflow } from './multica-local-agent-workflow'
 import { nanoNotebookDevLog01 } from './nano-notebook-dev-log-01'
 import { nanoNotebookDevLog02 } from './nano-notebook-dev-log-02'
@@ -27,6 +28,7 @@ import { nanoNotebookDevLog11 } from './nano-notebook-dev-log-11'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  jevDecisionModel,
   nanoNotebookDevLog11,
   nanoNotebookDevLog10,
   nanoNotebookDevLog09,
