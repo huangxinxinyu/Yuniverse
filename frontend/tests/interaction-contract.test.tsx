@@ -117,10 +117,11 @@ describe('interactive section contract', () => {
     expect(html).toContain('aria-expanded="true"')
     expect(html).toContain('class="project-links"')
     expect(html).toContain('href="https://github.com/huangxinxinyu/nano-notebook"')
+    expect(html).toContain('href="https://github.com/huangxinxinyu/CodeRemote"')
     expect(html).toContain('href="https://github.com/huangxinxinyu/xinyu-s-skill-set"')
     expect(html).toContain('href="/home"')
     expect(html).toContain('href="https://arxiv.org/abs/2601.02377"')
-    expect(html).not.toContain('aria-label="CodeRemote links"')
+    expect(html).toContain('aria-label="CodeRemote links"')
   })
 
   it('renders blog filters with an accessible featured state', () => {

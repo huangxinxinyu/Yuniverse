@@ -374,14 +374,14 @@ describe('site content model', () => {
     ])
     expect(siteSections.work.projects.map((project) => project.status)).toEqual([
       'In development',
-      'Planned',
+      'In development',
       'Ongoing',
       'Ongoing',
       'Preprint under revision',
     ])
     expect(siteSections.work.projects.map((project) => project.links[0]?.href)).toEqual([
       'https://github.com/huangxinxinyu/nano-notebook',
-      undefined,
+      'https://github.com/huangxinxinyu/CodeRemote',
       'https://github.com/huangxinxinyu/xinyu-s-skill-set',
       '/home',
       'https://arxiv.org/abs/2601.02377',
@@ -406,8 +406,19 @@ describe('site content model', () => {
     ])
     expect(codeRemote).toMatchObject({
       kind: 'Product',
-      status: 'Planned',
-      links: [],
+      status: 'In development',
+      summary: expect.stringContaining('iPhone Safari'),
+      highlights: expect.arrayContaining([
+        expect.stringContaining('Tailscale'),
+        expect.stringContaining('tmux'),
+      ]),
+      tags: expect.arrayContaining(['Go', 'Tailscale', 'tmux']),
+      links: [
+        {
+          label: 'GitHub',
+          href: 'https://github.com/huangxinxinyu/CodeRemote',
+        },
+      ],
     })
     expect(skillSet).toMatchObject({
       kind: 'Open source',

@@ -59,14 +59,22 @@ export const workItems: readonly [WorkItem, ...WorkItem[]] = [
     id: 'work-code-remote',
     title: 'CodeRemote',
     kind: 'Product',
-    status: 'Planned',
+    status: 'In development',
     role: 'Creator / Developer',
     timeframe: '2026',
     summary:
-      'A planned mobile vibe-coding app for building software from a phone.',
-    highlights: [],
-    tags: ['Mobile', 'Vibe coding', 'AI coding'],
-    links: [],
+      'A local-first mobile interface for controlling Codex or Claude Code on a Mac from iPhone Safari over a private Tailscale connection.',
+    highlights: [
+      'Keeps code, credentials, and agent processes on the Mac while Tailscale limits access to a private network.',
+      'Uses tmux to keep the terminal and agent running through browser disconnects.',
+    ],
+    tags: ['Mobile', 'Go', 'WebSocket', 'Tailscale', 'tmux', 'AI coding'],
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/huangxinxinyu/CodeRemote',
+      },
+    ],
   },
   {
     id: 'work-xinyu-s-skill-set',
