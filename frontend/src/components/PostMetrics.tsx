@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getVisitorId } from '../lib/visitorId'
 
 type PostMetricCounts = {
   liked: boolean
@@ -10,28 +11,6 @@ type MetricsStatus = 'loading' | 'ready' | 'unavailable'
 
 type PostMetricsProps = {
   slug: string
-}
-
-const visitorStorageKey = 'yuniverse:visitor-id'
-let ephemeralVisitorId: string | null = null
-
-function getVisitorId() {
-  let generatedVisitorId: string | null = null
-
-  try {
-    const savedVisitorId = window.localStorage.getItem(visitorStorageKey)
-
-    if (savedVisitorId) {
-      return savedVisitorId
-    }
-
-    generatedVisitorId = window.crypto.randomUUID()
-    window.localStorage.setItem(visitorStorageKey, generatedVisitorId)
-    return generatedVisitorId
-  } catch {
-    ephemeralVisitorId ??= generatedVisitorId ?? window.crypto.randomUUID()
-    return ephemeralVisitorId
-  }
 }
 
 async function updateMetrics(

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { SiteMetricCounts } from './components/BlogSiteSummary'
 import { ContactFooter } from './components/ContactFooter'
 import { SiteNav } from './components/SiteNav'
 import { AboutPage } from './pages/AboutPage'
@@ -8,6 +9,7 @@ import { CollectionPage } from './pages/CollectionPage'
 import { HomePage } from './pages/HomePage'
 import { IntroPage } from './pages/IntroPage'
 import { WorkPage } from './pages/WorkPage'
+import { getVisitorId } from './lib/visitorId'
 import './App.css'
 
 const routePaths = ['/home', '/about', '/work', '/blog', '/collection'] as const
@@ -44,6 +46,7 @@ function App({ initialPath }: AppProps) {
         (typeof window === 'undefined' ? '/' : window.location.pathname),
     ),
   )
+  const [siteMetrics, setSiteMetrics] = useState<SiteMetricCounts | null>(null)
 
   useEffect(() => {
     if (initialPath || typeof window === 'undefined') {
@@ -56,6 +59,37 @@ function App({ initialPath }: AppProps) {
 
     return () => window.removeEventListener('popstate', handlePopState)
   }, [initialPath])
+
+  useEffect(() => {
+    if (initialPath || typeof window === 'undefined') {
+      return
+    }
+
+    const controller = new AbortController()
+
+    fetch('/api/site-metrics', {
+      body: JSON.stringify({ path: currentPath, visitorId: getVisitorId() }),
+      headers: { 'Content-Type': 'application/json' },
+      method: 'POST',
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Site metrics request failed with ${response.status}`)
+        }
+        return response.json() as Promise<SiteMetricCounts>
+      })
+      .then((counts) => {
+        if (!controller.signal.aborted) {
+          setSiteMetrics(counts)
+        }
+      })
+      .catch(() => {
+        // The site remains usable when anonymous metrics are unavailable.
+      })
+
+    return () => controller.abort()
+  }, [currentPath, initialPath])
 
   const handleNavigate = (path: RoutePath) => {
     setCurrentPath(path)
@@ -80,7 +114,7 @@ function App({ initialPath }: AppProps) {
       <HomePage {...pageProps} />
       <AboutPage />
       <WorkPage />
-      <BlogPage />
+      <BlogPage siteMetrics={siteMetrics} />
       <CollectionPage />
     </>
   ) : isIntroPath ? (
@@ -92,7 +126,7 @@ function App({ initialPath }: AppProps) {
     ) : currentPath === '/work' ? (
       <WorkPage />
     ) : currentPath === '/blog' ? (
-      <BlogPage />
+      <BlogPage siteMetrics={siteMetrics} />
     ) : blogPostSlug ? (
       <BlogPostPage slug={blogPostSlug} onNavigate={handleNavigate} />
     ) : currentPath === '/collection' ? (

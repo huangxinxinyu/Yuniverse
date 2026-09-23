@@ -93,3 +93,15 @@ The metrics endpoint performs one atomic Redis request per action. Views are
 deduplicated per article, anonymous browser, and UTC day. If the service is not
 configured or temporarily unavailable, the article remains readable and the
 widget quietly disables itself.
+
+## Site Summary Metrics
+
+The Blog sidebar shows the number of published posts and days since the site's
+2025-08-17 launch date. Site-wide views and visitors use the same anonymous
+browser ID, salt, and Upstash database as post metrics. Each page load or
+in-app route change records a view; repeat requests for the same route and
+browser within 30 seconds are counted once. Unique visitors are an approximate
+lifetime count from Redis HyperLogLog. Both counters begin when this feature is
+deployed; historic site traffic cannot be recovered from the post-only counts.
+If the metrics service is unavailable, the sidebar shows dashes for those two
+counters.

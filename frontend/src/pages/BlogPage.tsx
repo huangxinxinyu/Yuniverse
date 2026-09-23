@@ -1,4 +1,5 @@
 import { useState, type MouseEvent } from 'react'
+import { BlogSiteSummary, type SiteMetricCounts } from '../components/BlogSiteSummary'
 import {
   blogCategories,
   blogSeries,
@@ -14,6 +15,8 @@ type BlogPageProps = {
   initialTopic?: BlogTopicId
   initialSeries?: BlogSeriesId
   initialPage?: number
+  siteMetrics?: SiteMetricCounts | null
+  now?: Date
 }
 
 const postsPerPage = 6
@@ -23,6 +26,8 @@ export function BlogPage({
   initialTopic = 'all',
   initialSeries = 'all',
   initialPage = 1,
+  siteMetrics,
+  now,
 }: BlogPageProps = {}) {
   const section = siteSections.blog
   const [activeFilter, setActiveFilter] = useState<BlogCategoryId>(initialFilter)
@@ -130,133 +135,138 @@ export function BlogPage({
         </aside>
       </div>
 
-      <div className="filter-bar filter-row" aria-label="Blog categories">
-        {blogCategories.map((category) => (
-          <button
-            aria-pressed={category.id === activeFilter}
-            className="filter-button"
-            data-category={category.id}
-            data-filter={category.id}
-            key={category.id}
-            onClick={() => handleFilterClick(category.id)}
-            type="button"
-          >
-            {category.label}
-          </button>
-        ))}
-      </div>
-
-      {showTopicFilter ? (
-        <div className="filter-bar filter-row topic-filter-row" aria-label="Blog topics">
-          {blogTopics.map((topic) => (
-            <button
-              aria-pressed={topic.id === activeTopic}
-              className="filter-button"
-              data-topic={topic.id}
-              key={topic.id}
-              onClick={() => handleTopicClick(topic.id)}
-              type="button"
-            >
-              {topic.label}
-            </button>
-          ))}
-        </div>
-      ) : null}
-
-      {showSeriesFilter ? (
-        <div className="filter-bar filter-row series-filter-row" aria-label="Blog series">
-          {availableSeries.map((series) => (
-            <button
-              aria-pressed={series.id === effectiveSeries}
-              className="filter-button"
-              data-series={series.id}
-              key={series.id}
-              onClick={() => handleSeriesClick(series.id)}
-              type="button"
-            >
-              {series.label}
-            </button>
-          ))}
-        </div>
-      ) : null}
-
-      {paginatedPosts.length > 0 ? (
-        <>
-          <div className="post-list blog-index">
-            {paginatedPosts.map((post) => (
-              <article className="mini-card post-card" key={post.slug}>
-                <div className="post-card-meta">
-                  <span>{post.date}</span>
-                  <strong>{post.seriesLabel ?? post.topicLabel ?? post.categoryLabel}</strong>
-                </div>
-                <h3>{post.title}</h3>
-                <p>{post.excerpt}</p>
-                <ul aria-label={`${post.title} tags`}>
-                  {post.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-                <div className="post-footer">
-                  <span>{post.readingTime}</span>
-                  {post.featured ? <strong>Featured</strong> : null}
-                </div>
-                <a
-                  className="text-command secondary"
-                  href={post.href}
-                  onClick={handlePostClick(post.href)}
-                >
-                  Read article
-                </a>
-              </article>
+      <div className="blog-content-layout">
+        <div className="blog-content-main">
+          <div className="filter-bar filter-row" aria-label="Blog categories">
+            {blogCategories.map((category) => (
+              <button
+                aria-pressed={category.id === activeFilter}
+                className="filter-button"
+                data-category={category.id}
+                data-filter={category.id}
+                key={category.id}
+                onClick={() => handleFilterClick(category.id)}
+                type="button"
+              >
+                {category.label}
+              </button>
             ))}
           </div>
 
-          {showPagination ? (
-            <nav className="blog-pagination" aria-label="Blog pagination">
-              {currentPage > 1 ? (
+          {showTopicFilter ? (
+            <div className="filter-bar filter-row topic-filter-row" aria-label="Blog topics">
+              {blogTopics.map((topic) => (
                 <button
-                  className="pagination-button"
-                  onClick={() => handlePageClick(currentPage - 1)}
+                  aria-pressed={topic.id === activeTopic}
+                  className="filter-button"
+                  data-topic={topic.id}
+                  key={topic.id}
+                  onClick={() => handleTopicClick(topic.id)}
                   type="button"
                 >
-                  Previous
+                  {topic.label}
                 </button>
-              ) : null}
-              <span className="pagination-status">
-                {`Page ${currentPage} of ${pageCount}`}
-              </span>
-              <div className="pagination-pages" aria-label="Blog pages">
-                {Array.from({ length: pageCount }, (_, index) => {
-                  const page = index + 1
+              ))}
+            </div>
+          ) : null}
 
-                  return (
+          {showSeriesFilter ? (
+            <div className="filter-bar filter-row series-filter-row" aria-label="Blog series">
+              {availableSeries.map((series) => (
+                <button
+                  aria-pressed={series.id === effectiveSeries}
+                  className="filter-button"
+                  data-series={series.id}
+                  key={series.id}
+                  onClick={() => handleSeriesClick(series.id)}
+                  type="button"
+                >
+                  {series.label}
+                </button>
+              ))}
+            </div>
+          ) : null}
+
+          {paginatedPosts.length > 0 ? (
+            <>
+              <div className="post-list blog-index">
+                {paginatedPosts.map((post) => (
+                  <article className="mini-card post-card" key={post.slug}>
+                    <div className="post-card-meta">
+                      <span>{post.date}</span>
+                      <strong>{post.seriesLabel ?? post.topicLabel ?? post.categoryLabel}</strong>
+                    </div>
+                    <h3>{post.title}</h3>
+                    <p>{post.excerpt}</p>
+                    <ul aria-label={`${post.title} tags`}>
+                      {post.tags.map((tag) => (
+                        <li key={tag}>{tag}</li>
+                      ))}
+                    </ul>
+                    <div className="post-footer">
+                      <span>{post.readingTime}</span>
+                      {post.featured ? <strong>Featured</strong> : null}
+                    </div>
+                    <a
+                      className="text-command secondary"
+                      href={post.href}
+                      onClick={handlePostClick(post.href)}
+                    >
+                      Read article
+                    </a>
+                  </article>
+                ))}
+              </div>
+
+              {showPagination ? (
+                <nav className="blog-pagination" aria-label="Blog pagination">
+                  {currentPage > 1 ? (
                     <button
-                      aria-current={page === currentPage ? 'page' : undefined}
-                      aria-label={`Go to blog page ${page}`}
-                      className="pagination-page-button"
-                      data-page-button={page}
-                      key={page}
-                      onClick={() => handlePageClick(page)}
+                      className="pagination-button"
+                      onClick={() => handlePageClick(currentPage - 1)}
                       type="button"
                     >
-                      {page}
+                      Previous
                     </button>
-                  )
-                })}
-              </div>
-              {currentPage < pageCount ? (
-                <button
-                  className="pagination-button"
-                  onClick={() => handlePageClick(currentPage + 1)}
-                  type="button"
-                >
-                  Next
-                </button>
+                  ) : null}
+                  <span className="pagination-status">
+                    {`Page ${currentPage} of ${pageCount}`}
+                  </span>
+                  <div className="pagination-pages" aria-label="Blog pages">
+                    {Array.from({ length: pageCount }, (_, index) => {
+                      const page = index + 1
+
+                      return (
+                        <button
+                          aria-current={page === currentPage ? 'page' : undefined}
+                          aria-label={`Go to blog page ${page}`}
+                          className="pagination-page-button"
+                          data-page-button={page}
+                          key={page}
+                          onClick={() => handlePageClick(page)}
+                          type="button"
+                        >
+                          {page}
+                        </button>
+                      )
+                    })}
+                  </div>
+                  {currentPage < pageCount ? (
+                    <button
+                      className="pagination-button"
+                      onClick={() => handlePageClick(currentPage + 1)}
+                      type="button"
+                    >
+                      Next
+                    </button>
+                  ) : null}
+                </nav>
               ) : null}
-            </nav>
+            </>
           ) : null}
-        </>
-      ) : null}
+        </div>
+        <BlogSiteSummary metrics={siteMetrics} now={now} />
+      </div>
     </section>
   )
 }
