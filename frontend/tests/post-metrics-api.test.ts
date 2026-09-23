@@ -12,6 +12,19 @@ type MetricsStore = {
 }
 
 type ApiModule = {
+  default: (
+    request: {
+      body?: unknown
+      headers: Record<string, string | undefined>
+      method?: string
+      url?: string
+    },
+    response: {
+      send: (body: string) => void
+      setHeader: (name: string, value: string) => void
+      status: (statusCode: number) => unknown
+    },
+  ) => Promise<void>
   createPostMetricsHandler: (dependencies: {
     createStore: () => MetricsStore
     hashVisitorId: (visitorId: string) => string
@@ -38,6 +51,39 @@ function postRequest(slug: string, body: unknown) {
 }
 
 describe('post metrics API', () => {
+  it('adapts a relative Vercel Node request and response', async () => {
+    const api = await loadApiModule()
+    expect(api, 'post metrics API module should exist').not.toBeNull()
+    if (!api) return
+
+    const response = {
+      body: '',
+      headers: new Map<string, string>(),
+      statusCode: 0,
+      send(body: string) {
+        this.body = body
+      },
+      setHeader(name: string, value: string) {
+        this.headers.set(name.toLowerCase(), value)
+      },
+      status(statusCode: number) {
+        this.statusCode = statusCode
+        return this
+      },
+    }
+
+    await api.default({
+      body: { action: 'view', visitorId: 'invalid' },
+      headers: { 'content-type': 'application/json' },
+      method: 'POST',
+      url: '/api/post-metrics?slug=jev-decision-model',
+    }, response)
+
+    expect(response.statusCode).toBe(400)
+    expect(response.headers.get('cache-control')).toBe('no-store')
+    expect(JSON.parse(response.body)).toEqual({ error: 'Invalid request' })
+  })
+
   it('hashes the visitor before recording a view', async () => {
     const api = await loadApiModule()
     expect(api, 'post metrics API module should exist').not.toBeNull()

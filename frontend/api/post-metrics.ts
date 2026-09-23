@@ -25,6 +25,19 @@ type HandlerDependencies = {
   hashVisitorId: (visitorId: string) => string
 }
 
+type VercelRequest = {
+  body?: unknown
+  headers: Record<string, string | string[] | undefined>
+  method?: string
+  url?: string
+}
+
+type VercelResponse = {
+  send: (body: string) => void
+  setHeader: (name: string, value: string) => void
+  status: (statusCode: number) => unknown
+}
+
 const viewScript = `
 local is_new_view = redis.call('SET', KEYS[4], '1', 'EX', 172800, 'NX')
 if is_new_view then
@@ -186,7 +199,7 @@ export function createPostMetricsHandler(dependencies: HandlerDependencies) {
   }
 }
 
-const handler = createPostMetricsHandler({
+const postMetricsHandler = createPostMetricsHandler({
   createStore: () => createRedisMetricsStore(Redis.fromEnv()),
   hashVisitorId: (visitorId) => {
     const salt = process.env.POST_METRICS_SALT
@@ -199,4 +212,30 @@ const handler = createPostMetricsHandler({
   },
 })
 
-export default handler
+export default async function handler(
+  request: VercelRequest,
+  response: VercelResponse,
+) {
+  const method = request.method ?? 'GET'
+  const contentType = request.headers['content-type']
+  const body = method === 'GET' || method === 'HEAD' || request.body === undefined
+    ? undefined
+    : typeof request.body === 'string'
+      ? request.body
+      : JSON.stringify(request.body)
+  const webRequest = new Request(
+    new URL(request.url ?? '/', 'https://post-metrics.internal'),
+    {
+      body,
+      headers: typeof contentType === 'string'
+        ? { 'Content-Type': contentType }
+        : undefined,
+      method,
+    },
+  )
+  const webResponse = await postMetricsHandler(webRequest)
+
+  webResponse.headers.forEach((value, name) => response.setHeader(name, value))
+  response.status(webResponse.status)
+  response.send(await webResponse.text())
+}
