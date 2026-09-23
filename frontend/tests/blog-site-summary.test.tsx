@@ -1,9 +1,11 @@
 // @vitest-environment jsdom
 
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../src/App'
 import { BlogPage } from '../src/pages/BlogPage'
+import { BlogPostPage } from '../src/pages/BlogPostPage'
 import { blogPosts } from '../src/content/siteContent'
 
 describe('blog site summary and desk pet', () => {
@@ -34,6 +36,25 @@ describe('blog site summary and desk pet', () => {
     expect(summary.textContent).toContain('访问量1,241')
     expect(summary.textContent).toContain('访客数820')
     expect(screen.getByRole('img', { name: '白色小狗趴在红色木碗里' })).toBeTruthy()
+  })
+
+  it('places the same desk pet and site summary on every article page', () => {
+    for (const post of blogPosts) {
+      const html = renderToStaticMarkup(<App initialPath={`/blog/${post.slug}`} />)
+
+      expect(html).toContain(`>${post.title}</h2>`)
+      expect(html.match(/aria-label="网站概览"/g)).toHaveLength(1)
+      expect(html).toContain('src="/images/blog/desk-pet-rest.png"')
+    }
+  })
+
+  it('passes the live site-wide counts into an article sidebar', () => {
+    const html = renderToStaticMarkup(
+      <BlogPostPage slug="hello-world" siteMetrics={{ views: 1241, visitors: 820 }} />,
+    )
+
+    expect(html).toContain('访问量</dt><dd>1,241</dd>')
+    expect(html).toContain('访客数</dt><dd>820</dd>')
   })
 
   it('changes pet posture as the pointer moves around it and settles when it leaves', async () => {

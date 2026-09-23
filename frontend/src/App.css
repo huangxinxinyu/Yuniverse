@@ -1469,7 +1469,14 @@ h3 {
 }
 
 .blog-post-page {
-  max-width: var(--measure-wide);
+  display: grid;
+  grid-template-columns: minmax(0, var(--measure-wide)) minmax(238px, 272px);
+  align-items: start;
+  gap: clamp(28px, 4vw, 52px);
+}
+
+.blog-post-main {
+  min-width: 0;
 }
 
 .blog-post-summary,
@@ -1841,6 +1848,7 @@ h3 {
   .about-details-section,
   .blog-hero,
   .blog-content-layout,
+  .blog-post-page,
   .blog-index,
   .site-footer {
     grid-template-columns: 1fr;
@@ -1858,6 +1866,10 @@ h3 {
     gap: 8px;
     margin-top: 36px;
     order: -1;
+  }
+
+  .blog-post-page > .blog-site-summary {
+    order: 0;
   }
 
   .blog-desk-pet {

@@ -128,7 +128,7 @@ function App({ initialPath }: AppProps) {
     ) : currentPath === '/blog' ? (
       <BlogPage siteMetrics={siteMetrics} />
     ) : blogPostSlug ? (
-      <BlogPostPage slug={blogPostSlug} onNavigate={handleNavigate} />
+      <BlogPostPage slug={blogPostSlug} onNavigate={handleNavigate} siteMetrics={siteMetrics} />
     ) : currentPath === '/collection' ? (
       <CollectionPage />
     ) : (

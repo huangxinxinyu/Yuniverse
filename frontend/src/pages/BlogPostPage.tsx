@@ -1,5 +1,6 @@
 import type { MouseEvent, ReactNode } from 'react'
 import type { RoutePath } from '../App'
+import { BlogSiteSummary, type SiteMetricCounts } from '../components/BlogSiteSummary'
 import { PostMetrics } from '../components/PostMetrics'
 import { TagList } from '../components/TagList'
 import { blogPosts } from '../content/siteContent'
@@ -7,6 +8,7 @@ import { blogPosts } from '../content/siteContent'
 type BlogPostPageProps = {
   slug: string
   onNavigate?: (path: RoutePath) => void
+  siteMetrics?: SiteMetricCounts | null
 }
 
 const inlineLinkPattern = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s<]+)/g
@@ -110,7 +112,7 @@ function renderContentBlock(block: string) {
   return <p key={block}>{renderInlineContent(block)}</p>
 }
 
-export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
+export function BlogPostPage({ slug, onNavigate, siteMetrics }: BlogPostPageProps) {
   const post = blogPosts.find((post) => post.slug === slug) ?? blogPosts[0]
   const handleBackClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (!onNavigate) {
@@ -128,20 +130,23 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
       data-page="blog-post"
       id="blog"
     >
-      <a className="text-command secondary" href="/blog" onClick={handleBackClick}>
-        Back to blog
-      </a>
-      <p className="section-kicker">{`${post.categoryLabel} / ${post.date}`}</p>
-      <h2 id="blog-post-title">{post.title}</h2>
-      <p className="blog-post-summary">{post.excerpt}</p>
-      <TagList tags={post.tags} />
-      <PostMetrics key={post.slug} slug={post.slug} />
-      {post.aiDisclosure ? (
-        <p className="ai-disclosure">{post.aiDisclosure}</p>
-      ) : null}
-      <div className="blog-post-body">
-        {post.content.map(renderContentBlock)}
+      <div className="blog-post-main">
+        <a className="text-command secondary" href="/blog" onClick={handleBackClick}>
+          Back to blog
+        </a>
+        <p className="section-kicker">{`${post.categoryLabel} / ${post.date}`}</p>
+        <h2 id="blog-post-title">{post.title}</h2>
+        <p className="blog-post-summary">{post.excerpt}</p>
+        <TagList tags={post.tags} />
+        <PostMetrics key={post.slug} slug={post.slug} />
+        {post.aiDisclosure ? (
+          <p className="ai-disclosure">{post.aiDisclosure}</p>
+        ) : null}
+        <div className="blog-post-body">
+          {post.content.map(renderContentBlock)}
+        </div>
       </div>
+      <BlogSiteSummary metrics={siteMetrics} />
     </article>
   )
 }
