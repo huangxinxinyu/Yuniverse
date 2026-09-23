@@ -27,3 +27,6 @@ output/
 
 # Local blog planning notes (not published)
 blog-topics/
+
+# Local Vercel project metadata
+.vercel/
