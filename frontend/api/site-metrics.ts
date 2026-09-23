@@ -1,5 +1,5 @@
+import { createHash } from 'node:crypto'
 import { Redis } from '@upstash/redis'
-import { hashVisitorId } from './post-metrics'
 
 type SiteMetricCounts = {
   views: number
@@ -34,6 +34,11 @@ type VercelResponse = {
 
 const visitorIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 const sitePathPattern = /^\/(?:intro|home|about|work|blog(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)?|collection)?$/
+
+// Vercel compiles each API entry separately, so this module must load on its own.
+function hashVisitorId(visitorId: string, salt: string) {
+  return createHash('sha256').update(`${salt}:${visitorId}`).digest('hex')
+}
 
 const recordViewScript = `
 local is_new_view = redis.call('SET', KEYS[3], '1', 'EX', 30, 'NX')

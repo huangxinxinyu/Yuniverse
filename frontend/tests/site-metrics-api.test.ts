@@ -1,3 +1,5 @@
+import { execFileSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 import { describe, expect, it, vi } from 'vitest'
 
 type SiteCounts = { views: number; visitors: number }
@@ -17,6 +19,14 @@ function viewRequest(path: string, visitorId = '00000000-0000-4000-8000-00000000
 }
 
 describe('site-wide metrics API', () => {
+  it('loads as a standalone Node function module', () => {
+    expect(() => execFileSync(
+      process.execPath,
+      ['--experimental-strip-types', '--input-type=module', '-e', "await import('./api/site-metrics.ts')"],
+      { cwd: fileURLToPath(new URL('..', import.meta.url)) },
+    )).not.toThrow()
+  })
+
   it('adapts a relative Vercel request without crashing', async () => {
     const api = await loadApi()
     expect(api).not.toBeNull()
