@@ -8,12 +8,12 @@
 | [Code Remote：现在能做什么](2026-09-code-remote-features.md) | 待审稿，未发布 | [code-remote](assets/code-remote/) |
 | [Code Remote：安装与使用](2026-09-code-remote-install.md) | 待审稿，未发布；步骤卡待制作 | [code-remote](assets/code-remote/) |
 | [Hello World 测试](2026-09-hello-world-test.md) | 2026-09-20 已核验发布 | 原始配图未找到 |
-| [Jev，这个新模型是啥？](2026-09-jev-decision-model.md) | 历史文案，发布状态未核验 | [jev-decision-model](assets/jev-decision-model/) |
-| [本想定时发帖，结果提了个 PR](2026-09-mcp-timeout-pr.md) | 历史文案；原文件记录定时发布成功 | [mcp-timeout-pr](assets/mcp-timeout-pr/) |
-| [留学日常 01](2026-09-study-abroad-la-jolla.md) | 历史文案；原文件记录定时提交成功 | [study-abroad-01](assets/study-abroad-01/) |
-| [这是我的个人网站 Yuniverse](2026-09-yuniverse-intro.md) | 历史文案，发布状态未核验 | [yuniverse-intro](assets/yuniverse-intro/) |
-| [个人网站，是简历放不下的部分](2026-09-yuniverse-vibecoding.md) | 历史文案；原文件记录审核中／定时发布 | [yuniverse-vibecoding](assets/yuniverse-vibecoding/) |
+| [Jev，这个新模型是啥？](2026-09-jev-decision-model.md) | 已在账号主页核验发布 | [jev-decision-model](assets/jev-decision-model/) |
+| [本想定时发帖，结果提了个 PR](2026-09-mcp-timeout-pr.md) | 已在账号主页核验发布 | [mcp-timeout-pr](assets/mcp-timeout-pr/) |
+| [留学日常 01](2026-09-study-abroad-la-jolla.md) | 已在账号主页核验发布 | [study-abroad-01](assets/study-abroad-01/) |
+| [这是我的个人网站 Yuniverse](2026-09-yuniverse-intro.md) | 已在账号主页核验发布 | [yuniverse-intro](assets/yuniverse-intro/) |
+| [个人网站，是简历放不下的部分](2026-09-yuniverse-vibecoding.md) | 已在账号主页核验发布 | [yuniverse-vibecoding](assets/yuniverse-vibecoding/) |
 
-五篇历史文案复制自仓库原有的 `artifacts/xiaohongshu/`，原文和发布设置均未改动。另有一篇 `Hello World 测试` 从当时的发布记录还原，记录中包含已核验的笔记 ID。“定时提交成功”记录的是当时的提交结果，不等于现在已核实发布。截至 2026-09-24，账号历史仍待扫码登录后核对与补齐。
+五篇历史文案复制自仓库原有的 `artifacts/xiaohongshu/`，原文和发布设置均未改动。另有一篇 `Hello World 测试` 从当时的发布记录还原。2026-09-24 扫码登录后，已在账号主页核对这些笔记的发布状态。
 
 Code Remote 三篇的文字与图片顺序是 2026-09-24 的审稿版。用户确认内容和发布时间后再定时发布。
