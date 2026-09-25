@@ -1,6 +1,8 @@
 # 手机上继续用 Codex 原生 TUI
 
-状态：待审稿，未发布
+状态：已提交定时发布（MCP 回执和服务日志已核验）
+
+定时时间：2026-09-26 00:00 PDT（太平洋夏令时间）
 
 备选标题：Code Remote 现在能做什么｜远程 Codex 的终端体验
 
@@ -19,5 +21,6 @@
 ## 配图与标签
 
 - 配图顺序：[`/` 菜单](assets/code-remote/02-codex-menu.jpg)、[多终端与历史](assets/code-remote/03-sessions.jpg)、[工作目录](assets/code-remote/04-directory.jpg)
-- 标签：Codex、独立开发、开源项目、程序员日常
+- 实际提交标签：独立开发、程序员日常
+- 可见范围：公开可见；原创声明：是
 - 开源地址：https://github.com/huangxinxinyu/CodeRemote

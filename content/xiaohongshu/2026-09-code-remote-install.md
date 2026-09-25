@@ -1,6 +1,8 @@
 # Code Remote 安装与使用
 
-状态：待审稿，未发布；安装步骤卡待制作
+状态：已提交定时发布（MCP 回执和服务日志已核验）
+
+定时时间：2026-09-27 00:00 PDT（太平洋夏令时间）
 
 备选标题：用 iPhone 远程操作 Codex｜手机连回 Mac 上的 Codex
 
@@ -28,7 +30,8 @@ Mac 需要保持开机联网。完整启动命令、Claude Code 模式和排错�
 
 ## 配图与标签
 
-- 配图顺序：[连接后的主界面](assets/code-remote/01-app.jpg)、安装命令步骤卡（待制作）
-- 标签：Codex、Tailscale、开源项目、程序员日常
+- 配图顺序：[连接后的主界面](assets/code-remote/01-app.jpg)、[安装步骤卡](assets/code-remote/07-install-steps.png)
+- 实际提交标签：独立开发、程序员日常
+- 可见范围：公开可见；原创声明：是
 - 安装详情：https://github.com/huangxinxinyu/CodeRemote#快速开始
 - 编辑说明：`make doctor` 留在 README 排错流程，不放进这篇主步骤。

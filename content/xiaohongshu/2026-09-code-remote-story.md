@@ -1,6 +1,8 @@
 # 我把 Codex 终端带上了手机
 
-状态：待审稿，未发布
+状态：已提交定时发布（MCP 回执和服务日志已核验）
+
+定时时间：2026-09-25 00:00 PDT（太平洋夏令时间）
 
 备选标题：为什么我做了 Code Remote｜手机遥控 Mac 上的 Codex
 
@@ -19,5 +21,6 @@
 ## 配图与标签
 
 - 配图顺序：[主界面](assets/code-remote/01-app.jpg)、[GitHub 仓库](assets/code-remote/05-github-repo.png)
-- 标签：独立开发、Codex、开源项目、程序员日常
+- 实际提交标签：独立开发、程序员日常
+- 可见范围：公开可见；原创声明：是
 - 开源地址：https://github.com/huangxinxinyu/CodeRemote

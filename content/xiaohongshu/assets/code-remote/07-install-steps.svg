@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1170" height="1512" viewBox="0 0 1170 1512">
+  <style>
+    text { font-family: "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", sans-serif; }
+    .eyebrow { fill: #89a8b6; font-size: 25px; letter-spacing: 5px; font-weight: 700; }
+    .title { fill: #f4f7f8; font-size: 67px; font-weight: 750; }
+    .section { fill: #35d3b4; font-size: 29px; font-weight: 750; }
+    .body { fill: #ecf3f4; font-size: 37px; font-weight: 600; }
+    .muted { fill: #a9b8c2; font-size: 28px; }
+    .code { fill: #d6f0e9; font-family: "SFMono-Regular", Menlo, monospace; font-size: 31px; }
+  </style>
+  <rect width="1170" height="1512" fill="#101821"/>
+  <rect x="35" y="35" width="1100" height="1442" rx="48" fill="#152331" stroke="#314a5d" stroke-width="3"/>
+  <text x="88" y="115" class="eyebrow">CODE REMOTE / QUICK START</text>
+  <text x="88" y="216" class="title">手机连回你的 Mac</text>
+  <text x="88" y="271" class="muted">Mac 跑 Codex，iPhone Safari 操作原生终端</text>
+
+  <rect x="78" y="320" width="1014" height="212" rx="29" fill="#1b3041" stroke="#3d596c" stroke-width="2"/>
+  <text x="113" y="374" class="section">01  准备两端</text>
+  <text x="113" y="433" class="body">Mac 与 iPhone 加入同一个 tailnet</text>
+  <text x="113" y="484" class="muted">Mac 先安装并登录 Codex CLI</text>
+
+  <rect x="78" y="556" width="1014" height="320" rx="29" fill="#1b3041" stroke="#3d596c" stroke-width="2"/>
+  <text x="113" y="610" class="section">02  在 Mac 下载并构建</text>
+  <text x="113" y="671" class="code">git clone &lt;仓库地址见正文&gt;</text>
+  <text x="113" y="721" class="code">cd CodeRemote</text>
+  <text x="113" y="771" class="code">make bootstrap</text>
+  <text x="113" y="821" class="code">make build</text>
+
+  <rect x="78" y="900" width="1014" height="315" rx="29" fill="#1b3041" stroke="#3d596c" stroke-width="2"/>
+  <text x="113" y="954" class="section">03  启动服务</text>
+  <text x="113" y="1015" class="code">tailscale ip -4</text>
+  <text x="113" y="1069" class="body">用查到的 Mac IP 启动 daemon</text>
+  <text x="113" y="1120" class="muted">设置 -listen 为 IP:8080</text>
+  <text x="113" y="1167" class="muted">设置 -cwd 为项目的绝对路径</text>
+
+  <rect x="78" y="1239" width="1014" height="164" rx="29" fill="#153b3b" stroke="#2b9e89" stroke-width="2"/>
+  <text x="113" y="1295" class="section">04  在 iPhone Safari 打开</text>
+  <text x="113" y="1362" class="code">http://&lt;Mac IP&gt;:8080</text>
+
+  <text x="88" y="1452" class="muted">完整命令见 GitHub：huangxinxinyu/CodeRemote</text>
+</svg>
