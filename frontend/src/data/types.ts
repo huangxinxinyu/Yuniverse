@@ -28,6 +28,12 @@ export type WorkItem = {
   links: readonly ContentLink[]
 }
 
+export type BlogPostTranslation = {
+  title: string
+  excerpt: string
+  aiDisclosure?: string
+}
+
 export type BlogPost = {
   slug: string
   title: string
@@ -35,6 +41,10 @@ export type BlogPost = {
   excerpt: string
   content: readonly string[]
   aiDisclosure?: string
+  // Language the body is written in; defaults to Chinese.
+  language?: 'zh' | 'en'
+  // English title and summary shown when the site is in English.
+  en?: BlogPostTranslation
   readingMinutes: number
   category: 'software' | 'taste' | 'notes'
   topic?: 'internship-summary' | 'agent-architecture' | 'ai-tools'

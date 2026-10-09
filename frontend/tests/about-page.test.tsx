@@ -15,10 +15,8 @@ describe('about page', () => {
   })
 
   it('frames the page as a living archive instead of replaceable draft content', () => {
-    expect(html).toContain('A living archive')
-    expect(html).toContain(
-      'Yuniverse grows with me—one project, note, and moment at a time.',
-    )
+    expect(html).toContain('持续生长的档案')
+    expect(html).toContain(aboutPageContent.statusNotice)
     expect(html).not.toContain('Replaceable content')
     expect(html).not.toContain('current public draft')
   })
@@ -38,7 +36,7 @@ describe('about page', () => {
   })
 
   it('renders restrained personal detail controls with one active default item', () => {
-    expect(html).toContain('aria-label="Personal detail notes"')
+    expect(html).toContain('aria-label="个人细节"')
     expect(html).not.toContain('interest-orbit')
     expect(html).not.toContain('orbit-core')
 

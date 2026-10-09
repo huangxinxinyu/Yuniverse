@@ -5,6 +5,14 @@ export const helloWorld = {
   title: 'Hello World',
   date: '2026-05-14',
   excerpt: 'The first readable note on Yuniverse.',
+  language: 'en',
+  en: {
+    title: 'Hello World',
+    excerpt:
+      'The first readable note on Yuniverse.',
+    aiDisclosure:
+      'Posted by AI.',
+  },
   content: ['hello world'],
   aiDisclosure: '这是 ai 发布的内容',
   readingMinutes: 1,

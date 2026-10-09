@@ -6,6 +6,13 @@ export const obsidianCodexAiKnowledgeBase = {
   date: '2026-05-22',
   excerpt:
     '记录我如何用 Obsidian 承接 Codex 和 AI 对话，把代码阅读、debug、实习日志和博客素材沉淀成个人知识库。',
+  en: {
+    title: "Don't Just Chat with AI: How I Built a Knowledge Base with Obsidian + Codex",
+    excerpt:
+      'How I use Obsidian to capture my Codex and AI conversations, turning code reading, debugging, internship logs, and blog material into a personal knowledge base.',
+    aiDisclosure:
+      'Written with AI help. The content comes from my own practice with Obsidian, Codex, and AI agents.',
+  },
   content: [
     '最近我越来越频繁地用 Codex 辅助写代码、读项目、整理实习记录和起草博客。它确实能让我更快进入状态，但也带来一个新的问题：很多有价值的东西都停留在对话窗口里。',
     '一次 debugging 的排查路径、一次代码阅读形成的架构理解、一次资料阅读后提炼出的观点，如果没有被整理出来，很快就会被新的对话覆盖。对话本身是流动的，但知识应该留下来。',

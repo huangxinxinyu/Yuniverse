@@ -6,6 +6,13 @@ export const nanoNotebookDevLog05 = {
   date: '2026-08-07',
   excerpt:
     '从 RAG 到 Agent Runtime：这篇讲 search_evidence 如何变成 MCP 工具，模型为什么只能提议不能直接执行，AgentLoop 如何编排、授权、恢复，以及工具报错、重试、并发结果落库、上下文投影和 Claude Code 机制对比。',
+  en: {
+    title: 'nano-notebook Dev Log 05: Giving the Knowledge Base Controlled Tools: MCP Tool Plane, Permissions, and Orchestration',
+    excerpt:
+      'From RAG to agent runtime: how search_evidence becomes an MCP tool, why the model may only propose and never execute directly, how the AgentLoop orchestrates, authorizes, and resumes, plus tool errors, retries, persisting concurrent results, context projection, and a comparison with Claude Code.',
+    aiDisclosure:
+      "Written with AI help. The technical decisions, implementation, and instrumentation come from nano-notebook's source code, ADRs, prompt catalog, and design docs.",
+  },
   content: [
     '第四篇讲了 RAG：让模型能在自己的知识库里检索证据。但检索能力不会自动变成 Agent 能力。要让模型真正用上知识库，必须把它包装成一个受控的工具；而工具一旦能被执行，权限、编排和上下文就不再是附加项，它们就是 Agent Runtime 本身。',
     '这篇把 nano-notebook 的工具层、权限、AgentLoop 和上下文处理放在一起讲，正好补上前面几篇留的骨架。',

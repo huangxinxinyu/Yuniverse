@@ -1,10 +1,9 @@
 import type { MouseEvent } from 'react'
 import type { PageProps, RoutePath } from '../App'
-import { navigationItems, profile, siteSections } from '../content/siteContent'
-
-const sectionEntries = Object.values(siteSections)
+import { useSiteContent } from '../content/useSiteContent'
 
 export function HomePage({ onNavigate }: PageProps) {
+  const { profile, sectionSummaries, ui } = useSiteContent()
   const handleClick =
     (href: RoutePath) => (event: MouseEvent<HTMLAnchorElement>) => {
       if (!onNavigate) {
@@ -25,17 +24,17 @@ export function HomePage({ onNavigate }: PageProps) {
             <span>{profile.displayName}</span>
           </h1>
           <p className="hero-text">{profile.heroText}</p>
-          <div className="hero-actions" aria-label="Primary page links">
+          <div className="hero-actions" aria-label={ui.home.primaryLinksAria}>
             <a className="text-command primary" href="/work" onClick={handleClick('/work')}>
-              View work
+              {ui.home.viewWork}
             </a>
             <a className="text-command secondary" href="/about" onClick={handleClick('/about')}>
-              About
+              {ui.home.about}
             </a>
           </div>
         </div>
 
-        <div className="signal-panel" aria-label="Current snapshot">
+        <div className="signal-panel" aria-label={ui.home.snapshotAria}>
           {profile.signals.map((signal) => (
             <div key={signal.label}>
               <span className="panel-label">{signal.label}</span>
@@ -47,13 +46,12 @@ export function HomePage({ onNavigate }: PageProps) {
 
       <section className="portal-section" aria-labelledby="portal-title">
         <div>
-          <p className="section-kicker">Sections</p>
-          <h2 id="portal-title">Start with the useful parts.</h2>
+          <p className="section-kicker">{ui.home.sectionsKicker}</p>
+          <h2 id="portal-title">{ui.home.portalTitle}</h2>
         </div>
         <div className="portal-grid">
-          {sectionEntries.map((section) => {
-            const navItem = navigationItems.find((item) => item.label === section.label)
-            const href = (navItem?.href ?? `/${section.id}`) as RoutePath
+          {sectionSummaries.map((section) => {
+            const href = `/${section.id}` as RoutePath
 
             return (
               <a

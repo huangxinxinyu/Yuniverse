@@ -6,6 +6,13 @@ export const nanoNotebookDevLog03 = {
   date: '2026-08-07',
   excerpt:
     'nano-notebook 把 Agent Trace 做成可恢复、可回放、可审计的执行记录；这篇讲 Trace 模型、SDK 分层、真实埋点、Trace 调试台，以及 exporter 批量转发和 Collector 幂等收集的设计。',
+  en: {
+    title: 'nano-notebook Dev Log 03: Modeling Traces, an Observability SDK, and Dashboard Design',
+    excerpt:
+      'nano-notebook treats agent traces as resumable, replayable, auditable execution records. This entry covers the trace model, SDK layers, real instrumentation, the trace debugging console, batched exporter forwarding, and idempotent collection in the Collector.',
+    aiDisclosure:
+      "Written with AI help. The technical decisions, implementation, and instrumentation come from nano-notebook's source code, design specs, and runbooks.",
+  },
   content: [
     '这篇接着 Checkpoint 讲，把 nano-notebook 里“怎么知道一个 Agent Run 到底发生了什么”这件事拆开：先定义 Trace 模型，再讲 SDK 为什么值得单独设计，最后落到实际埋点。',
     'Agent Trace 是一条有身份、有因果、有版本、可以跨进程恢复并且能够回放的执行记录。OpenTelemetry 在 nano-notebook 里只是 best-effort 运维信号；应用自己拥有的 Durable Agent Trace 用于诊断和复盘。nano-notebook 的 Trace 调试台消费的正是这条 Durable Trace 的查询投影。',

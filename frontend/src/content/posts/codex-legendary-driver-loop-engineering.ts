@@ -6,6 +6,13 @@ export const codexLegendaryDriverLoopEngineering = {
   date: '2026-06-17',
   excerpt:
     'AI 的时间不是人的时间。Loop Engineering 的核心不是写更聪明的 prompt，而是设计交付条件、外部状态和停止机制，让 Codex 在没人盯着的时候也能持续推进。',
+  en: {
+    title: 'Codex Legendary Driver 03: Loop Engineering, Letting Agents Work While No One Is Watching',
+    excerpt:
+      'AI time is not human time. Loop engineering is less about cleverer prompts and more about designing delivery criteria, external state, and stop conditions so Codex keeps making progress when nobody is watching.',
+    aiDisclosure:
+      'Researched and written with AI help. The direction comes from my understanding of Codex driving workflows and loop engineering.',
+  },
   content: [
     'AI 的时间不是人的时间。',
     '一个 agent 在后台多跑十分钟，消耗的是 token 和算力；一个人盯着它跑十分钟，消耗的是注意力、上下文和判断力。',

@@ -6,6 +6,13 @@ export const codexLegendaryDriverContextNoise = {
   date: '2026-06-11',
   excerpt:
     '上下文不是越多越好。真正稳定的 agent 工作流，应该区分本地状态和模型可见上下文，动态选择工具，主动压缩长会话，并把 memory 做成按需检索。',
+  en: {
+    title: "Codex Legendary Driver 02: Cut the Noise, Don't Treat Context as a Trash Can",
+    excerpt:
+      'More context is not always better. A stable agent workflow separates local state from what the model sees, picks tools dynamically, compacts long sessions on purpose, and makes memory something retrieved on demand.',
+    aiDisclosure:
+      'Written with AI help. The content summarizes my own Codex use and reading of mainstream agent engineering material.',
+  },
   content: [
     '用 Codex 和各种 agent 工具久了以后，我越来越觉得，一个很重要的能力不是“给模型更多信息”，而是“知道哪些信息不该给模型”。',
     '很多人一开始会本能地把所有东西都塞进上下文：项目背景、文件内容、历史对话、工具列表、长期记忆、搜索结果、日志、报错、猜测、总结。看起来很充分，实际上很容易把模型淹没。',

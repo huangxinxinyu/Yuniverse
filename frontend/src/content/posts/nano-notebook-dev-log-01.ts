@@ -6,6 +6,13 @@ export const nanoNotebookDevLog01 = {
   date: '2026-08-07',
   excerpt:
     '第一篇讲产品故事和整体技术选型：为什么拿 NotebookLM 当蓝本，为什么选择自托管，以及 Go/PostgreSQL/Qdrant 这套栈背后真正想解决什么问题。',
+  en: {
+    title: "nano-notebook Dev Log 01: Why I'm Building My Own NotebookLM",
+    excerpt:
+      'The first entry covers the product story and overall stack: why NotebookLM is the model, why self-hosting, and what problems the Go/PostgreSQL/Qdrant stack is really meant to solve.',
+    aiDisclosure:
+      'Written with AI help. The technical decisions and implementation come from the real development history and repository docs of nano-notebook.',
+  },
   content: [
     '这篇是 nano-notebook 开发日志的第一篇。后面会写 Agent Runtime、Checkpoint、Trace、工具调用、权限、RAG、并发这些具体机制，但第一篇先把两件事讲清楚：我为什么做它，以及我为什么选这套技术栈。',
     '## 为什么拿 NotebookLM 当蓝本',

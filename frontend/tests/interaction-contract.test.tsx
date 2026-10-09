@@ -121,7 +121,7 @@ describe('interactive section contract', () => {
     expect(html).toContain('href="https://github.com/huangxinxinyu/xinyu-s-skill-set"')
     expect(html).toContain('href="/home"')
     expect(html).toContain('href="https://arxiv.org/abs/2601.02377"')
-    expect(html).toContain('aria-label="CodeRemote links"')
+    expect(html).toContain('aria-label="CodeRemote 链接"')
   })
 
   it('renders blog filters with an accessible featured state', () => {
@@ -131,7 +131,7 @@ describe('interactive section contract', () => {
       expect(html).toContain(`data-filter="${category.id}"`)
     }
 
-    expect(html).toContain('Featured')
+    expect(html).toContain('精选')
     expect(html).toContain('aria-pressed="true"')
     expect(html).not.toContain('Blog status filters')
     expect(html).not.toContain('Drafts')
@@ -151,21 +151,21 @@ describe('interactive section contract', () => {
     }
 
     expect(html).toContain('aria-haspopup="dialog"')
-    expect(html).toContain('Open picture')
+    expect(html).toContain('打开图片')
   })
 
   it('renders a dedicated collection page for the /collection route', () => {
     const collectionHtml = renderToStaticMarkup(<App initialPath="/collection" />)
 
     expect(collectionHtml).toContain('data-page="collection"')
-    expect(collectionHtml).toContain('aria-label="Collection media tabs"')
-    expect(collectionHtml).toContain('aria-label="Collection view filters"')
-    expect(collectionHtml).toContain('Albums')
-    expect(collectionHtml).toContain('Playlists')
-    expect(collectionHtml).not.toContain('Tracks')
-    expect(collectionHtml).not.toContain('Watchlist')
-    expect(collectionHtml).not.toContain('Favorites')
-    expect(collectionHtml).toContain('Gallery')
+    expect(collectionHtml).toContain('aria-label="收藏类别"')
+    expect(collectionHtml).toContain('aria-label="收藏筛选"')
+    expect(collectionHtml).toContain('专辑')
+    expect(collectionHtml).toContain('歌单')
+    expect(collectionHtml).not.toContain('单曲')
+    expect(collectionHtml).not.toContain('想看')
+    expect(collectionHtml).not.toContain('最爱')
+    expect(collectionHtml).toContain('图集')
     expect(collectionHtml).toContain('aria-haspopup="dialog"')
   })
 

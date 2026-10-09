@@ -6,6 +6,13 @@ export const codexLegendaryDriverSkillWorkflows = {
   date: '2026-06-11',
   excerpt:
     'Skill 不只是高级功能，它更像是把一次好用的 Codex 协作方式沉淀下来。先写一个能用的版本，马上投入实践，再不断调整流程和策略，效率会越来越稳定。',
+  en: {
+    title: 'Codex Legendary Driver 01: Skills Are Reusable Good Workflows',
+    excerpt:
+      'A skill is less an advanced feature than a way to keep a Codex collaboration pattern that worked. Write a usable first version, put it to work right away, and keep tuning the process; your efficiency gets steadier over time.',
+    aiDisclosure:
+      'Written with AI help. The content comes from my own experience using Codex.',
+  },
   content: [
     '最近我在用 Codex 的时候，一个很明显的感受是：真正提高效率的，不只是模型本身有多强，而是你能不能把一些反复出现的工作流沉淀下来。',
     '很多人刚开始用 Codex，可能还是把它当成一个更会写代码的聊天窗口。想到什么就问什么，需要什么就临时补充要求。这样当然也能用，但时间久了会发现，有些话其实一直在重复说。',

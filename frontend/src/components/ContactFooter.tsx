@@ -1,15 +1,16 @@
-import { contactItems } from '../content/siteContent'
+import { useSiteContent } from '../content/useSiteContent'
 
 export function ContactFooter() {
+  const { contactItems, ui } = useSiteContent()
   return (
-    <footer className="site-footer" aria-label="Contact">
+    <footer className="site-footer" aria-label={ui.contact.aria}>
       <div className="site-footer-heading">
-        <p className="section-kicker">Contact</p>
-        <h2>Say hello.</h2>
+        <p className="section-kicker">{ui.contact.kicker}</p>
+        <h2>{ui.contact.title}</h2>
       </div>
       <dl className="footer-contact-list">
         {contactItems.map((item) => (
-          <div key={item.label}>
+          <div key={item.id}>
             <dt>{item.label}</dt>
             <dd>
               {item.href ? (

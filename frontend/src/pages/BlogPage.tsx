@@ -1,14 +1,8 @@
 import { useState, type MouseEvent } from 'react'
 import { BlogSiteSummary, type SiteMetricCounts } from '../components/BlogSiteSummary'
-import {
-  blogCategories,
-  blogSeries,
-  blogTopics,
-  siteSections,
-  type BlogCategoryId,
-  type BlogSeriesId,
-  type BlogTopicId,
-} from '../content/siteContent'
+import type { BlogCategoryId, BlogSeriesId, BlogTopicId } from '../content/siteContent'
+import { useSiteContent } from '../content/useSiteContent'
+import { toLocalizedUrl } from '../i18n/locale'
 
 type BlogPageProps = {
   initialFilter?: BlogCategoryId
@@ -29,6 +23,7 @@ export function BlogPage({
   siteMetrics,
   now,
 }: BlogPageProps = {}) {
+  const { blogCategories, blogSeries, blogTopics, locale, siteSections, ui } = useSiteContent()
   const section = siteSections.blog
   const [activeFilter, setActiveFilter] = useState<BlogCategoryId>(initialFilter)
   const [activeTopic, setActiveTopic] = useState<BlogTopicId>(initialTopic)
@@ -98,7 +93,7 @@ export function BlogPage({
       }
 
       event.preventDefault()
-      window.history.pushState({}, '', href)
+      window.history.pushState({}, '', toLocalizedUrl(href, locale))
       window.dispatchEvent(new PopStateEvent('popstate'))
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -121,7 +116,7 @@ export function BlogPage({
           className="featured-post"
           data-featured="true"
         >
-          <span className="panel-label">Featured post</span>
+          <span className="panel-label">{ui.blog.featuredPost}</span>
           <h3 id="featured-post-title">{highlightedPost.title}</h3>
           <p>{highlightedPost.excerpt}</p>
           <div className="post-footer">
@@ -137,7 +132,7 @@ export function BlogPage({
 
       <div className="blog-content-layout">
         <div className="blog-content-main">
-          <div className="filter-bar filter-row" aria-label="Blog categories">
+          <div className="filter-bar filter-row" aria-label={ui.blog.categoriesAria}>
             {blogCategories.map((category) => (
               <button
                 aria-pressed={category.id === activeFilter}
@@ -154,7 +149,7 @@ export function BlogPage({
           </div>
 
           {showTopicFilter ? (
-            <div className="filter-bar filter-row topic-filter-row" aria-label="Blog topics">
+            <div className="filter-bar filter-row topic-filter-row" aria-label={ui.blog.topicsAria}>
               {blogTopics.map((topic) => (
                 <button
                   aria-pressed={topic.id === activeTopic}
@@ -171,7 +166,7 @@ export function BlogPage({
           ) : null}
 
           {showSeriesFilter ? (
-            <div className="filter-bar filter-row series-filter-row" aria-label="Blog series">
+            <div className="filter-bar filter-row series-filter-row" aria-label={ui.blog.seriesAria}>
               {availableSeries.map((series) => (
                 <button
                   aria-pressed={series.id === effectiveSeries}
@@ -198,48 +193,48 @@ export function BlogPage({
                     </div>
                     <h3>{post.title}</h3>
                     <p>{post.excerpt}</p>
-                    <ul aria-label={`${post.title} tags`}>
+                    <ul aria-label={ui.blog.tagsAria(post.title)}>
                       {post.tags.map((tag) => (
                         <li key={tag}>{tag}</li>
                       ))}
                     </ul>
                     <div className="post-footer">
                       <span>{post.readingTime}</span>
-                      {post.featured ? <strong>Featured</strong> : null}
+                      {post.featured ? <strong>{ui.blog.featured}</strong> : null}
                     </div>
                     <a
                       className="text-command secondary"
                       href={post.href}
                       onClick={handlePostClick(post.href)}
                     >
-                      Read article
+                      {ui.blog.readArticle}
                     </a>
                   </article>
                 ))}
               </div>
 
               {showPagination ? (
-                <nav className="blog-pagination" aria-label="Blog pagination">
+                <nav className="blog-pagination" aria-label={ui.blog.paginationAria}>
                   {currentPage > 1 ? (
                     <button
                       className="pagination-button"
                       onClick={() => handlePageClick(currentPage - 1)}
                       type="button"
                     >
-                      Previous
+                      {ui.blog.previous}
                     </button>
                   ) : null}
                   <span className="pagination-status">
-                    {`Page ${currentPage} of ${pageCount}`}
+                    {ui.blog.pageStatus(currentPage, pageCount)}
                   </span>
-                  <div className="pagination-pages" aria-label="Blog pages">
+                  <div className="pagination-pages" aria-label={ui.blog.pagesAria}>
                     {Array.from({ length: pageCount }, (_, index) => {
                       const page = index + 1
 
                       return (
                         <button
                           aria-current={page === currentPage ? 'page' : undefined}
-                          aria-label={`Go to blog page ${page}`}
+                          aria-label={ui.blog.goToPage(page)}
                           className="pagination-page-button"
                           data-page-button={page}
                           key={page}
@@ -257,7 +252,7 @@ export function BlogPage({
                       onClick={() => handlePageClick(currentPage + 1)}
                       type="button"
                     >
-                      Next
+                      {ui.blog.next}
                     </button>
                   ) : null}
                 </nav>

@@ -6,6 +6,13 @@ export const nanoNotebookDevLog09 = {
   date: '2026-09-18',
   excerpt:
     '从早期爬虫、DOM 选择器讲到 nano-notebook 的网页正文提取：为什么需要清洗和质量判断，什么时候才启用浏览器，以及 Cloudflare challenge 为什么仍是边界。',
+  en: {
+    title: 'nano-notebook Dev Log 09: How a Web Page Gets Read',
+    excerpt:
+      "From early crawlers and DOM selectors to nano-notebook's web content extraction: why cleaning and quality checks matter, when a browser is actually needed, and why Cloudflare challenges are still a boundary.",
+    aiDisclosure:
+      "Written with AI help. The project implementation follows nano-notebook's current code and architecture docs.",
+  },
   content: [
     '网页阅读是 nano-notebook 感知层里很具体的一件事：给它一个公开 URL，它要拿到文章内容，供后续处理使用。早期实现从请求 HTML、抽取 DOM 文本做起。网络请求、正文定位和浏览器渲染各自会在不同的网页上出问题。把这些问题混在一个“爬网页”步骤里，抓错内容时很难知道错在哪里。',
     '## 从古早爬虫到正文抽取',

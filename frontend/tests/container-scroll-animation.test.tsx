@@ -27,7 +27,7 @@ describe('ContainerScroll integration', () => {
     expect(html).toContain('Follow the comet')
     expect(html).toContain('Enter Yuniverse')
     expect(html).toContain('href="/home"')
-    expect(html).not.toContain('aria-label="Primary navigation"')
+    expect(html).not.toContain('aria-label="主导航"')
   })
 
   it('drives the comet into a shared final impact point with the planet', () => {

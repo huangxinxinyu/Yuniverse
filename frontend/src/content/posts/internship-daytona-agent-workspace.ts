@@ -6,6 +6,13 @@ export const internshipDaytonaAgentWorkspace = {
   date: '2026-06-05',
   excerpt:
     '从实习项目里的 agent workspace 场景出发，整理 Daytona 这类 sandbox 为什么不只是远程跑代码，而是在把 agent 的执行现场产品化。',
+  en: {
+    title: 'Using Daytona at My Internship Changed How I See Agent Sandboxes',
+    excerpt:
+      "Starting from the agent workspace in my internship project: why a sandbox like Daytona is more than remote code execution, and how it turns the agent's execution environment into a product.",
+    aiDisclosure:
+      "Written with AI help. The content comes from my internship project and was checked against Daytona's official documentation.",
+  },
   content: [
     '最近实习项目里用到了 Daytona。最开始我对它的理解很简单：这是一个可以通过 API 创建和控制的 sandbox，用来让 agent 在隔离环境里跑代码、装依赖、执行命令。',
     '但用下来以后，我觉得更值得写的不是“Daytona 能远程跑代码”，而是它把 agent 的执行现场做成了一个可以被管理、恢复和计费的基础设施单元。换句话说，它不只是 sandbox，更接近 agent workspace。',

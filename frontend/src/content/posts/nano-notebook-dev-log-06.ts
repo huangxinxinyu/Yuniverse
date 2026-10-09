@@ -6,6 +6,13 @@ export const nanoNotebookDevLog06 = {
   date: '2026-08-07',
   excerpt:
     '第六篇讲 Prometheus + Grafana 在 Agent 项目里到底解决什么问题：任务成功率、分阶段延迟、typed error、泄漏 gauge 怎么埋，PromQL recording rule / alert rule 怎么组织，以及从单机扩展到分布式集群时要补哪些指标。',
+  en: {
+    title: "nano-notebook Dev Log 06: Prometheus + Grafana, from 'It Runs' to 'It's Operable'",
+    excerpt:
+      'The sixth entry covers what Prometheus and Grafana actually solve in an agent project: instrumenting task success rate, per-stage latency, typed errors, and leak gauges; organizing PromQL recording and alert rules; and which metrics to add when scaling from one machine to a distributed cluster.',
+    aiDisclosure:
+      "Written with AI help. The technical decisions, implementation, and metrics come from nano-notebook's Sprint 12 implementation, PRD, alert runbook, and acceptance docs.",
+  },
   content: [
     '前面几篇把 Agent 怎么执行、怎么恢复、怎么调工具讲完了。这一篇把视角从“一次 Run”拉到“整个系统”：当 Agent 项目已经能跑通之后，运维要回答的已经不是某个 Trace 里发生了什么，而是过去一小时系统整体是不是健康、哪里在变慢、失败集中在哪个原因、Worker 的内存是不是在悄悄涨。',
     'Trace 回答“这一次 Run 到底发生了什么”，Prometheus + Grafana 回答“整个系统现在是什么状态”。两者是两套不同粒度、不同保留周期、不同查询方式的可观测面。Agent 项目尤其需要 metrics plane，因为一次 Agent Run 跨队列、Worker、模型、工具、检索和发布多个阶段，只靠日志或单个 Trace 很难发现系统性回归。',

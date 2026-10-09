@@ -6,6 +6,13 @@ export const nanoNotebookDevLog11 = {
   date: '2026-09-18',
   excerpt:
     '从不同场景的研究任务出发，解释为什么要重复评测 Agent，Pass@1、Pass@k 和 Pass^k 各自衡量什么，以及如何追查不稳定的来源。',
+  en: {
+    title: 'nano-notebook Dev Log 11: Measuring Agent Stability with Pass@k',
+    excerpt:
+      'Using research tasks from different scenarios, this entry explains why agents need repeated evaluation, what Pass@1, Pass@k, and Pass^k each measure, and how to track down the sources of instability.',
+    aiDisclosure:
+      "Written with AI help. The evaluation setup follows nano-notebook's current task set and run scripts.",
+  },
   content: [
     "让研究 Agent 完成一道题，并不能说明它下次还能完成同一道题。一次回答可能碰巧找对了资料，也可能漏掉一个关键限定条件。用户拿到的通常只有一次结果，所以我想知道的除了“它能不能做出来”，还有“它能不能稳定地做出来”。",
     "## 先把研究任务分开",

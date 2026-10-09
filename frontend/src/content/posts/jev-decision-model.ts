@@ -6,6 +6,13 @@ export const jevDecisionModel = {
   date: '2026-09-20',
   excerpt:
     '大模型还在沿着推理、多模态和 Agent 扩展，Jev 却放弃文本生成，只输出有限选项及其概率。官方给出的服务延迟是 70–500ms，输入每百万 token 0.042 美元、输出免费。本文再从 RLCD 与一个 100-tool Agent 实验，讨论这种判断模型能做什么，以及它可能给 Agent 带来的新分工。',
+  en: {
+    title: 'Jev: Taking Judgment Out of the LLM',
+    excerpt:
+      'While large models keep expanding through reasoning, multimodality, and agents, Jev gives up text generation and outputs only a fixed set of options with their probabilities. Officially it serves in 70–500ms, costs $0.042 per million input tokens, and output is free. This post uses RLCD and a 100-tool agent experiment to ask what a judgment model can do and how it might change the division of labor inside agents.',
+    aiDisclosure:
+      "AI helped search public sources and check citations. The views, structure, and choices are the author's own, based on reading and discussing those sources.",
+  },
   content: [
     '最近两年的新模型发布很容易归到几条主线上：参数继续增加，推理时间继续拉长，输入从文字扩展到图片、视频和声音，模型再接上工具成为 Agent。衡量模型进步的方式也很接近，看它能不能完成更复杂、更开放的任务。',
     'Jev 的方向窄得多。TypeSafe 在 2026 年 9 月把它称为第一个公开的 System One Model。它不写文章，不生成代码，也不负责和人聊天。开发者需要在调用前把答案范围写好，Jev 只负责判断哪个答案更可能成立。',

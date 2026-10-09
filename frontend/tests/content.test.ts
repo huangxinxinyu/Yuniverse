@@ -10,6 +10,7 @@ import {
   collections,
   navigationItems,
   profile,
+  getSiteContent,
   siteSections,
 } from '../src/content/siteContent'
 
@@ -318,7 +319,7 @@ describe('site content model', () => {
 
   it('keeps collection empty states ready for future filtered views', () => {
     for (const collection of collections) {
-      expect(collection.emptyState).toMatch(/\w/)
+      expect(collection.emptyState).toMatch(/\S/)
     }
   })
 
@@ -331,7 +332,7 @@ describe('site content model', () => {
     )
 
     expect(aboutCoordinates).toEqual(
-      expect.arrayContaining(['Bachelor', 'Postgraduate']),
+      expect.arrayContaining(['本科', '研究生']),
     )
     expect(studyDetails).toHaveLength(2)
     expect(blogPosts.map((post) => post.title)).not.toContain('From Sydney to UCSD')
@@ -347,55 +348,59 @@ describe('site content model', () => {
 
     expect(profile.intro).toContain('目前在 UCSD ECE 攻读研究生')
     expect(profile.signals).toContainEqual({
-      label: 'Status',
-      value: 'Studying at UCSD ECE',
+      label: '近况',
+      value: '在 UCSD ECE 读研',
     })
     expect(siteSections.about.body).toContain('现在在 UCSD ECE 读研')
     expect(aboutPageContent.subtitle).toContain('UCSD ECE 在读')
     expect(postgraduate?.detail).toContain('目前在 UCSD ECE 攻读研究生')
     expect(location).toMatchObject({
-      meta: 'San Diego',
+      meta: '圣地亚哥',
       detail: '目前在 UCSD 读书。',
     })
   })
 
   it('uses direct personal copy for the work and about pages', () => {
-    expect(siteSections.work.title).toBe('Selected work')
-    expect(siteSections.work.body).toBe(
+    // Work copy is authored in English; the Chinese site carries its translation.
+    const { siteSections: englishSections } = getSiteContent('en')
+
+    expect(siteSections.work.title).toBe('精选作品')
+    expect(englishSections.work.title).toBe('Selected work')
+    expect(englishSections.work.body).toBe(
       'A few things I build, research, and keep evolving.',
     )
-    expect(siteSections.work.body).not.toMatch(/不确定|公开范围|确认/)
-    expect(siteSections.work.projects.map((project) => project.title)).toEqual([
+    expect(englishSections.work.body).not.toMatch(/不确定|公开范围|确认/)
+    expect(englishSections.work.projects.map((project) => project.title)).toEqual([
       'Nano Notebook',
       'CodeRemote',
       'xinyu-s-skill-set',
       'Yuniverse',
       'Trust in LLM-controlled Robotics',
     ])
-    expect(siteSections.work.projects.map((project) => project.status)).toEqual([
+    expect(englishSections.work.projects.map((project) => project.status)).toEqual([
       'In development',
       'In development',
       'Ongoing',
       'Ongoing',
       'Preprint under revision',
     ])
-    expect(siteSections.work.projects.map((project) => project.links[0]?.href)).toEqual([
+    expect(englishSections.work.projects.map((project) => project.links[0]?.href)).toEqual([
       'https://github.com/huangxinxinyu/nano-notebook',
       'https://github.com/huangxinxinyu/CodeRemote',
       'https://github.com/huangxinxinyu/xinyu-s-skill-set',
       '/home',
       'https://arxiv.org/abs/2601.02377',
     ])
-    const nanoNotebook = siteSections.work.projects.find(
+    const nanoNotebook = englishSections.work.projects.find(
       (project) => project.title === 'Nano Notebook',
     )
-    const roboticsSurvey = siteSections.work.projects.find(
+    const roboticsSurvey = englishSections.work.projects.find(
       (project) => project.title === 'Trust in LLM-controlled Robotics',
     )
-    const codeRemote = siteSections.work.projects.find(
+    const codeRemote = englishSections.work.projects.find(
       (project) => project.title === 'CodeRemote',
     )
-    const skillSet = siteSections.work.projects.find(
+    const skillSet = englishSections.work.projects.find(
       (project) => project.title === 'xinyu-s-skill-set',
     )
 
@@ -426,7 +431,7 @@ describe('site content model', () => {
       tags: expect.arrayContaining(['Codex', 'Agent workflows']),
     })
     expect(roboticsSurvey?.role).toBe('First author')
-    expect(JSON.stringify(siteSections.work)).not.toMatch(
+    expect(JSON.stringify(englishSections.work)).not.toMatch(
       /不确定|公开范围|确认|整理|待定|To be updated/,
     )
     expect(aboutPageContent.subtitle).toBe('UCSD ECE 在读，做软件开发。')

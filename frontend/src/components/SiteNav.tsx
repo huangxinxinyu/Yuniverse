@@ -1,13 +1,21 @@
 import type { MouseEvent } from 'react'
 import type { RoutePath } from '../App'
-import { navItems, profile } from '../data/siteContent'
+import { useSiteContent } from '../content/useSiteContent'
+import { htmlLang, locales, type Locale } from '../i18n/locale'
 
 type SiteNavProps = {
   currentPath: RoutePath
   onNavigate?: (path: RoutePath) => void
+  onLocaleChange?: (locale: Locale) => void
 }
 
-export function SiteNav({ currentPath, onNavigate }: SiteNavProps) {
+const localeLabels: Record<Locale, string> = {
+  zh: '中',
+  en: 'EN',
+}
+
+export function SiteNav({ currentPath, onNavigate, onLocaleChange }: SiteNavProps) {
+  const { locale, navigationItems, profile, ui } = useSiteContent()
   const handleClick =
     (href: RoutePath) => (event: MouseEvent<HTMLAnchorElement>) => {
       if (!onNavigate) {
@@ -23,7 +31,7 @@ export function SiteNav({ currentPath, onNavigate }: SiteNavProps) {
       <a
         className="identity"
         href="/home"
-        aria-label={`${profile.name} home`}
+        aria-label={ui.nav.homeAria(profile.name)}
         onClick={handleClick('/home')}
       >
         <span className="identity-mark" aria-hidden="true">
@@ -31,25 +39,42 @@ export function SiteNav({ currentPath, onNavigate }: SiteNavProps) {
         </span>
         <span>{profile.name}</span>
       </a>
-      <nav className="site-nav" aria-label="Primary navigation">
-        <a
-          className={currentPath === '/home' ? 'is-active' : undefined}
-          href="/home"
-          onClick={handleClick('/home')}
-        >
-          Home
-        </a>
-        {navItems.map((item) => (
+      <div className="site-header-controls">
+        <nav className="site-nav" aria-label={ui.nav.primaryAria}>
           <a
-            className={currentPath === item.href ? 'is-active' : undefined}
-            key={item.href}
-            href={item.href}
-            onClick={handleClick(item.href)}
+            className={currentPath === '/home' ? 'is-active' : undefined}
+            href="/home"
+            onClick={handleClick('/home')}
           >
-            {item.label}
+            {ui.nav.home}
           </a>
-        ))}
-      </nav>
+          {navigationItems.map((item) => (
+            <a
+              className={currentPath === item.href ? 'is-active' : undefined}
+              key={item.href}
+              href={item.href}
+              onClick={handleClick(item.href)}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <div className="locale-switch" role="group" aria-label={ui.nav.languageAria}>
+          {locales.map((option) => (
+            <button
+              aria-label={ui.nav.languageNames[option]}
+              aria-pressed={option === locale}
+              className="locale-option"
+              key={option}
+              lang={htmlLang[option]}
+              onClick={() => onLocaleChange?.(option)}
+              type="button"
+            >
+              {localeLabels[option]}
+            </button>
+          ))}
+        </div>
+      </div>
     </header>
   )
 }

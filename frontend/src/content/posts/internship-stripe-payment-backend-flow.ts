@@ -6,6 +6,13 @@ export const internshipStripePaymentBackendFlow = {
   date: '2026-05-18',
   excerpt:
     '整理一次 Stripe 支付后端链路的核心逻辑：创建支付对象、等待 webhook、校验结果、映射业务、幂等兑现，以及测试环境里 webhook 配置踩坑。',
+  en: {
+    title: 'Internship Recap: An Abstract View of a Stripe Payment Backend',
+    excerpt:
+      'The core of a Stripe payment backend: creating payment objects, waiting for webhooks, verifying results, mapping them to business state, idempotent fulfillment, and the webhook setup pitfalls I hit in the test environment.',
+    aiDisclosure:
+      'Written with AI help. The content comes from code reading and technical notes during my internship.',
+  },
   content: [
     '最近在实习里看了一套 Stripe 支付相关的后端实现。刚开始看支付代码时，很容易被具体接口、字段名、业务表和项目命名带着走，但把这些细节剥掉之后，它其实是一条很清晰的后端链路。',
     '我现在对 Stripe 支付的理解，可以压缩成一句话：Stripe 负责完成支付，后端负责可信确认和业务兑现。',

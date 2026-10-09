@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { aboutPageContent } from '../content/siteContent'
+import { useSiteContent } from '../content/useSiteContent'
 
 export function AboutPage() {
+  const { aboutPageContent, ui } = useSiteContent()
   const [activeDetailId, setActiveDetailId] = useState(
     aboutPageContent.personalDetails.items[0].id,
   )
@@ -13,7 +14,7 @@ export function AboutPage() {
   return (
     <section className="about-page-layout page-section" id="about" aria-labelledby="about-title">
       <span className="sr-only" id="about-title">
-        About
+        {ui.about.srTitle}
       </span>
       <div className="about-hero-panel" aria-labelledby="about-page-title">
         <div className="about-hero-copy">
@@ -23,8 +24,8 @@ export function AboutPage() {
           </h1>
           <p className="about-page-subtitle">{aboutPageContent.subtitle}</p>
         </div>
-        <aside className="about-notice" aria-label="Content status notice">
-          <span className="panel-label">A living archive</span>
+        <aside className="about-notice" aria-label={ui.about.noticeAria}>
+          <span className="panel-label">{ui.about.noticeLabel}</span>
           <p>{aboutPageContent.statusNotice}</p>
         </aside>
       </div>
@@ -32,7 +33,7 @@ export function AboutPage() {
       <div className="about-section-stack">
         <article className="about-panel">
           <div>
-            <p className="section-kicker">01 / Intro</p>
+            <p className="section-kicker">{ui.about.kickers.intro}</p>
             <h2>{aboutPageContent.intro.heading}</h2>
           </div>
           <div className="about-panel-copy">
@@ -50,7 +51,7 @@ export function AboutPage() {
 
         <article className="about-panel">
           <div>
-            <p className="section-kicker">02 / Values</p>
+            <p className="section-kicker">{ui.about.kickers.values}</p>
             <h2>{aboutPageContent.values.heading}</h2>
             <p>{aboutPageContent.values.body}</p>
           </div>
@@ -66,7 +67,7 @@ export function AboutPage() {
 
         <article className="about-panel">
           <div>
-            <p className="section-kicker">03 / Craft</p>
+            <p className="section-kicker">{ui.about.kickers.craft}</p>
             <h2>{aboutPageContent.craft.heading}</h2>
             <p>{aboutPageContent.craft.body}</p>
           </div>
@@ -82,11 +83,11 @@ export function AboutPage() {
 
         <article className="about-panel about-details-section">
           <div className="details-copy">
-            <p className="section-kicker">04 / Details</p>
+            <p className="section-kicker">{ui.about.kickers.details}</p>
             <h2>{aboutPageContent.personalDetails.heading}</h2>
             <p>{aboutPageContent.personalDetails.body}</p>
           </div>
-          <div className="detail-note-group" aria-label="Personal detail notes">
+          <div className="detail-note-group" aria-label={ui.about.detailNotesAria}>
             <div className="detail-chip-list">
               {aboutPageContent.personalDetails.items.map((detail) => {
                 const isActive = detail.id === activeDetailId

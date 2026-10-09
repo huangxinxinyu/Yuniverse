@@ -10,6 +10,17 @@ import { HomePage } from './pages/HomePage'
 import { IntroPage } from './pages/IntroPage'
 import { WorkPage } from './pages/WorkPage'
 import { getVisitorId } from './lib/visitorId'
+import {
+  defaultLocale,
+  documentTitles,
+  htmlLang,
+  LocaleContext,
+  persistLocale,
+  replaceUrlLocale,
+  resolveInitialLocale,
+  toLocalizedUrl,
+  type Locale,
+} from './i18n/locale'
 import './App.css'
 
 const routePaths = ['/home', '/about', '/work', '/blog', '/collection'] as const
@@ -25,6 +36,7 @@ export type PageProps = {
 
 type AppProps = {
   initialPath?: string
+  initialLocale?: Locale
   showIntroAtRoot?: boolean
 }
 
@@ -44,7 +56,10 @@ function QuietLayer() {
   return <div className="quiet-layer" aria-hidden="true"></div>
 }
 
-function App({ initialPath, showIntroAtRoot = SHOW_INTRO_AT_ROOT }: AppProps) {
+function App({ initialPath, initialLocale, showIntroAtRoot = SHOW_INTRO_AT_ROOT }: AppProps) {
+  const [locale, setLocale] = useState<Locale>(() =>
+    initialLocale ?? (initialPath ? defaultLocale : resolveInitialLocale()),
+  )
   const [currentPath, setCurrentPath] = useState<string>(() =>
     normalizePath(
       initialPath ??
@@ -65,6 +80,15 @@ function App({ initialPath, showIntroAtRoot = SHOW_INTRO_AT_ROOT }: AppProps) {
 
     return () => window.removeEventListener('popstate', handlePopState)
   }, [initialPath, showIntroAtRoot])
+
+  useEffect(() => {
+    if (typeof document === 'undefined') {
+      return
+    }
+
+    document.documentElement.lang = htmlLang[locale]
+    document.title = documentTitles[locale]
+  }, [locale])
 
   useEffect(() => {
     if (initialPath || typeof window === 'undefined') {
@@ -101,8 +125,17 @@ function App({ initialPath, showIntroAtRoot = SHOW_INTRO_AT_ROOT }: AppProps) {
     setCurrentPath(path)
 
     if (!initialPath && typeof window !== 'undefined') {
-      window.history.pushState({}, '', path)
+      window.history.pushState({}, '', toLocalizedUrl(path, locale))
       window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  const handleLocaleChange = (nextLocale: Locale) => {
+    setLocale(nextLocale)
+
+    if (!initialPath && typeof window !== 'undefined') {
+      persistLocale(nextLocale)
+      replaceUrlLocale(nextLocale)
     }
   }
 
@@ -141,19 +174,25 @@ function App({ initialPath, showIntroAtRoot = SHOW_INTRO_AT_ROOT }: AppProps) {
       <IntroPage />
     )
 
-  if (isIntroPath) {
-    return page
-  }
-
   return (
-    <div className="site-shell">
-      <QuietLayer />
-      <SiteNav currentPath={navPath} onNavigate={handleNavigate} />
-      <main className="page-shell" data-route={currentPath}>
-        {page}
-      </main>
-      <ContactFooter />
-    </div>
+    <LocaleContext.Provider value={locale}>
+      {isIntroPath ? (
+        page
+      ) : (
+        <div className="site-shell">
+          <QuietLayer />
+          <SiteNav
+            currentPath={navPath}
+            onLocaleChange={handleLocaleChange}
+            onNavigate={handleNavigate}
+          />
+          <main className="page-shell" data-route={currentPath}>
+            {page}
+          </main>
+          <ContactFooter />
+        </div>
+      )}
+    </LocaleContext.Provider>
   )
 }
 

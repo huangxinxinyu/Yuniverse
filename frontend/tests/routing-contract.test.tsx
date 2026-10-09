@@ -10,7 +10,7 @@ describe('multi-page route contract', () => {
     const html = renderToStaticMarkup(<App initialPath="/" />)
 
     expect(html).toContain('data-route="/home"')
-    expect(html).toContain('aria-label="Primary navigation"')
+    expect(html).toContain('aria-label="主导航"')
     expect(html).not.toContain('Follow the comet')
   })
 
@@ -20,13 +20,13 @@ describe('multi-page route contract', () => {
     expect(html).toContain('data-route="/intro"')
     expect(html).toContain('Follow the comet')
     expect(html).toContain('href="/home"')
-    expect(html).not.toContain('aria-label="Primary navigation"')
+    expect(html).not.toContain('aria-label="主导航"')
   })
 
   it('renders shared navigation with links to every required route', () => {
     const html = renderToStaticMarkup(<App initialPath="/home" />)
 
-    expect(html).toContain('aria-label="Primary navigation"')
+    expect(html).toContain('aria-label="主导航"')
     expect(html).toContain('href="/home"')
 
     for (const item of navigationItems) {
@@ -48,13 +48,13 @@ describe('multi-page route contract', () => {
 
     expect(html).toContain(`data-route="${route}"`)
     expect(html).toContain('class="page-shell"')
-    expect(html).toContain('aria-label="Contact"')
+    expect(html).toContain('aria-label="联系方式"')
   })
 
   it('renders the shared contact footer with every requested channel', () => {
     const html = renderToStaticMarkup(<App initialPath="/work" />)
 
-    for (const label of ['WeChat', 'Email', 'Phone', 'GitHub', 'Douyin', 'RedNote']) {
+    for (const label of ['微信', '邮箱', '电话', 'GitHub', '抖音', '小红书']) {
       expect(html).toContain(label)
     }
 

@@ -1,0 +1,378 @@
+import type { SiteCopy } from '../siteContent'
+
+export const enCopy: SiteCopy = {
+  navigation: {
+    about: 'About',
+    work: 'Work',
+    blog: 'Blog',
+    collection: 'Collection',
+  },
+  profile: {
+    displayName: 'Xinyu Huang',
+    tagline: 'A personal universe for software work, study, warmth, and curiosity.',
+    intro:
+      'Xinyu Huang studied Software Engineering at the University of Sydney and is now a graduate student in ECE at UC San Diego, focused on software development and AI tools.',
+    eyebrow: 'Yuniverse / Xinyu Huang',
+    heroText:
+      'Yuniverse is my personal universe and creative workshop: a short introduction to who I am, fragments of life and work, and the occasional blog post.',
+    signals: [
+      { label: 'Mode', value: 'Student / Developer' },
+      { label: 'Focus', value: 'Software / AI tools / Personal site' },
+      { label: 'Status', value: 'Studying at UCSD ECE' },
+    ],
+    shortBio: 'Student and software engineer, now a graduate student in ECE at UC San Diego.',
+    focusAreas: ['Software engineering', 'AI tools', 'Creative systems', 'Fitness and film'],
+    location: 'San Diego, California',
+  },
+  contactLabels: {
+    wechat: 'WeChat',
+    email: 'Email',
+    phone: 'Phone',
+    github: 'GitHub',
+    douyin: 'Douyin',
+    rednote: 'RedNote',
+  },
+  readingTime: (minutes) => `${minutes} min read`,
+  tagLabels: {
+    实习总结: 'Internship recap',
+    实习记录: 'Internship log',
+    数据飞轮: 'Data flywheel',
+    可观测性: 'Observability',
+    支付系统: 'Payments',
+    后端: 'Backend',
+    邀请系统: 'Invite system',
+    增长: 'Growth',
+    技术选型: 'Tech choices',
+    权限: 'Permissions',
+    编排: 'Orchestration',
+    上下文: 'Context',
+    离线评测: 'Offline eval',
+    知识库: 'Knowledge base',
+    个人知识管理: 'Personal knowledge management',
+  },
+  sections: {
+    about: {
+      eyebrow: 'About',
+      kicker: 'Personal identity',
+      title: 'About Xinyu Huang',
+      intro: 'Student, software engineer, and the keeper of Yuniverse, my personal universe.',
+      body:
+        'I studied Software Engineering at the University of Sydney and am now a graduate student in ECE at UC San Diego. I build software and am slowly gathering my projects, life, and interests into Yuniverse.',
+      summary: 'A short introduction to my study, software work, and interests.',
+      links: [
+        {
+          label: 'Work',
+          href: '/work',
+          description: 'Software experience and projects, collected here over time.',
+        },
+        {
+          label: 'Writing',
+          href: '/blog',
+          description: 'Writing on Yuniverse, study, and software engineering.',
+        },
+        {
+          label: 'Collection',
+          href: '/collection',
+          description: 'Movies, fitness, music, and other interests, added little by little.',
+        },
+      ],
+    },
+    work: {
+      eyebrow: 'Work',
+      kicker: 'Selected work',
+      title: 'Selected work',
+      body: 'A few things I build, research, and keep evolving.',
+      summary: 'A public record of my software work and projects.',
+      meta: ['Software development', 'Student work', 'Personal projects'],
+    },
+    blog: {
+      eyebrow: 'Blog',
+      kicker: 'Blog',
+      title: 'Notes planned for Yuniverse.',
+      body: "I write about a bit of everything. If it gets too hard to maintain, I'll just build another site 😜",
+      summary: 'Where Yuniverse posts and notes are planned.',
+      meta: ['Software', 'Study', 'Yuniverse', 'Notes'],
+      emptyState:
+        'Posts in this category are still in progress. Real titles, text, and links will follow.',
+    },
+    collection: {
+      eyebrow: 'Collection',
+      kicker: 'Collection',
+      title: 'Music, movies, and pictures',
+      body: 'A small cabinet of references that shape the mood of the work.',
+      summary: 'Where I keep my interests and favorites.',
+      meta: ['Music', 'Movies', 'Pictures', 'Fitness'],
+    },
+  },
+  aboutPage: {
+    eyebrow: 'Yuniverse / personal identity',
+    title: 'About me',
+    subtitle: 'Graduate student in ECE at UC San Diego, building software.',
+    statusNotice: 'Yuniverse grows with me—one project, note, and moment at a time.',
+    intro: {
+      heading: 'Intro',
+      body:
+        'I studied Software Engineering at the University of Sydney and am now a graduate student in ECE at UC San Diego. I build software and am slowly gathering my projects, life, and interests into Yuniverse.',
+      coordinates: [
+        {
+          label: 'Primary school',
+          text: 'Dipu No. 3 Primary School, Huzhou, Zhejiang (i dont think people gon care tho)',
+        },
+        { label: 'Middle / high school', text: 'Hangzhou Entel Foreign Language School' },
+        { label: 'Bachelor', text: 'University of Sydney, Software Engineering' },
+        { label: 'Postgraduate', text: 'UCSD ECE' },
+      ],
+    },
+    values: {
+      heading: 'What this site should feel like',
+      body: 'Yuniverse is where I keep my life, study, and work.',
+      items: [
+        { label: 'Inspiration', text: 'I try out new ideas here.' },
+        { label: 'Warm', text: 'It‘s a cold world out there, babe 🫶💋' },
+        { label: 'Fun', text: 'I want this site to feel playful.' },
+      ],
+    },
+    craft: {
+      heading: 'Software development',
+      body:
+        'This part starts with software development. Project details, technical notes, and screenshots will move into the Work page over time.',
+      tools: [
+        { name: 'Software Engineering', role: 'Undergraduate focus and project foundation' },
+        { name: 'UCSD ECE', role: 'Current graduate study' },
+        { name: 'AI tools', role: 'What I like to build with and use' },
+        { name: 'Personal website', role: 'An ongoing home for identity, work, and interests' },
+      ],
+    },
+    personalDetails: {
+      heading: 'Personal details',
+      body: 'A few more notes on study, work, and interests.',
+      items: [
+        {
+          id: 'software',
+          label: 'Software',
+          meta: 'Work',
+          detail: 'Student and software engineer. Project details will land on the Work page over time.',
+        },
+        {
+          id: 'bachelor',
+          label: 'Bachelor',
+          meta: 'Sydney',
+          detail: 'Bachelor’s degree in Software Engineering from the University of Sydney.',
+        },
+        {
+          id: 'postgraduate',
+          label: 'Postgraduate',
+          meta: 'UCSD ECE',
+          detail: 'Currently a graduate student in ECE at UC San Diego.',
+        },
+        {
+          id: 'interests',
+          label: 'Interests',
+          meta: 'Personal',
+          detail: 'Singing, dancing, rap, and basketball.',
+        },
+        {
+          id: 'location',
+          label: 'Location',
+          meta: 'San Diego',
+          detail: 'Studying at UC San Diego for now.',
+        },
+      ],
+    },
+  },
+  blogCategories: [
+    {
+      id: 'featured',
+      label: 'Featured',
+      description: 'The current highlighted planned note.',
+    },
+    {
+      id: 'all',
+      label: 'All',
+      description: 'Every planned post in the current blog index.',
+    },
+    {
+      id: 'software',
+      label: 'Software',
+      description: 'Software writing, including internship notes, agent architecture, and AI tools.',
+    },
+    {
+      id: 'taste',
+      label: 'Taste',
+      description: 'Interface atmosphere, references, and aesthetic judgment.',
+    },
+    {
+      id: 'notes',
+      label: 'Notes',
+      description: 'Knowledge fragments and draft thinking.',
+    },
+    {
+      id: 'future',
+      label: 'Future',
+      description: 'A category for writing ideas that are still being shaped.',
+    },
+  ],
+  blogTopics: [
+    {
+      id: 'all',
+      label: 'All software',
+      description: 'All software writing in the current blog index.',
+    },
+    {
+      id: 'internship-summary',
+      label: 'Internship recaps',
+      description: 'Internship writeups, backend flow notes, and project learning.',
+    },
+    {
+      id: 'agent-architecture',
+      label: 'Agent architecture',
+      description: 'Agent architecture, observability, infrastructure, and system design notes.',
+    },
+    {
+      id: 'ai-tools',
+      label: 'AI tools',
+      description: 'AI tools, Codex usage, local workflows, and reusable working patterns.',
+    },
+  ],
+  blogSeries: [
+    {
+      id: 'all',
+      label: 'All series',
+      description: 'All posts in this topic.',
+    },
+    {
+      id: 'codex-legendary-driver',
+      label: 'Codex Legendary Driver',
+      description: 'Codex usage notes, driving patterns, and context discipline.',
+      topic: 'ai-tools',
+    },
+    {
+      id: 'claude-agent-sdk',
+      label: 'Claude Agent SDK',
+      description: 'Claude Agent SDK architecture, observability, and eval notes.',
+      topic: 'agent-architecture',
+    },
+    {
+      id: 'nano-notebook-dev-log',
+      label: 'nano-notebook dev log',
+      description:
+        'The nano-notebook product story, agent infrastructure choices, and notes from the real implementation.',
+      topic: 'agent-architecture',
+    },
+  ],
+  collections: {
+    music: {
+      label: 'Music',
+      intro: 'I am the king of soul.',
+      emptyState: 'No music has been pinned for this filter yet.',
+    },
+    movies: {
+      label: 'Movies',
+      intro: 'Mostly popcorn movies, a bit of everything. i aint no pro',
+      emptyState: 'No movies match this view yet.',
+    },
+    pictures: {
+      label: 'Pictures',
+      intro: 'Visual notes for Shanghai, Sydney, UCSD, and future photo themes.',
+      emptyState: 'No pictures have been saved here yet.',
+    },
+  },
+  // Work items and pictures are authored in English in src/data/content.ts.
+  work: {},
+  pictures: {},
+  ui: {
+    nav: {
+      home: 'Home',
+      homeAria: (name) => `${name} home`,
+      primaryAria: 'Primary navigation',
+      languageAria: 'Language',
+      languageNames: { zh: '中文', en: 'English' },
+    },
+    home: {
+      viewWork: 'View work',
+      about: 'About',
+      primaryLinksAria: 'Primary page links',
+      snapshotAria: 'Current snapshot',
+      sectionsKicker: 'Sections',
+      portalTitle: 'Start with the useful parts.',
+    },
+    about: {
+      srTitle: 'About',
+      noticeAria: 'Content status notice',
+      noticeLabel: 'A living archive',
+      kickers: {
+        intro: '01 / Intro',
+        values: '02 / Values',
+        craft: '03 / Craft',
+        details: '04 / Details',
+      },
+      detailNotesAria: 'Personal detail notes',
+    },
+    work: {
+      highlightsAria: (title) => `${title} highlights`,
+      topicsAria: (title) => `${title} technologies and topics`,
+      linksAria: (title) => `${title} links`,
+    },
+    blog: {
+      featuredPost: 'Featured post',
+      categoriesAria: 'Blog categories',
+      topicsAria: 'Blog topics',
+      seriesAria: 'Blog series',
+      tagsAria: (title) => `${title} tags`,
+      featured: 'Featured',
+      readArticle: 'Read article',
+      paginationAria: 'Blog pagination',
+      previous: 'Previous',
+      next: 'Next',
+      pageStatus: (page, pageCount) => `Page ${page} of ${pageCount}`,
+      pagesAria: 'Blog pages',
+      goToPage: (page) => `Go to blog page ${page}`,
+      backToBlog: 'Back to blog',
+      originalLanguageNotice: {
+        zh: 'This article is written in Chinese. Its title and summary are translated.',
+        en: '',
+      },
+    },
+    summary: {
+      aria: 'Site overview',
+      panelLabel: 'Yuniverse / At a glance',
+      categoriesAria: 'Post categories',
+      posts: 'Posts',
+      daysOnline: 'Days online',
+      days: (count) => `${count} ${count === 1 ? 'day' : 'days'}`,
+      views: 'Views',
+      visitors: 'Visitors',
+      footnote: 'Visits are counted from when tracking was turned on.',
+      petAlt: 'A small white dog lying in a red wooden bowl',
+    },
+    metrics: {
+      aria: 'Post engagement',
+      views: (count) => `${count} views`,
+      likes: (count) => `${count} likes`,
+      like: 'Like this post',
+      unlike: 'Unlike this post',
+    },
+    collection: {
+      tabsAria: 'Collection media tabs',
+      filtersAria: 'Collection view filters',
+      filterLabels: {
+        all: 'All',
+        album: 'Albums',
+        track: 'Tracks',
+        playlist: 'Playlists',
+        film: 'Films',
+        watchlist: 'Watchlist',
+        favorite: 'Favorites',
+        gallery: 'Gallery',
+      },
+      openPicture: 'Open picture',
+      byline: (title, creator) => `${title} by ${creator}`,
+      close: 'Close',
+    },
+    contact: {
+      aria: 'Contact',
+      kicker: 'Contact',
+      title: 'Say hello.',
+    },
+  },
+}

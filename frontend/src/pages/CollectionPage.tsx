@@ -1,19 +1,10 @@
 import { useState, type CSSProperties } from 'react'
-import { collections, type CollectionId } from '../content/siteContent'
+import { collections as defaultCollections, type CollectionId } from '../content/siteContent'
+import { useSiteContent } from '../content/useSiteContent'
 
-const filterLabels: Record<string, string> = {
-  all: 'All',
-  album: 'Albums',
-  track: 'Tracks',
-  playlist: 'Playlists',
-  film: 'Films',
-  watchlist: 'Watchlist',
-  favorite: 'Favorites',
-  gallery: 'Gallery',
-}
-
+// Filter ids are the same in every language, so they come from the default content.
 const collectionFilters = Object.fromEntries(
-  collections.map((collection) => [
+  defaultCollections.map((collection) => [
     collection.id,
     collection.id === 'music'
       ? ['all', 'album', 'playlist']
@@ -22,6 +13,9 @@ const collectionFilters = Object.fromEntries(
 ) as Record<CollectionId, string[]>
 
 export function CollectionPage() {
+  const { collections, siteSections, ui } = useSiteContent()
+  const section = siteSections.collection
+  const filterLabels = ui.collection.filterLabels
   const [activeCollectionId, setActiveCollectionId] = useState(collections[0].id)
   const [activeFilters, setActiveFilters] = useState<Record<CollectionId, string>>({
     music: 'all',
@@ -40,12 +34,12 @@ export function CollectionPage() {
       data-page="collection"
       id="collection"
     >
-      <p className="section-kicker">Collection</p>
-      <h2 id="collection-title">Music, movies, and pictures</h2>
-      <p>A small cabinet of references that shape the mood of the work.</p>
+      <p className="section-kicker">{section.kicker}</p>
+      <h2 id="collection-title">{section.title}</h2>
+      <p>{section.body}</p>
 
       <div
-        aria-label="Collection media tabs"
+        aria-label={ui.collection.tabsAria}
         className="collection-tabs"
         role="tablist"
       >
@@ -82,7 +76,7 @@ export function CollectionPage() {
             role="tabpanel"
           >
             <p>{collection.intro}</p>
-            <div className="filter-bar" aria-label="Collection view filters">
+            <div className="filter-bar" aria-label={ui.collection.filtersAria}>
               {collectionFilters[collection.id].map((filter) => (
                 <button
                   aria-pressed={activeFilter === filter}
@@ -123,13 +117,13 @@ export function CollectionPage() {
                   }
                   type="button"
                 >
-                  <strong>Open picture</strong>
+                  <strong>{ui.collection.openPicture}</strong>
                   <span>{item.meta}</span>
                   <h3>{item.title}</h3>
                 </button>
               ) : collection.id === 'music' ? (
                 <article
-                  aria-label={`${item.title} by ${item.creator}`}
+                  aria-label={ui.collection.byline(item.title, item.creator)}
                   className="album-art-card"
                   key={item.id}
                   title={`${item.title} / ${item.creator}`}
@@ -144,7 +138,7 @@ export function CollectionPage() {
                 </article>
               ) : collection.id === 'movies' ? (
                 <article
-                  aria-label={`${item.title} by ${item.creator}`}
+                  aria-label={ui.collection.byline(item.title, item.creator)}
                   className="movie-poster-card"
                   key={item.id}
                   title={`${item.title} / ${item.creator}`}
@@ -194,7 +188,7 @@ export function CollectionPage() {
               onClick={() => setOpenPictureId(null)}
               type="button"
             >
-              Close
+              {ui.collection.close}
             </button>
           </div>
         </div>

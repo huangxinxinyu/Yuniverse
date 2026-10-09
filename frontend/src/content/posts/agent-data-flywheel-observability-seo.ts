@@ -6,6 +6,13 @@ export const agentDataFlywheelObservabilitySeo = {
   date: '2026-05-22',
   excerpt:
     '整理我对 Agent 数据飞轮的理解：先用可观测性记录真实使用，再用 eval 和归因推动系统改进，同时通过 blog 和评论区承接 SEO 流量，让更多真实需求反哺平台。',
+  en: {
+    title: 'The Data Flywheel in Agent Development: From Observability to SEO',
+    excerpt:
+      'How I think about the agent data flywheel: record real usage with observability, drive improvements with evals and attribution, and capture SEO traffic through the blog and comments so more real needs feed back into the platform.',
+    aiDisclosure:
+      'Written with AI help. The content comes from my internship notes and my own thinking about the agent data flywheel.',
+  },
   content: [
     '最近在做 Agent Infrastructure 时，我越来越感觉到，Agent 产品和传统软件很不一样的一点在于：它不是上线之后就稳定运行，而是上线之后才真正开始学习真实世界。',
     '一个 Agent 在 demo 阶段看起来能工作，通常只能说明它在少量理想样本上跑通了。但真实用户会用各种意想不到的方式提问，会中断任务，会重复表达，会对答案不满意但不一定点差评，也会在某些场景里把 Agent 当成搜索、助手、客服、运营顾问甚至半个同事来用。',

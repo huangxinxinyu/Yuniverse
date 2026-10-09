@@ -6,6 +6,13 @@ export const nanoNotebookDevLog08 = {
   date: '2026-09-18',
   excerpt:
     '一次线上测试中的查询变慢，让我重新划分了产品状态与观测数据的边界。这篇记录 nano-notebook 为什么保留 PostgreSQL，又将日志和 Trace 经 Kafka 送入 ClickHouse。',
+  en: {
+    title: 'nano-notebook Dev Log 08: Why Logs Moved from PostgreSQL to Kafka + ClickHouse',
+    excerpt:
+      'Slow queries during a production test made me redraw the line between product state and observability data. This entry explains why nano-notebook kept PostgreSQL and sent logs and traces through Kafka into ClickHouse.',
+    aiDisclosure:
+      "Written with AI help. The technology choices and project facts come from nano-notebook's existing design and implementation.",
+  },
   content: [
     '一开始，nano-notebook 的产品状态和日志都放在 PostgreSQL 里。这个选择很自然：项目早期的数据量有限，Trace 需要和 Run、Job、Checkpoint 一起看，直接查数据库就能定位一次 Agent 执行发生了什么。',
     '一次线上测试里，查询开始变慢。我当时已经知道日志写入的并发量很高，但这次现象把问题放到了台面上：产品业务状态和观测数据正在共用同一套读写资源。',

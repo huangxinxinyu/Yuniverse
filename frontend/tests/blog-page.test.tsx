@@ -56,7 +56,7 @@ describe('blog page', () => {
     const softwareHtml = renderToStaticMarkup(<BlogPage initialFilter="software" />)
 
     expect(html).not.toContain('data-category="systems"')
-    expect(softwareHtml).toContain('aria-label="Blog topics"')
+    expect(softwareHtml).toContain('aria-label="博客主题"')
 
     for (const topic of blogTopics) {
       expect(softwareHtml).toContain(`data-topic="${topic.id}"`)
@@ -66,7 +66,7 @@ describe('blog page', () => {
     expect(softwareHtml).toContain('实习总结')
     expect(softwareHtml).toContain('Agent 架构分享')
     expect(softwareHtml).toContain('AI 工具分享')
-    expect(softwareHtml).not.toContain('aria-label="Blog series"')
+    expect(softwareHtml).not.toContain('aria-label="博客系列"')
   })
 
   it('shows series only for the active software topic when that topic has series', () => {
@@ -77,13 +77,13 @@ describe('blog page', () => {
       <BlogPage initialFilter="software" initialTopic="internship-summary" />,
     )
 
-    expect(aiToolsHtml).toContain('aria-label="Blog series"')
+    expect(aiToolsHtml).toContain('aria-label="博客系列"')
     expect(aiToolsHtml).toContain('data-series="codex-legendary-driver"')
     expect(aiToolsHtml).toContain('Codex 传奇驾驶员')
     expect(aiToolsHtml).not.toContain('data-series="agent-infrastructure"')
     expect(aiToolsHtml).not.toContain('data-series="backend-flow"')
 
-    expect(internshipHtml).not.toContain('aria-label="Blog series"')
+    expect(internshipHtml).not.toContain('aria-label="博客系列"')
   })
 
   it('shows the Claude Agent SDK series under agent architecture', () => {
@@ -105,7 +105,7 @@ describe('blog page', () => {
       />,
     )
 
-    expect(agentArchitectureHtml).toContain('aria-label="Blog series"')
+    expect(agentArchitectureHtml).toContain('aria-label="博客系列"')
     expect(agentArchitectureHtml).toContain('data-series="claude-agent-sdk"')
     expect(agentArchitectureHtml).toContain('Claude Agent SDK')
     expect(agentArchitectureHtml).toContain('data-series="nano-notebook-dev-log"')
@@ -118,7 +118,7 @@ describe('blog page', () => {
   })
 
   it('does not expose draft, planned, or published status filters to readers', () => {
-    expect(html).not.toContain('aria-label="Blog status filters"')
+    expect(html).not.toContain('aria-label="博客状态筛选"')
     expect(html).not.toContain('Drafts')
     expect(html).not.toContain('Planned')
     expect(html).not.toContain('Published')
@@ -161,7 +161,7 @@ describe('blog page', () => {
     expect(pageFiveHtml).toContain('href="/blog/multica-local-agent-workflow"')
     expect(pageFiveHtml).toContain('href="/blog/internship-agent-infrastructure-notes"')
     expect(pageFiveHtml).toContain('href="/blog/hello-world"')
-    expect(html).toContain('Read article')
+    expect(html).toContain('阅读全文')
     expect(blogPosts[0].title).toBe(
       'Jev：把判断从 LLM 里拆出来',
     )
@@ -169,16 +169,16 @@ describe('blog page', () => {
   })
 
   it('paginates the blog index in groups of six posts', () => {
-    expect(html).toContain('aria-label="Blog pagination"')
-    expect(html).toContain('Page 1 of 5')
+    expect(html).toContain('aria-label="博客分页"')
+    expect(html).toContain('第 1 / 5 页')
     expect(html).toContain('aria-current="page"')
     expect(html).toContain('data-page-button="1"')
     expect(html).toContain('data-page-button="2"')
     expect(html).toContain('data-page-button="3"')
     expect(html).toContain('data-page-button="4"')
     expect(html).toContain('data-page-button="5"')
-    expect(html).toContain('Next')
-    expect(html).not.toContain('Previous')
+    expect(html).toContain('下一页')
+    expect(html).not.toContain('上一页')
 
     for (const post of firstPagePosts) {
       expect(html).toContain(post.title)
@@ -200,24 +200,24 @@ describe('blog page', () => {
       expect(pageFiveHtml).toContain(post.title)
     }
 
-    expect(pageTwoHtml).toContain('Page 2 of 5')
-    expect(pageTwoHtml).toContain('Previous')
-    expect(pageTwoHtml).toContain('Next')
-    expect(pageThreeHtml).toContain('Page 3 of 5')
-    expect(pageThreeHtml).toContain('Previous')
-    expect(pageThreeHtml).toContain('Next')
-    expect(pageFourHtml).toContain('Page 4 of 5')
-    expect(pageFourHtml).toContain('Previous')
-    expect(pageFourHtml).toContain('Next')
-    expect(pageFiveHtml).toContain('Page 5 of 5')
-    expect(pageFiveHtml).toContain('Previous')
-    expect(pageFiveHtml).not.toContain('Next')
+    expect(pageTwoHtml).toContain('第 2 / 5 页')
+    expect(pageTwoHtml).toContain('上一页')
+    expect(pageTwoHtml).toContain('下一页')
+    expect(pageThreeHtml).toContain('第 3 / 5 页')
+    expect(pageThreeHtml).toContain('上一页')
+    expect(pageThreeHtml).toContain('下一页')
+    expect(pageFourHtml).toContain('第 4 / 5 页')
+    expect(pageFourHtml).toContain('上一页')
+    expect(pageFourHtml).toContain('下一页')
+    expect(pageFiveHtml).toContain('第 5 / 5 页')
+    expect(pageFiveHtml).toContain('上一页')
+    expect(pageFiveHtml).not.toContain('下一页')
   })
 
   it('hides pagination when the active category fits on one page', () => {
     const notesHtml = renderToStaticMarkup(<BlogPage initialFilter="notes" />)
 
-    expect(notesHtml).not.toContain('aria-label="Blog pagination"')
+    expect(notesHtml).not.toContain('aria-label="博客分页"')
     expect(notesHtml).toContain('Hello World')
   })
 
@@ -240,7 +240,7 @@ describe('blog page', () => {
     expect(codexSeriesHtml).toContain('不要只和 AI 聊天：我是怎么用 Obsidian + Codex 建知识库的')
     expect(codexSeriesHtml).toContain('Multica：把本地 AI Coding Agent 变成可管理的长任务')
     expect(codexSeriesHtml).not.toContain('实习项目里用到 Daytona 后，我重新理解了 agent sandbox')
-    expect(codexSeriesHtml).not.toContain('aria-label="Blog pagination"')
+    expect(codexSeriesHtml).not.toContain('aria-label="博客分页"')
   })
 
   it('keeps the published blog articles in blog data', () => {
@@ -287,7 +287,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('data-page="blog-post"')
     expect(articleHtml).toContain('nano-notebook 开发日志 01：我为什么做一个自己的 NotebookLM')
     expect(articleHtml).toContain('PostgreSQL 和 S3 是真相来源')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('emphasizes the approved thesis in dev log 10', () => {
@@ -328,7 +328,7 @@ describe('blog page', () => {
     expect(speedSectionIndex).toBeLessThan(errorSectionIndex)
     expect(articleHtml).toContain('RLCD 希望让概率能进入程序')
     expect(articleHtml).toContain('把 Jev 放进一个 100-tool Agent')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the nano-notebook dev log 02 article as a readable page', () => {
@@ -343,7 +343,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('可恢复')
     expect(articleHtml).toContain('LangGraph')
     expect(articleHtml).toContain('Publication Barrier')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the nano-notebook dev log 03 article as a readable page', () => {
@@ -358,7 +358,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('Durable Agent Trace')
     expect(articleHtml).toContain('obs_trace_records')
     expect(articleHtml).toContain('canonical hash')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the nano-notebook dev log 04 article as a readable page', () => {
@@ -373,7 +373,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('为什么要用 RAG')
     expect(articleHtml).toContain('RRF')
     expect(articleHtml).toContain('先拿引用')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the nano-notebook dev log 05 article as a readable page', () => {
@@ -389,7 +389,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('search_evidence')
     expect(articleHtml).toContain('ToolCallError')
     expect(articleHtml).toContain('Claude Code')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the nano-notebook dev log 06 article as a readable page', () => {
@@ -404,7 +404,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('nano_task_terminal_total')
     expect(articleHtml).toContain('go_gc_heap_live_bytes')
     expect(articleHtml).toContain('histogram_quantile')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the nano-notebook dev log 07 article as a readable page', () => {
@@ -418,7 +418,7 @@ describe('blog page', () => {
     )
     expect(articleHtml).toContain('Prompt Catalog')
     expect(articleHtml).toContain('nano.prompt.identity/version/sha256/contract')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the Dokploy deployment selection article as a readable page', () => {
@@ -437,7 +437,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain(
       'href="https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images"',
     )
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders markdown reference links as clickable anchors', () => {
@@ -468,7 +468,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('85%')
     expect(articleHtml).toContain('write、select、compress、isolate')
     expect(articleHtml).toContain('https://openai.github.io/openai-agents-python/context/')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the Claude Agent SDK trace article as a readable page', () => {
@@ -482,7 +482,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('线上 trace 发现问题')
     expect(articleHtml).toContain('OpenTelemetry')
     expect(articleHtml).toContain('LangSmith Evaluation')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the Codex skill workflows article as a readable page', () => {
@@ -498,7 +498,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('grill-me')
     expect(articleHtml).toContain('Superpower 全家桶')
     expect(articleHtml).toContain('https://developers.openai.com/codex/skills')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the Hello World article as a readable page', () => {
@@ -508,7 +508,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('Hello World')
     expect(articleHtml).toContain('hello world')
     expect(articleHtml).toContain('这是 ai 发布的内容')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the Daytona agent workspace article as a readable page', () => {
@@ -522,7 +522,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('状态恢复')
     expect(articleHtml).toContain('sandbox tenant')
     expect(articleHtml).toContain('Daytona 官方文档')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the internship Agent Infrastructure article as a readable page', () => {
@@ -535,7 +535,7 @@ describe('blog page', () => {
     expect(articleHtml).toContain('Agent Infrastructure')
     expect(articleHtml).toContain('Vibe Coding')
     expect(articleHtml).not.toContain('上海食物主义')
-    expect(articleHtml).toContain('Back to blog')
+    expect(articleHtml).toContain('返回博客')
   })
 
   it('renders the Multica local agent workflow article as a readable page', () => {

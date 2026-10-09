@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useSiteContent } from '../content/useSiteContent'
 
 type PetPose = 'rest' | 'look' | 'reach'
 type PetDirection = 'left' | 'center' | 'right'
@@ -24,6 +25,7 @@ function clamp(value: number, limit: number) {
 }
 
 export function BlogDeskPet() {
+  const { ui } = useSiteContent()
   const petRef = useRef<HTMLDivElement>(null)
   const [state, setState] = useState<PetState>(restingState)
 
@@ -77,7 +79,7 @@ export function BlogDeskPet() {
     >
       <div className="blog-desk-pet-art">
         <img
-          alt="白色小狗趴在红色木碗里"
+          alt={ui.summary.petAlt}
           className="blog-desk-pet-rest"
           draggable="false"
           height="588"

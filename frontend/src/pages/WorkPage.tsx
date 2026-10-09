@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { siteSections } from '../content/siteContent'
+import { useSiteContent } from '../content/useSiteContent'
 
 export function WorkPage() {
+  const { siteSections, ui } = useSiteContent()
   const section = siteSections.work
   const [expandedWorkId, setExpandedWorkId] = useState(section.projects[0].id)
 
@@ -33,19 +34,19 @@ export function WorkPage() {
                 <span>{`${project.role} / ${project.year}`}</span>
                 <p>{project.summary}</p>
                 {project.highlights.length > 0 ? (
-                  <ul className="project-highlights" aria-label={`${project.title} highlights`}>
+                  <ul className="project-highlights" aria-label={ui.work.highlightsAria(project.title)}>
                     {project.highlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
                     ))}
                   </ul>
                 ) : null}
-                <ul className="project-tags" aria-label={`${project.title} technologies and topics`}>
+                <ul className="project-tags" aria-label={ui.work.topicsAria(project.title)}>
                   {project.stack.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
                 {project.links.length > 0 ? (
-                  <div className="project-links" aria-label={`${project.title} links`}>
+                  <div className="project-links" aria-label={ui.work.linksAria(project.title)}>
                     {project.links.map((link) => {
                       const isExternal = link.href.startsWith('http')
 

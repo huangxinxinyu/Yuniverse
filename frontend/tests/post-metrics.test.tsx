@@ -52,9 +52,9 @@ describe('anonymous post metrics', () => {
 
     render(<BlogPostPage slug="jev-decision-model" />)
 
-    expect(await screen.findByText('12 views')).toBeTruthy()
-    expect(screen.getByText('4 likes')).toBeTruthy()
-    expect(screen.getByRole('group', { name: 'Post engagement' })).toBeTruthy()
+    expect(await screen.findByText('12 次阅读')).toBeTruthy()
+    expect(screen.getByText('4 个赞')).toBeTruthy()
+    expect(screen.getByRole('group', { name: '文章互动' })).toBeTruthy()
 
     expect(fetchMock).toHaveBeenCalledTimes(1)
     expect(fetchMock).toHaveBeenCalledWith(
@@ -81,14 +81,14 @@ describe('anonymous post metrics', () => {
     render(<BlogPostPage slug="jev-decision-model" />)
 
     const likeButton = await screen.findByRole('button', {
-      name: 'Like this post',
+      name: '给这篇文章点赞',
     })
     await waitFor(() => expect(likeButton.getAttribute('aria-pressed')).toBe('false'))
 
     fireEvent.click(likeButton)
 
     await waitFor(() => expect(likeButton.getAttribute('aria-pressed')).toBe('true'))
-    expect(screen.getByText('5 likes')).toBeTruthy()
+    expect(screen.getByText('5 个赞')).toBeTruthy()
     expect(fetchMock).toHaveBeenCalledTimes(2)
     expect(fetchMock).toHaveBeenLastCalledWith(
       '/api/post-metrics?slug=jev-decision-model',
@@ -106,13 +106,13 @@ describe('anonymous post metrics', () => {
     render(<BlogPostPage slug="jev-decision-model" />)
 
     await waitFor(() => {
-      expect(screen.getByRole('group', { name: 'Post engagement' }).dataset.status)
+      expect(screen.getByRole('group', { name: '文章互动' }).dataset.status)
         .toBe('unavailable')
     })
 
     expect(screen.getByRole('heading', { name: 'Jev：把判断从 LLM 里拆出来' }))
       .toBeTruthy()
-    expect(screen.getByRole('button', { name: 'Like this post' }).hasAttribute('disabled'))
+    expect(screen.getByRole('button', { name: '给这篇文章点赞' }).hasAttribute('disabled'))
       .toBe(true)
   })
 
@@ -128,14 +128,14 @@ describe('anonymous post metrics', () => {
     render(<BlogPostPage slug="jev-decision-model" />)
 
     const likeButton = await screen.findByRole('button', {
-      name: 'Like this post',
+      name: '给这篇文章点赞',
     })
     await waitFor(() => expect(likeButton.hasAttribute('disabled')).toBe(false))
     fireEvent.click(likeButton)
 
     await waitFor(() => expect(likeButton.hasAttribute('disabled')).toBe(false))
     expect(likeButton.getAttribute('aria-pressed')).toBe('false')
-    expect(screen.getByText('4 likes')).toBeTruthy()
+    expect(screen.getByText('4 个赞')).toBeTruthy()
   })
 
   it('uses an ephemeral anonymous ID when browser storage is unavailable', async () => {
@@ -155,7 +155,7 @@ describe('anonymous post metrics', () => {
 
     render(<BlogPostPage slug="jev-decision-model" />)
 
-    expect(await screen.findByText('12 views')).toBeTruthy()
+    expect(await screen.findByText('12 次阅读')).toBeTruthy()
     expect(fetchMock).toHaveBeenCalledWith(
       '/api/post-metrics?slug=jev-decision-model',
       expect.objectContaining({

@@ -1,4 +1,4 @@
-import { blogPosts } from '../content/siteContent'
+import { useSiteContent } from '../content/useSiteContent'
 import { BlogDeskPet } from './BlogDeskPet'
 
 export type SiteMetricCounts = {
@@ -12,29 +12,30 @@ type BlogSiteSummaryProps = {
 }
 
 const siteLaunchDate = Date.UTC(2025, 7, 17)
-const publishedPosts = blogPosts.filter((post) => post.status === 'published')
-const categoryCounts = [
-  { label: 'Software', count: publishedPosts.filter((post) => post.category === 'software').length },
-  { label: 'Taste', count: publishedPosts.filter((post) => post.category === 'taste').length },
-  { label: 'Notes', count: publishedPosts.filter((post) => post.category === 'notes').length },
-]
+const summaryCategories = ['software', 'taste', 'notes'] as const
 
 export function BlogSiteSummary({ metrics, now = new Date() }: BlogSiteSummaryProps) {
+  const { blogCategories, blogPosts, ui } = useSiteContent()
+  const publishedPosts = blogPosts.filter((post) => post.status === 'published')
+  const categoryCounts = summaryCategories.map((id) => ({
+    label: blogCategories.find((category) => category.id === id)?.label ?? id,
+    count: publishedPosts.filter((post) => post.category === id).length,
+  }))
   const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   const daysSinceLaunch = Math.max(0, Math.floor((today - siteLaunchDate) / 86_400_000))
   const rows = [
-    { label: '文章数', value: String(publishedPosts.length) },
-    { label: '建站天数', value: `${daysSinceLaunch} 天` },
-    { label: '访问量', value: metrics?.views.toLocaleString('en-US') ?? '—' },
-    { label: '访客数', value: metrics?.visitors.toLocaleString('en-US') ?? '—' },
+    { label: ui.summary.posts, value: String(publishedPosts.length) },
+    { label: ui.summary.daysOnline, value: ui.summary.days(daysSinceLaunch) },
+    { label: ui.summary.views, value: metrics?.views.toLocaleString('en-US') ?? '—' },
+    { label: ui.summary.visitors, value: metrics?.visitors.toLocaleString('en-US') ?? '—' },
   ]
 
   return (
-    <aside aria-label="网站概览" className="blog-site-summary">
+    <aside aria-label={ui.summary.aria} className="blog-site-summary">
       <BlogDeskPet />
       <div className="blog-site-summary-card">
-        <p className="panel-label">Yuniverse / At a glance</p>
-        <div aria-label="文章分类" className="blog-summary-categories">
+        <p className="panel-label">{ui.summary.panelLabel}</p>
+        <div aria-label={ui.summary.categoriesAria} className="blog-summary-categories">
           {categoryCounts.map(({ label, count }) => (
             <span key={label}>{label}<sup>{count}</sup></span>
           ))}
@@ -47,7 +48,7 @@ export function BlogSiteSummary({ metrics, now = new Date() }: BlogSiteSummaryPr
             </div>
           ))}
         </dl>
-        <p className="blog-summary-footnote">访问统计从启用后开始记录</p>
+        <p className="blog-summary-footnote">{ui.summary.footnote}</p>
       </div>
     </aside>
   )

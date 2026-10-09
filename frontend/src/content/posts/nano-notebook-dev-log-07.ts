@@ -6,6 +6,13 @@ export const nanoNotebookDevLog07 = {
   date: '2026-08-07',
   excerpt:
     '第七篇聊一个很小但很关键的板块：prompt 不能写死在 Go 代码里。nano-notebook 用文件做 Prompt Catalog 和 Agent Definition Catalog，把 identity、version、hash、prompt、模型策略、工具清单绑在一起，让一次 Run 能精确对应到当时用过的 Agent 定义。',
+  en: {
+    title: 'nano-notebook Dev Log 07: Prompt Versioning, So Agent Definitions and Runs Can Be Reproduced',
+    excerpt:
+      "The seventh entry covers a small but critical piece: prompts can't be hard-coded in Go. nano-notebook keeps a file-based Prompt Catalog and Agent Definition Catalog that bind identity, version, hash, prompt, model policy, and tool list together, so every run maps exactly to the agent definition it used.",
+    aiDisclosure:
+      "Written with AI help. The technical decisions, implementation, and source anchors come from nano-notebook's prompt catalog, agent catalog, trace/replay, and ADR 0045.",
+  },
   content: [
     '这一篇很短，但它是 Agent Runtime 里容易被低估的一块：版本。前面几篇讲了可恢复、Trace、Replay、工具和权限，如果 prompt、Agent Definition、工具清单散落在代码里，前面那些能力最终都少一个坐标：这次 Run 到底是在哪个版本下跑的。',
     '最直接的写法是把 system prompt 写成 Go 里的一个字符串常量，或者在代码里拼一段 Markdown。单个 demo 没问题，一旦 Agent 上线，它会立刻带来三件事：',

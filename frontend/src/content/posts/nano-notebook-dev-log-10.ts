@@ -6,6 +6,13 @@ export const nanoNotebookDevLog10 = {
   date: '2026-09-18',
   excerpt:
     '从全量历史与临界摘要出发，讲清 AgentStatus、工具结果外置和分层压缩怎样让长任务持续推进，以及固定的 Research Plan 为什么必要。',
+  en: {
+    title: 'nano-notebook Dev Log 10: Managing Context in Long-Running Tasks',
+    excerpt:
+      'Starting from full history and threshold-triggered summaries, this entry explains how AgentStatus, offloading tool results, and layered compaction keep long tasks moving, and why a fixed Research Plan is necessary.',
+    aiDisclosure:
+      "Written with AI help. The project implementation follows nano-notebook's current code and architecture docs.",
+  },
   content: [
     "**理解是上下文管理的宗旨。**",
     "最直接的上下文管理方式，是把用户消息、Agent 的每次工具调用和完整结果都留在对话里。模型每回合都能看到过去发生的事；窗口快满时，再把旧内容压成一段摘要，保留当前目标与已经完成的工作，也交代接下来要做的事和仍须遵守的规则。",

@@ -6,6 +6,13 @@ export const claudeAgentSdkTraceToEval = {
   date: '2026-06-11',
   excerpt:
     'Claude Agent SDK 的 OpenTelemetry 价值，不只是把日志打出去，而是把 agent 的执行现场结构化。trace 负责归因，eval 负责验证优化是否真的有效。',
+  en: {
+    title: 'Claude Agent SDK 01: Traces Are Not the Finish Line, Evals Are',
+    excerpt:
+      'The value of OpenTelemetry in the Claude Agent SDK is not just shipping logs. It structures what actually happened during an agent run: traces explain causes, and evals check whether an optimization really worked.',
+    aiDisclosure:
+      'Written with AI help. The content comes from public documentation and my own understanding of agent architecture.',
+  },
   content: [
     '如果只把 Claude Agent SDK 理解成“可以在代码里调用 Claude Code”，我觉得会低估它。',
     '真正值得关注的是：它把 coding agent 的执行现场变成了可以观察、归因和评估的结构化链路。Agent 不再只是一个会自动跑工具的黑盒，而是由用户请求、模型请求、工具调用、权限判断、hook、subagent、MCP 调用和最终结果组成的一棵执行树。',

@@ -63,6 +63,19 @@ The site uses a lightweight in-app router with a restrained shared layout and na
 - `/blog` - planned writing index with categories and status filters
 - `/collection` - music, movie, and picture collection notes
 
+## Languages
+
+The site has a Chinese and an English version, switched with the 中 / EN
+control in the header. The first visit picks `?lang=zh|en` from the URL, then
+the visitor's saved choice, then the browser language.
+
+- `src/content/copy/zh.ts` and `src/content/copy/en.ts` - all page copy and UI labels
+- `en` on each post in `src/content/posts` - English title, summary, and AI note;
+  article bodies stay in their original language
+- `tagLabels` in `en.ts` - English names for Chinese post tags
+
+When adding a post, give it an `en` block; `tests/i18n.test.tsx` fails without one.
+
 ## Content Notes
 
 Profile, contact, education, and interest copy now reflects the current public draft. Project writeups, blog posts, and collection entries can be expanded as more details are ready to publish.

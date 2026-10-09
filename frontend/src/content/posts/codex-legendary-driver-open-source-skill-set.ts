@@ -6,6 +6,13 @@ export const codexLegendaryDriverOpenSourceSkillSet = {
   date: '2026-06-24',
   excerpt:
     '我把自己目前用得顺手的一套 Codex skill 集合开源了：https://github.com/huangxinxinyu/xinyu-s-skill-set。',
+  en: {
+    title: 'Codex Legendary Driver 04: I Open-Sourced My Skill Set',
+    excerpt:
+      'I open-sourced the set of Codex skills I currently rely on: https://github.com/huangxinxinyu/xinyu-s-skill-set.',
+    aiDisclosure:
+      'Written with AI help. The content comes from my notes on open-sourcing a personal Codex skill collection.',
+  },
   content: [
     '我把自己目前在用的一套 Codex skill 集合开源了：https://github.com/huangxinxinyu/xinyu-s-skill-set。',
     '现在用得比较顺手的 skill 我都先放进去了。有些是网上看到以后拿来改的，有些是我自己做的，主要就是把目前这套工作流同步起来。',

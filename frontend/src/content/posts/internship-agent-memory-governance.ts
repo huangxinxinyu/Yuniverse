@@ -6,6 +6,13 @@ export const internshipAgentMemoryGovernance = {
   date: '2026-06-17',
   excerpt:
     '从实习里 memory 板块的设计出发，整理 agent memory 的更新链路、类型策略、冲突处理和评测方法。',
+  en: {
+    title: "Designing Memory at My Internship Taught Me the Hard Part Isn't Remembering More",
+    excerpt:
+      'Starting from the memory module I designed at my internship: how agent memory gets updated, how to set policy by memory type, how to handle conflicts, and how to evaluate it.',
+    aiDisclosure:
+      'Written with AI help. The content comes from my memory design work at my internship and research on public material.',
+  },
   content: [
     '最近实习中讨论到 agent 的 memory 板块。最开始我很容易把 memory 理解成“让 agent 记住更多东西”：用户说过什么、偏好是什么、之前做过什么任务，下次再对话时把这些信息拿回来。',
     '但继续往下想，我发现 memory 真正难的地方不在存储，而在治理。一个可上线的 memory 系统不能只回答“能不能记住”，还要回答：这条记忆从哪里来，现在还成不成立，和旧记忆冲突时应该信谁，用了以后效果到底有没有变好。',

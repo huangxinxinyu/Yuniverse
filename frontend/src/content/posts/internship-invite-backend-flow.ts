@@ -6,6 +6,13 @@ export const internshipInviteBackendFlow = {
   date: '2026-05-18',
   excerpt:
     '整理邀请系统的后端逻辑：邀请码生成、关系绑定、有效性校验、奖励触发、幂等发放和流水记录。',
+  en: {
+    title: 'Internship Recap: An Abstract View of an Invite System Backend',
+    excerpt:
+      'The backend logic of an invite system: generating invite codes, binding relationships, validating eligibility, triggering rewards, idempotent payouts, and keeping a ledger.',
+    aiDisclosure:
+      'Written with AI help. The content comes from code reading and technical notes during my internship.',
+  },
   content: [
     '最近除了支付链路，也看了一套邀请系统的后端实现。邀请系统表面上看很简单：一个人分享邀请码，另一个人注册，双方拿奖励。但真正落到后端时，它不是一个单点接口，而是一条跨注册、用户关系、奖励发放和日志查询的业务链路。',
     '我现在对邀请系统的理解，可以压缩成一句话：邀请链路的核心不是“生成一个码”，而是“可靠地证明谁邀请了谁，并且只在合适的时机发放一次奖励”。',

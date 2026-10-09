@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSiteContent } from '../content/useSiteContent'
 import { getVisitorId } from '../lib/visitorId'
 
 type PostMetricCounts = {
@@ -34,6 +35,7 @@ async function updateMetrics(
 }
 
 export function PostMetrics({ slug }: PostMetricsProps) {
+  const { ui } = useSiteContent()
   const [metrics, setMetrics] = useState<PostMetricCounts | null>(null)
   const [status, setStatus] = useState<MetricsStatus>('loading')
   const [isUpdatingLike, setIsUpdatingLike] = useState(false)
@@ -75,7 +77,7 @@ export function PostMetrics({ slug }: PostMetricsProps) {
 
   return (
     <div
-      aria-label="Post engagement"
+      aria-label={ui.metrics.aria}
       aria-live="polite"
       className="post-metrics"
       data-status={status}
@@ -83,10 +85,10 @@ export function PostMetrics({ slug }: PostMetricsProps) {
     >
       <span className="post-metric post-view-count">
         <span aria-hidden="true">◉</span>
-        {metrics ? `${metrics.views.toLocaleString('en-US')} views` : '— views'}
+        {ui.metrics.views(metrics ? metrics.views.toLocaleString('en-US') : '—')}
       </span>
       <button
-        aria-label={metrics?.liked ? 'Unlike this post' : 'Like this post'}
+        aria-label={metrics?.liked ? ui.metrics.unlike : ui.metrics.like}
         aria-pressed={metrics?.liked ?? false}
         className="post-metric post-like-button"
         disabled={status !== 'ready' || isUpdatingLike}
@@ -94,7 +96,7 @@ export function PostMetrics({ slug }: PostMetricsProps) {
         type="button"
       >
         <span aria-hidden="true">♥</span>
-        <span>{metrics ? `${metrics.likes.toLocaleString('en-US')} likes` : '— likes'}</span>
+        <span>{ui.metrics.likes(metrics ? metrics.likes.toLocaleString('en-US') : '—')}</span>
       </button>
     </div>
   )

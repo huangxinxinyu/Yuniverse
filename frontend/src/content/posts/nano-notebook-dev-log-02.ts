@@ -6,6 +6,13 @@ export const nanoNotebookDevLog02 = {
   date: '2026-08-07',
   excerpt:
     '第二篇讲 Agent Runtime 的核心目标：可恢复、可中断。先比较 LangChain、LangGraph、ADK、Claude Agent SDK，再落到 Go + PostgreSQL 自研 runtime 的 Run/Job/Lease/Checkpoint 骨架。',
+  en: {
+    title: 'nano-notebook Dev Log 02: Why a Resumable, Interruptible Agent Runtime Had to Be Built In-House',
+    excerpt:
+      'The second entry covers the core goals of the agent runtime: resumable and interruptible. It compares LangChain, LangGraph, ADK, and the Claude Agent SDK, then lands on the Run/Job/Lease/Checkpoint skeleton of a custom Go + PostgreSQL runtime.',
+    aiDisclosure:
+      "Written with AI help. The technical decisions and implementation come from nano-notebook's real development history, ADRs, and architecture docs.",
+  },
   content: [
     '这是 nano-notebook 开发日志的第二篇。第一篇定下了产品形状和整体技术栈，这一篇回答一个更具体的问题：当 Agent Runtime 的首要目标是可恢复、可中断时，为什么我们没有直接选用 LangChain、LangGraph、Google ADK 或 Claude Agent SDK，而是在 Go + PostgreSQL 上自研。',
     '## 先分清两件事：可恢复和可中断',

@@ -17,7 +17,7 @@ const introChapters = [
   {
     id: 'about',
     layoutIndex: 1,
-    label: siteSections.about.label,
+    label: 'About',
     sound: 'SHOOM',
     soundStyle: 'slash',
     cosmosType: 'planet',
@@ -27,7 +27,7 @@ const introChapters = [
   {
     id: 'work',
     layoutIndex: 2,
-    label: siteSections.work.label,
+    label: 'Work',
     sound: 'SKRRR',
     soundStyle: 'stamp',
     cosmosType: 'signal',

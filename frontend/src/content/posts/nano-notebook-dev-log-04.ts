@@ -6,6 +6,13 @@ export const nanoNotebookDevLog04 = {
   date: '2026-08-07',
   excerpt:
     '第四篇把 RAG 从“向量搜索”拆成一条可评测的工程链路：Evidence Unit 与 Retrieval Chunk 分离、Dense + BM25、RRF、rerank 阈值，以及先拿引用、筛选完再进模型上下文的数据量控制。',
+  en: {
+    title: 'nano-notebook Dev Log 04: The Full RAG Pipeline, Hybrid Retrieval, and Offline Evals',
+    excerpt:
+      "The fourth entry breaks RAG down from 'vector search' into an engineering pipeline you can evaluate: separating Evidence Units from Retrieval Chunks, Dense + BM25, RRF, rerank thresholds, and controlling data volume by fetching citations and filtering before anything enters the model context.",
+    aiDisclosure:
+      "Written with AI help. The technical decisions, parameters, and eval results come from nano-notebook's source code, ADRs, eval suite, and runbooks.",
+  },
   content: [
     '为什么要用 RAG？最直接的原因是：通用模型记不住，也不该记住用户自己的资料。',
     'nano-notebook 要回答用户放进 Notebook 的私有 Source：本地文档、网页、PDF、表格、PPT、音视频转录。这些内容模型没有训练过，直接问模型，它只能靠常识补，既不可靠，也没法保证 citation。Fine-tuning 训练慢、成本高，更新一次资料就要重新动模型权重，而且它改变的是模型记忆，不是可验证的证据边界。',

@@ -1,0 +1,390 @@
+import type { SiteCopy } from '../siteContent'
+
+export const zhCopy: SiteCopy = {
+  navigation: {
+    about: '关于',
+    work: '作品',
+    blog: '博客',
+    collection: '收藏',
+  },
+  profile: {
+    displayName: '黄新宇',
+    tagline: '一个装着软件、学习、温度和好奇心的个人宇宙。',
+    intro:
+      '黄新宇，本科毕业于悉尼大学软件工程专业，目前在 UCSD ECE 攻读研究生。现在关注软件开发、AI 工具。',
+    eyebrow: 'Yuniverse / 黄新宇',
+    heroText:
+      'Yuniverse 是黄新宇的个人宇宙也是我的创意工坊：这里简单介绍下自己, 会放一些生活、工作的碎片，也会写点博客',
+    signals: [
+      { label: '身份', value: '学生 / 开发者' },
+      { label: '关注', value: '软件 / AI 工具 / 个人网站' },
+      { label: '近况', value: '在 UCSD ECE 读研' },
+    ],
+    shortBio: '学生和软件开发工程师，目前在 UCSD ECE 攻读研究生。',
+    focusAreas: ['软件工程', 'AI 工具', '创意系统', '健身和电影'],
+    location: '加州圣地亚哥',
+  },
+  contactLabels: {
+    wechat: '微信',
+    email: '邮箱',
+    phone: '电话',
+    github: 'GitHub',
+    douyin: '抖音',
+    rednote: '小红书',
+  },
+  readingTime: (minutes) => `${minutes} 分钟阅读`,
+  tagLabels: {},
+  sections: {
+    about: {
+      eyebrow: '关于',
+      kicker: '个人介绍',
+      title: '关于黄新宇',
+      intro: '学生、软件开发工程师，也是 Yuniverse 这个个人宇宙的整理者。',
+      body:
+        '本科毕业于悉尼大学软件工程专业，现在在 UCSD ECE 读研。我做软件开发，也把项目、生活和兴趣慢慢放进 Yuniverse。',
+      summary: '学习、软件开发和兴趣的简单介绍。',
+      links: [
+        {
+          label: '作品',
+          href: '/work',
+          description: '软件开发相关经历和项目会逐步整理到这里。',
+        },
+        {
+          label: '写作',
+          href: '/blog',
+          description: '关于 Yuniverse、学习和软件工程的未来文章主题。',
+        },
+        {
+          label: '收藏',
+          href: '/collection',
+          description: '电影、健身、音乐和其他兴趣会在这里慢慢补充。',
+        },
+      ],
+    },
+    work: {
+      eyebrow: '作品',
+      kicker: '作品',
+      title: '精选作品',
+      body: '一些我在做、在研究，也在持续打磨的东西。',
+      summary: '软件开发和项目的公开记录。',
+      meta: ['软件开发', '学生作品', '个人项目'],
+    },
+    blog: {
+      eyebrow: '博客',
+      kicker: '博客',
+      title: 'Yuniverse 的文章和笔记。',
+      body: '啥都写点，不好维护了我再新建个网站😜',
+      summary: 'Yuniverse 未来文章和笔记的规划区。',
+      meta: ['软件', '学习', 'Yuniverse', '笔记'],
+      emptyState: '这个分类的文章还在整理，之后会补上真实标题、正文和链接。',
+    },
+    collection: {
+      eyebrow: '收藏',
+      kicker: '收藏',
+      title: '音乐、电影和图片',
+      body: '一个暂时很轻的兴趣柜子，用来放电影、健身、音乐和未来的图片主题。',
+      summary: '黄新宇的兴趣和收藏整理区。',
+      meta: ['音乐', '电影', '图片', '健身'],
+    },
+  },
+  aboutPage: {
+    eyebrow: 'Yuniverse / 个人介绍',
+    title: '关于我',
+    subtitle: 'UCSD ECE 在读，做软件开发。',
+    statusNotice: 'Yuniverse 跟着我一起长大：多一个项目、一篇笔记、一个瞬间。',
+    intro: {
+      heading: '简介',
+      body:
+        '本科毕业于悉尼大学软件工程专业，现在在 UCSD ECE 读研。我做软件开发，也把项目、生活和兴趣慢慢放进 Yuniverse。',
+      coordinates: [
+        { label: '小学', text: '浙江省湖州市递铺第三小学（i dont think people gon care tho）' },
+        { label: '初中 / 高中', text: '杭州英特外国语学校' },
+        { label: '本科', text: '悉尼大学 Software Engineering' },
+        { label: '研究生', text: 'UCSD ECE' },
+      ],
+    },
+    values: {
+      heading: '我希望这个网站是什么感觉',
+      body: 'Yuniverse 是我放生活、学习和工作的地方。',
+      items: [
+        { label: '灵感', text: '我会在这里试一些新想法。' },
+        { label: '温暖', text: 'It‘s a cold world out there, babe 🫶💋' },
+        { label: '好玩', text: '希望这个网站看起来好玩。' },
+      ],
+    },
+    craft: {
+      heading: '软件开发',
+      body: '这里先介绍软件开发方向。项目细节、技术说明和截图会慢慢放进作品页面。',
+      tools: [
+        { name: '软件工程', role: '本科主线和项目基础' },
+        { name: 'UCSD ECE', role: '当前研究生学习方向' },
+        { name: 'AI 工具', role: '感兴趣的开发和使用方向' },
+        { name: '个人网站', role: '持续整理身份、作品和兴趣' },
+      ],
+    },
+    personalDetails: {
+      heading: '更多关于我',
+      body: '一些关于学习、工作和兴趣的补充。',
+      items: [
+        {
+          id: 'software',
+          label: '软件',
+          meta: '工作',
+          detail: '学生、软件开发工程师。项目细节会慢慢放到作品页面。',
+        },
+        {
+          id: 'bachelor',
+          label: '本科',
+          meta: '悉尼',
+          detail: '本科毕业于悉尼大学软件工程专业。',
+        },
+        {
+          id: 'postgraduate',
+          label: '研究生',
+          meta: 'UCSD ECE',
+          detail: '目前在 UCSD ECE 攻读研究生。',
+        },
+        {
+          id: 'interests',
+          label: '兴趣',
+          meta: '个人',
+          detail: '唱跳 rap 篮球。',
+        },
+        {
+          id: 'location',
+          label: '所在地',
+          meta: '圣地亚哥',
+          detail: '目前在 UCSD 读书。',
+        },
+      ],
+    },
+  },
+  blogCategories: [
+    { id: 'featured', label: '精选', description: '当前重点推荐的文章。' },
+    { id: 'all', label: '全部', description: '博客里的全部文章。' },
+    {
+      id: 'software',
+      label: '软件',
+      description: '软件相关的文章，包括实习总结、Agent 架构和 AI 工具。',
+    },
+    { id: 'taste', label: '品味', description: '界面氛围、参考和审美判断。' },
+    { id: 'notes', label: '笔记', description: '知识碎片和还在成形的想法。' },
+    { id: 'future', label: '未来', description: '还在构思中的写作主题。' },
+  ],
+  blogTopics: [
+    { id: 'all', label: '全部软件', description: '博客里所有软件相关的文章。' },
+    {
+      id: 'internship-summary',
+      label: '实习总结',
+      description: '实习复盘、后端链路笔记和项目收获。',
+    },
+    {
+      id: 'agent-architecture',
+      label: 'Agent 架构分享',
+      description: 'Agent 架构、可观测性、基础设施和系统设计笔记。',
+    },
+    {
+      id: 'ai-tools',
+      label: 'AI 工具分享',
+      description: 'AI 工具、Codex 用法、本地工作流和可复用的工作方式。',
+    },
+  ],
+  blogSeries: [
+    { id: 'all', label: '全部系列', description: '这个主题下的全部文章。' },
+    {
+      id: 'codex-legendary-driver',
+      label: 'Codex 传奇驾驶员',
+      description: 'Codex 使用笔记、驾驶方式和上下文纪律。',
+      topic: 'ai-tools',
+    },
+    {
+      id: 'claude-agent-sdk',
+      label: 'Claude Agent SDK',
+      description: 'Claude Agent SDK 的架构、可观测性和 eval 笔记。',
+      topic: 'agent-architecture',
+    },
+    {
+      id: 'nano-notebook-dev-log',
+      label: 'nano-notebook 开发日志',
+      description: 'nano-notebook 的产品故事、Agent 基础设施选型与真实实现记录。',
+      topic: 'agent-architecture',
+    },
+  ],
+  collections: {
+    music: {
+      label: '音乐',
+      intro: '我是灵魂歌王。',
+      emptyState: '这个筛选下还没有放音乐。',
+    },
+    movies: {
+      label: '电影',
+      intro: '我看的爆米花电影偏多，啥都放，i aint no pro',
+      emptyState: '这个筛选下还没有电影。',
+    },
+    pictures: {
+      label: '图片',
+      intro: '上海、悉尼和 UCSD 的视觉笔记，之后还会有更多照片主题。',
+      emptyState: '这里还没有保存图片。',
+    },
+  },
+  work: {
+    'work-nano-notebook': {
+      kind: '产品',
+      status: '开发中',
+      role: '创建者 / 全栈开发',
+      summary:
+        '一个以资料来源为依据的研究工作台，内置能长时间运行的研究 Agent，可以处理多步问题，并把结论追溯回原始证据。',
+      highlights: ['围绕有证据支撑的研究来设计，而不是做一个通用聊天工具。'],
+    },
+    'work-code-remote': {
+      kind: '产品',
+      status: '开发中',
+      role: '创建者 / 开发者',
+      summary:
+        '一个本地优先的移动端界面：通过私有的 Tailscale 连接，在 iPhone Safari 上操控 Mac 上的 Codex 或 Claude Code。',
+      highlights: [
+        '代码、凭证和 Agent 进程都留在 Mac 上，Tailscale 把访问限制在私有网络内。',
+        '用 tmux 让终端和 Agent 在浏览器断线时继续运行。',
+      ],
+    },
+    'work-xinyu-s-skill-set': {
+      kind: '开源',
+      status: '持续更新',
+      role: '创建者 / 维护者',
+      summary: '一套个人 Codex skill 集合，用来在多台机器之间同步可复用的 Agent 和工程工作流。',
+      highlights: ['让 skill 和工程规范有版本、可复用，也能随时带到新机器上。'],
+    },
+    'work-yuniverse-site': {
+      kind: '个人网站',
+      status: '持续更新',
+      role: '设计 / 开发',
+      summary: '一个个人空间，放我做的软件、写的东西，还有想留下来的想法。',
+      highlights: [
+        '按一个持续生长的档案来设计和搭建，而不是一份固定的作品集。',
+        '把项目、写作、兴趣和个人经历放进同一套视觉系统。',
+      ],
+      linkLabels: { '/home': '查看网站' },
+    },
+    'work-llm-robotics-survey': {
+      kind: '研究',
+      status: '预印本修订中',
+      role: '第一作者',
+      summary:
+        '一篇关于 LLM 控制机器人的安全威胁与防御的系统性综述，重点关注语言模型推理和物理世界动作之间的落差。',
+      highlights: [],
+      linkLabels: { 'https://arxiv.org/abs/2601.02377': '在 arXiv 查看' },
+    },
+  },
+  pictures: {
+    'picture-shanghai': {
+      title: '上海实习',
+      location: '上海',
+      alt: '上海实习阶段的视觉笔记，照片之后补上。',
+    },
+    'picture-sydney': {
+      title: '悉尼',
+      location: '悉尼',
+      alt: '悉尼求学阶段的视觉笔记，照片之后补上。',
+    },
+    'picture-ucsd': {
+      title: 'UCSD',
+      location: '圣地亚哥',
+      alt: 'UCSD 阶段的视觉笔记，照片之后补上。',
+    },
+  },
+  ui: {
+    nav: {
+      home: '首页',
+      homeAria: (name) => `${name} 首页`,
+      primaryAria: '主导航',
+      languageAria: '语言',
+      languageNames: { zh: '中文', en: 'English' },
+    },
+    home: {
+      viewWork: '看看作品',
+      about: '关于我',
+      primaryLinksAria: '主要页面链接',
+      snapshotAria: '当前状态',
+      sectionsKicker: '栏目',
+      portalTitle: '从这几个地方开始逛。',
+    },
+    about: {
+      srTitle: '关于',
+      noticeAria: '内容状态说明',
+      noticeLabel: '持续生长的档案',
+      kickers: {
+        intro: '01 / 简介',
+        values: '02 / 感觉',
+        craft: '03 / 手艺',
+        details: '04 / 细节',
+      },
+      detailNotesAria: '个人细节',
+    },
+    work: {
+      highlightsAria: (title) => `${title} 亮点`,
+      topicsAria: (title) => `${title} 技术和主题`,
+      linksAria: (title) => `${title} 链接`,
+    },
+    blog: {
+      featuredPost: '精选文章',
+      categoriesAria: '博客分类',
+      topicsAria: '博客主题',
+      seriesAria: '博客系列',
+      tagsAria: (title) => `${title} 标签`,
+      featured: '精选',
+      readArticle: '阅读全文',
+      paginationAria: '博客分页',
+      previous: '上一页',
+      next: '下一页',
+      pageStatus: (page, pageCount) => `第 ${page} / ${pageCount} 页`,
+      pagesAria: '博客页码',
+      goToPage: (page) => `前往博客第 ${page} 页`,
+      backToBlog: '返回博客',
+      originalLanguageNotice: {
+        zh: '',
+        en: '这篇文章用英文写成。',
+      },
+    },
+    summary: {
+      aria: '网站概览',
+      panelLabel: 'Yuniverse / 一眼看完',
+      categoriesAria: '文章分类',
+      posts: '文章数',
+      daysOnline: '建站天数',
+      days: (count) => `${count} 天`,
+      views: '访问量',
+      visitors: '访客数',
+      footnote: '访问统计从启用后开始记录',
+      petAlt: '白色小狗趴在红色木碗里',
+    },
+    metrics: {
+      aria: '文章互动',
+      views: (count) => `${count} 次阅读`,
+      likes: (count) => `${count} 个赞`,
+      like: '给这篇文章点赞',
+      unlike: '取消点赞',
+    },
+    collection: {
+      tabsAria: '收藏类别',
+      filtersAria: '收藏筛选',
+      filterLabels: {
+        all: '全部',
+        album: '专辑',
+        track: '单曲',
+        playlist: '歌单',
+        film: '电影',
+        watchlist: '想看',
+        favorite: '最爱',
+        gallery: '图集',
+      },
+      openPicture: '打开图片',
+      byline: (title, creator) => `${title}，${creator}`,
+      close: '关闭',
+    },
+    contact: {
+      aria: '联系方式',
+      kicker: '联系',
+      title: '打个招呼吧。',
+    },
+  },
+}

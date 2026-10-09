@@ -6,6 +6,13 @@ export const multicaLocalAgentWorkflow = {
   date: '2026-05-15',
   excerpt:
     '记录一下最近用 Multica 管理本地 AI Coding Agent 的体验：它更像一个让人当指挥官的任务协作层。',
+  en: {
+    title: 'Multica: Turning Local AI Coding Agents into Manageable Long-Running Tasks',
+    excerpt:
+      "Notes on using Multica to manage local AI coding agents. It feels like a task coordination layer that puts you in the commander's seat.",
+    aiDisclosure:
+      "Written with AI help. The content comes from my own experience and Multica's official documentation.",
+  },
   content: [
     '最近试了一下 Multica。它给我的第一印象不是又一个聊天窗口，而是一个把 AI Coding Agent 放进工作流里的协作层：你创建 issue，选择 agent，把任务交出去，然后在看板、运行记录和消息流里看它怎么推进、哪里卡住、最后交付了什么。',
     '## Multica 是什么',

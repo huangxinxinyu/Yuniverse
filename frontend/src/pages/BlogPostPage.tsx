@@ -3,7 +3,8 @@ import type { RoutePath } from '../App'
 import { BlogSiteSummary, type SiteMetricCounts } from '../components/BlogSiteSummary'
 import { PostMetrics } from '../components/PostMetrics'
 import { TagList } from '../components/TagList'
-import { blogPosts } from '../content/siteContent'
+import { htmlLang } from '../i18n/locale'
+import { useSiteContent } from '../content/useSiteContent'
 
 type BlogPostPageProps = {
   slug: string
@@ -113,7 +114,11 @@ function renderContentBlock(block: string) {
 }
 
 export function BlogPostPage({ slug, onNavigate, siteMetrics }: BlogPostPageProps) {
+  const { blogPosts, locale, ui } = useSiteContent()
   const post = blogPosts.find((post) => post.slug === slug) ?? blogPosts[0]
+  const languageNotice = post.bodyLanguage === locale
+    ? ''
+    : ui.blog.originalLanguageNotice[post.bodyLanguage]
   const handleBackClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (!onNavigate) {
       return
@@ -132,7 +137,7 @@ export function BlogPostPage({ slug, onNavigate, siteMetrics }: BlogPostPageProp
     >
       <div className="blog-post-main">
         <a className="text-command secondary" href="/blog" onClick={handleBackClick}>
-          Back to blog
+          {ui.blog.backToBlog}
         </a>
         <p className="section-kicker">{`${post.categoryLabel} / ${post.date}`}</p>
         <h2 id="blog-post-title">{post.title}</h2>
@@ -142,7 +147,10 @@ export function BlogPostPage({ slug, onNavigate, siteMetrics }: BlogPostPageProp
         {post.aiDisclosure ? (
           <p className="ai-disclosure">{post.aiDisclosure}</p>
         ) : null}
-        <div className="blog-post-body">
+        {languageNotice ? (
+          <p className="blog-language-notice">{languageNotice}</p>
+        ) : null}
+        <div className="blog-post-body" lang={htmlLang[post.bodyLanguage]}>
           {post.content.map(renderContentBlock)}
         </div>
       </div>

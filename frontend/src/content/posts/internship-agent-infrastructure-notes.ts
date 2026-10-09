@@ -6,6 +6,13 @@ export const internshipAgentInfrastructureNotes = {
   date: '2026-05-15',
   excerpt:
     '这篇先简单记录实习中参与 AI Agent 开发和基础设施搭建的一些阶段性工作。',
+  en: {
+    title: 'Internship Log: A Checkpoint on Building AI Agent Infrastructure',
+    excerpt:
+      'A short record of some of the AI agent development and infrastructure work I took part in during my internship.',
+    aiDisclosure:
+      'Written with AI help. The content comes from my internship notes.',
+  },
   content: [
     '最近在实习中主要参与 AI Agent 相关开发，业务方向和本地生活商户的运营扶持有关，希望通过 Agent 帮助商户更高效地理解经营情况、完成运营动作，并逐步沉淀可复用的智能化能力。',
     '我目前主要负责的是 Agent Infrastructure。相比直接做某一个具体的 Agent 功能，我的工作更多集中在底层链路、观测、成本分析、实验评估和性能优化上。',

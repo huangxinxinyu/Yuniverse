@@ -6,6 +6,13 @@ export const dokployLightweightPaasDeploymentTradeoffs = {
   date: '2026-06-16',
   excerpt:
     '从实习中使用 Dokploy 的视角，整理它在 Docker Compose、GitHub Actions、镜像 Registry、托管 PaaS 和自托管部署之间的位置，以及环境变量、密钥、文件和备份边界。',
+  en: {
+    title: 'Dokploy: How I Think About a Lightweight PaaS After Using It at My Internship',
+    excerpt:
+      'From using Dokploy at my internship: where it sits among Docker Compose, GitHub Actions, image registries, hosted PaaS, and self-hosted deployment, and where the boundaries fall for environment variables, secrets, files, and backups.',
+    aiDisclosure:
+      'Written with AI help. The content comes from using Dokploy at my internship, public documentation, and my own view of deployment choices.',
+  },
   content: [
     '实习中我在用 Dokploy，对“部署平台”这件事有了一个更具体的理解。',
     '以前看部署选型，很容易把问题简化成几个选项：要么手写 Docker Compose，要么上 Vercel / Render 这类托管平台，要么更重一点走 Kubernetes。但 Dokploy 处在一个很有意思的位置：它不是把服务器抽象到完全不可见，也不是让你继续手动维护所有脚本，而是把一台或多台 Docker 服务器包装成一个轻量的 PaaS 控制面。',
