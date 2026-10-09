@@ -6,8 +6,16 @@ import { navigationItems, siteSections } from '../src/content/siteContent'
 const requiredRoutes = ['/home', '/about', '/work', '/blog', '/collection'] as const
 
 describe('multi-page route contract', () => {
-  it('serves the immersive intro at the public root before the normal home page', () => {
+  it('opens the normal home page at the public root while the intro switch is off', () => {
     const html = renderToStaticMarkup(<App initialPath="/" />)
+
+    expect(html).toContain('data-route="/home"')
+    expect(html).toContain('aria-label="Primary navigation"')
+    expect(html).not.toContain('Follow the comet')
+  })
+
+  it('restores the immersive intro at the public root when the switch is on', () => {
+    const html = renderToStaticMarkup(<App initialPath="/" showIntroAtRoot />)
 
     expect(html).toContain('data-route="/intro"')
     expect(html).toContain('Follow the comet')
@@ -31,7 +39,7 @@ describe('multi-page route contract', () => {
   it('does not expose the removed Life route', () => {
     const html = renderToStaticMarkup(<App initialPath="/life" />)
 
-    expect(html).toContain('data-route="/intro"')
+    expect(html).toContain('data-route="/home"')
     expect(html).not.toContain('data-route="/life"')
   })
 

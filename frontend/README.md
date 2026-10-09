@@ -40,6 +40,10 @@ Preview a production build locally:
 npm run preview
 ```
 
+The comet intro is controlled by `SHOW_INTRO_AT_ROOT` in `src/App.tsx`.
+It is currently `false`, so `/` opens the home page. Set it to `true` to
+show the intro at `/` again. The intro remains available at `/intro` for preview.
+
 ## Project Structure
 
 - `src/components` - reusable UI pieces such as navigation and section headings

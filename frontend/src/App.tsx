@@ -14,6 +14,8 @@ import './App.css'
 
 const routePaths = ['/home', '/about', '/work', '/blog', '/collection'] as const
 const previewPaths = ['/intro'] as const
+// Set to true to show the comet intro at the public root again.
+const SHOW_INTRO_AT_ROOT = false
 
 export type RoutePath = (typeof routePaths)[number]
 
@@ -23,27 +25,31 @@ export type PageProps = {
 
 type AppProps = {
   initialPath?: string
+  showIntroAtRoot?: boolean
 }
 
-const normalizePath = (path: string): string => {
+const normalizePath = (path: string, showIntroAtRoot: boolean): string => {
   const cleanPath = path.split(/[?#]/)[0] || '/'
 
-  return routePaths.includes(cleanPath as RoutePath) ||
+  if (routePaths.includes(cleanPath as RoutePath) ||
     previewPaths.includes(cleanPath as (typeof previewPaths)[number]) ||
-    cleanPath.startsWith('/blog/')
-    ? cleanPath
-    : '/'
+    cleanPath.startsWith('/blog/')) {
+    return cleanPath
+  }
+
+  return showIntroAtRoot ? '/' : '/home'
 }
 
 function QuietLayer() {
   return <div className="quiet-layer" aria-hidden="true"></div>
 }
 
-function App({ initialPath }: AppProps) {
+function App({ initialPath, showIntroAtRoot = SHOW_INTRO_AT_ROOT }: AppProps) {
   const [currentPath, setCurrentPath] = useState<string>(() =>
     normalizePath(
       initialPath ??
         (typeof window === 'undefined' ? '/' : window.location.pathname),
+      showIntroAtRoot,
     ),
   )
   const [siteMetrics, setSiteMetrics] = useState<SiteMetricCounts | null>(null)
@@ -53,12 +59,12 @@ function App({ initialPath }: AppProps) {
       return
     }
 
-    const handlePopState = () => setCurrentPath(normalizePath(window.location.pathname))
+    const handlePopState = () => setCurrentPath(normalizePath(window.location.pathname, showIntroAtRoot))
 
     window.addEventListener('popstate', handlePopState)
 
     return () => window.removeEventListener('popstate', handlePopState)
-  }, [initialPath])
+  }, [initialPath, showIntroAtRoot])
 
   useEffect(() => {
     if (initialPath || typeof window === 'undefined') {
