@@ -281,6 +281,22 @@ export type UiText = {
     like: string
     unlike: string
   }
+  comments: {
+    heading: (count: number) => string
+    empty: string
+    loading: string
+    unavailable: string
+    anonymousHint: string
+    yourPersona: string
+    bodyLabel: string
+    bodyPlaceholder: string
+    submit: string
+    submitting: string
+    rateLimited: string
+    closed: string
+    failed: string
+    delete: string
+  }
   collection: {
     tabsAria: string
     filtersAria: string

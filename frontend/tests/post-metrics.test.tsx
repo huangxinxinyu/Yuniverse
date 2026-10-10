@@ -29,6 +29,14 @@ function jsonResponse(body: unknown) {
   } as Response
 }
 
+// The article also loads comments; keep those requests away from the metrics mock.
+function stubMetricsFetch(metricsFetch: ReturnType<typeof vi.fn>) {
+  vi.stubGlobal('fetch', (input: string, init?: RequestInit) =>
+    input.startsWith('/api/post-comments')
+      ? Promise.resolve(jsonResponse({ comments: [] }))
+      : metricsFetch(input, init))
+}
+
 describe('anonymous post metrics', () => {
   beforeEach(() => {
     Object.defineProperty(window, 'localStorage', {
@@ -48,7 +56,7 @@ describe('anonymous post metrics', () => {
     const fetchMock = vi.fn().mockResolvedValue(
       jsonResponse({ liked: false, likes: 4, views: 12 }),
     )
-    vi.stubGlobal('fetch', fetchMock)
+    stubMetricsFetch(fetchMock)
 
     render(<BlogPostPage slug="jev-decision-model" />)
 
@@ -76,7 +84,7 @@ describe('anonymous post metrics', () => {
       .mockResolvedValueOnce(
         jsonResponse({ liked: true, likes: 5, views: 12 }),
       )
-    vi.stubGlobal('fetch', fetchMock)
+    stubMetricsFetch(fetchMock)
 
     render(<BlogPostPage slug="jev-decision-model" />)
 
@@ -123,7 +131,7 @@ describe('anonymous post metrics', () => {
         jsonResponse({ liked: false, likes: 4, views: 12 }),
       )
       .mockRejectedValueOnce(new Error('offline'))
-    vi.stubGlobal('fetch', fetchMock)
+    stubMetricsFetch(fetchMock)
 
     render(<BlogPostPage slug="jev-decision-model" />)
 
@@ -151,7 +159,7 @@ describe('anonymous post metrics', () => {
     const fetchMock = vi.fn().mockResolvedValue(
       jsonResponse({ liked: false, likes: 4, views: 12 }),
     )
-    vi.stubGlobal('fetch', fetchMock)
+    stubMetricsFetch(fetchMock)
 
     render(<BlogPostPage slug="jev-decision-model" />)
 

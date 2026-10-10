@@ -1,6 +1,7 @@
 import type { MouseEvent, ReactNode } from 'react'
 import type { RoutePath } from '../App'
 import { BlogSiteSummary, type SiteMetricCounts } from '../components/BlogSiteSummary'
+import { PostComments } from '../components/PostComments'
 import { PostMetrics } from '../components/PostMetrics'
 import { TagList } from '../components/TagList'
 import { htmlLang } from '../i18n/locale'
@@ -153,6 +154,7 @@ export function BlogPostPage({ slug, onNavigate, siteMetrics }: BlogPostPageProp
         <div className="blog-post-body" lang={htmlLang[post.bodyLanguage]}>
           {post.content.map(renderContentBlock)}
         </div>
+        <PostComments key={post.slug} slug={post.slug} />
       </div>
       <BlogSiteSummary metrics={siteMetrics} />
     </article>
