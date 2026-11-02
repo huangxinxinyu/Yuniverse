@@ -2,10 +2,10 @@ import { describe, expect, it } from 'vitest'
 import { blogPosts, navItems, profile, sectionSummaries } from './siteContent'
 
 describe('site content', () => {
-  it('publishes the Jev decision model post', () => {
+  it('publishes the DeepSeek Super-agent post', () => {
     expect(blogPosts[0]).toMatchObject({
-      slug: 'jev-decision-model',
-      title: 'Jev：把判断从 LLM 里拆出来',
+      slug: 'deepseek-super-agent',
+      title: 'DeepSeek Super-agent：把 agent 编排写成一个可以测试的后端',
       status: 'published',
     })
   })

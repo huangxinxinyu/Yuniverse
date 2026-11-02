@@ -5,6 +5,7 @@ import { codexLegendaryDriverContextNoise } from './codex-legendary-driver-conte
 import { codexLegendaryDriverLoopEngineering } from './codex-legendary-driver-loop-engineering'
 import { codexLegendaryDriverOpenSourceSkillSet } from './codex-legendary-driver-open-source-skill-set'
 import { codexLegendaryDriverSkillWorkflows } from './codex-legendary-driver-skill-workflows'
+import { deepseekSuperAgent } from './deepseek-super-agent'
 import { dokployLightweightPaasDeploymentTradeoffs } from './dokploy-lightweight-paas-deployment-tradeoffs'
 import { helloWorld } from './hello-world'
 import { internshipAgentInfrastructureNotes } from './internship-agent-infrastructure-notes'
@@ -28,6 +29,7 @@ import { nanoNotebookDevLog11 } from './nano-notebook-dev-log-11'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  deepseekSuperAgent,
   jevDecisionModel,
   nanoNotebookDevLog11,
   nanoNotebookDevLog10,
