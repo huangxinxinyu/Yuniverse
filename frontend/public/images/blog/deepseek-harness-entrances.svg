@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 310" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', sans-serif">
+  <style>
+    .bg { fill: #fffdf8; }
+    .title { fill: #171b18; font-size: 18px; font-weight: 600; }
+    .box { fill: #ffffff; stroke: #b9c4bf; stroke-width: 1.2; }
+    .acc { fill: rgba(15,118,110,0.12); stroke: #0f766e; stroke-width: 1.4; }
+    .dash { fill: none; stroke: #b9c4bf; stroke-width: 1.2; stroke-dasharray: 4 3; }
+    .name { fill: #171b18; font-size: 14px; font-weight: 600; }
+    .meta { fill: #737a73; font-size: 12px; }
+    .accname { fill: #0f766e; font-size: 14px; font-weight: 600; }
+    .lbl { fill: #737a73; font-size: 11.5px; font-family: ui-monospace, Menlo, monospace; }
+    .ln { stroke: #737a73; stroke-width: 1.2; fill: none; }
+    .lnacc { stroke: #0f766e; stroke-width: 1.6; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1d19; }
+      .title, .name { fill: #f3efe6; }
+      .box { fill: #23261f; stroke: #4a504a; }
+      .acc { fill: rgba(95,196,184,0.14); stroke: #5fc4b8; }
+      .accname { fill: #5fc4b8; }
+      .lnacc { stroke: #5fc4b8; }
+      .meta, .lbl { fill: #98968d; }
+      .ln { stroke: #98968d; }
+      .dash { stroke: #4a504a; }
+    }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#737a73"/></marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="760" height="310" rx="10"/>
+  <text class="title" x="24" y="34">五个入口，一个 Host</text>
+
+  <rect class="box" x="24" y="56" width="176" height="40" rx="6"/><text class="name" x="36" y="74">Web UI</text><text class="meta" x="36" y="89">浏览器 · 127.0.0.1:3080</text>
+  <rect class="box" x="24" y="104" width="176" height="40" rx="6"/><text class="name" x="36" y="122">Desktop</text><text class="meta" x="36" y="137">Electron，内嵌同一套 Web</text>
+  <rect class="box" x="24" y="152" width="176" height="40" rx="6"/><text class="name" x="36" y="170">CLI headless</text><text class="meta" x="36" y="185">跑一次就退出</text>
+  <rect class="box" x="24" y="200" width="176" height="40" rx="6"/><text class="name" x="36" y="218">Python / TS SDK</text><text class="meta" x="36" y="233">你的程序</text>
+  <rect class="box" x="24" y="248" width="176" height="40" rx="6"/><text class="name" x="36" y="266">ACP 客户端</text><text class="meta" x="36" y="281">Zed 这类编辑器</text>
+
+  <g class="ln">
+    <path d="M200,76 C270,76 270,160 318,160" marker-end="url(#ar)"/>
+    <path d="M200,124 C262,124 268,166 318,166" marker-end="url(#ar)"/>
+    <path d="M200,172 L318,172" marker-end="url(#ar)"/>
+    <path d="M200,220 C262,220 268,178 318,178" marker-end="url(#ar)"/>
+    <path d="M200,268 C270,268 270,184 318,184" marker-end="url(#ar)"/>
+  </g>
+  <text class="lbl" x="222" y="66">dsh web</text>
+  <text class="lbl" x="214" y="117">desktop</text>
+  <text class="lbl" x="218" y="166">headless</text>
+  <text class="lbl" x="206" y="246">sdk · JSON-RPC</text>
+  <text class="lbl" x="214" y="290">acp · stdio</text>
+
+  <rect class="acc" x="320" y="140" width="150" height="64" rx="8"/>
+  <text class="accname" x="336" y="166">dsh 启动器</text>
+  <text class="lbl" x="336" y="186">--profile &lt;名字&gt;</text>
+
+  <path class="lnacc" d="M470,172 L536,172" marker-end="url(#ara)"/>
+  <text class="lbl" x="488" y="163">组合</text>
+
+  <rect class="box" x="538" y="116" width="200" height="112" rx="8"/>
+  <text class="name" x="554" y="140">Host 进程</text>
+  <text class="meta" x="554" y="160">profile = bundle 栈 + 用户 patch</text>
+  <text class="meta" x="554" y="178">→ Cordis 插件树</text>
+  <text class="lbl" x="554" y="206">同一套代码，不同的插件行</text>
+
+  <rect class="dash" x="538" y="250" width="200" height="40" rx="6"/>
+  <text class="meta" x="552" y="267">dsh plugin &lt;pnpm 参数&gt;</text>
+  <text class="meta" x="552" y="283">第三方插件：往 profile 目录 pnpm add</text>
+  <path class="ln" d="M638,250 L638,230" marker-end="url(#ar)"/>
+</svg>

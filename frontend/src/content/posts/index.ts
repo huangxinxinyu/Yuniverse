@@ -1,10 +1,12 @@
 import type { BlogPost } from '../../data/types'
 import { agentDataFlywheelObservabilitySeo } from './agent-data-flywheel-observability-seo'
+import { agentSelfEvolutionPipeline } from './agent-self-evolution-pipeline'
 import { claudeAgentSdkTraceToEval } from './claude-agent-sdk-trace-to-eval'
 import { codexLegendaryDriverContextNoise } from './codex-legendary-driver-context-noise'
 import { codexLegendaryDriverLoopEngineering } from './codex-legendary-driver-loop-engineering'
 import { codexLegendaryDriverOpenSourceSkillSet } from './codex-legendary-driver-open-source-skill-set'
 import { codexLegendaryDriverSkillWorkflows } from './codex-legendary-driver-skill-workflows'
+import { deepseekHarnessPlugins } from './deepseek-harness-plugins'
 import { deepseekSuperAgent } from './deepseek-super-agent'
 import { dokployLightweightPaasDeploymentTradeoffs } from './dokploy-lightweight-paas-deployment-tradeoffs'
 import { helloWorld } from './hello-world'
@@ -30,6 +32,8 @@ import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base
 import { qwenPretrainingPipeline } from './qwen-pretraining-pipeline'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  agentSelfEvolutionPipeline,
+  deepseekHarnessPlugins,
   qwenPretrainingPipeline,
   deepseekSuperAgent,
   jevDecisionModel,

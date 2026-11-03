@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', sans-serif">
+  <style>
+    .bg { fill: #fffdf8; }
+    .lane { fill: #f3f1ea; stroke: #b9c4bf; stroke-width: 1.2; }
+    .on { fill: rgba(15,118,110,0.12); stroke: #0f766e; stroke-width: 1.4; }
+    .off { fill: #ffffff; stroke: #4f5664; stroke-width: 1.1; }
+    .gate { fill: #ffffff; stroke: #4f5664; stroke-width: 1.3; stroke-dasharray: 4 3; }
+    .store { fill: rgba(180,83,9,0.10); stroke: #b45309; stroke-width: 1.4; }
+    .lanename { fill: #171b18; font-size: 14px; font-weight: 700; }
+    .onname { fill: #0f766e; font-size: 14px; font-weight: 700; }
+    .lanesub { fill: #737a73; font-size: 11.5px; }
+    .n { fill: #737a73; font-size: 12px; font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', sans-serif; }
+    .t { fill: #171b18; font-size: 13.5px; font-weight: 600; }
+    .storename { fill: #b45309; font-size: 14px; font-weight: 700; }
+    .chip { fill: #ffffff; stroke: #b9c4bf; stroke-width: 1; }
+    .chiptext { fill: #4f5664; font-size: 11.5px; font-family: ui-monospace, Menlo, monospace; }
+    .flow { stroke: #4f5664; stroke-width: 1.3; fill: none; }
+    .flowdur { stroke: #b45309; stroke-width: 1.6; fill: none; }
+    .flowdash { stroke: #b45309; stroke-width: 1.4; fill: none; stroke-dasharray: 4 3; }
+    .lbl { fill: #4f5664; font-size: 12px; }
+    .lbldur { fill: #b45309; font-size: 11.5px; }
+    .arr { fill: #737a73; font-size: 14px; font-family: ui-monospace, Menlo, monospace; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1d19; }
+      .lane { fill: #22251f; stroke: #4a504a; }
+      .on { fill: rgba(95,196,184,0.14); stroke: #5fc4b8; }
+      .off, .gate { fill: #2a2d27; stroke: #c9c6bc; }
+      .store { fill: rgba(224,163,90,0.14); stroke: #e0a35a; }
+      .lanename, .t { fill: #f3efe6; }
+      .onname { fill: #5fc4b8; }
+      .lanesub, .n, .arr { fill: #98968d; }
+      .storename, .lbldur { fill: #e0a35a; }
+      .chip { fill: #1b1d19; stroke: #4a504a; }
+      .chiptext, .lbl { fill: #c9c6bc; }
+      .flow { stroke: #c9c6bc; }
+      .flowdur, .flowdash { stroke: #e0a35a; }
+    }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4f5664"/></marker>
+    <marker id="ard" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="860" height="400" rx="10"/>
+
+  <!-- online lane -->
+  <rect class="lane" x="16" y="20" width="828" height="88" rx="10"/>
+  <text class="onname" x="32" y="54">在线执行</text>
+  <text class="lanesub" x="32" y="74">只干活，不改自己</text>
+  <rect class="on" x="150" y="38" width="130" height="52" rx="8"/><text class="n" x="162" y="56">①</text><text class="t" x="162" y="76">执行任务</text>
+  <text class="arr" x="292" y="70">→</text>
+  <rect class="on" x="316" y="38" width="130" height="52" rx="8"/><text class="n" x="328" y="56">②</text><text class="t" x="328" y="76">记录轨迹</text>
+  <text class="lanesub" x="470" y="58">业务 Agent 按正式版本的 Prompt / Skill / 工具干活，</text>
+  <text class="lanesub" x="470" y="76">Harness 把对话、工具调用、环境真值追加进不可变日志</text>
+
+  <!-- store -->
+  <rect class="store" x="150" y="150" width="684" height="60" rx="10"/>
+  <text class="storename" x="168" y="186">正式能力库</text>
+  <rect class="chip" x="270" y="170" width="60" height="22" rx="11"/><text class="chiptext" x="300" y="185" text-anchor="middle">知识库</text>
+  <rect class="chip" x="340" y="170" width="64" height="22" rx="11"/><text class="chiptext" x="372" y="185" text-anchor="middle">Prompt</text>
+  <rect class="chip" x="414" y="170" width="54" height="22" rx="11"/><text class="chiptext" x="441" y="185" text-anchor="middle">Skill</text>
+  <rect class="chip" x="478" y="170" width="106" height="22" rx="11"/><text class="chiptext" x="531" y="185" text-anchor="middle">工作流 / 工具</text>
+  <rect class="chip" x="594" y="170" width="86" height="22" rx="11"/><text class="chiptext" x="637" y="185" text-anchor="middle">模型参数</text>
+
+  <!-- offline lane -->
+  <rect class="lane" x="16" y="252" width="828" height="128" rx="10"/>
+  <text class="lanename" x="32" y="300">离线进化</text>
+  <text class="lanesub" x="32" y="318">聚合、提案、</text><text class="lanesub" x="32" y="334">验证、发布</text>
+  <rect class="off" x="150" y="286" width="86" height="60" rx="8"/><text class="n" x="160" y="304">③</text><text class="t" x="160" y="326">三层验证</text>
+  <text class="arr" x="240" y="322">→</text>
+  <rect class="off" x="256" y="286" width="86" height="60" rx="8"/><text class="n" x="266" y="304">④</text><text class="t" x="266" y="326">触发聚合</text>
+  <text class="arr" x="346" y="322">→</text>
+  <rect class="off" x="362" y="286" width="86" height="60" rx="8"/><text class="n" x="372" y="304">⑤</text><text class="t" x="372" y="326">选择载体</text>
+  <text class="arr" x="452" y="322">→</text>
+  <rect class="off" x="468" y="286" width="86" height="60" rx="8"/><text class="n" x="478" y="304">⑥</text><text class="t" x="478" y="326">最小提案</text>
+  <text class="arr" x="558" y="322">→</text>
+  <rect class="off" x="574" y="286" width="86" height="60" rx="8"/><text class="n" x="584" y="304">⑦</text><text class="t" x="584" y="326">双集回归</text>
+  <text class="arr" x="664" y="322">→</text>
+  <rect class="gate" x="680" y="286" width="72" height="60" rx="8"/><text class="n" x="690" y="304">⑧</text><text class="t" x="690" y="326">门槛</text>
+  <rect class="off" x="762" y="286" width="72" height="60" rx="8"/><text class="n" x="772" y="304">⑨</text><text class="t" x="772" y="326">整理</text>
+
+  <!-- flows -->
+  <path class="flow" d="M381,90 C381,132 128,118 128,200 C128,262 193,236 193,284" marker-end="url(#ar)"/>
+  <text class="lbl" x="24" y="226">② 轨迹进入</text><text class="lbl" x="24" y="242">离线循环</text>
+  <path class="flowdur" d="M716,286 L716,212" marker-end="url(#ard)"/>
+  <text class="lbldur" x="716" y="368" text-anchor="middle">⑧ 过门槛才写入</text>
+  <path class="flowdur" d="M215,150 L215,92" marker-end="url(#ard)"/>
+  <text class="lbldur" x="224" y="126">① 下次执行时读取</text>
+  <path class="flowdash" d="M798,286 L798,212" marker-end="url(#ard)"/>
+  <text class="lbldur" x="798" y="368" text-anchor="middle">⑨ 定期整理</text>
+</svg>

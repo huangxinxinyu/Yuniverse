@@ -2,10 +2,10 @@ import { describe, expect, it } from 'vitest'
 import { blogPosts, navItems, profile, sectionSummaries } from './siteContent'
 
 describe('site content', () => {
-  it('publishes the Qwen pretraining pipeline post', () => {
+  it('publishes the Agent self-evolution pipeline post', () => {
     expect(blogPosts[0]).toMatchObject({
-      slug: 'qwen-pretraining-pipeline',
-      title: '如果要复现一个 Qwen3.8：基模预训练的九个阶段和卡点',
+      slug: 'agent-self-evolution-pipeline',
+      title: 'Agent 自进化：不是让它改自己，而是让每次改动都可验证',
       status: 'published',
     })
   })

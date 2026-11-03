@@ -28,6 +28,8 @@ describe('site content model', () => {
     expect('life' in siteSections).toBe(false)
     expect(blogCategories.some((category) => category.id === 'life')).toBe(false)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'agent-self-evolution-pipeline',
+      'deepseek-harness-plugins',
       'qwen-pretraining-pipeline',
       'deepseek-super-agent',
       'jev-decision-model',
@@ -138,6 +140,8 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'agent-architecture')
         .map((post) => post.slug),
     ).toEqual([
+      'agent-self-evolution-pipeline',
+      'deepseek-harness-plugins',
       'deepseek-super-agent',
       'jev-decision-model',
       'nano-notebook-dev-log-11',

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', sans-serif">
+  <style>
+    .bg { fill: #fffdf8; }
+    .box { fill: #ffffff; stroke: #4f5664; stroke-width: 1.1; }
+    .dash { fill: #ffffff; stroke: #4f5664; stroke-width: 1.1; stroke-dasharray: 4 3; }
+    .acc { fill: rgba(15,118,110,0.12); stroke: #0f766e; stroke-width: 1.4; }
+    .name { fill: #171b18; font-size: 14px; font-weight: 600; }
+    .accname { fill: #0f766e; font-size: 14px; font-weight: 600; }
+    .meta { fill: #737a73; font-size: 11.5px; }
+    .lbl { fill: #737a73; font-size: 11.5px; font-family: ui-monospace, Menlo, monospace; }
+    .ln { stroke: #4f5664; stroke-width: 1.2; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1d19; }
+      .box, .dash { fill: #2a2d27; stroke: #c9c6bc; }
+      .acc { fill: rgba(95,196,184,0.14); stroke: #5fc4b8; }
+      .name { fill: #f3efe6; }
+      .accname { fill: #5fc4b8; }
+      .meta, .lbl { fill: #98968d; }
+      .ln { stroke: #c9c6bc; }
+    }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4f5664"/></marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="760" height="260" rx="10"/>
+
+  <rect class="acc" x="250" y="18" width="260" height="56" rx="8"/>
+  <text class="accname" x="380" y="42" text-anchor="middle">根 ctx</text>
+  <text class="meta" x="380" y="62" text-anchor="middle">tools: read · bash · web …（所有 agent 可见）</text>
+
+  <rect class="box" x="40" y="108" width="280" height="52" rx="8"/>
+  <text class="name" x="56" y="130">preset "router"</text><text class="meta" x="56" y="148">YAML：plugins: [decide 工具, 轻模型 …]</text>
+  <rect class="box" x="440" y="108" width="280" height="52" rx="8"/>
+  <text class="name" x="456" y="130">preset "worker"</text><text class="meta" x="456" y="148">YAML：plugins: [orchestrator_*, shell …]</text>
+  <path class="ln" d="M330,74 C330,92 180,90 180,106" marker-end="url(#ar)"/>
+  <path class="ln" d="M430,74 C430,92 580,90 580,106" marker-end="url(#ar)"/>
+  <text class="lbl" x="206" y="92">继承</text><text class="lbl" x="524" y="92">继承</text>
+
+  <rect class="dash" x="40" y="192" width="280" height="52" rx="8"/>
+  <text class="name" x="56" y="214">agent.ctx · Router</text><text class="meta" x="56" y="232">只看得到自己的 decide / reply</text>
+  <rect class="dash" x="440" y="192" width="130" height="52" rx="8"/>
+  <text class="name" x="454" y="214">agent.ctx · W1</text><text class="meta" x="454" y="232">Ticket A</text>
+  <rect class="dash" x="590" y="192" width="130" height="52" rx="8"/>
+  <text class="name" x="604" y="214">agent.ctx · W2</text><text class="meta" x="604" y="232">Ticket B</text>
+  <path class="ln" d="M180,160 L180,190" marker-end="url(#ar)"/>
+  <path class="ln" d="M560,160 L520,190" marker-end="url(#ar)"/>
+  <path class="ln" d="M620,160 L650,190" marker-end="url(#ar)"/>
+  <text class="lbl" x="380" y="180" text-anchor="middle">agent 结束 → dispose() → 注册全部撤销</text>
+</svg>
