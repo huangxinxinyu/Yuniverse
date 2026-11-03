@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', sans-serif">
+  <style>
+    .bg { fill: #fffdf8; }
+    .box { fill: #ffffff; stroke: #4f5664; stroke-width: 1.1; }
+    .t { fill: #171b18; font-size: 14px; font-weight: 600; }
+    .sub { fill: #737a73; font-size: 11.5px; }
+    .item { fill: #171b18; font-size: 12px; }
+    .code { fill: #737a73; font-size: 10.5px; font-family: ui-monospace, Menlo, monospace; }
+    .hard { fill: rgba(29,122,62,0.10); stroke: #1d7a3e; stroke-width: 1.2; }
+    .hardtext { fill: #1d7a3e; font-size: 11px; font-weight: 600; }
+    .soft { fill: rgba(180,120,30,0.10); stroke: #b4782b; stroke-width: 1.2; }
+    .softtext { fill: #b4782b; font-size: 11px; font-weight: 600; }
+    .banner { fill: #171b18; font-size: 13px; }
+    .flow { stroke: #4f5664; stroke-width: 1.2; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1d19; }
+      .box { fill: #2a2d27; stroke: #c9c6bc; }
+      .t, .item, .banner { fill: #f3efe6; }
+      .sub, .code { fill: #98968d; }
+      .hard { fill: rgba(95,208,138,0.12); stroke: #5fd08a; }
+      .hardtext { fill: #5fd08a; }
+      .soft { fill: rgba(240,180,90,0.12); stroke: #f0b45a; }
+      .softtext { fill: #f0b45a; }
+      .flow { stroke: #c9c6bc; }
+    }
+  </style>
+  <rect class="bg" width="760" height="300"/>
+  <text class="banner" x="380" y="30" text-anchor="middle">“研究做得好不好”其实是三个问题，各自用不同的办法回答</text>
+
+  <rect class="box" x="24" y="52" width="224" height="224" rx="8"/>
+  <text class="t" x="136" y="78" text-anchor="middle">① 说的是不是真的</text>
+  <text class="sub" x="136" y="96" text-anchor="middle">忠实性 · 机械核对</text>
+  <text class="item" x="40" y="124">· quote 回原文匹配</text>
+  <text class="item" x="40" y="144">· 数字逐个比对</text>
+  <text class="item" x="40" y="164">· 未通过的卡片不进写作视图</text>
+  <text class="item" x="40" y="184">· 发布时未读过的链接降级</text>
+  <rect class="hard" x="40" y="236" width="192" height="24" rx="12"/>
+  <text class="hardtext" x="136" y="252" text-anchor="middle">硬性 · 不依赖模型自觉</text>
+
+  <rect class="box" x="268" y="52" width="224" height="224" rx="8"/>
+  <text class="t" x="380" y="78" text-anchor="middle">② 对读者有没有用</text>
+  <text class="sub" x="380" y="96" text-anchor="middle">有用性 · 品味前置到 planner</text>
+  <text class="item" x="284" y="124">· 每题挂在决策上 Decides:</text>
+  <text class="item" x="284" y="144">· 先挖视角再拆问题</text>
+  <text class="item" x="284" y="164">· 问题压在分歧点，先问 Prior</text>
+  <text class="item" x="284" y="184">· 每题写明 Settled by:</text>
+  <text class="item" x="284" y="204">· 卡片带 stance，无反证即未检验</text>
+  <rect class="soft" x="284" y="236" width="192" height="24" rx="12"/>
+  <text class="softtext" x="380" y="252" text-anchor="middle">字段硬校验 · 质量只提示</text>
+
+  <rect class="box" x="512" y="52" width="224" height="224" rx="8"/>
+  <text class="t" x="624" y="78" text-anchor="middle">③ 什么时候该停</text>
+  <text class="sub" x="624" y="96" text-anchor="middle">停止规则 · 看回报不看好坏</text>
+  <text class="item" x="528" y="124">· 结构门：没组装不能交</text>
+  <text class="item" x="528" y="144">· 内容门：逐题声明并核对</text>
+  <text class="item" x="528" y="164">· 预算门：树级预算用完收尾</text>
+  <text class="code" x="528" y="190">stop_reason / questions</text>
+  <text class="code" x="528" y="204">rejected_declarations</text>
+  <text class="code" x="528" y="218">saturation.rounds[]</text>
+  <rect class="hard" x="528" y="236" width="192" height="24" rx="12"/>
+  <text class="hardtext" x="624" y="252" text-anchor="middle">三道门 · 结案声明落库</text>
+</svg>

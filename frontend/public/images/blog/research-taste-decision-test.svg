@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', sans-serif">
+  <style>
+    .bg { fill: #fffdf8; }
+    .q { fill: #ffffff; stroke: #4f5664; stroke-width: 1.1; }
+    .t { fill: #171b18; font-size: 13px; font-weight: 600; }
+    .body { fill: #171b18; font-size: 12px; }
+    .sub { fill: #737a73; font-size: 11.5px; }
+    .ans { fill: #ffffff; stroke: #b9c4bf; stroke-width: 1.1; }
+    .no { fill: rgba(180,55,43,0.10); stroke: #b4372b; stroke-width: 1.3; }
+    .notext { fill: #b4372b; font-size: 12px; font-weight: 600; }
+    .ok { fill: rgba(29,122,62,0.10); stroke: #1d7a3e; stroke-width: 1.3; }
+    .oktext { fill: #1d7a3e; font-size: 12px; font-weight: 600; }
+    .flow { stroke: #4f5664; stroke-width: 1.2; fill: none; marker-end: url(#arrow); }
+    .lbl { fill: #4f5664; font-size: 11px; }
+    .tag { fill: #737a73; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1d19; }
+      .q, .ans { fill: #2a2d27; stroke: #c9c6bc; }
+      .ans { stroke: #4a504a; }
+      .t, .body { fill: #f3efe6; }
+      .sub, .tag { fill: #98968d; }
+      .no { fill: rgba(255,138,125,0.12); stroke: #ff8a7d; }
+      .notext { fill: #ff8a7d; }
+      .ok { fill: rgba(95,208,138,0.12); stroke: #5fd08a; }
+      .oktext { fill: #5fd08a; }
+      .flow { stroke: #c9c6bc; }
+      .lbl { fill: #c9c6bc; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4f5664"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="760" height="330"/>
+  <text class="t" x="380" y="26" text-anchor="middle">决策测试：答案是 A 还是 B，用户会做什么不同的事？</text>
+
+  <text class="tag" x="24" y="58">弱问题</text>
+  <rect class="q" x="24" y="66" width="300" height="56" rx="8"/>
+  <text class="body" x="36" y="88">agent memory 有哪些主流方案？</text>
+  <text class="sub" x="36" y="108">综述题 · 答什么都一样</text>
+  <rect class="ans" x="360" y="56" width="110" height="30" rx="6"/>
+  <text class="body" x="415" y="76" text-anchor="middle">答案 A：五种</text>
+  <rect class="ans" x="360" y="102" width="110" height="30" rx="6"/>
+  <text class="body" x="415" y="122" text-anchor="middle">答案 B：七种</text>
+  <path class="flow" d="M 324 82 L 358 71"/>
+  <path class="flow" d="M 324 106 L 358 117"/>
+  <rect class="no" x="520" y="72" width="216" height="44" rx="8"/>
+  <text class="notext" x="628" y="91" text-anchor="middle">用户的做法不变</text>
+  <text class="sub" x="628" y="107" text-anchor="middle">这题应该删掉</text>
+  <path class="flow" d="M 470 71 L 518 88"/>
+  <path class="flow" d="M 470 117 L 518 100"/>
+
+  <line x1="24" y1="152" x2="736" y2="152" stroke="#b9c4bf" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <text class="tag" x="24" y="180">强问题</text>
+  <rect class="q" x="24" y="188" width="300" height="120" rx="8"/>
+  <text class="body" x="36" y="210">摘要式 memory 会不会丢掉后面步骤</text>
+  <text class="body" x="36" y="228">需要的事实？任务多长开始出问题？</text>
+  <text class="sub" x="36" y="252">Decides: 要不要上检索式 memory</text>
+  <text class="sub" x="36" y="270">Settled by: 独立复现或生产记录，</text>
+  <text class="sub" x="36" y="286">作者自己的 benchmark 不够</text>
+  <rect class="ans" x="360" y="196" width="110" height="30" rx="6"/>
+  <text class="body" x="415" y="216" text-anchor="middle">答案 A：会丢</text>
+  <rect class="ans" x="360" y="262" width="110" height="30" rx="6"/>
+  <text class="body" x="415" y="282" text-anchor="middle">答案 B：不会</text>
+  <path class="flow" d="M 324 220 L 358 211"/>
+  <path class="flow" d="M 324 268 L 358 277"/>
+  <rect class="ok" x="520" y="190" width="216" height="42" rx="8"/>
+  <text class="oktext" x="628" y="208" text-anchor="middle">上检索式 memory</text>
+  <text class="sub" x="628" y="224" text-anchor="middle">按出问题的任务长度定切换点</text>
+  <rect class="ok" x="520" y="256" width="216" height="42" rx="8"/>
+  <text class="oktext" x="628" y="274" text-anchor="middle">保留摘要式</text>
+  <text class="sub" x="628" y="290" text-anchor="middle">把省下的工程量投到别处</text>
+  <path class="flow" d="M 470 211 L 518 211"/>
+  <path class="flow" d="M 470 277 L 518 277"/>
+</svg>

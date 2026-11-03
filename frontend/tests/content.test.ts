@@ -28,6 +28,7 @@ describe('site content model', () => {
     expect('life' in siteSections).toBe(false)
     expect(blogCategories.some((category) => category.id === 'life')).toBe(false)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'nano-notebook-dev-log-12',
       'agent-self-evolution-pipeline',
       'deepseek-harness-plugins',
       'qwen-pretraining-pipeline',
@@ -140,6 +141,7 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'agent-architecture')
         .map((post) => post.slug),
     ).toEqual([
+      'nano-notebook-dev-log-12',
       'agent-self-evolution-pipeline',
       'deepseek-harness-plugins',
       'deepseek-super-agent',
@@ -170,6 +172,7 @@ describe('site content model', () => {
         .filter((post) => post.series === 'nano-notebook-dev-log')
         .map((post) => post.slug),
     ).toEqual([
+      'nano-notebook-dev-log-12',
       'nano-notebook-dev-log-11',
       'nano-notebook-dev-log-10',
       'nano-notebook-dev-log-09',

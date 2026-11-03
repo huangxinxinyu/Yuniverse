@@ -2,10 +2,10 @@ import { describe, expect, it } from 'vitest'
 import { blogPosts, navItems, profile, sectionSummaries } from './siteContent'
 
 describe('site content', () => {
-  it('publishes the Agent self-evolution pipeline post', () => {
+  it('publishes the nano-notebook dev log 12 post', () => {
     expect(blogPosts[0]).toMatchObject({
-      slug: 'agent-self-evolution-pipeline',
-      title: 'Agent 自进化：不是让它改自己，而是让每次改动都可验证',
+      slug: 'nano-notebook-dev-log-12',
+      title: 'nano-notebook 开发日志 12：研究 agent 的“品味”能写进提示词吗',
       status: 'published',
     })
   })
