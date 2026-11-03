@@ -28,6 +28,7 @@ describe('site content model', () => {
     expect('life' in siteSections).toBe(false)
     expect(blogCategories.some((category) => category.id === 'life')).toBe(false)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'qwen-pretraining-pipeline',
       'deepseek-super-agent',
       'jev-decision-model',
       'nano-notebook-dev-log-11',

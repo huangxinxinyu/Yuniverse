@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', sans-serif">
+  <style>
+    .bg { fill: #fffdf8; }
+    .title { fill: #171b18; font-size: 19px; font-weight: 600; }
+    .sub { fill: #737a73; font-size: 13px; }
+    .step { fill: rgba(111,127,84,0.16); stroke: #6f7f54; stroke-width: 1.2; }
+    .stepTop { fill: rgba(165,83,53,0.14); stroke: #a55335; stroke-width: 1.2; }
+    .name { fill: #171b18; font-size: 16px; font-weight: 600; }
+    .meta { fill: #3f4642; font-size: 13px; }
+    .axis { stroke: #737a73; stroke-width: 1.4; fill: none; }
+    .axistext { fill: #737a73; font-size: 13px; }
+    .trap { fill: #a55335; font-size: 13px; }
+    .trapline { stroke: #a55335; stroke-width: 1.2; stroke-dasharray: 3 3; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1d19; }
+      .title, .name { fill: #f3efe6; }
+      .sub, .axistext { fill: #98968d; }
+      .meta { fill: #c9c6bc; }
+      .step { fill: rgba(169,177,132,0.14); stroke: #a9b184; }
+      .stepTop { fill: rgba(214,160,112,0.14); stroke: #d6a070; }
+      .axis { stroke: #98968d; }
+      .trap { fill: #d6a070; }
+      .trapline { stroke: #d6a070; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#737a73"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="760" height="470" rx="10"/>
+  <text class="title" x="24" y="38">评测信号：越便宜，越容易误导</text>
+  <text class="sub" x="24" y="60">每个架构和数据决定，都要在「便宜」和「可信」之间选一个台阶</text>
+
+  <!-- axis -->
+  <path class="axis" d="M40 430 L40 92" marker-end="url(#arrow)"/>
+  <text class="axistext" x="50" y="100">越可信，也越贵</text>
+
+  <!-- steps: stair from bottom-left to top-right -->
+  <rect class="step" x="64" y="350" width="300" height="70" rx="8"/>
+  <text class="name" x="80" y="378">预训练 loss / NLL</text>
+  <text class="meta" x="80" y="402">训练中随时有 · 稳定 · 不受答案格式影响</text>
+
+  <rect class="step" x="200" y="262" width="300" height="70" rx="8"/>
+  <text class="name" x="216" y="290">下游榜单</text>
+  <text class="meta" x="216" y="314">小时级 · 有噪声 · 小模型做选择题近乎瞎猜</text>
+
+  <rect class="step" x="336" y="174" width="300" height="70" rx="8"/>
+  <text class="name" x="352" y="202">小规模后训练探针</text>
+  <text class="meta" x="352" y="226">天级 · 能抓到预训练看不出的问题</text>
+
+  <rect class="stepTop" x="440" y="86" width="296" height="70" rx="8"/>
+  <text class="name" x="456" y="114">完整后训练 / 真实使用</text>
+  <text class="meta" x="456" y="138">周级 · 最终答案，但来不及每次都等</text>
+
+  <!-- traps -->
+  <path class="trapline" d="M380 386 L520 386"/>
+  <text class="trap" x="528" y="382">Qwen：loss 只降 0.002，</text>
+  <text class="trap" x="528" y="400">平均分却涨 1.98</text>
+
+  <path class="trapline" d="M516 298 L560 298"/>
+  <text class="trap" x="568" y="294">MAI：小规模的配比排序，</text>
+  <text class="trap" x="568" y="312">到 23B 翻转</text>
+
+  <path class="trapline" d="M336 209 L206 209"/>
+  <text class="trap" x="64" y="186">Qwen：去位置编码、</text>
+  <text class="trap" x="64" y="204">残差只读两路，</text>
+  <text class="trap" x="64" y="222">预训练无差别，</text>
+  <text class="trap" x="64" y="240">后训练变差</text>
+</svg>

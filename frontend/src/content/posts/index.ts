@@ -27,8 +27,10 @@ import { nanoNotebookDevLog09 } from './nano-notebook-dev-log-09'
 import { nanoNotebookDevLog10 } from './nano-notebook-dev-log-10'
 import { nanoNotebookDevLog11 } from './nano-notebook-dev-log-11'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
+import { qwenPretrainingPipeline } from './qwen-pretraining-pipeline'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  qwenPretrainingPipeline,
   deepseekSuperAgent,
   jevDecisionModel,
   nanoNotebookDevLog11,

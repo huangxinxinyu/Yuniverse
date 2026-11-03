@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 600" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', sans-serif">
+  <style>
+    .bg { fill: #fffdf8; }
+    .grid { stroke: rgba(34,39,35,0.10); stroke-width: 1; }
+    .label { fill: #171b18; font-size: 16px; }
+    .sub { fill: #737a73; font-size: 13px; }
+    .month { fill: #737a73; font-size: 13px; }
+    .title { fill: #171b18; font-size: 19px; font-weight: 600; }
+    .crit { fill: #a55335; }
+    .norm { fill: #6f7f54; }
+    .side { fill: rgba(111,127,84,0.28); }
+    .bartext { fill: #fffdf8; font-size: 13px; font-weight: 600; }
+    .sidetext { fill: #3f4642; font-size: 13px; }
+    .mile { stroke: #a55335; stroke-width: 1.5; stroke-dasharray: 4 4; }
+    .miletext { fill: #a55335; font-size: 13px; font-weight: 600; }
+    .sep { stroke: rgba(34,39,35,0.16); stroke-width: 1; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1d19; }
+      .grid { stroke: rgba(243,239,230,0.10); }
+      .label, .title { fill: #f3efe6; }
+      .sub, .month { fill: #98968d; }
+      .crit { fill: #d6a070; }
+      .norm { fill: #a9b184; }
+      .side { fill: rgba(169,177,132,0.25); }
+      .bartext { fill: #1b1d19; }
+      .sidetext { fill: #c9c6bc; }
+      .mile { stroke: #d6a070; }
+      .miletext { fill: #d6a070; }
+      .sep { stroke: rgba(243,239,230,0.2); }
+    }
+  </style>
+  <rect class="bg" x="0" y="0" width="760" height="600" rx="10"/>
+  <text class="title" x="24" y="38">复现一个 Qwen3.8 级底座：约 7 个月</text>
+  <text class="sub" x="24" y="60">实心色块是关键路径，任何一段延期，后面整体顺延（时间为个人估计）</text>
+
+  <!-- month grid: x0=200, 75px per month, 0..7 -->
+  <g>
+    <line class="grid" x1="200" y1="80" x2="200" y2="572"/>
+    <line class="grid" x1="275" y1="80" x2="275" y2="572"/>
+    <line class="grid" x1="350" y1="80" x2="350" y2="572"/>
+    <line class="grid" x1="425" y1="80" x2="425" y2="572"/>
+    <line class="grid" x1="500" y1="80" x2="500" y2="572"/>
+    <line class="grid" x1="575" y1="80" x2="575" y2="572"/>
+    <line class="grid" x1="650" y1="80" x2="650" y2="572"/>
+    <line class="grid" x1="725" y1="80" x2="725" y2="572"/>
+    <text class="month" x="200" y="96" text-anchor="middle">M0</text>
+    <text class="month" x="275" y="96" text-anchor="middle">M1</text>
+    <text class="month" x="350" y="96" text-anchor="middle">M2</text>
+    <text class="month" x="425" y="96" text-anchor="middle">M3</text>
+    <text class="month" x="500" y="96" text-anchor="middle">M4</text>
+    <text class="month" x="575" y="96" text-anchor="middle">M5</text>
+    <text class="month" x="650" y="96" text-anchor="middle">M6</text>
+    <text class="month" x="725" y="96" text-anchor="middle">M7</text>
+  </g>
+
+  <!-- rows: y start 112, 40px each -->
+  <text class="label" x="24" y="133">0 基线复现</text>
+  <rect class="crit" x="200" y="114" width="75" height="26" rx="5"/>
+
+  <text class="label" x="24" y="173">1 数据管线</text>
+  <rect class="crit" x="200" y="154" width="225" height="26" rx="5"/>
+  <rect class="side" x="425" y="154" width="150" height="26" rx="5"/>
+  <text class="sidetext" x="436" y="172">持续迭代、补桶</text>
+
+  <text class="label" x="24" y="213">2 评测体系</text>
+  <rect class="crit" x="200" y="194" width="150" height="26" rx="5"/>
+  <rect class="side" x="350" y="194" width="375" height="26" rx="5"/>
+  <text class="sidetext" x="361" y="212">每个 checkpoint 自动评测</text>
+
+  <text class="label" x="24" y="253">3 架构消融</text>
+  <rect class="crit" x="350" y="234" width="150" height="26" rx="5"/>
+  <text class="bartext" x="361" y="252">约 100 组 × 1–2 周</text>
+
+  <text class="label" x="24" y="293">4 超参规律</text>
+  <rect class="norm" x="425" y="274" width="75" height="26" rx="5"/>
+
+  <text class="label" x="24" y="333">5 压力测试</text>
+  <rect class="crit" x="500" y="314" width="38" height="26" rx="5"/>
+
+  <text class="label" x="24" y="373">6 主训练</text>
+  <rect class="crit" x="575" y="354" width="56" height="26" rx="5"/>
+  <text class="sub" x="639" y="372">2–4 周</text>
+
+  <text class="label" x="24" y="413">7 中训练 / 长上下文</text>
+  <rect class="crit" x="631" y="394" width="56" height="26" rx="5"/>
+
+  <text class="label" x="24" y="453">8 交付 / 部署</text>
+  <rect class="crit" x="687" y="434" width="38" height="26" rx="5"/>
+
+  <line class="sep" x1="24" y1="476" x2="736" y2="476"/>
+  <text class="sub" x="24" y="498">全程并行</text>
+
+  <text class="label" x="24" y="525">内核 / 训练框架</text>
+  <rect class="side" x="200" y="508" width="525" height="24" rx="5"/>
+  <text class="sidetext" x="211" y="525">新结构的算子、并行策略、MFU 优化</text>
+
+  <text class="label" x="24" y="561">推理部署</text>
+  <rect class="side" x="425" y="544" width="300" height="24" rx="5"/>
+  <text class="sidetext" x="436" y="561">GDN 状态缓存、QSA 算子、MTP</text>
+
+  <!-- milestones -->
+  <line class="mile" x1="538" y1="104" x2="538" y2="470"/>
+  <text class="miletext" x="544" y="306">架构冻结</text>
+</svg>

@@ -2,10 +2,10 @@ import { describe, expect, it } from 'vitest'
 import { blogPosts, navItems, profile, sectionSummaries } from './siteContent'
 
 describe('site content', () => {
-  it('publishes the DeepSeek Super-agent post', () => {
+  it('publishes the Qwen pretraining pipeline post', () => {
     expect(blogPosts[0]).toMatchObject({
-      slug: 'deepseek-super-agent',
-      title: 'DeepSeek Super-agent：把 agent 编排写成一个可以测试的后端',
+      slug: 'qwen-pretraining-pipeline',
+      title: '如果要复现一个 Qwen3.8：基模预训练的九个阶段和卡点',
       status: 'published',
     })
   })
