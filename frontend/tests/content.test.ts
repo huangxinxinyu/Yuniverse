@@ -28,6 +28,7 @@ describe('site content model', () => {
     expect('life' in siteSections).toBe(false)
     expect(blogCategories.some((category) => category.id === 'life')).toBe(false)
     expect(siteSections.blog.posts.map((post) => post.slug)).toEqual([
+      'x-creators-worth-following',
       'nano-notebook-dev-log-13',
       'nano-notebook-dev-log-12',
       'agent-self-evolution-pipeline',
@@ -104,6 +105,7 @@ describe('site content model', () => {
         .filter((post) => post.topic === 'ai-tools')
         .map((post) => post.slug),
     ).toEqual([
+      'x-creators-worth-following',
       'codex-legendary-driver-open-source-skill-set',
       'codex-legendary-driver-loop-engineering',
       'codex-legendary-driver-context-noise',
@@ -195,6 +197,8 @@ describe('site content model', () => {
       'music',
       'movies',
       'pictures',
+      'books',
+      'creators',
     ])
 
     for (const collection of collections) {

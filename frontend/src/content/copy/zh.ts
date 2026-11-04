@@ -81,10 +81,10 @@ export const zhCopy: SiteCopy = {
     collection: {
       eyebrow: '收藏',
       kicker: '收藏',
-      title: '音乐、电影和图片',
+      title: '音乐、电影、图片、书和博主',
       body: '一个暂时很轻的兴趣柜子，用来放电影、健身、音乐和未来的图片主题。',
       summary: '黄新宇的兴趣和收藏整理区。',
-      meta: ['音乐', '电影', '图片', '健身'],
+      meta: ['音乐', '电影', '图片', '书', '博主'],
     },
   },
   aboutPage: {
@@ -225,6 +225,16 @@ export const zhCopy: SiteCopy = {
       label: '图片',
       intro: '上海、悉尼和 UCSD 的视觉笔记，之后还会有更多照片主题。',
       emptyState: '这里还没有保存图片。',
+    },
+    books: {
+      label: '书',
+      intro: '正在啃的系统设计和 Agent 书单。',
+      emptyState: '这个筛选下还没有书。',
+    },
+    creators: {
+      label: '博主',
+      intro: '我在 X 上关注、推荐你也关注的人。',
+      emptyState: '这个筛选下还没有博主。',
     },
   },
   work: {
@@ -392,6 +402,12 @@ export const zhCopy: SiteCopy = {
         watchlist: '想看',
         favorite: '最爱',
         gallery: '图集',
+        'system-design': '系统设计',
+        'operating-systems': '操作系统',
+        agents: 'Agent',
+        researcher: '研究者',
+        builder: '开发者',
+        'zh-creator': '中文博主',
       },
       openPicture: '打开图片',
       byline: (title, creator) => `${title}，${creator}`,

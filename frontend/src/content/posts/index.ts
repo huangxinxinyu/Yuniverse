@@ -32,8 +32,10 @@ import { nanoNotebookDevLog12 } from './nano-notebook-dev-log-12'
 import { nanoNotebookDevLog13 } from './nano-notebook-dev-log-13'
 import { obsidianCodexAiKnowledgeBase } from './obsidian-codex-ai-knowledge-base'
 import { qwenPretrainingPipeline } from './qwen-pretraining-pipeline'
+import { xCreatorsWorthFollowing } from './x-creators-worth-following'
 
 export const blogPosts: readonly [BlogPost, ...BlogPost[]] = [
+  xCreatorsWorthFollowing,
   nanoNotebookDevLog13,
   nanoNotebookDevLog12,
   agentSelfEvolutionPipeline,

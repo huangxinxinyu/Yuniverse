@@ -34,6 +34,7 @@ export const enCopy: SiteCopy = {
   },
   readingTime: (minutes) => `${minutes} min read`,
   tagLabels: {
+    推荐: 'Recommendations',
     实习总结: 'Internship recap',
     实习记录: 'Internship log',
     数据飞轮: 'Data flywheel',
@@ -98,10 +99,10 @@ export const enCopy: SiteCopy = {
     collection: {
       eyebrow: 'Collection',
       kicker: 'Collection',
-      title: 'Music, movies, and pictures',
+      title: 'Music, movies, pictures, books, and creators',
       body: 'A small cabinet of references that shape the mood of the work.',
       summary: 'Where I keep my interests and favorites.',
-      meta: ['Music', 'Movies', 'Pictures', 'Fitness'],
+      meta: ['Music', 'Movies', 'Pictures', 'Books', 'Creators'],
     },
   },
   aboutPage: {
@@ -276,6 +277,16 @@ export const enCopy: SiteCopy = {
       intro: 'Visual notes for Shanghai, Sydney, UCSD, and future photo themes.',
       emptyState: 'No pictures have been saved here yet.',
     },
+    books: {
+      label: 'Books',
+      intro: 'The system design and agent books I am working through.',
+      emptyState: 'No books match this view yet.',
+    },
+    creators: {
+      label: 'Creators',
+      intro: 'People I follow on X and think you should follow too.',
+      emptyState: 'No creators match this view yet.',
+    },
   },
   // Work items and pictures are authored in English in src/data/content.ts.
   work: {},
@@ -380,6 +391,12 @@ export const enCopy: SiteCopy = {
         watchlist: 'Watchlist',
         favorite: 'Favorites',
         gallery: 'Gallery',
+        'system-design': 'System design',
+        'operating-systems': 'Operating systems',
+        agents: 'Agents',
+        researcher: 'Researchers',
+        builder: 'Builders',
+        'zh-creator': 'Chinese creators',
       },
       openPicture: 'Open picture',
       byline: (title, creator) => `${title} by ${creator}`,

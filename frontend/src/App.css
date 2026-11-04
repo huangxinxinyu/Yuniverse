@@ -937,6 +937,13 @@ h3 {
   margin: 0;
 }
 
+.mini-card h3 a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
 .mini-card p,
 .timeline p {
   margin: 0;

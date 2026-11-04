@@ -1,11 +1,15 @@
 import {
   blogPosts as baseBlogPosts,
+  bookItems,
+  creatorItems,
   movieItems,
   musicItems,
   pictureItems,
   profile as baseProfile,
   workItems as baseWorkItems,
   type BlogPost as BaseBlogPost,
+  type BookItem,
+  type CreatorItem,
   type MovieItem,
   type MusicItem,
   type PictureItem,
@@ -17,7 +21,7 @@ import { enCopy } from './copy/en'
 import { zhCopy } from './copy/zh'
 
 export type SectionId = 'about' | 'work' | 'blog' | 'collection'
-export type CollectionId = 'music' | 'movies' | 'pictures'
+export type CollectionId = 'music' | 'movies' | 'pictures' | 'books' | 'creators'
 
 export type NavigationItem = {
   href: `/${SectionId}`
@@ -128,6 +132,7 @@ export type CollectionItem = {
   note: string
   year?: string
   visual?: string
+  href?: string
 }
 
 export type Collection = {
@@ -419,6 +424,30 @@ const toPictureCollectionItem = (item: PictureItem): CollectionItem => ({
   visual: item.gradientFallback,
 })
 
+const toBookCollectionItem =
+  (locale: Locale) =>
+  (item: BookItem): CollectionItem => ({
+    id: item.id,
+    title: item.title,
+    creator: item.author,
+    kind: item.kind,
+    meta: item.author,
+    note: locale === 'en' ? item.noteEn : item.note,
+    href: item.href,
+  })
+
+const toCreatorCollectionItem =
+  (locale: Locale) =>
+  (item: CreatorItem): CollectionItem => ({
+    id: item.id,
+    title: item.name,
+    creator: `@${item.handle}`,
+    kind: item.kind,
+    meta: `@${item.handle}`,
+    note: locale === 'en' ? item.noteEn : item.note,
+    href: `https://x.com/${item.handle}`,
+  })
+
 const createSiteContent = (locale: Locale, copy: SiteCopy): SiteContent => {
   const navigationItems = mapNonEmpty(sectionIds, (id) => ({
     href: `/${id}` as const,
@@ -557,6 +586,16 @@ const createSiteContent = (locale: Locale, copy: SiteCopy): SiteContent => {
         id: 'pictures',
         ...copy.collections.pictures,
         items: mapNonEmpty(localizedPictures, toPictureCollectionItem),
+      },
+      {
+        id: 'books',
+        ...copy.collections.books,
+        items: mapNonEmpty(bookItems, toBookCollectionItem(locale)),
+      },
+      {
+        id: 'creators',
+        ...copy.collections.creators,
+        items: mapNonEmpty(creatorItems, toCreatorCollectionItem(locale)),
       },
     ],
     ui: copy.ui,

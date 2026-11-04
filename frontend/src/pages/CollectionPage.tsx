@@ -21,6 +21,8 @@ export function CollectionPage() {
     music: 'all',
     movies: 'all',
     pictures: 'all',
+    books: 'all',
+    creators: 'all',
   })
   const [openPictureId, setOpenPictureId] = useState<string | null>(null)
   const openPicture = collections
@@ -154,7 +156,15 @@ export function CollectionPage() {
               ) : (
                 <article className="mini-card" key={item.id}>
                   <span>{filterLabels[item.kind] ?? item.kind}</span>
-                  <h3>{item.title}</h3>
+                  <h3>
+                    {item.href ? (
+                      <a href={item.href} rel="noreferrer" target="_blank">
+                        {item.title}
+                      </a>
+                    ) : (
+                      item.title
+                    )}
+                  </h3>
                   <p>{`${item.creator} / ${item.note}`}</p>
                 </article>
               ),

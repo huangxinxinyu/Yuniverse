@@ -71,6 +71,25 @@ export type MovieItem = {
   posterUrl: string
 }
 
+export type BookItem = {
+  id: string
+  title: string
+  author: string
+  kind: 'system-design' | 'operating-systems' | 'agents'
+  note: string
+  noteEn: string
+  href: string
+}
+
+export type CreatorItem = {
+  id: string
+  name: string
+  handle: string
+  kind: 'researcher' | 'builder' | 'zh-creator'
+  note: string
+  noteEn: string
+}
+
 export type PictureItem = {
   id: string
   title: string
